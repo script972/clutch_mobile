@@ -4,7 +4,7 @@ class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
   TabController tabController;
 
   //GlobalKey scaffoldKey;
-  GlobalKey<State<StatefulWidget>> scaffoldKey;
+  GlobalKey<ScaffoldState> scaffoldKey;
 
   SearchAppBar(this.tabController, this.scaffoldKey);
 
@@ -33,7 +33,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
           child: IconButton(
             icon: Image.asset("assets/images/ic_menu.png"),
             onPressed: () {
-              //widget.scaffoldKey.currentState.openDrawer();
+              widget.scaffoldKey.currentState.openDrawer();
             },
           )),
       title: appBarTitle,

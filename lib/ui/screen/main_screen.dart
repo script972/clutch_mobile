@@ -14,7 +14,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
-  final GlobalKey _scaffoldKey = GlobalKey();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
 
   @override
@@ -26,7 +26,7 @@ class _MainScreenState extends State<MainScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
+      key: this._scaffoldKey,
       appBar: SearchAppBar(_tabController, _scaffoldKey),
       drawer: mainDrawer(),
       backgroundColor: Colors.white,
