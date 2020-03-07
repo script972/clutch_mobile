@@ -1,81 +1,73 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class OfferItem extends StatelessWidget {
   final int id;
   final bool global;
   final String title;
   final String subTitle;
-  final String images;
+  final String image;
+  StaggeredTile staggeredTile;
 
-
-  final width = 160.0;
-  final height = 160.0;
-
-  final widthGlobal = 328.0;
-  final heightGlobal = 180.0;
-
-
-  OfferItem(this.id, this.title, this.images, {this.subTitle, this.global = false});
-
-
+  OfferItem(this.id, this.title, this.image,
+      {this.subTitle, this.global = false}) {
+    if (global)
+      this.staggeredTile = const StaggeredTile.count(4, 2.25);
+    else
+      this.staggeredTile = const StaggeredTile.count(2, 2.65);
+    /*if (global)
+      this.staggeredTile = const StaggeredTile.count(4, 2.25);
+    else
+      this.staggeredTile = const StaggeredTile.count(2, 2.25);*/
+  }
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 0,
-      child: Container(
-        width: width,
-        height: height,
-        child: Stack(
-          children: <Widget>[
-            Container(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(images),
-              ),
-            ),
-            Container(
-              width: width,
-              height: height,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                  color: Colors.white,
+      elevation: 8.0,
+      child: Stack(
+        children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+                image: new DecorationImage(
+                    image: AssetImage(image), fit: BoxFit.cover)),
+          ),
+          Align(
+              alignment: Alignment.bottomLeft,
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
                   gradient: LinearGradient(
-                      begin: FractionalOffset.center,
-                      end: FractionalOffset.bottomCenter,
                       colors: [
-                        Colors.black.withOpacity(0.0),
-                        Colors.black87,
+                        Color.fromARGB(80, 0, 0, 0),
+                        Color.fromARGB(80, 0, 0, 0),
+                        Colors.transparent,
                       ],
-                      stops: [
-                        0.0,
-                        1.0
-                      ])),
-            ),
-            Positioned(
-              width: width,
-              height: height,
-              child: Align(
-                alignment: FractionalOffset.bottomLeft,
-                child: ListTile(
-                  dense: true,
-                  title: Text(
-                    "Название акции lorem",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14),
-                  ),
-                  subtitle: Text(
-                    "до 12.01.2019",
-                    style: TextStyle(
-                        color: Colors.white.withOpacity(0.54), fontSize: 10),
-                  ),
+                      begin: FractionalOffset.bottomCenter,
+                      end: FractionalOffset.topCenter,
+                      stops: [0.0, 0.1, 0.3],
+                      tileMode: TileMode.clamp),
                 ),
-              ),
-            )
-          ],
-        ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Text(this.title,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold)),
+                    Text(this.subTitle,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10.0,
+                        )),
+                  ],
+                ),
+              )),
+        ],
       ),
     );
   }
