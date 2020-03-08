@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/ui/screen/main_screen.dart';
+import 'package:flutter_clutch_mobile/ui/route/main_route.dart';
 
 class Application extends StatelessWidget {
   @override
@@ -13,7 +13,7 @@ class Application extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: !kReleaseMode,
       theme: theme,
-      home: MainScreen(),
+      home: MainRoute(),
     );
   }
 }

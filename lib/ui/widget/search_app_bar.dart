@@ -71,10 +71,10 @@ class _SearchAppBarState extends State<SearchAppBar> {
             });
           },
         ),
-        IconButton(
+        /*IconButton(
           icon: Image.asset('assets/images/ic_gear.png'),
           onPressed: () {},
-        ),
+        ),*/
       ],
     );
   }
