@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clutch_mobile/ui/widget/custom_dialog.dart';
 
 class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
   TabController tabController;
@@ -71,10 +72,16 @@ class _SearchAppBarState extends State<SearchAppBar> {
             });
           },
         ),
-        /*IconButton(
+        IconButton(
           icon: Image.asset('assets/images/ic_gear.png'),
-          onPressed: () {},
-        ),*/
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => CustomDialog(),
+            );
+
+          },
+        ),
       ],
     );
   }

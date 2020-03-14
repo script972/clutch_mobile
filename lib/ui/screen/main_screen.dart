@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/ui/widget/drawer.dart';
+import 'package:flutter_clutch_mobile/ui/widget/main_drawer.dart';
 import 'package:flutter_clutch_mobile/ui/widget/search_app_bar.dart';
 import 'package:flutter_clutch_mobile/ui/widget/tab/companies_tab.dart';
 import 'package:flutter_clutch_mobile/ui/widget/tab/offers_tab.dart';
 
-class MainRoute extends StatefulWidget {
+class MainScreen extends StatefulWidget {
   @override
-  _MainRouteState createState() => _MainRouteState();
+  _MainScreenState createState() => _MainScreenState();
 }
 
-class _MainRouteState extends State<MainRoute>
+class _MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-  //static int _selectedIndex = 0;
 
   @override
   void initState() {
@@ -26,7 +25,7 @@ class _MainRouteState extends State<MainRoute>
     return Scaffold(
       key: this._scaffoldKey,
       appBar: SearchAppBar(_tabController, _scaffoldKey),
-      drawer: mainDrawer(),
+      drawer: MainDrawer(),
       /*bottomNavigationBar:
           BottomNavigation.mainBottomNavigation(_onItemTapped, _selectedIndex),*/
       backgroundColor: Colors.white,
@@ -37,7 +36,7 @@ class _MainRouteState extends State<MainRoute>
     );
   }
 
-  /*void _onItemTapped(int index) {
+/*void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
       debugPrint(">>>>${index}");
