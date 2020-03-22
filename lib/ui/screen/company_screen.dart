@@ -23,7 +23,7 @@ class _CompanyScreenState extends State<CompanyScreen> {
           SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Container(child: Image.asset("assets/image/logo_foxtrot.png"),)
+                Container(child: Image.asset("assets/images/logo_foxtrot.png"),)
               ],
             ),
           )
