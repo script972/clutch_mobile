@@ -25,6 +25,8 @@ dependencies:
   cupertino_icons: ^0.1.2
   flutter_staggered_grid_view: 0.3.0
   firebase_core: ^0.4.0+9
+  expandable: ^4.1.2
+  flutter_rating_bar: ^1.1.0
 
 dev_dependencies:
   flutter_test:

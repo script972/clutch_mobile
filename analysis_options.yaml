@@ -9,7 +9,7 @@ linter:
     - non_constant_identifier_names
     - constant_identifier_names # prefer
     - directives_ordering
-    - lines_longer_than_80_chars # avoid
+    #- lines_longer_than_80_chars # avoid
     - curly_braces_in_flow_control_structures
     # DOCUMENTATION
     - slash_for_doc_comments
@@ -28,9 +28,8 @@ linter:
     - unnecessary_lambdas
     - prefer_equal_for_default_values
     - avoid_init_to_null
-    - unnecessary_getters_setters
     - unnecessary_getters # prefer
-    #- prefer_expression_function_bodies # consider
+    - prefer_expression_function_bodies # consider
     - unnecessary_this
     - prefer_initializing_formals
     - type_init_formals

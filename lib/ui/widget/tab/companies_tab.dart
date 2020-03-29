@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clutch_mobile/repository/model/response/company_response.dart';
+import 'package:flutter_clutch_mobile/ui/widget/item/company_item.dart';
 
-import '../item/company_item.dart';
 
 class CompaniesTab extends StatelessWidget {
   final List<Widget> companyList = <Widget>[
-    CompanyItem(1, "assets/images/logos/foxtrot.png", color: Color(0xFFFE5000)),
-    CompanyItem(2, "assets/images/logos/adidas.png"),
-    CompanyItem(3, "assets/images/logos/turkishairlines.png"),
-    CompanyItem(4, "assets/images/logos/reebok.png", color: Color(0xFF0074CD)),
-    CompanyItem(5, "assets/images/logos/answear.png", color: Color(0xFFF1B1C8)),
-    CompanyItem(6, "assets/images/logos/puma.png", color: Colors.black),
+    CompanyItem(CompanyResponse(
+        1, "foxtrot", "assets/images/logos/foxtrot.png", Color(0xFFFE5000))),
+    CompanyItem(CompanyResponse(
+        2, "adidas", "assets/images/logos/adidas.png", Colors.white)),
+    CompanyItem(CompanyResponse(
+        3, "adidas", "assets/images/logos/turkishairlines.png", Colors.white)),
+    CompanyItem(CompanyResponse(
+        4, "reebok", "assets/images/logos/reebok.png", Color(0xFF0074CD))),
+    CompanyItem(CompanyResponse(
+        5, "answear", "assets/images/logos/answear.png", Color(0xFFF1B1C8))),
+    CompanyItem(CompanyResponse(
+        5, "puma", "assets/images/logos/puma.png", Colors.black)),
   ];
 
   @override
