@@ -150,115 +150,118 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
       );
 
   Widget commentsList() => Column(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Expanded(flex: 1, child: Image.asset('assets/images/avatar.png')),
-              Expanded(
-                flex: 6,
-                child: ListTile(
-                  title: Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 20.0),
-                      child: Column(
-                        children: <Widget>[
-                          Align(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                    flex: 1, child: Image.asset('assets/images/avatar.png')),
+                Expanded(
+                  flex: 6,
+                  child: ListTile(
+                    title: Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 20.0),
+                        child: Column(
+                          children: <Widget>[
+                            Align(
+                                alignment: Alignment.topLeft,
+                                child: Text('User 1')),
+                            Align(
                               alignment: Alignment.topLeft,
-                              child: Text('User 1')),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: FlutterRatingBar(
-                              itemPadding:
-                                  EdgeInsets.symmetric(horizontal: 2.0),
-                              fullRatingWidget: Image.asset(
-                                'assets/images/ic_star.png',
-                                scale: 4,
+                              child: FlutterRatingBar(
+                                itemPadding:
+                                    EdgeInsets.symmetric(horizontal: 2.0),
+                                fullRatingWidget: Image.asset(
+                                  'assets/images/ic_star.png',
+                                  scale: 4,
+                                ),
+                                noRatingWidget: Image.asset(
+                                  'assets/images/ic_star_active.png',
+                                  scale: 4,
+                                ),
+                                initialRating: 4,
+                                itemSize: 25,
+                                onRatingUpdate: (_) {},
                               ),
-                              noRatingWidget: Image.asset(
-                                'assets/images/ic_star_active.png',
-                                scale: 4,
-                              ),
-                              initialRating: 4,
-                              itemSize: 25,
-                              onRatingUpdate: (_) {},
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  subtitle: Text(widget.comment),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(14.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Expanded(flex: 1, child: Image.asset('assets/images/avatar.png')),
-              Expanded(
-                flex: 6,
-                child: ListTile(
-                  title: Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 20.0),
-                      child: Column(
-                        children: <Widget>[
-                          Align(
-                              alignment: Alignment.topLeft,
-                              child: Text('User 2')),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: FlutterRatingBar(
-                              itemPadding:
-                                  EdgeInsets.symmetric(horizontal: 2.0),
-                              fullRatingWidget: Image.asset(
-                                'assets/images/ic_star.png',
-                                scale: 4,
-                              ),
-                              noRatingWidget: Image.asset(
-                                'assets/images/ic_star_active.png',
-                                scale: 4,
-                              ),
-                              initialRating: 2,
-                              itemSize: 25,
-                              onRatingUpdate: (_) {},
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  subtitle: Text(
-                    widget.comment,
-                    style: TextStyle(fontSize: 14),
+                    subtitle: Text(widget.comment),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            FlatButton(
-              child: Text(
-                ('Все отзывы').toUpperCase(),
-                style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontWeight: FontWeight.w600),
-              ), onPressed: () {},
+              ],
             ),
-          ],
-        ),
-      ],
-    );
+          ),
+          Padding(
+            padding: const EdgeInsets.all(14.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                    flex: 1, child: Image.asset('assets/images/avatar.png')),
+                Expanded(
+                  flex: 6,
+                  child: ListTile(
+                    title: Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 20.0),
+                        child: Column(
+                          children: <Widget>[
+                            Align(
+                                alignment: Alignment.topLeft,
+                                child: Text('User 2')),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: FlutterRatingBar(
+                                itemPadding:
+                                    EdgeInsets.symmetric(horizontal: 2.0),
+                                fullRatingWidget: Image.asset(
+                                  'assets/images/ic_star.png',
+                                  scale: 4,
+                                ),
+                                noRatingWidget: Image.asset(
+                                  'assets/images/ic_star_active.png',
+                                  scale: 4,
+                                ),
+                                initialRating: 2,
+                                itemSize: 25,
+                                onRatingUpdate: (_) {},
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    subtitle: Text(
+                      widget.comment,
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              FlatButton(
+                child: Text(
+                  ('Все отзывы').toUpperCase(),
+                  style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.w600),
+                ),
+                onPressed: () {},
+              ),
+            ],
+          ),
+        ],
+      );
 }

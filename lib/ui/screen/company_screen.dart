@@ -18,24 +18,22 @@ class _CompanyScreenState extends State<CompanyScreen>
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      body: NestedScrollView(
-        headerSliverBuilder: (a1, a2) {
-          return <Widget>[
+        body: NestedScrollView(
+          headerSliverBuilder: (a1, a2) => <Widget>[
             ScrollableAppBar(widget.company, _companyTabController),
-          ];
-        },
-        body: Container(
-          child: TabBarView(
-            controller: _companyTabController,
-            children: <Widget>[
-              SizedBox(),
-              CompanyDetailsTab(widget.company),
-              SizedBox()
-            ],
+          ],
+          body: Container(
+            child: TabBarView(
+              controller: _companyTabController,
+              children: <Widget>[
+                SizedBox(),
+                CompanyDetailsTab(widget.company),
+                SizedBox()
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
 
   @override
   void initState() {

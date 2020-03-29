@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clutch_mobile/ui/widget/main_drawer.dart';
 import 'package:flutter_clutch_mobile/ui/widget/search_app_bar.dart';
 import 'package:flutter_clutch_mobile/ui/widget/tab/companies_tab.dart';
 import 'package:flutter_clutch_mobile/ui/widget/tab/offers_tab.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -17,6 +19,7 @@ class _MainScreenState extends State<MainScreen>
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
+
     super.initState();
   }
 

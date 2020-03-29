@@ -1,8 +1,12 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clutch_mobile/core/custom_route.dart';
 
 class Application extends StatelessWidget {
+  FirebaseAnalytics analytics = FirebaseAnalytics();
+
   @override
   Widget build(BuildContext context) {
     final theme = ThemeData(
@@ -14,8 +18,11 @@ class Application extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: !kReleaseMode,
       theme: theme,
-      darkTheme:  theme,
+      darkTheme: theme,
       onGenerateRoute: CustomRoute.generateRoute,
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: analytics),
+      ],
       initialRoute: CustomRoute.MAIN_SCREEN,
     );
   }
