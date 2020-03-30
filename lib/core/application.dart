@@ -9,6 +9,7 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isAuthorize = false;
     final theme = ThemeData(
       fontFamily: "GoogleSans",
       primaryColor: Color(0xFF02AD58),
@@ -23,7 +24,7 @@ class Application extends StatelessWidget {
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: analytics),
       ],
-      initialRoute: CustomRoute.MAIN_SCREEN,
+      initialRoute: isAuthorize ? CustomRoute.MAIN_SCREEN : CustomRoute.SIGN_SCREEN ,
     );
   }
 }
