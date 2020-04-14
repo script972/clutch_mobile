@@ -2,10 +2,9 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 
 class AboutCompany extends StatefulWidget {
-  final String about =
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute iru';
+  final String about;
 
-  AboutCompany({Key key}) : super(key: key);
+  AboutCompany(this.about, {Key key}) : super(key: key);
 
   @override
   _AboutCompanyState createState() => _AboutCompanyState();

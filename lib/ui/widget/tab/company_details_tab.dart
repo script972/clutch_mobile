@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clutch_mobile/repository/model/response/company_response.dart';
+import 'package:flutter_clutch_mobile/ui/model/comment_model_ui.dart';
 import 'package:flutter_clutch_mobile/ui/widget/about_company.dart';
 import 'package:flutter_clutch_mobile/ui/widget/company_header.dart';
+import 'package:flutter_clutch_mobile/ui/widget/item/comment_item.dart';
 import 'package:flutter_clutch_mobile/ui/widget/work_shedule.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -9,6 +11,13 @@ class CompanyDetailsTab extends StatefulWidget {
   final CompanyResponse company;
   final String comment =
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+  final String description =
+      ' немецкий промышленный концерн, специализирующийся на выпуске и продаже '
+      'спортивной обуви, одежды и инвентаря под торговыми марками adidas и Reebok. '
+      'Генеральный директор компании — Каспер Рорштед (с октября 2016). Название '
+      'компании, как и торговой марки, принято писать со строчной буквы — adidas.';
+
+  List commentList = <Widget>[];
 
   CompanyDetailsTab(this.company, {Key key}) : super(key: key);
 
@@ -18,6 +27,27 @@ class CompanyDetailsTab extends StatefulWidget {
 
 class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
   @override
+  void initState() {
+    super.initState();
+    widget.commentList.add(CommentItem(CommentModelUi(
+        id: 1,
+        avatar:
+            "https://lh3.googleusercontent.com/proxy/h7surq-r3DO1WgU4lKTx3IKqjDnyQQ-7gFo9hGKm8P67uI28Kg7Q7Xusp-2O76AaG_3NIEh8DudG6nae-6hPx56Ou2fP5kPdu5d8Gh1EE2lBk8SYy7MVsy0rv3EFXc47_x0",
+        comment: widget.comment,
+        isMyComment: true,
+        name: "Денис",
+        rang: 4)));
+
+    widget.commentList.add(CommentItem(CommentModelUi(
+        id: 1,
+        avatar: "https://i.imgur.com/I80W1Q0.png",
+        comment: widget.comment,
+        isMyComment: false,
+        name: "Extrawest",
+        rang: 5)));
+  }
+
+  @override
   Widget build(BuildContext context) => SingleChildScrollView(
         child: Container(
           color: Colors.white,
@@ -26,7 +56,7 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
               children: <Widget>[
                 CompanyHeader(widget.company),
                 Divider(),
-                AboutCompany(),
+                AboutCompany(widget.description),
                 Divider(),
                 WorkSchedule(),
                 Divider(),
@@ -41,227 +71,10 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                             fontWeight: FontWeight.w600)),
                   ),
                 ),
-                Dismissible(
-                  key: Key(''),
-                  direction: DismissDirection.endToStart,
-                  background: Align(
-                    alignment: Alignment.centerRight,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Expanded(
-                          child: Container(
-                            alignment: AlignmentDirectional.centerEnd,
-                            color: Color(0xFFFF473D),
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 15.0),
-                              child: Icon(Icons.delete, color: Colors.white),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            alignment: AlignmentDirectional.centerEnd,
-                            color: Color(0xFF3C83EE),
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 15.0),
-                              child: Icon(
-                                Icons.edit,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  child: Container(
-                    color: Color(0xFFF6F6F6),
-                    child: Stack(
-                      children: <Widget>[
-                        Positioned(
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Container(
-                              color: Theme.of(context).primaryColor,
-                              width: 3.0,
-                              height: 160.0,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Expanded(
-                                  flex: 1,
-                                  child: Image.asset(
-                                    'assets/images/ic_star.png',
-                                    scale: 2,
-                                  )),
-                              Expanded(
-                                flex: 6,
-                                child: ListTile(
-                                  title: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 20.0),
-                                      child: Column(
-                                        children: <Widget>[
-                                          Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Text('My Comment')),
-                                          Align(
-                                            alignment: Alignment.topLeft,
-                                            child: FlutterRatingBar(
-                                              itemPadding: EdgeInsets.symmetric(
-                                                  horizontal: 2.0),
-                                              fullRatingWidget: Image.asset(
-                                                'assets/images/ic_star.png',
-                                                scale: 4,
-                                              ),
-                                              noRatingWidget: Image.asset(
-                                                'assets/images/ic_star_active.png',
-                                                scale: 4,
-                                              ),
-                                              initialRating: 4,
-                                              itemSize: 25,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  subtitle: Text(widget.comment),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
                 commentsList(),
               ]),
         ),
       );
 
-  Widget commentsList() => Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                    flex: 1, child: Image.asset('assets/images/avatar.png')),
-                Expanded(
-                  flex: 6,
-                  child: ListTile(
-                    title: Align(
-                      alignment: Alignment.topLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 20.0),
-                        child: Column(
-                          children: <Widget>[
-                            Align(
-                                alignment: Alignment.topLeft,
-                                child: Text('User 1')),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: FlutterRatingBar(
-                                itemPadding:
-                                    EdgeInsets.symmetric(horizontal: 2.0),
-                                fullRatingWidget: Image.asset(
-                                  'assets/images/ic_star.png',
-                                  scale: 4,
-                                ),
-                                noRatingWidget: Image.asset(
-                                  'assets/images/ic_star_active.png',
-                                  scale: 4,
-                                ),
-                                initialRating: 4,
-                                itemSize: 25,
-                                onRatingUpdate: (_) {},
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    subtitle: Text(widget.comment),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                    flex: 1, child: Image.asset('assets/images/avatar.png')),
-                Expanded(
-                  flex: 6,
-                  child: ListTile(
-                    title: Align(
-                      alignment: Alignment.topLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 20.0),
-                        child: Column(
-                          children: <Widget>[
-                            Align(
-                                alignment: Alignment.topLeft,
-                                child: Text('User 2')),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: FlutterRatingBar(
-                                itemPadding:
-                                    EdgeInsets.symmetric(horizontal: 2.0),
-                                fullRatingWidget: Image.asset(
-                                  'assets/images/ic_star.png',
-                                  scale: 4,
-                                ),
-                                noRatingWidget: Image.asset(
-                                  'assets/images/ic_star_active.png',
-                                  scale: 4,
-                                ),
-                                initialRating: 2,
-                                itemSize: 25,
-                                onRatingUpdate: (_) {},
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    subtitle: Text(
-                      widget.comment,
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              FlatButton(
-                child: Text(
-                  ('Все отзывы').toUpperCase(),
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.w600),
-                ),
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ],
-      );
+  Widget commentsList() => Column(children: widget.commentList);
 }

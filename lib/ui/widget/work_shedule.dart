@@ -29,46 +29,48 @@ class _WorkScheduleState extends State<WorkSchedule> {
 
   @override
   Widget build(BuildContext context) => Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Expanded(
-            flex: 1,
-            child: Icon(
-              Icons.access_time,
-              size: 20.0,
-              color: Colors.black.withOpacity(0.38),
-            )),
-        Expanded(
-            flex: 6,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        'График работы',
-                        style: TextStyle(
-                            color: Colors.black.withOpacity(0.54),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Text(_isWorkingTime ? 'Открыто' : 'Закрыто',
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+              flex: 1,
+              child: Icon(
+                Icons.access_time,
+                size: 20.0,
+                color: Colors.black.withOpacity(0.38),
+              )),
+          Expanded(
+              flex: 6,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'График работы',
                           style: TextStyle(
-                              color: _isWorkingTime
-                                  ? Theme.of(context).primaryColor
-                                  : Color(0xFFFF473D),
+                              color: Colors.black.withOpacity(0.54),
                               fontSize: 14,
-                              fontWeight: FontWeight.w600))
-                    ],
-                  ),
-                  Padding(padding: EdgeInsets.all(16.0), child: Column(children: widget.workingDays)),
-                ],
-              ),
-            )),
-      ],
-    );
+                              fontWeight: FontWeight.w600),
+                        ),
+                        Text(_isWorkingTime ? 'Открыто' : 'Закрыто',
+                            style: TextStyle(
+                                color: _isWorkingTime
+                                    ? Theme.of(context).primaryColor
+                                    : Color(0xFFFF473D),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600))
+                      ],
+                    ),
+                    Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Column(children: widget.workingDays)),
+                  ],
+                ),
+              )),
+        ],
+      );
 }
 
 class WorkingDay extends StatelessWidget {
@@ -116,7 +118,7 @@ class WorkingDay extends StatelessWidget {
                 fontWeight: _isWorkingTime ? FontWeight.bold : FontWeight.w600),
           ),
           Text(
-            openingTime.toString() + ' - ' + closingTime.toString(),
+            "${openingTime} - ${closingTime}",
             style: TextStyle(
                 color: _isWorkingTime
                     ? Colors.black
