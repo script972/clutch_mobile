@@ -45,8 +45,7 @@ class BorderedInputTextField extends StatefulWidget {
 
 class _BorderedInputTextFieldState extends State<BorderedInputTextField> {
   @override
-  Widget build(BuildContext context) {
-    return Padding(
+  Widget build(BuildContext context) => Padding(
       key: widget.key,
       padding: widget.padding,
       child: Container(
@@ -81,7 +80,6 @@ class _BorderedInputTextFieldState extends State<BorderedInputTextField> {
         ),
       ),
     );
-  }
 
   @override
   void initState() {

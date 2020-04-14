@@ -6,7 +6,7 @@ class OffersTab extends StatelessWidget {
   final List<OfferItem> offers = [
     OfferItem(
       1,
-      "Название акции 1 dad sdsd sdsd 12",
+      "Название акции 1",
       "assets/images/offers/offer1.png",
       subTitle: "до 12.01.2019",
     ),
