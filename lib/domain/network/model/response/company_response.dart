@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'dart:convert';
 
+import 'package:flutter_clutch_mobile/domain/network/model/response/offer_response.dart';
 import 'package:flutter_clutch_mobile/helpers/color_helper.dart';
-import 'package:flutter_clutch_mobile/repository/model/response/offer_response.dart';
 
 class CompanyResponse {
   OfferResponse offers;

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/repository/model/response/company_response.dart';
+import 'package:flutter_clutch_mobile/domain/network/model/response/company_response.dart';
 import 'package:flutter_clutch_mobile/ui/model/comment_model_ui.dart';
 import 'package:flutter_clutch_mobile/ui/widget/about_company.dart';
 import 'package:flutter_clutch_mobile/ui/widget/company_header.dart';
 import 'package:flutter_clutch_mobile/ui/widget/item/comment_item.dart';
 import 'package:flutter_clutch_mobile/ui/widget/work_shedule.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class CompanyDetailsTab extends StatefulWidget {
   final CompanyResponse company;

@@ -1,8 +1,12 @@
+import 'dart:async';
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/repository/model/response/company_response.dart';
+import 'package:flutter_clutch_mobile/domain/network/api_service.dart';
+import 'package:flutter_clutch_mobile/domain/network/model/response/company_response.dart';
+import 'package:flutter_clutch_mobile/domain/network/service_connector_factory.dart';
+import 'package:flutter_clutch_mobile/repository/company_repository.dart';
+import 'package:flutter_clutch_mobile/repository/impl/company_repository_impl.dart';
 import 'package:flutter_clutch_mobile/ui/widget/item/company_item.dart';
 
 class CompaniesTab extends StatefulWidget {
@@ -11,39 +15,24 @@ class CompaniesTab extends StatefulWidget {
 }
 
 class _CompaniesTabState extends State<CompaniesTab> {
-  final List<Widget> companyList = List();
-  final databaseReference = Firestore.instance;
+  CompanyRepository companyRepository = CompanyRepositoryImpl();
 
   @override
   void initState() {
     super.initState();
-    /*  companyList.addAll(<Widget>[
-        CompanyItem(CompanyResponse(1, "foxtrot",
-            "assets/images/logos/foxtrot.png", Color(0xFFFE5000))),
-        CompanyItem(CompanyResponse(
-            2, "adidas", "assets/images/logos/adidas.png", Colors.white)),
-        CompanyItem(CompanyResponse(3, "adidas",
-            "assets/images/logos/turkishairlines.png", Colors.white)),
-        CompanyItem(CompanyResponse(
-            4, "reebok", "assets/images/logos/reebok.png", Color(0xFF0074CD))),
-        CompanyItem(CompanyResponse(5, "answear",
-            "assets/images/logos/answear.png", Color(0xFFF1B1C8))),
-        CompanyItem(CompanyResponse(
-            5, "puma", "assets/images/logos/puma.png", Colors.black)),
-      ]);*/
   }
 
   @override
   Widget build(BuildContext context) => StreamBuilder(
-      stream: databaseReference.collection('company').snapshots(),
-      builder: (context, AsyncSnapshot<QuerySnapshot> snap) => Container(
+      stream: companyRepository.fetchAllCompany(),
+      builder: (context, AsyncSnapshot<List<CompanyResponse>> snap) =>
+          Container(
             padding: EdgeInsets.only(top: 0, left: 8.0, right: 8.0),
             child: GridView.count(
               crossAxisCount: 2,
               childAspectRatio: 3 / 2,
-              children: snap.data.documents
-                  .map((DocumentSnapshot document) =>
-                      CompanyItem(CompanyResponse.fromMap(document.data)))
+              children: snap.data
+                  .map((CompanyResponse item) => CompanyItem(item))
                   .toList(),
             ),
           ));

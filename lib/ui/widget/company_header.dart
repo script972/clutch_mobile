@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/repository/model/response/company_response.dart';
+import 'package:flutter_clutch_mobile/domain/network/model/response/company_response.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class CompanyHeader extends StatelessWidget {
