@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_clutch_mobile/domain/network/api_service.dart';
 import 'package:flutter_clutch_mobile/domain/network/model/response/company_response.dart';
 
-import '../api_service.dart';
 import 'firestore_constance.dart';
 
-class FirestoreServiceImpl extends ApiService {
+class FirestoreCompanyServiceImpl extends ApiCompanyService {
   final databaseReference = Firestore.instance;
 
   Stream<List<CompanyResponse>> fetchCompany() async* {

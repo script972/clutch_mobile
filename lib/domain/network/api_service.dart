@@ -2,8 +2,8 @@
 
 import 'model/response/company_response.dart';
 
-abstract class ApiService {
+abstract class ApiCompanyService {
 
   Stream<List<CompanyResponse>> fetchCompany();
-
 }
+

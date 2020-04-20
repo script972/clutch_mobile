@@ -8,17 +8,17 @@ import 'package:flutter_clutch_mobile/domain/network/mock/mock_service_impl.dart
 enum ServiceTypeEnum { FIRESTORE, HTTP, MOCK }
 
 class ServiceConnectorFactory {
-  static ApiService getAPIService({useMockedService = false}) {
+  static ApiCompanyService getAPIService({useMockedService = false}) {
     var type = ServiceTypeEnum.FIRESTORE;
     switch (type) {
       case ServiceTypeEnum.FIRESTORE:
-        return FirestoreServiceImpl();
+        return FirestoreCompanyServiceImpl();
         break;
       case ServiceTypeEnum.HTTP:
-        return HttpServiceImpl();
+        return HttpCompanyServiceImpl();
         break;
       case ServiceTypeEnum.MOCK:
-        return MockServiceImpl();
+        return MockCompanyServiceImpl();
         break;
     }
   }

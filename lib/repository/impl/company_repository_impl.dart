@@ -4,15 +4,24 @@ import 'package:flutter_clutch_mobile/domain/network/service_connector_factory.d
 import 'package:flutter_clutch_mobile/repository/company_repository.dart';
 
 /**
- * На этом слое вы решаете откуда тянуть данные. К примеру с локальной баы данных либо сети.
- * Так как базы у нас нет, будем тянуть все с сети.
+ * На этом слое вы решаете откуда тянуть данные. К примеру с локальной баы данных либо сети либо же с переферии устройства.
+ * Так как базы у нас нет, будем тянуть все с сети. Далее добавим базу
  */
 class CompanyRepositoryImpl extends CompanyRepository {
 
-  final ApiService apiService = ServiceConnectorFactory.getAPIService();
+  final ApiCompanyService apiService = ServiceConnectorFactory.getAPIService();
 
   @override
   Stream<List<CompanyResponse>> fetchAllCompany() {
+   /*
+   TODO: Заменить в сооветсвии с логикой
+   if(database.getAllCompany().isNotEmpty && database.getAllCompany().isActual()) {
+      return database.getData();
+    } else {
+      var data = apiService.fetchCompany();
+      database.saveAllCompany(data);
+      return data;
+    }*/
     return apiService.fetchCompany();
   }
 }

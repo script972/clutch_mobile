@@ -28,12 +28,14 @@ class _CompaniesTabState extends State<CompaniesTab> {
       builder: (context, AsyncSnapshot<List<CompanyResponse>> snap) =>
           Container(
             padding: EdgeInsets.only(top: 0, left: 8.0, right: 8.0),
-            child: GridView.count(
-              crossAxisCount: 2,
-              childAspectRatio: 3 / 2,
-              children: snap.data
-                  .map((CompanyResponse item) => CompanyItem(item))
-                  .toList(),
-            ),
+            child:/* TODO: Добавить лоудер в при интеграции паттерна представления
+                ? Image.asset("assets/images/nothing_to_show.png")
+                : */GridView.count(
+                    crossAxisCount: 2,
+                    childAspectRatio: 3 / 2,
+                    children: snap.data
+                        .map((CompanyResponse item) => CompanyItem(item))
+                        .toList(),
+                  ),
           ));
 }
