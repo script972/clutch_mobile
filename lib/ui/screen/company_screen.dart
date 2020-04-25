@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clutch_mobile/domain/network/model/response/company_response.dart';
-import 'package:flutter_clutch_mobile/ui/widget/scrollable_app_bar.dart';
+import 'package:flutter_clutch_mobile/ui/widget/organism/scrollable_app_bar.dart';
 import 'package:flutter_clutch_mobile/ui/widget/tab/company_details_tab.dart';
+import 'package:flutter_clutch_mobile/ui/widget/tab/company_locations_tab.dart';
 
 class CompanyScreen extends StatefulWidget {
   CompanyResponse company;
@@ -28,7 +29,7 @@ class _CompanyScreenState extends State<CompanyScreen>
               children: <Widget>[
                 SizedBox(),
                 CompanyDetailsTab(widget.company),
-                SizedBox()
+                CompanyLocationsTab(),
               ],
             ),
           ),

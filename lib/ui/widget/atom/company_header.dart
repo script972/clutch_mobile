@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clutch_mobile/domain/network/model/response/company_response.dart';
+import 'package:flutter_clutch_mobile/ui/widget/atom/rating_wrapper.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class CompanyHeader extends StatelessWidget {
@@ -18,22 +19,7 @@ class CompanyHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
-          FlutterRatingBar(
-            itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
-            fillColor: Color(0xFFF88821),
-            ignoreGestures: true,
-            fullRatingWidget: Image.asset(
-              'assets/images/ic_star_active.png',
-              scale: 0.7,
-            ),
-            noRatingWidget: Image.asset(
-              'assets/images/ic_star.png',
-              scale: 0.7,
-            ),
-            initialRating: 4,
-            itemSize: 25,
-            tapOnlyMode: true,
-          ),
+          RatingWrapper(4),
           Padding(
             padding: const EdgeInsets.only(top: 6.0),
             child: Text(

@@ -5,8 +5,7 @@ class CustomDialog extends StatelessWidget {
   CustomDialog();
 
   @override
-  Widget build(BuildContext context) {
-    return Dialog(
+  Widget build(BuildContext context) => Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
       ),
@@ -45,5 +44,4 @@ class CustomDialog extends StatelessWidget {
             ],
           )),
     );
-  }
 }

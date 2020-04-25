@@ -13,22 +13,21 @@ class CompanyItem extends StatefulWidget {
 
 class _CompanyItemState extends State<CompanyItem> {
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, CustomRoute.DETAILS_COMPANY,
-            arguments: widget._companyResponse);
-      },
-      child: Card(
-        elevation: 1,
-        margin: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-        color: widget._companyResponse.color,
-        child: Container(
-          child: Image.asset(widget._companyResponse.image),
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, CustomRoute.DETAILS_COMPANY,
+              arguments: widget._companyResponse);
+        },
+        child: Card(
+          elevation: 1,
+          margin: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+          color: widget._companyResponse.color,
+          child: Hero(
+            tag: widget._companyResponse.image,
+            child: Image.asset(widget._companyResponse.image),
+          ),
         ),
-      ),
-    );
-  }
+      );
 }

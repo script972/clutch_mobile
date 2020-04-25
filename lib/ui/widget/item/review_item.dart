@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clutch_mobile/ui/model/comment_model_ui.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_clutch_mobile/ui/widget/atom/rating_wrapper.dart';
 
-class CommentItem extends StatefulWidget {
+class ReviewItem extends StatefulWidget {
   CommentModelUi model;
 
-  CommentItem(this.model);
+  ReviewItem(this.model);
 
   @override
-  _CommentItemState createState() => _CommentItemState();
+  _ReviewItemState createState() => _ReviewItemState();
 }
 
-class _CommentItemState extends State<CommentItem> {
+class _ReviewItemState extends State<ReviewItem> {
   @override
   Widget build(BuildContext context) => widget.model.isMyComment
       ? Dismissible(
@@ -63,18 +63,7 @@ class _CommentItemState extends State<CommentItem> {
                                   child: Text(widget.model.name)),
                               Align(
                                 alignment: Alignment.topLeft,
-                                child: FlutterRatingBar(
-                                  itemPadding:
-                                      EdgeInsets.symmetric(horizontal: 2.0),
-                                  fullRatingWidget: Image.asset(
-                                    'assets/images/ic_star_active.png',
-                                  ),
-                                  noRatingWidget: Image.asset(
-                                    'assets/images/ic_star.png',
-                                  ),
-                                  initialRating: widget.model.rang.toDouble(),
-                                  itemSize: 25,
-                                ),
+                                child: RatingWrapper(widget.model.rang),
                               ),
                             ],
                           ),

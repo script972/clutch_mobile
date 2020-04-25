@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clutch_mobile/core/custom_route.dart';
 import 'package:flutter_clutch_mobile/core/theme_custom.dart';
 import 'package:flutter_clutch_mobile/helpers/input_helper.dart';
-import 'package:flutter_clutch_mobile/ui/widget/input/border_input_text_field.dart';
+import 'package:flutter_clutch_mobile/ui/widget/atom/border_input_text_field.dart';
 
 class SignInScreen extends StatefulWidget {
   @override

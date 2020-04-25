@@ -1,10 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/ui/widget/main_drawer.dart';
-import 'package:flutter_clutch_mobile/ui/widget/search_app_bar.dart';
+import 'package:flutter_clutch_mobile/ui/widget/organism/main_drawer.dart';
+import 'package:flutter_clutch_mobile/ui/widget/organism/search_app_bar.dart';
 import 'package:flutter_clutch_mobile/ui/widget/tab/companies_tab.dart';
 import 'package:flutter_clutch_mobile/ui/widget/tab/offers_tab.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -19,30 +17,18 @@ class _MainScreenState extends State<MainScreen>
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
-
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       key: this._scaffoldKey,
       appBar: SearchAppBar(_tabController, _scaffoldKey),
       drawer: MainDrawer(),
-      /*bottomNavigationBar:
-          BottomNavigation.mainBottomNavigation(_onItemTapped, _selectedIndex),*/
       backgroundColor: Colors.white,
       body: TabBarView(
         children: [OffersTab(), CompaniesTab()],
         controller: _tabController,
       ),
     );
-  }
-
-/*void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      debugPrint(">>>>${index}");
-    });
-  }*/
 }

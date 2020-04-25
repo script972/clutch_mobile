@@ -25,9 +25,7 @@ class OfferItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-
-      },
+      onTap: () {},
       child: Card(
         elevation: 8.0,
         child: Stack(
