@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clutch_mobile/ui/localization/keys.dart';
+import 'package:flutter_translate/global.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -11,7 +13,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       backgroundColor: Colors.black12,
       appBar: AppBar(
-        title: Text("Профиль"),
+        title: Text(translate(Keys.Profile)),
       ),
       body: bodyContent(context),
     );

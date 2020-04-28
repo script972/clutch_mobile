@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clutch_mobile/ui/localization/keys.dart';
+import 'package:flutter_translate/flutter_translate.dart';
+
+
 
 class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
   TabController tabController;
@@ -16,7 +20,7 @@ class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _SearchAppBarState extends State<SearchAppBar> {
-  Widget appBarTitle = Text("Корпоратив");
+  Widget appBarTitle = Text(translate(Keys.App_Name));
   Icon actionIcon = Icon(Icons.search);
 
   @override
@@ -38,7 +42,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
         title: appBarTitle,
         bottom: TabBar(
           unselectedLabelColor: Colors.white.withOpacity(0.56),
-          tabs: [Tab(text: 'Предложения'), Tab(text: 'Компании')],
+          tabs: [Tab(text: translate(Keys.Offers)), Tab(text: translate(Keys.Companies))],
           indicatorColor: Colors.red,
           labelColor: Colors.white,
           indicator: UnderlineTabIndicator(
@@ -65,7 +69,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
                   );
                 } else {
                   this.actionIcon = new Icon(Icons.search);
-                  this.appBarTitle = new Text("Корпоратка");
+                  this.appBarTitle = new Text(translate(Keys.App_Name));
                 }
               });
             },

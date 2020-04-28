@@ -32,8 +32,7 @@ class OffersTab extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(BuildContext context) => Container(
         padding: EdgeInsets.only(top: 8.0),
         child: StaggeredGridView.countBuilder(
           scrollDirection: Axis.vertical,
@@ -46,5 +45,4 @@ class OffersTab extends StatelessWidget {
           mainAxisSpacing: 8.0,
           crossAxisSpacing: 8.0,
         ));
-  }
 }

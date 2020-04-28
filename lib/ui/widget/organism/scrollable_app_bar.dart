@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clutch_mobile/domain/network/model/response/company_response.dart';
+import 'package:flutter_clutch_mobile/ui/localization/keys.dart';
 import 'package:flutter_clutch_mobile/ui/widget/atom/sliver_app_bar.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 class ScrollableAppBar extends StatefulWidget {
   final CompanyResponse company;
@@ -70,9 +72,9 @@ class _ScrollableAppBarState extends State<ScrollableAppBar> {
           borderSide: BorderSide(width: 3.0, color: blackOrWhite()),
           insets: EdgeInsets.symmetric(horizontal: 12.0)),
       tabs: [
-        Tab(text: "Предложения"),
-        Tab(text: "Подробнее"),
-        Tab(text: "Локации"),
+        Tab(text: translate(Keys.Offers)),
+        Tab(text: translate(Keys.Details)),
+        Tab(text: translate(Keys.Locations)),
       ],
       controller: widget._companyTabController,
     ),

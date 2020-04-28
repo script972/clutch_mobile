@@ -19,6 +19,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_translate_annotations: ^1.0.1
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -36,12 +40,16 @@ dependencies:
   flutter_bloc: 4.0.0
   equatable: ^1.1.1
   google_maps_flutter: 0.5.26+4
-  barcode_generator: 0.2.7
+  barcode: 1.8.0
+  flutter_translate: ^1.5.7
+  package_info: ^0.4.0+6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   pedantic: ^1.8.0
+  build_runner: ^1.7.3
+  flutter_translate_gen: ^1.2.4
 
 flutter:
 
@@ -61,4 +69,5 @@ flutter:
     - assets/images/
     - assets/images/logos/
     - assets/images/offers/
+    - assets/i18n/
 

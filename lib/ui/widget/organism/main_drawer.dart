@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clutch_mobile/core/custom_route.dart';
 import 'package:flutter_clutch_mobile/core/theme_custom.dart';
-import 'package:flutter_clutch_mobile/ui/screen/profile_screen.dart';
+import 'package:flutter_clutch_mobile/ui/localization/keys.dart';
+import 'package:flutter_translate/global.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -17,8 +18,8 @@ class MainDrawer extends StatelessWidget {
                   child:
                       Image.asset("assets/images/ic_logo_vertical_white.png")),
             ),
-            menuItem(Image.asset("assets/images/ic_profile.png"), "Профиль",
-                () {
+            menuItem(Image.asset("assets/images/ic_profile.png"),
+                translate(Keys.Profile), () {
               Navigator.pushNamed(
                 context,
                 CustomRoute.PROFILE,
@@ -47,7 +48,8 @@ class MainDrawer extends StatelessWidget {
                       elevation: 0,
                       backgroundColor: Colors.white.withOpacity(0.0),
                       shape: CircleBorder(
-                          side: BorderSide(color: Colors.white.withOpacity(.2))),
+                          side:
+                              BorderSide(color: Colors.white.withOpacity(.2))),
                     ),
                   ),
                   Padding(
@@ -62,7 +64,8 @@ class MainDrawer extends StatelessWidget {
                       elevation: 0,
                       backgroundColor: Colors.white.withOpacity(0.0),
                       shape: CircleBorder(
-                          side: BorderSide(color: Colors.white.withOpacity(.2))),
+                          side:
+                              BorderSide(color: Colors.white.withOpacity(.2))),
                     ),
                   )
                 ],
