@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "458229248991",
-    "firebase_url": "https://clutch-43eae.firebaseio.com",
-    "project_id": "clutch-43eae",
-    "storage_bucket": "clutch-43eae.appspot.com"
+    "project_number": "4824154264",
+    "firebase_url": "https://clutch-275316.firebaseio.com",
+    "project_id": "clutch-275316",
+    "storage_bucket": "clutch-275316.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:458229248991:android:ec9289da2b184e81d70a6a",
+        "mobilesdk_app_id": "1:4824154264:android:505edcab70927b7c08d0ed",
         "android_client_info": {
-          "package_name": "com.script972.cross_clutch_mobile"
+          "package_name": "com.script972.clutch"
         }
       },
       "oauth_client": [
         {
-          "client_id": "458229248991-ksb267gpjccvsda4f2ttrsdse42epvbl.apps.googleusercontent.com",
+          "client_id": "4824154264-a3obbu0lduq3roe6n4cvia7qan53e4gi.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.script972.cross_clutch_mobile",
-            "certificate_hash": "d5a9b926ce7a1979fb607736d374c6f26cb7cf05"
+            "package_name": "com.script972.clutch",
+            "certificate_hash": "254d67436d0f115bec8139df8581abe7b4e29d84"
           }
         },
         {
-          "client_id": "458229248991-un4258n5g3d449v0famf45ca88qc1av1.apps.googleusercontent.com",
+          "client_id": "4824154264-5vaaa1abfr4in8ckujpb60p70ruk4lee.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDDUev4B0aCiJPXyotgJqGwNz007DC4mZk"
+          "current_key": "AIzaSyAXPNYxBlMu7mtHzA7xtsDX94yqbpV2zhA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "458229248991-un4258n5g3d449v0famf45ca88qc1av1.apps.googleusercontent.com",
+              "client_id": "4824154264-5vaaa1abfr4in8ckujpb60p70ruk4lee.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

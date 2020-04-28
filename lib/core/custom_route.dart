@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/ui/screen/auth/signin_screen.dart';
-import 'package:flutter_clutch_mobile/ui/screen/auth/signup_screen.dart';
-import 'package:flutter_clutch_mobile/ui/screen/company_screen.dart';
-import 'package:flutter_clutch_mobile/ui/screen/main_screen.dart';
-import 'package:flutter_clutch_mobile/ui/screen/profile_screen.dart';
-import 'package:flutter_clutch_mobile/ui/screen/settings_screen.dart';
+import 'package:clutch/ui/screen/auth/signin_screen.dart';
+import 'package:clutch/ui/screen/auth/signup_screen.dart';
+import 'package:clutch/ui/screen/company_screen.dart';
+import 'package:clutch/ui/screen/main_screen.dart';
+import 'package:clutch/ui/screen/profile_screen.dart';
+import 'package:clutch/ui/screen/settings_screen.dart';
 
 class CustomRoute {
   static const String MAIN_SCREEN = '/';

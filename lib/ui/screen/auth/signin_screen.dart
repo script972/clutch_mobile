@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/core/custom_route.dart';
-import 'package:flutter_clutch_mobile/core/theme_custom.dart';
-import 'package:flutter_clutch_mobile/helpers/input_helper.dart';
-import 'package:flutter_clutch_mobile/ui/widget/atom/border_input_text_field.dart';
+import 'package:clutch/core/custom_route.dart';
+import 'package:clutch/core/theme_custom.dart';
+import 'package:clutch/helpers/input_helper.dart';
+import 'package:clutch/ui/widget/atom/border_input_text_field.dart';
 
 class SignInScreen extends StatefulWidget {
   @override

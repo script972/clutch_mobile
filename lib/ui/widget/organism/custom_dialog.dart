@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/ui/screen/profile_screen.dart';
+import 'package:clutch/ui/screen/profile_screen.dart';
 
 class CustomDialog extends StatelessWidget {
   CustomDialog();

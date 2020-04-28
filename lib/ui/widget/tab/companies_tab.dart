@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/domain/network/model/response/company_response.dart';
-import 'package:flutter_clutch_mobile/repository/company_repository.dart';
-import 'package:flutter_clutch_mobile/repository/impl/company_repository_impl.dart';
-import 'package:flutter_clutch_mobile/ui/widget/item/company_item.dart';
+import 'package:clutch/domain/network/model/response/company_response.dart';
+import 'package:clutch/repository/company_repository.dart';
+import 'package:clutch/repository/impl/company_repository_impl.dart';
+import 'package:clutch/ui/widget/item/company_item.dart';
 
 class CompaniesTab extends StatefulWidget {
   @override

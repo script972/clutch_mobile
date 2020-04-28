@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/helpers/utils/date_utils.dart';
+import 'package:clutch/helpers/utils/date_utils.dart';
 
 class WorkSchedule extends StatefulWidget {
   final List<WorkingDay> workingDays = [

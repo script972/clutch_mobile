@@ -1,9 +1,9 @@
 
 
-import 'package:flutter_clutch_mobile/domain/network/api_service.dart';
-import 'package:flutter_clutch_mobile/domain/network/firestore/firestore_service_impl.dart';
-import 'package:flutter_clutch_mobile/domain/network/http/http_service_impl.dart';
-import 'package:flutter_clutch_mobile/domain/network/mock/mock_service_impl.dart';
+import 'package:clutch/domain/network/api_service.dart';
+import 'package:clutch/domain/network/firestore/firestore_service_impl.dart';
+import 'package:clutch/domain/network/http/http_service_impl.dart';
+import 'package:clutch/domain/network/mock/mock_service_impl.dart';
 
 enum ServiceTypeEnum { FIRESTORE, HTTP, MOCK }
 

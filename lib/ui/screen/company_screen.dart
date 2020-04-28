@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/domain/network/model/response/company_response.dart';
-import 'package:flutter_clutch_mobile/ui/widget/organism/scrollable_app_bar.dart';
-import 'package:flutter_clutch_mobile/ui/widget/tab/company_details_tab.dart';
-import 'package:flutter_clutch_mobile/ui/widget/tab/company_locations_tab.dart';
+import 'package:clutch/domain/network/model/response/company_response.dart';
+import 'package:clutch/ui/widget/organism/scrollable_app_bar.dart';
+import 'package:clutch/ui/widget/tab/company_details_tab.dart';
+import 'package:clutch/ui/widget/tab/company_locations_tab.dart';
 
 class CompanyScreen extends StatefulWidget {
   CompanyResponse company;

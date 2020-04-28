@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/ui/model/place_model_ui.dart';
+import 'package:clutch/ui/model/place_model_ui.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CompanyLocationsTab extends StatefulWidget {

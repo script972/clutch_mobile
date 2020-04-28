@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/domain/network/model/response/company_response.dart';
-import 'package:flutter_clutch_mobile/ui/localization/keys.dart';
-import 'package:flutter_clutch_mobile/ui/widget/atom/sliver_app_bar.dart';
+import 'package:clutch/domain/network/model/response/company_response.dart';
+import 'package:clutch/ui/localization/keys.dart';
+import 'package:clutch/ui/widget/atom/sliver_app_bar.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 class ScrollableAppBar extends StatefulWidget {

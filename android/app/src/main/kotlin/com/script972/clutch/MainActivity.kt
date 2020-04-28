@@ -1,4 +1,4 @@
-package com.script972.flutter_clutch_mobile
+package com.script972.clutch
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

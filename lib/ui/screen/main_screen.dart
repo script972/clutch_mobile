@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/ui/widget/organism/main_drawer.dart';
-import 'package:flutter_clutch_mobile/ui/widget/organism/search_app_bar.dart';
-import 'package:flutter_clutch_mobile/ui/widget/tab/companies_tab.dart';
-import 'package:flutter_clutch_mobile/ui/widget/tab/offers_tab.dart';
+import 'package:clutch/ui/widget/organism/main_drawer.dart';
+import 'package:clutch/ui/widget/organism/search_app_bar.dart';
+import 'package:clutch/ui/widget/tab/companies_tab.dart';
+import 'package:clutch/ui/widget/tab/offers_tab.dart';
 
 class MainScreen extends StatefulWidget {
   @override

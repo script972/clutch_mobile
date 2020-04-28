@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/ui/widget/item/offer_item.dart';
+import 'package:clutch/ui/widget/item/offer_item.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class OffersTab extends StatelessWidget {

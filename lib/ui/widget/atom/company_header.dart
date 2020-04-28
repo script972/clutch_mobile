@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/domain/network/model/response/company_response.dart';
-import 'package:flutter_clutch_mobile/ui/widget/atom/rating_wrapper.dart';
+import 'package:clutch/domain/network/model/response/company_response.dart';
+import 'package:clutch/ui/widget/atom/rating_wrapper.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class CompanyHeader extends StatelessWidget {

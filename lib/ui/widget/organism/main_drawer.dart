@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/core/custom_route.dart';
-import 'package:flutter_clutch_mobile/core/theme_custom.dart';
-import 'package:flutter_clutch_mobile/ui/localization/keys.dart';
+import 'package:clutch/core/custom_route.dart';
+import 'package:clutch/core/theme_custom.dart';
+import 'package:clutch/ui/localization/keys.dart';
 import 'package:flutter_translate/global.dart';
 
 class MainDrawer extends StatelessWidget {

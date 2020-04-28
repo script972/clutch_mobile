@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clutch_mobile/ui/localization/keys.dart';
+import 'package:clutch/ui/localization/keys.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 

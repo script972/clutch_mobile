@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_clutch_mobile/domain/network/api_service.dart';
-import 'package:flutter_clutch_mobile/domain/network/model/response/company_response.dart';
+import 'package:clutch/domain/network/api_service.dart';
+import 'package:clutch/domain/network/model/response/company_response.dart';
 
 import 'firestore_constance.dart';
 

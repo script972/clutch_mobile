@@ -1,7 +1,7 @@
-import 'package:flutter_clutch_mobile/domain/network/api_service.dart';
-import 'package:flutter_clutch_mobile/domain/network/model/response/company_response.dart';
-import 'package:flutter_clutch_mobile/domain/network/service_connector_factory.dart';
-import 'package:flutter_clutch_mobile/repository/company_repository.dart';
+import 'package:clutch/domain/network/api_service.dart';
+import 'package:clutch/domain/network/model/response/company_response.dart';
+import 'package:clutch/domain/network/service_connector_factory.dart';
+import 'package:clutch/repository/company_repository.dart';
 
 /**
  * На этом слое вы решаете откуда тянуть данные. К примеру с локальной баы данных либо сети либо же с переферии устройства.
