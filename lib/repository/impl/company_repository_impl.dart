@@ -23,5 +23,5 @@ class CompanyRepositoryImpl extends CompanyRepository {
       return data;
     }*/
     return apiService.fetchCompany();
-  }
+♦  }
 }
