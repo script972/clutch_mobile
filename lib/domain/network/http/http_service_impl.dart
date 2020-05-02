@@ -1,9 +1,10 @@
 import 'package:clutch/domain/network/api_service.dart';
-import 'package:clutch/domain/network/model/response/company_response.dart';
+import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/domain/network/model/response/main_info_response.dart';
 
 class HttpCompanyServiceImpl extends ApiCompanyService{
   @override
-  Stream<List<CompanyResponse>> fetchCompany() {
+  Future<MainInfo> fetchCompany() {
     // TODO: implement fetchCompany
   }
 

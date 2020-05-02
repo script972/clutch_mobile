@@ -1,5 +1,5 @@
+import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
 import 'package:flutter/material.dart';
-import 'package:clutch/domain/network/model/response/company_response.dart';
 import 'package:clutch/ui/model/comment_model_ui.dart';
 import 'package:clutch/ui/widget/organism/about_company.dart';
 import 'package:clutch/ui/widget/atom/company_header.dart';
@@ -8,7 +8,7 @@ import 'package:clutch/ui/widget/item/review_widget.dart';
 import 'package:clutch/ui/widget/organism/work_shedule.dart';
 
 class CompanyDetailsTab extends StatefulWidget {
-  final CompanyResponse company;
+  final CompanyShortMobile company;
   final String comment =
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
   final String description =

@@ -1,11 +1,12 @@
+import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
 import 'package:flutter/material.dart';
-import 'package:clutch/domain/network/model/response/company_response.dart';
+
 import 'package:clutch/ui/localization/keys.dart';
 import 'package:clutch/ui/widget/atom/sliver_app_bar.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 class ScrollableAppBar extends StatefulWidget {
-  final CompanyResponse company;
+  final CompanyShortMobile company;
   final TabController _companyTabController;
 
   ScrollableAppBar(this.company, this._companyTabController);
@@ -34,7 +35,7 @@ class _ScrollableAppBarState extends State<ScrollableAppBar> {
     title: SliverAppBarComponent(
       hiddenChild: Row(
         children: <Widget>[
-          Image.asset(widget.company.image, scale: 4),
+          Image.asset(widget.company.logo, scale: 4),
           Padding(
             padding: const EdgeInsets.only(left: 30.0),
             child: Text(widget.company.title,
@@ -50,9 +51,9 @@ class _ScrollableAppBarState extends State<ScrollableAppBar> {
     flexibleSpace: FlexibleSpaceBar(
         collapseMode: CollapseMode.pin,
         background: Hero(
-          tag: widget.company.image,
+          tag: widget.company.id,
           child: Image.asset(
-            widget.company.image,
+            widget.company.logo,
             scale: 1.5,
           ),
         )),

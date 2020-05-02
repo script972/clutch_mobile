@@ -1,9 +1,9 @@
+import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/core/custom_route.dart';
-import 'package:clutch/domain/network/model/response/company_response.dart';
 
 class CompanyItem extends StatefulWidget {
-  CompanyResponse _companyResponse;
+  CompanyShortMobile _companyResponse;
 
   CompanyItem(this._companyResponse);
 
@@ -25,8 +25,8 @@ class _CompanyItemState extends State<CompanyItem> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
           color: widget._companyResponse.color,
           child: Hero(
-            tag: widget._companyResponse.image,
-            child: Image.asset(widget._companyResponse.image),
+            tag: widget._companyResponse.id,
+            child: Image.asset(widget._companyResponse.logo),
           ),
         ),
       );

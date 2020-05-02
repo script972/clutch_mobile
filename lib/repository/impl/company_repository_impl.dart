@@ -1,5 +1,6 @@
 import 'package:clutch/domain/network/api_service.dart';
-import 'package:clutch/domain/network/model/response/company_response.dart';
+import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/domain/network/model/response/main_info_response.dart';
 import 'package:clutch/domain/network/service_connector_factory.dart';
 import 'package:clutch/repository/company_repository.dart';
 
@@ -12,7 +13,7 @@ class CompanyRepositoryImpl extends CompanyRepository {
   final ApiCompanyService apiService = ServiceConnectorFactory.getAPIService();
 
   @override
-  Stream<List<CompanyResponse>> fetchAllCompany() {
+  Future<MainInfo> fetchAllCompany() {
    /*
    TODO: Заменить в сооветсвии с логикой
    if(database.getAllCompany().isNotEmpty && database.getAllCompany().isActual()) {
@@ -23,5 +24,5 @@ class CompanyRepositoryImpl extends CompanyRepository {
       return data;
     }*/
     return apiService.fetchCompany();
-♦  }
+  }
 }

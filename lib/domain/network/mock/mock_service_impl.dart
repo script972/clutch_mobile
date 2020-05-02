@@ -1,13 +1,13 @@
+import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/domain/network/model/response/main_info_response.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/domain/network/api_service.dart';
-import 'package:clutch/domain/network/model/response/company_response.dart';
-
 
 class MockCompanyServiceImpl extends ApiCompanyService {
   @override
-  Stream<List<CompanyResponse>> fetchCompany() async* {
-    var company = <CompanyResponse>[];
-    company.add(CompanyResponse(
+  Future<MainInfo> fetchCompany() async {
+    var company = <CompanyShortMobile>[];
+    /* company.add(CompanyResponse(
         1, "foxtrot", "assets/images/logos/foxtrot.png", Color(0xFFFE5000)));
     company.add(CompanyResponse(
         2, "adidas", "assets/images/logos/adidas.png", Colors.white));
@@ -18,9 +18,7 @@ class MockCompanyServiceImpl extends ApiCompanyService {
     company.add(CompanyResponse(
         5, "answear", "assets/images/logos/answear.png", Color(0xFFF1B1C8)));
     company.add(CompanyResponse(
-        6, "puma", "assets/images/logos/puma.png", Colors.black));
-    yield company;
+        6, "puma", "assets/images/logos/puma.png", Colors.black));*/
+    //yield company;
   }
-
-
 }

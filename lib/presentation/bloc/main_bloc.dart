@@ -26,7 +26,9 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   Stream<MainState> _mapLoadMainToState(LoadMain event) async* {
     yield MainLoading();
     try {
-      final companyList = companyRepository.fetchAllCompany();
+      final companyList = await companyRepository.fetchAllCompany();
+      yield MainLoaded(companyList.companyShortMobileList,
+          companyList.offersShortMobileDtoList);
     } catch (error) {}
   }
 }

@@ -1,4 +1,5 @@
-import 'package:clutch/domain/network/model/response/company_short.dart';
+import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/domain/network/model/response/offers_short_mobile_dto.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +14,10 @@ class MainLoading extends MainState {
 }
 
 class MainLoaded extends MainState {
-  final List<CompanyShort> company;
+  final List<CompanyShortMobile> company;
+  final List<OffersShortMobileDto> offer;
 
-  const MainLoaded(this.company);
+  const MainLoaded(this.company, this.offer);
 
   @override
   List<Object> get props => [company];

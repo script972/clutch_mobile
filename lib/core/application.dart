@@ -1,8 +1,11 @@
+import 'package:clutch/presentation/bloc/main_bloc.dart';
+import 'package:clutch/presentation/event/main_event.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/core/custom_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_translate/localization_provider.dart';
 import 'package:flutter_translate/localized_app.dart';
@@ -22,23 +25,30 @@ class Application extends StatelessWidget {
 
     return LocalizationProvider(
       state: LocalizationProvider.of(context).state,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: !kReleaseMode,
-        theme: theme,
-        darkTheme: theme,
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          localizationDelegate
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<MainBloc>(
+            create: (context) => MainBloc()..add(LoadMain()),
+          )
         ],
-        supportedLocales: localizationDelegate.supportedLocales,
-        locale: localizationDelegate.currentLocale,
-        onGenerateRoute: CustomRoute.generateRoute,
-        navigatorObservers: [
-          FirebaseAnalyticsObserver(analytics: analytics),
-        ],
-        initialRoute:
-            isAuthorize ? CustomRoute.MAIN_SCREEN : CustomRoute.SIGN_SCREEN,
+        child: MaterialApp(
+          debugShowCheckedModeBanner: !kReleaseMode,
+          theme: theme,
+          darkTheme: theme,
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            localizationDelegate
+          ],
+          supportedLocales: localizationDelegate.supportedLocales,
+          locale: localizationDelegate.currentLocale,
+          onGenerateRoute: CustomRoute.generateRoute,
+          navigatorObservers: [
+            FirebaseAnalyticsObserver(analytics: analytics),
+          ],
+          initialRoute:
+              isAuthorize ? CustomRoute.MAIN_SCREEN : CustomRoute.SIGN_SCREEN,
+        ),
       ),
     );
   }

@@ -1,38 +1,33 @@
+import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/presentation/bloc/main_bloc.dart';
+import 'package:clutch/presentation/state/main_state.dart';
 import 'package:flutter/material.dart';
-import 'package:clutch/domain/network/model/response/company_response.dart';
 import 'package:clutch/repository/company_repository.dart';
 import 'package:clutch/repository/impl/company_repository_impl.dart';
 import 'package:clutch/ui/widget/item/company_item.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CompaniesTab extends StatefulWidget {
+class CompaniesTab extends StatelessWidget {
   @override
-  _CompaniesTabState createState() => _CompaniesTabState();
-}
-
-class _CompaniesTabState extends State<CompaniesTab> {
-  CompanyRepository companyRepository = CompanyRepositoryImpl();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) => StreamBuilder(
-      stream: companyRepository.fetchAllCompany(),
-      builder: (context, AsyncSnapshot<List<CompanyResponse>> snap) =>
-          Container(
+  Widget build(BuildContext context) =>
+      BlocBuilder<MainBloc, MainState>(builder: (context, state) {
+        if (state is MainLoading) {
+          return Center(
+              child: Image.asset("assets/images/nothing_to_show.png"));
+        }
+        if (state is MainLoaded) {
+          return Container(
             padding: EdgeInsets.only(top: 0, left: 8.0, right: 8.0),
-            child:
-                /* TODO: Добавить лоудер в при интеграции паттерна представления
-                ? Image.asset("assets/images/nothing_to_show.png")
-                : */
-                GridView.count(
+            child: GridView.count(
               crossAxisCount: 2,
               childAspectRatio: 3 / 2,
-              children: snap.data
-                  .map((CompanyResponse item) => CompanyItem(item))
-                  .toList(),
+              children: <Widget>[],
+              /* children: snap.data
+                      .map((CompanyShortMobile item) => CompanyItem(item))
+                      .toList(),*/
             ),
-          ));
+          );
+        }
+        return Text("Somthing went wrong!");
+      });
 }
