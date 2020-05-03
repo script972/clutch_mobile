@@ -43,6 +43,9 @@ dependencies:
   barcode: 1.8.0
   flutter_translate: ^1.5.7
   package_info: ^0.4.0+6
+  dio: 3.0.9
+  shared_preferences: 0.5.7
+
 
 dev_dependencies:
   flutter_test:

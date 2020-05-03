@@ -1,5 +1,3 @@
-
-
 import 'package:clutch/domain/network/api_service.dart';
 import 'package:clutch/domain/network/firestore/firestore_service_impl.dart';
 import 'package:clutch/domain/network/http/http_service_impl.dart';
