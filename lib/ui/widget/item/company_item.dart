@@ -1,4 +1,5 @@
 import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/ui/widget/wrapper/cached_network_image_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/core/custom_route.dart';
 
@@ -23,10 +24,10 @@ class _CompanyItemState extends State<CompanyItem> {
           margin: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-          color: widget._companyResponse.color,
+          color: widget._companyResponse.color ?? ThemeData().primaryColor,
           child: Hero(
             tag: widget._companyResponse.id,
-            child: Image.asset(widget._companyResponse.logo),
+            child: CachedNetworkImageWrapper(widget._companyResponse.logo),
           ),
         ),
       );

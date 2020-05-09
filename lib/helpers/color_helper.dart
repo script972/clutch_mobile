@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ColorHelper {
-  //Пример как делать не надо. Никогда!!!!
-  static Color stringToColor(String colorString) {
-    String valueString =
-        colorString.split('0x')[1].split(')')[0]; // kind of hacky..
-    int value = int.parse(valueString, radix: 16);
-    return Color(value);
+  static Color colorFromHex(String hexColor) {
+    final hexCode = hexColor.replaceAll('#', '');
+    return Color(int.parse('FF$hexCode', radix: 16));
   }
 }

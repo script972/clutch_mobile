@@ -12,6 +12,9 @@ class CompaniesTab extends StatelessWidget {
   Widget build(BuildContext context) =>
       BlocBuilder<MainBloc, MainState>(builder: (context, state) {
         if (state is MainLoading) {
+          return Center(child: CircularProgressIndicator());
+        }
+        if (state is MainError) {
           return Center(
               child: Image.asset("assets/images/nothing_to_show.png"));
         }
@@ -21,10 +24,9 @@ class CompaniesTab extends StatelessWidget {
             child: GridView.count(
               crossAxisCount: 2,
               childAspectRatio: 3 / 2,
-              children: <Widget>[],
-              /* children: snap.data
+              children: state.company
                       .map((CompanyShortMobile item) => CompanyItem(item))
-                      .toList(),*/
+                      .toList(),
             ),
           );
         }

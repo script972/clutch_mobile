@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:clutch/helpers/color_helper.dart';
 import 'package:flutter/cupertino.dart';
 
 class CompanyShortMobile {
@@ -27,7 +28,7 @@ class CompanyShortMobile {
         id: json["id"],
         title: json["title"],
         logo: json["logo"],
-        color: json["color"],
+        color: ColorHelper.colorFromHex(json["color"]),
         distance: json["distance"],
       );
 

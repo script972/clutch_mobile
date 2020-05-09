@@ -1,3 +1,4 @@
+import 'package:clutch/helpers/utils/shared_preferences_helper.dart';
 import 'package:clutch/presentation/bloc/main_bloc.dart';
 import 'package:clutch/presentation/event/main_event.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -16,6 +17,7 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var localizationDelegate = LocalizedApp.of(context).delegate;
+    initBody();
     bool isAuthorize = true;
     final theme = ThemeData(
       fontFamily: "GoogleSans",
@@ -51,5 +53,10 @@ class Application extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void initBody() {
+    SharedPreferencesHelper.saveToken(
+        "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJDb3Jwb3JhdGthIiwic3ViIjoiMzgwOTM2NjI5NjI3IiwiYXVkIjoid2ViIiwiaWF0IjoxNTg4NDM2NDE4LCJleHAiOjE1ODk0MzY0MTd9.81GFdSc6Qc5AqDqCdhZ2HXbcD54b3JamDe6Yn8FWvG-CN2viRZ6BcRwYFO7MOvuIcRy14hQIAjaq_Fk6GrZgDQ");
   }
 }

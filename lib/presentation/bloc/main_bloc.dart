@@ -1,9 +1,9 @@
+import 'package:clutch/domain/network/model/request/company_and_offers_search.dart';
+import 'package:clutch/domain/network/model/response/main_info_response.dart';
 import 'package:clutch/presentation/event/main_event.dart';
 import 'package:clutch/presentation/state/main_state.dart';
 import 'package:clutch/repository/company_repository.dart';
 import 'package:clutch/repository/impl/company_repository_impl.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainBloc extends Bloc<MainEvent, MainState> {
@@ -26,9 +26,12 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   Stream<MainState> _mapLoadMainToState(LoadMain event) async* {
     yield MainLoading();
     try {
-      final companyList = await companyRepository.fetchAllCompany();
-      yield MainLoaded(companyList.companyShortMobileList,
+      CompanyAndOffersSearch body = CompanyAndOffersSearch();
+      MainInfo companyList = await companyRepository.fetchAllCompany(body);
+      yield MainLoaded(companyList.companyShortMobileDtoList,
           companyList.offersShortMobileDtoList);
-    } catch (error) {}
+    } catch (error) {
+      yield MainError(error);
+    }
   }
 }

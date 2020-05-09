@@ -1,10 +1,9 @@
-import 'package:dio/dio.dart';
 
 enum Environment {SANDBOX, PROD}
 
 class ApiClient {
 
-  static final String SANDBOX = "62.171.176.103";
+  static final String SANDBOX = "http://62.171.176.103:8080/api/";
   static final String PROD = "";
   static final String BASE_ENDPOINT = "";
 
