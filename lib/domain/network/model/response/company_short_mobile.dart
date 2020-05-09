@@ -1,7 +1,8 @@
+
 import 'dart:convert';
 
 import 'package:clutch/helpers/color_helper.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class CompanyShortMobile {
   final int id;
