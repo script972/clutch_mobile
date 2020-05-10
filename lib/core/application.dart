@@ -54,7 +54,7 @@ class Application extends StatelessWidget {
             FirebaseAnalyticsObserver(analytics: analytics),
           ],
           initialRoute:
-              isAuthorize ? CustomRoute.PROFILE : CustomRoute.SIGN_SCREEN,
+              isAuthorize ? CustomRoute.MAIN_SCREEN : CustomRoute.SIGN_SCREEN,
         ),
       ),
     );

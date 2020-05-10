@@ -1,7 +1,7 @@
 import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/ui/model/comment_model_ui.dart';
-import 'package:clutch/ui/widget/organism/about_company.dart';
+import 'package:clutch/ui/widget/organism/about_widget.dart';
 import 'package:clutch/ui/widget/atom/company_header.dart';
 import 'package:clutch/ui/widget/item/review_slider.dart';
 import 'package:clutch/ui/widget/item/review_widget.dart';
@@ -56,7 +56,7 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
               children: <Widget>[
                 CompanyHeader(widget.company),
                 Divider(),
-                AboutCompany(widget.description),
+                AboutWidget("О компании", widget.description),
                 Divider(),
                 WorkSchedule(),
                 Divider(),

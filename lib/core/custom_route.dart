@@ -1,3 +1,4 @@
+import 'package:clutch/ui/screen/offer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/ui/screen/auth/signin_screen.dart';
 import 'package:clutch/ui/screen/auth/signup_screen.dart';
@@ -13,6 +14,7 @@ class CustomRoute {
   static const String PROFILE = '/profile';
   static const String SETTINGS = '/settings';
   static const String DETAILS_COMPANY = '/details_company';
+  static const String DETAILS_OFFER = '/details_offer';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     Widget screen;
@@ -35,6 +37,9 @@ class CustomRoute {
         break;
       case MAIN_SCREEN:
         screen = MainScreen();
+        break;
+      case DETAILS_OFFER:
+        screen = OfferScreen(args);
         break;
     }
 

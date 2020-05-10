@@ -7,7 +7,7 @@ import 'package:clutch/domain/network/model/response/offers_short_mobile_dto.dar
 class MainInfo {
   final List<OffersShortMobileDto> offersShortMobileDtoList;
   final List<CompanyShortMobile> companyShortMobileDtoList;
-  final List<CategoriesDtoList> categoriesDtoList;
+  final List<CategoriesResponse> categoriesDtoList;
 
   MainInfo({
     this.offersShortMobileDtoList,
@@ -26,8 +26,8 @@ class MainInfo {
         companyShortMobileDtoList: List<CompanyShortMobile>.from(
             json["companyShortMobileDtoList"]
                 .map((x) => CompanyShortMobile.fromMap(x))),
-        categoriesDtoList: List<CategoriesDtoList>.from(
-            json["categoriesDtoList"].map((x) => CategoriesDtoList.fromMap(x))),
+        categoriesDtoList: List<CategoriesResponse>.from(
+            json["categoriesDtoList"].map((x) => CategoriesResponse.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {

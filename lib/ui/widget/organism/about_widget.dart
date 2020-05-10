@@ -1,18 +1,20 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 
-class AboutCompany extends StatefulWidget {
+class AboutWidget extends StatefulWidget {
   final String about;
+  final String title;
 
-  AboutCompany(this.about, {Key key}) : super(key: key);
+  AboutWidget(this.title, this.about, {Key key}) : super(key: key);
 
   @override
-  _AboutCompanyState createState() => _AboutCompanyState();
+  _AboutWidgetState createState() => _AboutWidgetState();
 }
 
-class _AboutCompanyState extends State<AboutCompany> {
+class _AboutWidgetState extends State<AboutWidget> {
   ExpandableController _expandableController;
   bool _expandableButtonTextFlag = false;
+
   @override
   void initState() {
     super.initState();
@@ -40,7 +42,7 @@ class _AboutCompanyState extends State<AboutCompany> {
                 title: Padding(
                   padding: const EdgeInsets.only(bottom: 15.0),
                   child: Text(
-                    'О компании',
+                    widget.title,
                     style: TextStyle(
                         color: Colors.black.withOpacity(0.54),
                         fontSize: 14,

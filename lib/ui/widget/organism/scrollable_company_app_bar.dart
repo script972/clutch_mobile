@@ -5,17 +5,17 @@ import 'package:clutch/ui/localization/keys.dart';
 import 'package:clutch/ui/widget/atom/sliver_app_bar.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
-class ScrollableAppBar extends StatefulWidget {
+class ScrollableCompanyAppBar extends StatefulWidget {
   final CompanyShortMobile company;
   final TabController _companyTabController;
 
-  ScrollableAppBar(this.company, this._companyTabController);
+  ScrollableCompanyAppBar(this.company, this._companyTabController);
 
   @override
-  _ScrollableAppBarState createState() => _ScrollableAppBarState();
+  _ScrollableCompanyAppBarState createState() => _ScrollableCompanyAppBarState();
 }
 
-class _ScrollableAppBarState extends State<ScrollableAppBar> {
+class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
   bool hideFlexibleSpace = false;
 
   @override

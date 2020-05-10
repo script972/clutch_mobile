@@ -1,3 +1,4 @@
+import 'package:clutch/core/custom_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -25,7 +26,10 @@ class OfferItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, CustomRoute.DETAILS_OFFER,
+            arguments: id);
+      },
       child: Card(
         elevation: 8.0,
         child: Stack(

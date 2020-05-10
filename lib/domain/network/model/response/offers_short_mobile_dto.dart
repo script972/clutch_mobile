@@ -3,9 +3,9 @@ import 'dart:convert';
 class OffersShortMobileDto {
   final int id;
   final String title;
-  final dynamic image;
+  final String image;
   final int finish;
-  final dynamic distance;
+  final double distance;
   final bool big;
 
   OffersShortMobileDto({

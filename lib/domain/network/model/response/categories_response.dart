@@ -1,21 +1,21 @@
 import 'dart:convert';
 
-class CategoriesDtoList {
+class CategoriesResponse {
   final String title;
   final String icon;
   final int id;
 
-  CategoriesDtoList({
+  CategoriesResponse({
     this.title,
     this.icon,
     this.id,
   });
 
-  factory CategoriesDtoList.fromJson(String str) => CategoriesDtoList.fromMap(json.decode(str));
+  factory CategoriesResponse.fromJson(String str) => CategoriesResponse.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory CategoriesDtoList.fromMap(Map<String, dynamic> json) => CategoriesDtoList(
+  factory CategoriesResponse.fromMap(Map<String, dynamic> json) => CategoriesResponse(
     title: json["title"],
     icon: json["icon"],
     id: json["id"],
