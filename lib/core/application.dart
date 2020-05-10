@@ -1,6 +1,8 @@
 import 'package:clutch/helpers/utils/shared_preferences_helper.dart';
 import 'package:clutch/presentation/bloc/main_bloc.dart';
+import 'package:clutch/presentation/bloc/profile_bloc.dart';
 import 'package:clutch/presentation/event/main_event.dart';
+import 'package:clutch/presentation/event/profile_event.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/foundation.dart';
@@ -31,7 +33,10 @@ class Application extends StatelessWidget {
         providers: [
           BlocProvider<MainBloc>(
             create: (context) => MainBloc()..add(LoadMain()),
-          )
+          ),
+          BlocProvider<ProfileBloc>(
+            create: (context) => ProfileBloc()..add(LoadProfile()),
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: !kReleaseMode,
@@ -49,7 +54,7 @@ class Application extends StatelessWidget {
             FirebaseAnalyticsObserver(analytics: analytics),
           ],
           initialRoute:
-              isAuthorize ? CustomRoute.MAIN_SCREEN : CustomRoute.SIGN_SCREEN,
+              isAuthorize ? CustomRoute.PROFILE : CustomRoute.SIGN_SCREEN,
         ),
       ),
     );
