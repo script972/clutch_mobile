@@ -30,10 +30,13 @@ class _AboutWidgetState extends State<AboutWidget> {
           children: <Widget>[
             Expanded(
               flex: 1,
-              child: Icon(
-                Icons.info_outline,
-                size: 20.0,
-                color: Colors.black.withOpacity(0.38),
+              child: Padding(
+                padding: const EdgeInsets.only(top:8.0),
+                child: Icon(
+                  Icons.info_outline,
+                  size: 20.0,
+                  color: Colors.black.withOpacity(0.38),
+                ),
               ),
             ),
             Expanded(

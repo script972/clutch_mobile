@@ -18,11 +18,8 @@ class ScrollableOfferAppBar extends StatefulWidget {
 
 class _ScrollableOfferAppBarState extends State<ScrollableOfferAppBar> {
   @override
-  Widget build(BuildContext context) =>
-      SliverAppBar(
-        backgroundColor: Theme
-            .of(context)
-            .primaryColorLight,
+  Widget build(BuildContext context) => SliverAppBar(
+        backgroundColor: Theme.of(context).primaryColorLight,
         expandedHeight: widget.hideFlexibleSpace ? 0.0 : 200.0,
         elevation: 0.0,
         pinned: true,
@@ -55,14 +52,12 @@ class _ScrollableOfferAppBarState extends State<ScrollableOfferAppBar> {
               children: <Widget>[
                 CarouselSlider(
                   items: widget._offer.images
-                      .map((i) =>
-                      Builder(
-                        builder: (BuildContext context) =>
-                            Container(
+                      .map((i) => Builder(
+                            builder: (BuildContext context) => Container(
                               margin: EdgeInsets.symmetric(horizontal: 5.0),
                               child: CachedNetworkImageWrapper(i),
                             ),
-                      ))
+                          ))
                       .toList(),
                   options: CarouselOptions(
                     height: 220,
@@ -83,18 +78,19 @@ class _ScrollableOfferAppBarState extends State<ScrollableOfferAppBar> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: widget._offer.images
                         .asMap()
-                        .map((index, value) =>
-                        MapEntry(index, Container(
-                          width: 8.0,
-                          height: 8.0,
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 2.0),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: widget._currentPosition == index
-                                  ? Color.fromRGBO(0, 0, 0, 1)
-                                  : Color.fromRGBO(0, 0, 0, 0.4)),
-                        )))
+                        .map((index, value) => MapEntry(
+                            index,
+                            Container(
+                              width: 8.0,
+                              height: 8.0,
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 10.0, horizontal: 2.0),
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: widget._currentPosition == index
+                                      ? Color.fromRGBO(0, 0, 0, 1)
+                                      : Color.fromRGBO(0, 0, 0, 0.4)),
+                            )))
                         .values
                         .toList(),
                   ),
