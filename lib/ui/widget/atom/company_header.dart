@@ -19,7 +19,7 @@ class CompanyHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
-          RatingWrapper(4),
+          /*RatingWrapper(4),
           Padding(
             padding: const EdgeInsets.only(top: 6.0),
             child: Text(
@@ -27,7 +27,7 @@ class CompanyHeader extends StatelessWidget {
               style: TextStyle(
                   color: Colors.black.withOpacity(0.38), fontSize: 12),
             ),
-          )
+          )*/
         ],
       ),
     );

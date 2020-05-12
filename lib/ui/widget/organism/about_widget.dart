@@ -13,7 +13,7 @@ class AboutWidget extends StatefulWidget {
 
 class _AboutWidgetState extends State<AboutWidget> {
   ExpandableController _expandableController;
-  bool _expandableButtonTextFlag = false;
+  bool _expandableButtonTextFlag = true;
 
   @override
   void initState() {
@@ -66,7 +66,7 @@ class _AboutWidgetState extends State<AboutWidget> {
             ),
           ],
         ),
-        Row(
+     /*   Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             FlatButton(
@@ -87,7 +87,7 @@ class _AboutWidgetState extends State<AboutWidget> {
               ),
             ),
           ],
-        )
+        )*/
       ],
     );
   }

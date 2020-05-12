@@ -57,10 +57,10 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                 CompanyHeader(widget.company),
                 Divider(),
                 AboutWidget("О компании", widget.description),
-                Divider(),
+                /* Divider(),
                 WorkSchedule(),
-                Divider(),
-                Padding(
+                Divider(),*/
+               /* Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Align(
                     alignment: Alignment.topLeft,
@@ -72,7 +72,7 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                   ),
                 ),
                 //convert to list
-                ...buildReviewsList(context, widget.commentList),
+                ...buildReviewsList(context, widget.commentList),*/
               ]),
         ),
       );

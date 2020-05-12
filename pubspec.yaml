@@ -47,6 +47,7 @@ dependencies:
   alice: 0.0.30
   cached_network_image: 2.2.0+1
   datetime_picker_formfield: ^1.0.0
+  carousel_slider: 2.1.0
 
 
 dev_dependencies:

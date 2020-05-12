@@ -1,4 +1,5 @@
 import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/ui/widget/atom/cached_network_image_wrapper.dart';
 import 'package:flutter/material.dart';
 
 import 'package:clutch/ui/localization/keys.dart';
@@ -35,7 +36,10 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
     title: SliverAppBarComponent(
       hiddenChild: Row(
         children: <Widget>[
-          Image.asset(widget.company.logo, scale: 4),
+          Container(
+              width: 50,
+              height: 50,
+              child: CachedNetworkImageWrapper(widget.company.logo)),
           Padding(
             padding: const EdgeInsets.only(left: 30.0),
             child: Text(widget.company.title,
@@ -52,11 +56,17 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
         collapseMode: CollapseMode.pin,
         background: Hero(
           tag: widget.company.id,
-          child: Image.asset(
-            widget.company.logo,
-            scale: 1.5,
+          child: Padding(
+            padding: const EdgeInsets.all(36.0),
+            child: CachedNetworkImageWrapper(widget.company.logo),
           ),
         )),
+    actions: <Widget>[
+      SliverAppBarComponent(
+        hiddenChild: barcode(),
+        expandedChild: barcode(),
+      )
+    ],
     bottom: TabBar(
       onTap: (tab) {
         setState(() {
@@ -80,6 +90,10 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
       controller: widget._companyTabController,
     ),
   );
+
+  Widget barcode() {
+    return Image.asset("assets/images/ic_barcode.png");
+  }
 
   Color blackOrWhite() => widget.company.color == Colors.white ? Colors.black : Colors.white;
 }

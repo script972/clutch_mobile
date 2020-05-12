@@ -14,5 +14,5 @@ class OfferDetailsMobileDto {
 
   OfferDetailsMobileDto(this.title, this.categories, this.description,
       this.finish, this.contactPhone,
-      {this.pointShortDto});
+      {this.pointShortDto, this.images});
 }
