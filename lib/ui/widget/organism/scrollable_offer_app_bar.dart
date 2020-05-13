@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:clutch/domain/network/model/response/offer_details_mobile_dto.dart';
 import 'package:clutch/ui/widget/atom/cached_network_image_wrapper.dart';
 import 'package:clutch/ui/widget/atom/sliver_app_bar.dart';
+import 'package:clutch/ui/widget/organism/barcode_dialog.dart';
 import 'package:flutter/material.dart';
 
 class ScrollableOfferAppBar extends StatefulWidget {
@@ -66,7 +67,6 @@ class _ScrollableOfferAppBarState extends State<ScrollableOfferAppBar> {
                     aspectRatio: 2.0,
                     onPageChanged: (index, reaso) {
                       setState(() {
-                        print(">>>${widget._currentPosition}");
                         widget._currentPosition = index;
                       });
                     },
@@ -88,8 +88,8 @@ class _ScrollableOfferAppBarState extends State<ScrollableOfferAppBar> {
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: widget._currentPosition == index
-                                      ? Color.fromRGBO(0, 0, 0, 1)
-                                      : Color.fromRGBO(0, 0, 0, 0.4)),
+                                      ? Color.fromRGBO(1, 1, 1, 1)
+                                      : Color.fromRGBO(1, 1, 1, 0.4)),
                             )))
                         .values
                         .toList(),
@@ -105,7 +105,13 @@ class _ScrollableOfferAppBarState extends State<ScrollableOfferAppBar> {
         ],
       );
 
-  Widget barcode() {
-    return Image.asset("assets/images/ic_barcode.png");
-  }
+//BarcodeDialog
+  Widget barcode() => GestureDetector(
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => BarcodeDialog("312312"),
+        );
+      },
+      child: Image.asset("assets/images/ic_barcode.png"));
 }

@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:clutch/ui/model/place_model_ui.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class CompanyLocationsTab extends StatefulWidget {
+class LocationsTab extends StatefulWidget {
   @override
-  _CompanyLocationsTabState createState() => _CompanyLocationsTabState();
+  _LocationsTabState createState() => _LocationsTabState();
 }
 
-class _CompanyLocationsTabState extends State<CompanyLocationsTab> {
+class _LocationsTabState extends State<LocationsTab> {
   final Set<Marker> markers = {};
   LatLng _initialPosition;
   final Completer<GoogleMapController> _controller = Completer();

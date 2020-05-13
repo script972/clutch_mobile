@@ -10,6 +10,8 @@
   <string>io.flutter.flutter.app</string>
   <key>CFBundleInfoDictionaryVersion</key>
   <string>6.0</string>
+  <key>io.flutter.embedded_views_preview</key>
+  <true/>
   <key>CFBundleName</key>
   <string>App</string>
   <key>CFBundlePackageType</key>

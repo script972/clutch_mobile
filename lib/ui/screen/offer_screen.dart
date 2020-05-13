@@ -2,7 +2,7 @@ import 'package:clutch/domain/network/model/response/categories_response.dart';
 import 'package:clutch/domain/network/model/response/offer_details_mobile_dto.dart';
 import 'package:clutch/ui/localization/keys.dart';
 import 'package:clutch/ui/widget/organism/scrollable_offer_app_bar.dart';
-import 'package:clutch/ui/widget/tab/company_locations_tab.dart';
+import 'package:clutch/ui/widget/tab/locations_tab.dart';
 import 'package:clutch/ui/widget/tab/offers_details_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_translate/global.dart';
@@ -36,7 +36,7 @@ class _OfferScreenState extends State<OfferScreen>
   void initState() {
     super.initState();
     _offerTabController =
-        TabController(length: 2, vsync: this, initialIndex: 1);
+        TabController(length: 2, vsync: this, initialIndex: 0);
   }
 
   @override
@@ -45,41 +45,71 @@ class _OfferScreenState extends State<OfferScreen>
           headerSliverBuilder: (a1, a2) => <Widget>[
             ScrollableOfferAppBar(widget._offer, hideFlexibleSpace),
           ],
-          body: DefaultTabController(
-            length: 2,
+          body: Container(
+            color: Colors.white,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  child: TabBar(
-                    onTap: (tab) {
-                      setState(() {
-                        if (_offerTabController.index == 1)
-                          hideFlexibleSpace = true;
-                        else
-                          hideFlexibleSpace = false;
-                      });
-                    },
-                    unselectedLabelColor: Colors.black.withOpacity(0.56),
-                    labelColor: Colors.black,
-                    isScrollable: true,
-                    indicator: UnderlineTabIndicator(
-                        borderSide: BorderSide(width: 3.0, color: Colors.black),
-                        insets: EdgeInsets.symmetric(horizontal: 12.0)),
-                    tabs: [
-                      Tab(text: translate(Keys.Details)),
-                      Tab(text: translate(Keys.Locations)),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        widget._offer.title,
+                        style: TextStyle(fontSize: 24),
+                      ),
+                      Text(
+                        widget._offer.categories?.title ?? "",
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                      ),
                     ],
-                    controller: _offerTabController,
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    child: TabBarView(
-                      controller: _offerTabController,
-                      children: <Widget>[
-                        OffersDetailsTab(widget._offer),
-                        CompanyLocationsTab(),
-                      ],
+                Container(
+                  child: Expanded(
+                    child: DefaultTabController(
+                      length: 2,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            child: TabBar(
+                              onTap: (tab) {
+                                setState(() {
+                                  if (_offerTabController.index == 1)
+                                    hideFlexibleSpace = true;
+                                  else
+                                    hideFlexibleSpace = false;
+                                });
+                              },
+                              unselectedLabelColor:
+                                  Colors.black.withOpacity(0.56),
+                              labelColor: Colors.black,
+                              isScrollable: true,
+                              indicator: UnderlineTabIndicator(
+                                  borderSide: BorderSide(
+                                      width: 3.0, color: Colors.black),
+                                  insets:
+                                      EdgeInsets.symmetric(horizontal: 12.0)),
+                              tabs: [
+                                Tab(text: translate(Keys.Details)),
+                                Tab(text: translate(Keys.Locations)),
+                              ],
+                              controller: _offerTabController,
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              child: TabBarView(
+                                controller: _offerTabController,
+                                children: <Widget>[
+                                  OffersDetailsTab(widget._offer),
+                                  LocationsTab(),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -89,31 +119,3 @@ class _OfferScreenState extends State<OfferScreen>
         ),
       );
 }
-/*TabBar(
-                onTap: (tab) {
-                  setState(() {
-                    if (_offerTabController.index == 1)
-                      hideFlexibleSpace = true;
-                    else
-                      hideFlexibleSpace = false;
-                  });
-                },
-                unselectedLabelColor: Colors.black.withOpacity(0.56),
-                labelColor: Colors.black,
-                isScrollable: true,
-                indicator: UnderlineTabIndicator(
-                    borderSide: BorderSide(width: 3.0, color: Colors.black),
-                    insets: EdgeInsets.symmetric(horizontal: 12.0)),
-                tabs: [
-                  Tab(text: translate(Keys.Details)),
-                  Tab(text: translate(Keys.Locations)),
-                ],
-                controller: _offerTabController,
-              ),
-              TabBarView(
-                controller: _offerTabController,
-                children: <Widget>[
-                  OffersDetailsTab(widget._offer),
-                  CompanyLocationsTab(),
-                ],
-              ),*/

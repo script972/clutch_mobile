@@ -2,7 +2,7 @@ import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/ui/widget/organism/scrollable_company_app_bar.dart';
 import 'package:clutch/ui/widget/tab/company_details_tab.dart';
-import 'package:clutch/ui/widget/tab/company_locations_tab.dart';
+import 'package:clutch/ui/widget/tab/locations_tab.dart';
 
 class CompanyScreen extends StatefulWidget {
   CompanyShortMobile company;
@@ -36,7 +36,7 @@ class _CompanyScreenState extends State<CompanyScreen>
               children: <Widget>[
                 SizedBox(),
                 CompanyDetailsTab(widget.company),
-                CompanyLocationsTab(),
+                LocationsTab(),
               ],
             ),
           ),
