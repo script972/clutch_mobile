@@ -6,7 +6,7 @@ class OffersShortMobileDto {
   final String image;
   final int finish;
   final double distance;
-  final bool big;
+  bool big;
 
   OffersShortMobileDto({
     this.id,

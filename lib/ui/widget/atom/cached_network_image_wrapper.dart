@@ -13,7 +13,6 @@ class CachedNetworkImageWrapper extends StatelessWidget {
         progressIndicatorBuilder: (context, url, downloadProgress) =>
             Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
         errorWidget: (context, url, error) {
-          debugPrint("<<<<<<${url} <<<<${error}");
           return Icon(Icons.error);
         },
     useOldImageOnUrlChange: true,

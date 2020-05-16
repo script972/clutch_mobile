@@ -15,8 +15,8 @@ class OfferScreen extends StatefulWidget {
     23,
     "+380936629627",
     images: [
-      "https://manticoreworld.com/wp-content/uploads/2017/01/Team-Foxtrot.png",
-      "https://lioncom.pro/wp-content/uploads/2020/01/foxtrot-colored_new.png"
+      "https://gotoshop.ua/img/p/2020/05/114111/1686678-114111-515415895344155703.jpg?t=t1589534463",
+      "https://gotoshop.ua/img/p/2020/05/114110/1686677-114110-870415895342938532.jpg?t=t1589534281"
     ],
   );
   int id;

@@ -6,6 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CompaniesTab extends StatelessWidget {
+
+  List<CompanyShortMobile> companyList;
+
+  CompaniesTab(this.companyList);
+
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<MainBloc, MainState>(builder: (context, state) {

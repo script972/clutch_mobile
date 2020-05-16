@@ -61,7 +61,7 @@ class _ScrollableOfferAppBarState extends State<ScrollableOfferAppBar> {
                           ))
                       .toList(),
                   options: CarouselOptions(
-                    height: 220,
+                    //height: 220,
                     enlargeCenterPage: true,
                     viewportFraction: 0.9,
                     aspectRatio: 2.0,

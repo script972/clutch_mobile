@@ -1,9 +1,15 @@
+import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/domain/network/model/response/offers_short_mobile_dto.dart';
 import 'package:clutch/helpers/utils/shared_preferences_helper.dart';
+import 'package:clutch/presentation/bloc/main_bloc.dart';
+import 'package:clutch/presentation/state/main_state.dart';
+import 'package:clutch/ui/model/short_offer_model_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/ui/widget/organism/main_drawer.dart';
 import 'package:clutch/ui/widget/organism/search_app_bar.dart';
 import 'package:clutch/ui/widget/tab/companies_tab.dart';
 import 'package:clutch/ui/widget/tab/offers_tab.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -18,18 +24,26 @@ class _MainScreenState extends State<MainScreen>
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
-        super.initState();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        key: this._scaffoldKey,
-        appBar: SearchAppBar(_tabController, _scaffoldKey),
-        drawer: MainDrawer(),
-        backgroundColor: Colors.white,
-        body: TabBarView(
-          children: [OffersTab(), CompaniesTab()],
-          controller: _tabController,
-        ),
-      );
+      key: this._scaffoldKey,
+      appBar: SearchAppBar(_tabController, _scaffoldKey),
+      drawer: MainDrawer(),
+      backgroundColor: Colors.white,
+      body: BlocBuilder<MainBloc, MainState>(builder: (context, state) {
+        List<ShortOfferModelUi> offer;
+        List<CompanyShortMobile> company;
+        if (state is MainLoaded) {
+          offer = state.offer;
+          company = state.company;
+          return TabBarView(
+            children: [OffersTab(offer), CompaniesTab(company)],
+            controller: _tabController,
+          );
+        }
+        return Text("Something wrong");
+      }));
 }

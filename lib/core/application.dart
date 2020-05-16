@@ -62,6 +62,7 @@ class Application extends StatelessWidget {
 
   void initBody() {
     SharedPreferencesHelper.saveToken(
-        "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJDb3Jwb3JhdGthIiwic3ViIjoiMzgwOTM2NjI5NjI3IiwiYXVkIjoid2ViIiwiaWF0IjoxNTg4NDM2NDE4LCJleHAiOjE1ODk0MzY0MTd9.81GFdSc6Qc5AqDqCdhZ2HXbcD54b3JamDe6Yn8FWvG-CN2viRZ6BcRwYFO7MOvuIcRy14hQIAjaq_Fk6GrZgDQ");
+        "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJDb3Jwb3JhdGthIiwic3ViIjoiMzgwOTM2NjI5NjI3IiwiYXVkIjoid2ViIiwiaWF0IjoxNTg5NjM2OTA4LCJleHAiOjE1OTA2MzY5MDd9.mIbK_wWJwxxjcUIYMFss9b27pWFdxMM92xDeE58Y_DU5vycF9wW_fyvwPM7dKKpdy8TKtubmM9hB2ar1NSp9LA"
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
 import 'package:clutch/domain/network/model/response/offers_short_mobile_dto.dart';
+import 'package:clutch/ui/model/short_offer_model_ui.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class MainLoading extends MainState {
 
 class MainLoaded extends MainState {
   final List<CompanyShortMobile> company;
-  final List<OffersShortMobileDto> offer;
+  final List<ShortOfferModelUi> offer;
 
   const MainLoaded(this.company, this.offer);
 
