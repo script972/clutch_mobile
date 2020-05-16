@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:clutch/domain/network/model/response/offer_details_mobile_dto.dart';
@@ -55,16 +56,33 @@ class _ScrollableOfferAppBarState extends State<ScrollableOfferAppBar> {
                   items: widget._offer.images
                       .map((i) => Builder(
                             builder: (BuildContext context) => Container(
-                              margin: EdgeInsets.symmetric(horizontal: 5.0),
-                              child: CachedNetworkImageWrapper(i),
+                              child: CachedNetworkImage(
+                                imageUrl: i,
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: imageProvider,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                progressIndicatorBuilder:
+                                    (context, url, downloadProgress) => Center(
+                                        child: CircularProgressIndicator(
+                                            value: downloadProgress.progress)),
+                                errorWidget: (context, url, error) {
+                                  return Icon(Icons.error);
+                                },
+                                useOldImageOnUrlChange: true,
+                              ),
                             ),
                           ))
                       .toList(),
                   options: CarouselOptions(
-                    //height: 220,
                     enlargeCenterPage: true,
-                    viewportFraction: 0.9,
-                    aspectRatio: 2.0,
+                    viewportFraction: 1.0,
+                    aspectRatio: 1.841,
                     onPageChanged: (index, reaso) {
                       setState(() {
                         widget._currentPosition = index;

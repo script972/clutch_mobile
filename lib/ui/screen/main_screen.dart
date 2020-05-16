@@ -34,16 +34,15 @@ class _MainScreenState extends State<MainScreen>
       drawer: MainDrawer(),
       backgroundColor: Colors.white,
       body: BlocBuilder<MainBloc, MainState>(builder: (context, state) {
-        List<ShortOfferModelUi> offer;
-        List<CompanyShortMobile> company;
+        List<ShortOfferModelUi> offer = [];
+        List<CompanyShortMobile> company= [];
         if (state is MainLoaded) {
           offer = state.offer;
           company = state.company;
-          return TabBarView(
-            children: [OffersTab(offer), CompaniesTab(company)],
-            controller: _tabController,
-          );
         }
-        return Text("Something wrong");
+        return TabBarView(
+          children: [OffersTab(offer), CompaniesTab(company)],
+          controller: _tabController,
+        );
       }));
 }

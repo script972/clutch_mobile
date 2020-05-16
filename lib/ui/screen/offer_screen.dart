@@ -16,7 +16,8 @@ class OfferScreen extends StatefulWidget {
     "+380936629627",
     images: [
       "https://gotoshop.ua/img/p/2020/05/114111/1686678-114111-515415895344155703.jpg?t=t1589534463",
-      "https://gotoshop.ua/img/p/2020/05/114110/1686677-114110-870415895342938532.jpg?t=t1589534281"
+      "https://gotoshop.ua/img/p/2020/05/114110/1686677-114110-870415895342938532.jpg?t=t1589534281",
+      "https://atbakcii.com.ua/wp-content/uploads/2018/06/anons-aktsii-ekonomiya-v-atb-s-20-06-2018-po-26-06-2018-2.jpg"
     ],
   );
   int id;

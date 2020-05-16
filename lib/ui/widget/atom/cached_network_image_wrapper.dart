@@ -4,17 +4,19 @@ import 'package:flutter/material.dart';
 
 class CachedNetworkImageWrapper extends StatelessWidget {
   String image;
+  BoxFit fit;
 
-  CachedNetworkImageWrapper(this.image);
+  CachedNetworkImageWrapper(this.image, {this.fit = BoxFit.contain});
 
   @override
   Widget build(BuildContext context) => CachedNetworkImage(
         imageUrl: image,
-        progressIndicatorBuilder: (context, url, downloadProgress) =>
-            Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
+        fit: fit,
+        progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+            child: CircularProgressIndicator(value: downloadProgress.progress)),
         errorWidget: (context, url, error) {
           return Icon(Icons.error);
         },
-    useOldImageOnUrlChange: true,
-  );
+        useOldImageOnUrlChange: true,
+      );
 }

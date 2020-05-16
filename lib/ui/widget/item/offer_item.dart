@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clutch/core/custom_route.dart';
 import 'package:clutch/domain/network/model/response/offers_short_mobile_dto.dart';
 import 'package:clutch/ui/model/short_offer_model_ui.dart';
@@ -20,11 +21,22 @@ class OfferItem extends StatelessWidget {
           elevation: 8.0,
           child: Stack(
             children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
+              CachedNetworkImage(
+                imageUrl: model.imageUrl,
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage(model.imageUrl),
-                        fit: BoxFit.cover)),
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+                    child: CircularProgressIndicator(value: downloadProgress.progress)),
+                errorWidget: (context, url, error) {
+                  return Icon(Icons.error);
+                },
+                useOldImageOnUrlChange: true,
               ),
               Align(
                   alignment: Alignment.bottomLeft,
