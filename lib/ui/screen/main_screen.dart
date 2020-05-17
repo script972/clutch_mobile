@@ -1,9 +1,7 @@
 import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
-import 'package:clutch/domain/network/model/response/offers_short_mobile_dto.dart';
-import 'package:clutch/helpers/utils/shared_preferences_helper.dart';
 import 'package:clutch/presentation/bloc/main_bloc.dart';
+import 'package:clutch/presentation/model/short_offer_model_ui.dart';
 import 'package:clutch/presentation/state/main_state.dart';
-import 'package:clutch/ui/model/short_offer_model_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/ui/widget/organism/main_drawer.dart';
 import 'package:clutch/ui/widget/organism/search_app_bar.dart';

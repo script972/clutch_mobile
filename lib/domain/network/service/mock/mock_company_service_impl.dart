@@ -1,4 +1,5 @@
 import 'package:clutch/domain/network/model/request/company_and_offers_search.dart';
+import 'package:clutch/domain/network/model/response/company_details_response.dart';
 import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
 import 'package:clutch/domain/network/model/response/main_info_response.dart';
 import 'package:clutch/domain/network/service/api_company_service.dart';
@@ -20,5 +21,11 @@ class MockCompanyServiceImpl extends ApiCompanyService {
     company.add(CompanyResponse(
         6, "puma", "assets/images/logos/puma.png", Colors.black));*/
     //yield company;
+  }
+
+  @override
+  Future<CompanyDetailsResponse> fetchDetailsCompany(int id) {
+    // TODO: implement fetchDetailsCompany
+    throw UnimplementedError();
   }
 }

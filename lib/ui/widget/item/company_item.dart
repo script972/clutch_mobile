@@ -17,7 +17,7 @@ class _CompanyItemState extends State<CompanyItem> {
   Widget build(BuildContext context) => GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, CustomRoute.DETAILS_COMPANY,
-              arguments: widget._companyResponse);
+              arguments: widget._companyResponse.id);
         },
         child: Card(
           elevation: 1,

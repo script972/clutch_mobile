@@ -1,13 +1,17 @@
-import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/presentation/bloc/company_details_bloc.dart';
+import 'package:clutch/presentation/model/company_details_model_ui.dart';
+import 'package:clutch/presentation/state/company_details_state.dart';
+import 'package:clutch/ui/widget/atom/loader_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/ui/widget/organism/scrollable_company_app_bar.dart';
 import 'package:clutch/ui/widget/tab/company_details_tab.dart';
 import 'package:clutch/ui/widget/tab/locations_tab.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CompanyScreen extends StatefulWidget {
-  CompanyShortMobile company;
+  int companyId;
 
-  CompanyScreen(this.company);
+  CompanyScreen(this.companyId);
 
   @override
   _CompanyScreenState createState() => _CompanyScreenState();
@@ -25,23 +29,30 @@ class _CompanyScreenState extends State<CompanyScreen>
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: NestedScrollView(
-          headerSliverBuilder: (a1, a2) => <Widget>[
-            ScrollableCompanyAppBar(widget.company, _companyTabController),
-          ],
-          body: Container(
-            child: TabBarView(
-              controller: _companyTabController,
-              children: <Widget>[
-                SizedBox(),
-                CompanyDetailsTab(widget.company),
-                LocationsTab(),
-              ],
+  Widget build(BuildContext context) =>
+      Scaffold(body: BlocBuilder<CompanyDetailsBloc, CompanyDetailsState>(
+          builder: (context, state) {
+        if (state is CompanyDetailsLoading) {
+          return LoaderIndicator();
+        }
+        if (state is CompanyDetailsLoaded) {
+          return NestedScrollView(
+            headerSliverBuilder: (a1, a2) => <Widget>[
+              ScrollableCompanyAppBar(
+                  state.companyDetailsModelUi, _companyTabController),
+            ],
+            body: Container(
+              child: TabBarView(
+                controller: _companyTabController,
+                children: <Widget>[
+                  SizedBox(),
+                  CompanyDetailsTab(state.companyDetailsModelUi),
+                  LocationsTab(state.companyDetailsModelUi.places),
+                ],
+              ),
             ),
-          ),
-        ),
-      );
-
-
+          );
+        }
+        return Text("something wrong");
+      }));
 }

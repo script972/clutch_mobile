@@ -1,6 +1,8 @@
 import 'package:clutch/helpers/utils/shared_preferences_helper.dart';
+import 'package:clutch/presentation/bloc/company_details_bloc.dart';
 import 'package:clutch/presentation/bloc/main_bloc.dart';
 import 'package:clutch/presentation/bloc/profile_bloc.dart';
+import 'package:clutch/presentation/event/company_details_event.dart';
 import 'package:clutch/presentation/event/main_event.dart';
 import 'package:clutch/presentation/event/profile_event.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -37,6 +39,9 @@ class Application extends StatelessWidget {
           BlocProvider<ProfileBloc>(
             create: (context) => ProfileBloc()..add(LoadProfile()),
           ),
+          BlocProvider<CompanyDetailsBloc>(
+            create: (context) => CompanyDetailsBloc()..add(LoadCompanyDetails()),
+          )
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: !kReleaseMode,

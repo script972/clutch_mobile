@@ -1,4 +1,6 @@
 import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/presentation/model/company_details_model_ui.dart';
+import 'package:clutch/presentation/model/offer_details_model_ui.dart';
 import 'package:clutch/ui/widget/atom/cached_network_image_wrapper.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +9,7 @@ import 'package:clutch/ui/widget/atom/sliver_app_bar.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 class ScrollableCompanyAppBar extends StatefulWidget {
-  final CompanyShortMobile company;
+  final CompanyDetailsModelUi company;
   final TabController _companyTabController;
 
   ScrollableCompanyAppBar(this.company, this._companyTabController);
@@ -39,7 +41,7 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
           Container(
               width: 50,
               height: 50,
-              child: CachedNetworkImageWrapper(widget.company.logo)),
+              child: CachedNetworkImageWrapper(widget.company.logoUrl)),
           Padding(
             padding: const EdgeInsets.only(left: 30.0),
             child: Text(widget.company.title,
@@ -58,7 +60,7 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
           tag: widget.company.id,
           child: Padding(
             padding: const EdgeInsets.all(36.0),
-            child: CachedNetworkImageWrapper(widget.company.logo),
+            child: CachedNetworkImageWrapper(widget.company.logoUrl),
           ),
         )),
     actions: <Widget>[

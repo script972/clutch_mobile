@@ -1,10 +1,12 @@
 import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/presentation/model/company_details_model_ui.dart';
+import 'package:clutch/presentation/model/offer_details_model_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/ui/widget/atom/rating_wrapper.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class CompanyHeader extends StatelessWidget {
-  final CompanyShortMobile _company;
+  final CompanyDetailsModelUi _company;
 
   CompanyHeader(this._company);
 

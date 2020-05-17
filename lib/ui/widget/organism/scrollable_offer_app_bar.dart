@@ -2,13 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:clutch/domain/network/model/response/offer_details_mobile_dto.dart';
+import 'package:clutch/presentation/model/offer_details_model_ui.dart';
 import 'package:clutch/ui/widget/atom/cached_network_image_wrapper.dart';
 import 'package:clutch/ui/widget/atom/sliver_app_bar.dart';
 import 'package:clutch/ui/widget/organism/barcode_dialog.dart';
 import 'package:flutter/material.dart';
 
 class ScrollableOfferAppBar extends StatefulWidget {
-  final OfferDetailsMobileDto _offer;
+  final OfferDetailsModelUi _offer;
   bool hideFlexibleSpace = false;
   int _currentPosition = 0;
 

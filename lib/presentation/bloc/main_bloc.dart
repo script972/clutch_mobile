@@ -2,10 +2,10 @@ import 'package:clutch/domain/network/model/request/company_and_offers_search.da
 import 'package:clutch/domain/network/model/response/main_info_response.dart';
 import 'package:clutch/helpers/utils/date_utils.dart';
 import 'package:clutch/presentation/event/main_event.dart';
+import 'package:clutch/presentation/model/short_offer_model_ui.dart';
 import 'package:clutch/presentation/state/main_state.dart';
 import 'package:clutch/repository/company_repository.dart';
 import 'package:clutch/repository/impl/company_repository_impl.dart';
-import 'package:clutch/ui/model/short_offer_model_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 

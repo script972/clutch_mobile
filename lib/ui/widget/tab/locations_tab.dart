@@ -1,12 +1,16 @@
 import 'dart:async';
 
+import 'package:clutch/presentation/model/place_model_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:clutch/ui/model/place_model_ui.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LocationsTab extends StatefulWidget {
+  List<PlaceModelUi> places;
+
+  LocationsTab(this.places);
+
   @override
   _LocationsTabState createState() => _LocationsTabState();
 }
@@ -15,26 +19,6 @@ class _LocationsTabState extends State<LocationsTab> {
   final Set<Marker> markers = {};
   LatLng _initialPosition;
   final Completer<GoogleMapController> _controller = Completer();
-
-  List<PlaceModelUi> places = [
-    PlaceModelUi("name", "vik", "https://www.stop-shop.com/images/module/2005.jpg",
-        LatLng(46.9, 32.0)),
-    PlaceModelUi("name1", "vik1", "https://www.stop-shop.com/images/module/2005.jpg",
-        LatLng(46.89, 32.2)),
-    PlaceModelUi("name2", "vik2", "https://www.stop-shop.com/images/module/2005.jpg",
-        LatLng(46.895, 32.22)),
-    PlaceModelUi("name3", "vik3", "https://www.stop-shop.com/images/module/2005.jpg",
-        LatLng(46.855, 32.232)),
-  ];
-
-
-  @override
-  void initState() {
-    super.initState();
-    places.forEach((item){
-      markers.add(Marker(position: item.position, markerId: MarkerId(item.position.longitude.toString())));
-    });
-  }
 
   @override
   Widget build(BuildContext context) => Stack(
@@ -110,15 +94,15 @@ class _LocationsTabState extends State<LocationsTab> {
                       ),
                   padding: EdgeInsets.all(0.0),
                   shrinkWrap: true,
-                  itemCount: places.length,
+                  itemCount: widget.places.length,
                   itemBuilder: (_, index) {
-                    var place = places[index];
+                    var place = widget.places[index];
                     return Material(
                       color: Colors.transparent,
                       child: InkWell(
                         child: ListTile(
                           leading: Container(
-                            child: place.imageUrl.isNotEmpty
+                            child: place.imageUrl?.isNotEmpty ?? false
                                 ? CircleAvatar(
                                     backgroundImage:
                                         NetworkImage(place.imageUrl),

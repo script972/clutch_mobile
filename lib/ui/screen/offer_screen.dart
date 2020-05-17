@@ -1,14 +1,40 @@
 import 'package:clutch/domain/network/model/response/categories_response.dart';
-import 'package:clutch/domain/network/model/response/offer_details_mobile_dto.dart';
+import 'package:clutch/presentation/model/offer_details_model_ui.dart';
+import 'package:clutch/presentation/model/place_model_ui.dart';
 import 'package:clutch/ui/localization/keys.dart';
 import 'package:clutch/ui/widget/organism/scrollable_offer_app_bar.dart';
 import 'package:clutch/ui/widget/tab/locations_tab.dart';
 import 'package:clutch/ui/widget/tab/offers_details_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_translate/global.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class OfferScreen extends StatefulWidget {
-  OfferDetailsMobileDto _offer = OfferDetailsMobileDto(
+  OfferDetailsModelUi _offer = OfferDetailsModelUi(
+      1,
+      "333",
+      [
+        "https://gotoshop.ua/img/p/2020/05/114111/1686678-114111-515415895344155703.jpg?t=t1589534463",
+        "https://gotoshop.ua/img/p/2020/05/114110/1686677-114110-870415895342938532.jpg?t=t1589534281",
+        "https://atbakcii.com.ua/wp-content/uploads/2018/06/anons-aktsii-ekonomiya-v-atb-s-20-06-2018-po-26-06-2018-2.jpg"
+      ],
+      "title",
+      Colors.red,
+      CategoriesResponse(title: "title", icon: "", id: 1),
+      "description",
+      "380936629627",
+      "От 33 до 33",
+      [
+        PlaceModelUi(
+          "name",
+          "address",
+          "vicinit",
+          "imageUrl",
+          LatLng(22, 33),
+        )
+      ]);
+
+  /*OfferDetailsMobileDto _offer = OfferDetailsMobileDto(
     "Акция",
     CategoriesResponse(title: 'Косметика', icon: "", id: 1),
     "Описание",
@@ -19,7 +45,7 @@ class OfferScreen extends StatefulWidget {
       "https://gotoshop.ua/img/p/2020/05/114110/1686677-114110-870415895342938532.jpg?t=t1589534281",
       "https://atbakcii.com.ua/wp-content/uploads/2018/06/anons-aktsii-ekonomiya-v-atb-s-20-06-2018-po-26-06-2018-2.jpg"
     ],
-  );
+  );*/
   int id;
 
   OfferScreen(this.id);
@@ -60,7 +86,7 @@ class _OfferScreenState extends State<OfferScreen>
                         style: TextStyle(fontSize: 24),
                       ),
                       Text(
-                        widget._offer.categories?.title ?? "",
+                        widget._offer.categoriesResponse?.title ?? "",
                         style: TextStyle(fontSize: 14, color: Colors.grey),
                       ),
                     ],
@@ -104,7 +130,7 @@ class _OfferScreenState extends State<OfferScreen>
                                 controller: _offerTabController,
                                 children: <Widget>[
                                   OffersDetailsTab(widget._offer),
-                                  LocationsTab(),
+                                  LocationsTab(widget._offer.places),
                                 ],
                               ),
                             ),
