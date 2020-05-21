@@ -1,3 +1,4 @@
+import 'package:clutch/domain/mapper/offer_mapper.dart';
 import 'package:clutch/domain/network/model/request/company_and_offers_search.dart';
 import 'package:clutch/domain/network/model/response/main_info_response.dart';
 import 'package:clutch/helpers/utils/date_utils.dart';
@@ -37,17 +38,17 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         if (companyList.offersShortMobileDtoList[i].finish != null)
           subTitle = DateUtils.timestampToString(
               companyList.offersShortMobileDtoList[i].finish);
-        var widthType;
+        StaggeredTile widthType;
         if (i % 3 == 0)
           widthType = const StaggeredTile.count(4, 2.25);
         else
           widthType = const StaggeredTile.count(2, 2.65);
-        shortOfferModelUi.add(ShortOfferModelUi(
-            companyList.offersShortMobileDtoList[i].id,
-            companyList.offersShortMobileDtoList[i].image,
-            companyList.offersShortMobileDtoList[i].title,
-            subTitle,
-            widthType));
+
+        ShortOfferModelUi offer = OfferMapper.mapperShortResponseToUi(
+            companyList.offersShortMobileDtoList[i]);
+        offer.subTitle = subTitle;
+        offer.staggeredTile = widthType;
+        shortOfferModelUi.add(offer);
       }
       yield MainLoaded(
           companyList.companyShortMobileDtoList, shortOfferModelUi);

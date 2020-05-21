@@ -40,7 +40,7 @@ class Application extends StatelessWidget {
             create: (context) => ProfileBloc()..add(LoadProfile()),
           ),
           BlocProvider<CompanyDetailsBloc>(
-            create: (context) => CompanyDetailsBloc()..add(LoadCompanyDetails()),
+            create: (context) => CompanyDetailsBloc()..add(LoadCompanyDetails(1)),
           )
         ],
         child: MaterialApp(

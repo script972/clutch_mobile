@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:clutch/domain/network/model/response/categories_response.dart';
 import 'package:clutch/presentation/model/place_model_ui.dart';
+import 'package:clutch/presentation/model/short_offer_model_ui.dart';
 
 class CompanyDetailsModelUi {
   int id;
@@ -13,9 +14,10 @@ class CompanyDetailsModelUi {
   String description;
 
   List<PlaceModelUi> places;
+  List<ShortOfferModelUi> offers;
 
   CompanyDetailsModelUi(this.id, this.logoUrl, this.barcode, this.title,
-      this.color, this.categoriesResponse, this.description, this.places);
+      this.color, this.categoriesResponse, this.description, this.places, this.offers);
 
 
 }

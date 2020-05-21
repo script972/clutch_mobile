@@ -8,7 +8,8 @@ abstract class CompanyDetailsEvent extends Equatable {
 
 class LoadCompanyDetails extends CompanyDetailsEvent {
 
-  LoadCompanyDetails();
+  int id;
+  LoadCompanyDetails(this.id);
 
   @override
   List<Object> get props => [];

@@ -2,6 +2,7 @@ import 'package:clutch/presentation/bloc/company_details_bloc.dart';
 import 'package:clutch/presentation/model/company_details_model_ui.dart';
 import 'package:clutch/presentation/state/company_details_state.dart';
 import 'package:clutch/ui/widget/atom/loader_indicator.dart';
+import 'package:clutch/ui/widget/tab/offers_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/ui/widget/organism/scrollable_company_app_bar.dart';
 import 'package:clutch/ui/widget/tab/company_details_tab.dart';
@@ -45,7 +46,7 @@ class _CompanyScreenState extends State<CompanyScreen>
               child: TabBarView(
                 controller: _companyTabController,
                 children: <Widget>[
-                  SizedBox(),
+                  OffersTab(state.companyDetailsModelUi.offers),
                   CompanyDetailsTab(state.companyDetailsModelUi),
                   LocationsTab(state.companyDetailsModelUi.places),
                 ],
