@@ -39,7 +39,7 @@ class CustomRoute {
         screen = MainScreen();
         break;
       case DETAILS_OFFER:
-        screen = OfferScreen(args);
+        screen = OfferScreen();
         break;
     }
 

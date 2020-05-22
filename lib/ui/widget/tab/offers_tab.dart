@@ -1,6 +1,7 @@
 import 'package:clutch/presentation/bloc/main_bloc.dart';
 import 'package:clutch/presentation/model/short_offer_model_ui.dart';
 import 'package:clutch/presentation/state/main_state.dart';
+import 'package:clutch/ui/widget/atom/bloc_error_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/ui/widget/item/offer_item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +33,6 @@ class OffersTab extends StatelessWidget {
             crossAxisSpacing: 8.0,
           );
         }
-        return Text("something wrong");
+        return BlocErrorIndicator("");
       }));
 }

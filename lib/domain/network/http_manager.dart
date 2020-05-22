@@ -1,9 +1,10 @@
 import 'dart:convert';
 
+import 'package:alice/alice.dart';
 import 'package:clutch/domain/network/api_client.dart';
 import 'package:clutch/helpers/utils/shared_preferences_helper.dart';
 import 'package:dio/dio.dart';
-import 'package:alice/alice.dart';
+import 'package:flutter/cupertino.dart';
 
 class HttpManager {
   static final HttpManager _singleton = new HttpManager._internal();
@@ -47,8 +48,10 @@ class HttpManager {
       if (token != null) {
         options.headers["Authorization"] = "Bearer " + token;
       }
+      debugPrint("<<<<<<REQUEST=${options}");
       return options;
     }, onResponse: (Response response) async {
+      debugPrint("<<<<<<RESPONSE=${response}");
       return response;
     }));
     return dio;

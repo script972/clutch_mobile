@@ -1,8 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clutch/core/custom_route.dart';
+import 'package:clutch/presentation/bloc/offer_details_bloc.dart';
+import 'package:clutch/presentation/event/offer_details_event.dart';
 import 'package:clutch/presentation/model/short_offer_model_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OfferItem extends StatelessWidget {
   final ShortOfferModelUi model;
@@ -12,8 +15,9 @@ class OfferItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, CustomRoute.DETAILS_OFFER,
-              arguments: model.id);
+          Navigator.pushNamed(context, CustomRoute.DETAILS_OFFER);
+          BlocProvider.of<OfferDetailsBloc>(context)
+              .add(LoadOfferDetails(model.id));
         },
         child: Card(
           elevation: 8.0,
@@ -29,8 +33,10 @@ class OfferItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                progressIndicatorBuilder: (context, url, downloadProgress) => Center(
-                    child: CircularProgressIndicator(value: downloadProgress.progress)),
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    Center(
+                        child: CircularProgressIndicator(
+                            value: downloadProgress.progress)),
                 errorWidget: (context, url, error) {
                   return Icon(Icons.error);
                 },

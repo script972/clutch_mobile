@@ -1,6 +1,7 @@
 import 'package:clutch/presentation/bloc/company_details_bloc.dart';
 import 'package:clutch/presentation/model/company_details_model_ui.dart';
 import 'package:clutch/presentation/state/company_details_state.dart';
+import 'package:clutch/ui/widget/atom/bloc_error_indicator.dart';
 import 'package:clutch/ui/widget/atom/loader_indicator.dart';
 import 'package:clutch/ui/widget/tab/offers_tab.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +55,6 @@ class _CompanyScreenState extends State<CompanyScreen>
             ),
           );
         }
-        return Text("something wrong");
+        return BlocErrorIndicator("");
       }));
 }
