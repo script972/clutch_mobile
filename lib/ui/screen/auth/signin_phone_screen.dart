@@ -11,9 +11,9 @@ class SignInPhoneScreen extends StatefulWidget {
 }
 
 class _SignInPhoneScreenState extends State<SignInPhoneScreen> {
-  final FocusNode _emailNode = FocusNode();
+  final FocusNode _phoneNode = FocusNode();
 
-  TextEditingController emailInputController = TextEditingController();
+  TextEditingController _phoneInputController = TextEditingController();
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -27,6 +27,14 @@ class _SignInPhoneScreenState extends State<SignInPhoneScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Center(child: Image.asset("assets/images/logo.png")),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 36.0),
+                        //TODO: text
+                        child: Text(
+                          "Сервис лучших условий",
+                          style: TextStyle(color: Colors.white, fontSize: 24.0),
+                        ),
+                      )
                     ],
                   )),
               Expanded(
@@ -37,16 +45,14 @@ class _SignInPhoneScreenState extends State<SignInPhoneScreen> {
                     child: Column(
                       children: <Widget>[
                         BorderedInputTextField(
-                          /*onFieldSubmitted: (v) =>
-                              changeFocus(context, _passwordNode),*/
                           action: TextInputAction.next,
                           labelText: translate(Keys.Phone_Number),
-                          textInputType: TextInputType.emailAddress,
-                          node: _emailNode,
+                          textInputType: TextInputType.phone,
+                          node: _phoneNode,
+                          autofocus: true,
+                          textAlign: TextAlign.center,
                           padding: EdgeInsets.all(0.0),
-                          controller: emailInputController,
-                          /*changeCallback: (value) =>
-                            userProfileViewModel.validateEmail(value),*/
+                          controller: _phoneInputController,
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 16.0),
@@ -61,22 +67,14 @@ class _SignInPhoneScreenState extends State<SignInPhoneScreen> {
                                             BorderRadius.circular(8.0)),
                                     color: Color(0xFFFF473D),
                                     onPressed: () {
-                                      if (!(emailInputController.value !=
-                                              null &&
-                                          emailInputController.value
-                                              .toString()
-                                              .isNotEmpty &&
-                                          emailInputController.value
-                                              .toString()
-                                              .contains("@"))) {
-                                        return;
-                                      }
-                                      handleSignInEmail(
-                                          context,
-                                          emailInputController.value.text
-                                              .toString());
+                                      //_phoneInputController.value.text
+                                      //                                              .toString()
+                                      Navigator.pushNamed(context, CustomRoute.SIGNUP_SCREEN);
                                     },
-                                    child: Text("Войти")),
+                                    child: Text(
+                                      translate(Keys.Send_Code),
+                                      style: TextStyle(color: Colors.white),
+                                    )),
                               )
                             ],
                           ),
@@ -86,30 +84,8 @@ class _SignInPhoneScreenState extends State<SignInPhoneScreen> {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(16.0),
-                child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, CustomRoute.SIGNUP_SCREEN);
-                    },
-                    child: Text("Регистрация")),
-              )
             ],
           ),
         ),
       );
-
-  Future handleSignInEmail(BuildContext context, String email) async {
-    /*final FirebaseAuth auth = FirebaseAuth.instance;
-    AuthResult result =
-        await auth.signInWithEmailAndPassword(email: email);
-    final FirebaseUser user = result.user;
-    assert(user != null);
-    assert(await user.getIdToken() != null);
-    final FirebaseUser currentUser = await auth.currentUser();*/
-    /*assert(user.uid == currentUser.uid);
-    print('signin user succeeded: $user');
-    Navigator.pushReplacementNamed(context, CustomRoute.MAIN_SCREEN);
-    return user;*/
-  }
 }

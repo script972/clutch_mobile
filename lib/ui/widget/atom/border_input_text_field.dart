@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class BorderedInputTextField extends StatefulWidget {
+
   @override
   _BorderedInputTextFieldState createState() => _BorderedInputTextFieldState();
 
@@ -19,6 +20,8 @@ class BorderedInputTextField extends StatefulWidget {
   final List<TextInputFormatter> inputFormatter;
   final TextCapitalization textCapitalization;
   final bool autofocus;
+  final TextAlign textAlign;
+
   final Key key;
 
   final bool isDeletableField;
@@ -38,6 +41,7 @@ class BorderedInputTextField extends StatefulWidget {
       this.action = TextInputAction.done,
       this.inputFormatter = const [],
       this.error = "",
+        this.textAlign = TextAlign.left,
       this.textCapitalization = TextCapitalization.none,
       this.isDeletableField = false,
       this.deleteButtonPressed});
@@ -60,6 +64,7 @@ class _BorderedInputTextFieldState extends State<BorderedInputTextField> {
           textInputAction: widget.action,
           onFieldSubmitted: widget.onFieldSubmitted,
           controller: widget.controller,
+          textAlign: widget.textAlign,
           obscureText: widget.obscure,
           keyboardType: widget.textInputType,
           focusNode: widget.node,

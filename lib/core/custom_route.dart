@@ -1,7 +1,7 @@
 import 'package:clutch/ui/screen/offer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/ui/screen/auth/signin_phone_screen.dart';
-import 'package:clutch/ui/screen/auth/signup_screen.dart';
+import 'package:clutch/ui/screen/auth/signup_sms_code_screen.dart';
 import 'package:clutch/ui/screen/company_screen.dart';
 import 'package:clutch/ui/screen/main_screen.dart';
 import 'package:clutch/ui/screen/profile_screen.dart';
@@ -33,7 +33,7 @@ class CustomRoute {
         screen = SignInPhoneScreen();
         break;
       case SIGNUP_SCREEN:
-        screen = SignUpScreen();
+        screen = SignUpSmsCodeScreen();
         break;
       case MAIN_SCREEN:
         screen = MainScreen();

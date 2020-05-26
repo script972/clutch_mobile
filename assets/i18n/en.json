@@ -8,5 +8,6 @@
   "locations" : "Locations",
   "profile" : "Profile",
   "phone_number" : "Phone number",
-  "send_code" : "Send code"
+  "send_code" : "Send code",
+  "sign_up" : "Signup"
 }
