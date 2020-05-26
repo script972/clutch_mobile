@@ -6,5 +6,7 @@
   "details" : "Details",
   "collapse" : "Collapse",
   "locations" : "Locations",
-  "profile" : "Profile"
+  "profile" : "Profile",
+  "phone_number" : "Phone number",
+  "send_code" : "Send code"
 }

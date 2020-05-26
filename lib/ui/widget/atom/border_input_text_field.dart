@@ -49,7 +49,10 @@ class _BorderedInputTextFieldState extends State<BorderedInputTextField> {
       key: widget.key,
       padding: widget.padding,
       child: Container(
-        color: Colors.white,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: new BorderRadius.all(Radius.circular(8.0)),
+        ),
         child: TextFormField(
           autofocus: widget.autofocus,
           textCapitalization: widget.textCapitalization,
@@ -62,11 +65,11 @@ class _BorderedInputTextFieldState extends State<BorderedInputTextField> {
           focusNode: widget.node,
           onChanged: (val) => widget.changeCallback(val),
           decoration: InputDecoration(
-              suffixIcon: widget.isDeletableField
+            /*  suffixIcon: widget.isDeletableField
                   ? IconButton(
                       icon: Icon(Icons.remove_circle_outline),
                       onPressed: widget.deleteButtonPressed)
-                  : null,
+                  : null,*/
               labelStyle: TextStyle(
                   color: getTextFieldColor(widget.node.hasFocus, widget.error)),
               labelText: widget.labelText,
@@ -89,7 +92,7 @@ class _BorderedInputTextFieldState extends State<BorderedInputTextField> {
 
 InputBorder _border(Color color, String error) {
   return OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(4)),
+      borderRadius: BorderRadius.all(Radius.circular(8.0)),
       borderSide: BorderSide(color: color, width: error.isEmpty ? 1 : 2));
 }
 

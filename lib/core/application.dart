@@ -24,7 +24,7 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     var localizationDelegate = LocalizedApp.of(context).delegate;
     initBody();
-    bool isAuthorize = true;
+    bool isAuthorize = false;
     final theme = ThemeData(
       fontFamily: "GoogleSans",
       primaryColor: Color(0xFF02AD58),
@@ -65,7 +65,7 @@ class Application extends StatelessWidget {
             FirebaseAnalyticsObserver(analytics: analytics),
           ],
           initialRoute:
-              isAuthorize ? CustomRoute.MAIN_SCREEN : CustomRoute.SIGN_SCREEN,
+              isAuthorize ? CustomRoute.MAIN_SCREEN : CustomRoute.SIGNIN_PHONE_SCREEN,
         ),
       ),
     );

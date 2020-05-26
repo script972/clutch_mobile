@@ -1,21 +1,19 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:clutch/core/custom_route.dart';
 import 'package:clutch/core/theme_custom.dart';
-import 'package:clutch/helpers/input_helper.dart';
+import 'package:clutch/ui/localization/keys.dart';
 import 'package:clutch/ui/widget/atom/border_input_text_field.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInPhoneScreen extends StatefulWidget {
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  _SignInPhoneScreenState createState() => _SignInPhoneScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignInPhoneScreenState extends State<SignInPhoneScreen> {
   final FocusNode _emailNode = FocusNode();
-  final FocusNode _passwordNode = FocusNode();
 
   TextEditingController emailInputController = TextEditingController();
-  TextEditingController passwordInputController = TextEditingController();
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -39,36 +37,17 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: Column(
                       children: <Widget>[
                         BorderedInputTextField(
-                          onFieldSubmitted: (v) =>
-                              changeFocus(context, _passwordNode),
+                          /*onFieldSubmitted: (v) =>
+                              changeFocus(context, _passwordNode),*/
                           action: TextInputAction.next,
-                          labelText: "Email",
+                          labelText: translate(Keys.Phone_Number),
                           textInputType: TextInputType.emailAddress,
                           node: _emailNode,
+                          padding: EdgeInsets.all(0.0),
                           controller: emailInputController,
                           /*changeCallback: (value) =>
                             userProfileViewModel.validateEmail(value),*/
                         ),
-                        BorderedInputTextField(
-                            obscure: true,
-                            /* error: showPasswordValidationError
-                              ? errorDescription(context, errorNewPassword)
-                              : "",*/
-                            changeCallback: (value) {
-                              /*newPassword = value;
-                            errorNewPassword =
-                                getNewPasswordValidationError(newPassword);
-                            errorNewPasswordAgain =
-                                getNewPasswordAgainValidationError(
-                                    newPasswordAgain, newPassword);*/
-                            },
-                            action: TextInputAction.next,
-                            /*onFieldSubmitted: (v) =>
-                              changeFocus(_newPasswordAgainNode),*/
-                            labelText: "Password",
-                            textInputType: TextInputType.multiline,
-                            node: _passwordNode,
-                            controller: passwordInputController),
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 16.0),
                           child: Row(
@@ -90,14 +69,11 @@ class _SignInScreenState extends State<SignInScreen> {
                                           emailInputController.value
                                               .toString()
                                               .contains("@"))) {
-                                        debugPrint("Ошибка");
                                         return;
                                       }
                                       handleSignInEmail(
                                           context,
                                           emailInputController.value.text
-                                              .toString(),
-                                          passwordInputController.value.text
                                               .toString());
                                     },
                                     child: Text("Войти")),
@@ -123,18 +99,17 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
       );
 
-  Future<FirebaseUser> handleSignInEmail(
-      BuildContext context, String email, String password) async {
-    final FirebaseAuth auth = FirebaseAuth.instance;
+  Future handleSignInEmail(BuildContext context, String email) async {
+    /*final FirebaseAuth auth = FirebaseAuth.instance;
     AuthResult result =
-        await auth.signInWithEmailAndPassword(email: email, password: password);
+        await auth.signInWithEmailAndPassword(email: email);
     final FirebaseUser user = result.user;
     assert(user != null);
     assert(await user.getIdToken() != null);
-    final FirebaseUser currentUser = await auth.currentUser();
-    assert(user.uid == currentUser.uid);
+    final FirebaseUser currentUser = await auth.currentUser();*/
+    /*assert(user.uid == currentUser.uid);
     print('signin user succeeded: $user');
     Navigator.pushReplacementNamed(context, CustomRoute.MAIN_SCREEN);
-    return user;
+    return user;*/
   }
 }

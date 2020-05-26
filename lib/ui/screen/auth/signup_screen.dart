@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/core/theme_custom.dart';
 import 'package:clutch/helpers/input_helper.dart';
@@ -145,13 +144,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       );
 
-  Future<FirebaseUser> handleSignUp(String email, String password) async {
-    final FirebaseAuth auth = FirebaseAuth.instance;
+  Future handleSignUp(String email, String password) async {
+    /*final FirebaseAuth auth = FirebaseAuth.instance;
     AuthResult result = await auth.createUserWithEmailAndPassword(
         email: email, password: password);
     final FirebaseUser user = result.user;
     assert(user != null);
     assert(await user.getIdToken() != null);
-    return user;
+    return user;*/
   }
 }

@@ -22,4 +22,8 @@ class Keys {
   static const String Locations = 'locations';
 
   static const String Profile = 'profile';
+
+  static const String Phone_Number = 'phone_number';
+
+  static const String Send_Code = 'send_code';
 }
