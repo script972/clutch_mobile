@@ -24,7 +24,7 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     var localizationDelegate = LocalizedApp.of(context).delegate;
     initBody();
-    bool isAuthorize = false;
+    bool isAuthorize = true;
     final theme = ThemeData(
       fontFamily: "GoogleSans",
       primaryColor: Color(0xFF02AD58),
@@ -73,6 +73,6 @@ class Application extends StatelessWidget {
 
   void initBody() {
     SharedPreferencesHelper.saveToken(
-        "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJDb3Jwb3JhdGthIiwic3ViIjoiMzgwOTM2NjI5NjI3IiwiYXVkIjoid2ViIiwiaWF0IjoxNTg5NjM2OTA4LCJleHAiOjE1OTA2MzY5MDd9.mIbK_wWJwxxjcUIYMFss9b27pWFdxMM92xDeE58Y_DU5vycF9wW_fyvwPM7dKKpdy8TKtubmM9hB2ar1NSp9LA");
+        "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJDb3Jwb3JhdGthIiwic3ViIjoiMzgwOTM2NjI5NjI3IiwiYXVkIjoid2ViIiwiaWF0IjoxNTkwNjYwODc3LCJleHAiOjE1OTE2NjA4NzZ9.3my7NXNU-XH4ub5v6rM_lhwdnF35WHQuoO1QTbBwHOj_2pRDtEiNbf0qsmCTxLrN0fXIbzmcJkZXMzGjvzt7Hw");
   }
 }
