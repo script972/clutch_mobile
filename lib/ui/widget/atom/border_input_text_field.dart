@@ -70,11 +70,7 @@ class _BorderedInputTextFieldState extends State<BorderedInputTextField> {
           focusNode: widget.node,
           onChanged: (val) => widget.changeCallback(val),
           decoration: InputDecoration(
-            /*  suffixIcon: widget.isDeletableField
-                  ? IconButton(
-                      icon: Icon(Icons.remove_circle_outline),
-                      onPressed: widget.deleteButtonPressed)
-                  : null,*/
+              prefixText: "+380",
               labelStyle: TextStyle(
                   color: getTextFieldColor(widget.node.hasFocus, widget.error)),
               labelText: widget.labelText,

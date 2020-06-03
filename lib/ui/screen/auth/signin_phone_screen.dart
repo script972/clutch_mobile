@@ -1,8 +1,11 @@
 import 'package:clutch/core/custom_route.dart';
 import 'package:clutch/core/theme_custom.dart';
+import 'package:clutch/presentation/bloc/auth_bloc.dart';
+import 'package:clutch/presentation/event/auth_event.dart';
 import 'package:clutch/ui/localization/keys.dart';
 import 'package:clutch/ui/widget/atom/border_input_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 class SignInPhoneScreen extends StatefulWidget {
@@ -46,11 +49,10 @@ class _SignInPhoneScreenState extends State<SignInPhoneScreen> {
                       children: <Widget>[
                         BorderedInputTextField(
                           action: TextInputAction.next,
-                          labelText: translate(Keys.Phone_Number),
                           textInputType: TextInputType.phone,
                           node: _phoneNode,
                           autofocus: true,
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.left,
                           padding: EdgeInsets.all(0.0),
                           controller: _phoneInputController,
                         ),
@@ -67,9 +69,12 @@ class _SignInPhoneScreenState extends State<SignInPhoneScreen> {
                                             BorderRadius.circular(8.0)),
                                     color: Color(0xFFFF473D),
                                     onPressed: () {
-                                      //_phoneInputController.value.text
-                                      //                                              .toString()
-                                      Navigator.pushNamed(context, CustomRoute.SIGNUP_SCREEN);
+                                      Navigator.pushNamed(
+                                          context, CustomRoute.SIGNUP_SCREEN);
+                                      BlocProvider.of<AuthDetailsBloc>(context)
+                                          .add(PhoneAuth(_phoneInputController
+                                              .text
+                                              .toString()));
                                     },
                                     child: Text(
                                       translate(Keys.Send_Code),

@@ -1,13 +1,10 @@
 import 'package:clutch/core/custom_route.dart';
 import 'package:clutch/helpers/utils/shared_preferences_helper.dart';
+import 'package:clutch/presentation/bloc/auth_bloc.dart';
 import 'package:clutch/presentation/bloc/company_details_bloc.dart';
 import 'package:clutch/presentation/bloc/main_bloc.dart';
 import 'package:clutch/presentation/bloc/offer_details_bloc.dart';
 import 'package:clutch/presentation/bloc/profile_bloc.dart';
-import 'package:clutch/presentation/event/company_details_event.dart';
-import 'package:clutch/presentation/event/main_event.dart';
-import 'package:clutch/presentation/event/offer_details_event.dart';
-import 'package:clutch/presentation/event/profile_event.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/foundation.dart';
@@ -24,7 +21,7 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     var localizationDelegate = LocalizedApp.of(context).delegate;
     initBody();
-    bool isAuthorize = true;
+    bool isAuthorize = false;
     final theme = ThemeData(
       fontFamily: "GoogleSans",
       primaryColor: Color(0xFF02AD58),
@@ -36,17 +33,22 @@ class Application extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider<MainBloc>(
-            create: (context) => MainBloc()..add(LoadMain()),
+            create: (context) => MainBloc() /*..add(LoadMain())*/,
           ),
           BlocProvider<ProfileBloc>(
-            create: (context) => ProfileBloc()..add(LoadProfile()),
+            create: (context) => ProfileBloc() /*..add(LoadProfile())*/,
           ),
           BlocProvider<CompanyDetailsBloc>(
             create: (context) =>
-                CompanyDetailsBloc()..add(LoadCompanyDetails(1)),
+                CompanyDetailsBloc() /*..add(LoadCompanyDetails(1))*/,
           ),
           BlocProvider<OfferDetailsBloc>(
-            create: (context) => OfferDetailsBloc()..add(LoadOfferDetails(1)),
+            create: (context) =>
+                OfferDetailsBloc() /*..add(LoadOfferDetails(1))*/,
+          ),
+          BlocProvider<AuthDetailsBloc>(
+            create: (context) =>
+                AuthDetailsBloc() /*..add(LoadOfferDetails(1))*/,
           ),
         ],
         child: MaterialApp(
@@ -64,8 +66,9 @@ class Application extends StatelessWidget {
           navigatorObservers: [
             FirebaseAnalyticsObserver(analytics: analytics),
           ],
-          initialRoute:
-              isAuthorize ? CustomRoute.MAIN_SCREEN : CustomRoute.SIGNIN_PHONE_SCREEN,
+          initialRoute: isAuthorize
+              ? CustomRoute.MAIN_SCREEN
+              : CustomRoute.SIGNIN_PHONE_SCREEN,
         ),
       ),
     );

@@ -33,11 +33,35 @@ class HttpManager {
     }
   }
 
+  Dio get dioAuth {
+    Dio dio = Dio();
+    Alice alice = Alice(showNotification: true);
+    dio.interceptors.add(alice.getDioInterceptor());
+    dio.options.baseUrl = ApiClient.BASE_URL + "/auth";
+    dio.options.connectTimeout = 20000;
+    dio.options.receiveTimeout = 20000;
+    dio.options.responseType = ResponseType.json;
+    dio.interceptors
+        .add(InterceptorsWrapper(onRequest: (RequestOptions options) async {
+      /*String token = await SharedPreferencesHelper.loadToken();
+      if (token != null) {
+        options.headers["Authorization"] = "Bearer " + token;
+      }*/
+      debugPrint("<<<<<<REQUEST=${options}");
+      return options;
+    }, onResponse: (Response response) async {
+      debugPrint("<<<<<<RESPONSE=${response}");
+      return response;
+    }));
+    return dio;
+  }
+
+
   Dio get dio {
     Dio dio = Dio();
     Alice alice = Alice(showNotification: true);
     dio.interceptors.add(alice.getDioInterceptor());
-    dio.options.baseUrl = ApiClient.BASE_URL;
+    dio.options.baseUrl = ApiClient.BASE_URL + "/api";
     dio.options.connectTimeout = 20000;
     dio.options.receiveTimeout = 20000;
     dio.options.responseType = ResponseType.json;
