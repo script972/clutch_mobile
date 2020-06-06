@@ -1,10 +1,10 @@
 import 'package:clutch/presentation/model/comment_model_ui.dart';
 import 'package:clutch/presentation/model/company_details_model_ui.dart';
+import 'package:clutch/ui/widget/organism/item/review_slider.dart';
+import 'package:clutch/ui/widget/organism/item/review_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/ui/widget/organism/about_widget.dart';
 import 'package:clutch/ui/widget/atom/company_header.dart';
-import 'package:clutch/ui/widget/item/review_slider.dart';
-import 'package:clutch/ui/widget/item/review_widget.dart';
 
 class CompanyDetailsTab extends StatefulWidget {
   final CompanyDetailsModelUi company;

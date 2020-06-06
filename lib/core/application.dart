@@ -46,9 +46,9 @@ class Application extends StatelessWidget {
             create: (context) =>
                 OfferDetailsBloc() /*..add(LoadOfferDetails(1))*/,
           ),
-          BlocProvider<AuthDetailsBloc>(
+          BlocProvider<AuthBloc>(
             create: (context) =>
-                AuthDetailsBloc() /*..add(LoadOfferDetails(1))*/,
+                AuthBloc() /*..add(LoadOfferDetails(1))*/,
           ),
         ],
         child: MaterialApp(

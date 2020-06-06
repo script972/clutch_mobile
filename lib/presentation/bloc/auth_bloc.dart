@@ -4,7 +4,7 @@ import 'package:clutch/repository/auth_repository.dart';
 import 'package:clutch/repository/impl/auth_repository_impl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AuthDetailsBloc extends Bloc<AuthEvent, AuthState> {
+class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthRepository authRepository = AuthRepositoryImpl();
 
   CompanyDetailsBloc() {
@@ -19,6 +19,9 @@ class AuthDetailsBloc extends Bloc<AuthEvent, AuthState> {
     if (event is PhoneAuth) {
       yield* _mapPhoneEventToState(event);
     }
+    if (event is PhoneCodeAuth) {
+      yield* _mapPhoneCodeEventToState(event);
+    }
   }
 
   Stream<AuthState> _mapPhoneEventToState(PhoneAuth event) async* {
@@ -26,7 +29,19 @@ class AuthDetailsBloc extends Bloc<AuthEvent, AuthState> {
     String phone = "380${event.phone}";
     try {
       bool isOk = await authRepository.initPhone(phone);
-      //yield CompanyDetailsLoaded(ui);
+      if (isOk) {
+        yield AuthLoaded();
+      }
+    } catch (error) {
+      yield AuthError(error);
+    }
+  }
+
+  Stream<AuthState> _mapPhoneCodeEventToState(PhoneCodeAuth event) async* {
+    yield AuthLoading();
+    try {
+      bool isOk = await authRepository.confirmPhone(event.phone, event.code);
+      //yield
     } catch (error) {
       yield AuthError(error);
     }

@@ -2,11 +2,11 @@ import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
 import 'package:clutch/presentation/bloc/main_bloc.dart';
 import 'package:clutch/presentation/model/short_offer_model_ui.dart';
 import 'package:clutch/presentation/state/main_state.dart';
+import 'package:clutch/ui/widget/organism/tab/companies_tab.dart';
+import 'package:clutch/ui/widget/organism/tab/offers_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/ui/widget/organism/main_drawer.dart';
 import 'package:clutch/ui/widget/organism/search_app_bar.dart';
-import 'package:clutch/ui/widget/tab/companies_tab.dart';
-import 'package:clutch/ui/widget/tab/offers_tab.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainScreen extends StatefulWidget {

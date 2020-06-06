@@ -71,7 +71,7 @@ class _SignInPhoneScreenState extends State<SignInPhoneScreen> {
                                     onPressed: () {
                                       Navigator.pushNamed(
                                           context, CustomRoute.SIGNUP_SCREEN);
-                                      BlocProvider.of<AuthDetailsBloc>(context)
+                                      BlocProvider.of<AuthBloc>(context)
                                           .add(PhoneAuth(_phoneInputController
                                               .text
                                               .toString()));

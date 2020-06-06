@@ -5,7 +5,7 @@ import 'package:clutch/ui/widget/atom/cached_network_image_wrapper.dart';
 import 'package:flutter/material.dart';
 
 import 'package:clutch/ui/localization/keys.dart';
-import 'package:clutch/ui/widget/atom/sliver_app_bar.dart';
+import 'file:///C:/Users/denys.misiura/StudioProjects/projects/clutch_mobile/lib/ui/widget/molecula/sliver_app_bar.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 class ScrollableCompanyAppBar extends StatefulWidget {
