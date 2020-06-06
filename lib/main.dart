@@ -6,10 +6,10 @@ import 'package:flutter_translate/localized_app.dart';
 
 Future<void> main() async {
   var delegate = await LocalizationDelegate.create(
-      fallbackLocale: 'en',
+      fallbackLocale: 'ru',
       basePath: 'assets/i18n/', supportedLocales: [
-    'en',
-    'fr',
+    /*'en',*/
+    'ru',
   ]);
  runApp(LocalizedApp(delegate, Application()));
 }

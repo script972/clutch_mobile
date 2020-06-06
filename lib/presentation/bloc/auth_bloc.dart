@@ -1,4 +1,6 @@
+import 'package:clutch/helpers/security_manager.dart';
 import 'package:clutch/presentation/event/auth_event.dart';
+import 'package:clutch/presentation/model/auth_dto.dart';
 import 'package:clutch/presentation/state/auth_state.dart';
 import 'package:clutch/repository/auth_repository.dart';
 import 'package:clutch/repository/impl/auth_repository_impl.dart';
@@ -28,14 +30,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Stream<AuthState> _mapPhoneEventToState(PhoneAuth event) async* {
     yield AuthLoading();
-    String phone = "380${event.phone}";
+    String phone = "+380${event.phone}";
     try {
       bool isOk = await authRepository.initPhone(phone);
       if (isOk) {
-        yield AuthLoaded(event.phone);
-      } else {
-
-      }
+        yield AuthLoaded(phone);
+      } else {}
     } catch (error) {
       yield AuthError(error.toString());
     }
@@ -44,12 +44,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> _mapPhoneCodeEventToState(PhoneCodeAuth event) async* {
     yield AuthLoading();
     try {
-      bool isOk = await authRepository.confirmPhone(event.phone, event.code);
-      if (isOk) {
-        yield PhoneAndCodeValid();
-      } else {
-        yield PhoneAndCodeInvalid(translate(Keys.Phone_Code_Invalid));
-      }
+      AuthDto authDto =
+          await authRepository.confirmPhone(event.phone, event.code);
+      yield SecurityManager.proccessNewSecuriryToken(authDto)
+          ? PhoneAndCodeValid()
+          : PhoneAndCodeInvalid(translate(Keys.Phone_Code_Invalid));
     } catch (error) {
       yield PhoneAndCodeInvalid(error.toString());
     }

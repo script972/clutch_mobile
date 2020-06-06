@@ -16,7 +16,6 @@ class SignInPhoneScreen extends StatefulWidget {
 
 class _SignInPhoneScreenState extends State<SignInPhoneScreen> {
   final FocusNode _phoneNode = FocusNode();
-
   final TextEditingController _phoneInputController = TextEditingController();
 
   @override
@@ -34,9 +33,8 @@ class _SignInPhoneScreenState extends State<SignInPhoneScreen> {
                         Center(child: Image.asset("assets/images/logo.png")),
                         Padding(
                           padding: const EdgeInsets.only(top: 36.0),
-                          //TODO: text
                           child: Text(
-                            "Сервис лучших условий",
+                            translate(Keys.Service_The_Best_Offers),
                             style:
                                 TextStyle(color: Colors.white, fontSize: 24.0),
                           ),

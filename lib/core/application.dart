@@ -20,7 +20,6 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var localizationDelegate = LocalizedApp.of(context).delegate;
-    initBody();
     bool isAuthorize = false;
     final theme = ThemeData(
       fontFamily: "GoogleSans",
@@ -74,8 +73,4 @@ class Application extends StatelessWidget {
     );
   }
 
-  void initBody() {
-    SharedPreferencesHelper.saveToken(
-        "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJDb3Jwb3JhdGthIiwic3ViIjoiMzgwOTM2NjI5NjI3IiwiYXVkIjoid2ViIiwiaWF0IjoxNTkwNjYwODc3LCJleHAiOjE1OTE2NjA4NzZ9.3my7NXNU-XH4ub5v6rM_lhwdnF35WHQuoO1QTbBwHOj_2pRDtEiNbf0qsmCTxLrN0fXIbzmcJkZXMzGjvzt7Hw");
-  }
 }

@@ -1,6 +1,9 @@
+import 'package:clutch/core/custom_route.dart';
 import 'package:clutch/core/theme_custom.dart';
 import 'package:clutch/presentation/bloc/auth_bloc.dart';
+import 'package:clutch/presentation/bloc/main_bloc.dart';
 import 'package:clutch/presentation/event/auth_event.dart';
+import 'package:clutch/presentation/event/main_event.dart';
 import 'package:clutch/presentation/state/auth_state.dart';
 import 'package:clutch/ui/localization/keys.dart';
 import 'package:clutch/ui/screen/base_screen.dart';
@@ -8,6 +11,7 @@ import 'package:clutch/ui/widget/atom/bloc_error_indicator.dart';
 import 'package:clutch/ui/widget/atom/loader_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/global.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -22,7 +26,7 @@ class _SignUpSmsCodeScreenState extends State<SignUpSmsCodeScreen> {
 
   @override
   Widget build(BuildContext context) => BaseScreen(
-    child: Scaffold(
+        child: Scaffold(
             body: BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
           if (state is AuthLoading) {
             return LoaderIndicator();
@@ -30,12 +34,19 @@ class _SignUpSmsCodeScreenState extends State<SignUpSmsCodeScreen> {
           if (state is AuthLoaded) {
             return mainContent(context, state);
           }
+          if (state is PhoneAndCodeValid) {
+            SchedulerBinding.instance.addPostFrameCallback((_) {
+              BlocProvider.of<MainBloc>(context).add(LoadMain());
+              Navigator.pushNamed(context, CustomRoute.MAIN_SCREEN);
+            });
+            return LoaderIndicator();
+          }
           if (state is AuthError) {
             return BlocErrorIndicator(state.error);
           }
           return BlocErrorIndicator("");
         })),
-  );
+      );
 
   Widget mainContent(BuildContext context, AuthLoaded state) => Container(
         decoration: BoxDecoration(gradient: ThemeCustom.mainGradient),
@@ -53,7 +64,7 @@ class _SignUpSmsCodeScreenState extends State<SignUpSmsCodeScreen> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 78.0, vertical: 16.0),
                   child: Text(
-                    "Подтверждение номера телефона",
+                    translate(Keys.Accept_Phone_Number),
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white, fontSize: 24.0),
                   ),
@@ -82,10 +93,10 @@ class _SignUpSmsCodeScreenState extends State<SignUpSmsCodeScreen> {
                 ),
               ),
             ),
-            Text("Мы отправили вам на телефон код варификации"),
+            Text(translate(Keys.Accept_Phone_Number)),
             Padding(
               padding: const EdgeInsets.all(32.0),
-              child: Text("Введите код из SMS"),
+              child: Text(translate(Keys.We_Sent_Varify_Code)),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 42.0),
@@ -128,11 +139,9 @@ class _SignUpSmsCodeScreenState extends State<SignUpSmsCodeScreen> {
                                       borderRadius: BorderRadius.circular(8.0)),
                                   color: Color(0xFFFF473D),
                                   onPressed: () {
-                                    /*Navigator.pushNamed(
-                                          context, CustomRoute.SIGNUP_SCREEN);*/
                                     BlocProvider.of<AuthBloc>(context).add(
-                                        PhoneCodeAuth(
-                                            state.phone, smsCodeController.text));
+                                        PhoneCodeAuth(state.phone,
+                                            smsCodeController.text));
                                   },
                                   child: Text(
                                     translate(Keys.Send_Code),

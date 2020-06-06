@@ -1,12 +1,14 @@
 
 import 'package:clutch/domain/network/model/request/phone_init_request.dart';
 import 'package:clutch/domain/network/model/request/phone_sms_confirm_request.dart';
+import 'package:clutch/domain/network/model/response/auth_response.dart';
 import 'package:clutch/domain/network/service/base_api_serivce.dart';
+import 'package:dio/dio.dart';
 
 abstract class ApiAuthService extends BaseApiService {
 
   Future<bool> initPhone(PhoneInitRequest body);
 
-  Future<bool> confirmPhone(PhoneSmsConfirmRequest phoneSmsConfirmRequest);
+  Future<AuthResponse> confirmPhone(PhoneSmsConfirmRequest phoneSmsConfirmRequest);
 
 }

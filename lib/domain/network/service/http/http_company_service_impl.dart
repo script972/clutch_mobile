@@ -11,7 +11,7 @@ class HttpCompanyServiceImpl extends ApiCompanyService {
   @override
   Future<MainInfo> fetchCompany(CompanyAndOffersSearch body) async {
     Response response =
-        await HttpManager().dio.post("company/for-me", data: body.toJson());
+        await HttpManager().dio.post("/company/for-me", data: body.toJson());
     MainInfo mainInfo = MainInfo.fromMap(response.data);
     return mainInfo;
   }
@@ -21,7 +21,7 @@ class HttpCompanyServiceImpl extends ApiCompanyService {
 
     Response response = await HttpManager()
         .dio
-        .get("company/details-company-mobile/${id.toString()}");
+        .get("/company/details-company-mobile/${id.toString()}");
     CompanyDetailsResponse companyDetails =
         CompanyDetailsResponse.fromMap(response.data);
     return companyDetails;

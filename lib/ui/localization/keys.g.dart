@@ -31,9 +31,11 @@ class Keys {
 
   static const String We_Sent_Varify_Code = 'we_sent_varify_code';
 
-  static const String We_Send_Sms = 'we_send_sms';
+  static const String Input_Code_From_Sms = 'input_code_from_sms';
 
-  static const String Verify_Phone_Number = 'verify_phone_number';
+  static const String Accept_Phone_Number = 'accept_phone_number';
 
   static const String Phone_Code_Invalid = 'phone_code_invalid';
+
+  static const String Service_The_Best_Offers = 'service_the_best_offers';
 }
