@@ -2,7 +2,9 @@ import 'package:clutch/presentation/event/auth_event.dart';
 import 'package:clutch/presentation/state/auth_state.dart';
 import 'package:clutch/repository/auth_repository.dart';
 import 'package:clutch/repository/impl/auth_repository_impl.dart';
+import 'package:clutch/ui/localization/keys.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_translate/global.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthRepository authRepository = AuthRepositoryImpl();
@@ -30,10 +32,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       bool isOk = await authRepository.initPhone(phone);
       if (isOk) {
-        yield AuthLoaded();
+        yield AuthLoaded(event.phone);
+      } else {
+
       }
     } catch (error) {
-      yield AuthError(error);
+      yield AuthError(error.toString());
     }
   }
 
@@ -41,9 +45,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     yield AuthLoading();
     try {
       bool isOk = await authRepository.confirmPhone(event.phone, event.code);
-      //yield
+      if (isOk) {
+        yield PhoneAndCodeValid();
+      } else {
+        yield PhoneAndCodeInvalid(translate(Keys.Phone_Code_Invalid));
+      }
     } catch (error) {
-      yield AuthError(error);
+      yield PhoneAndCodeInvalid(error.toString());
     }
   }
 }

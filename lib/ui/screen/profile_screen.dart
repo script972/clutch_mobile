@@ -1,6 +1,7 @@
 import 'package:clutch/presentation/bloc/profile_bloc.dart';
 import 'package:clutch/presentation/state/main_state.dart';
 import 'package:clutch/presentation/state/profile_state.dart';
+import 'package:clutch/ui/screen/base_screen.dart';
 import 'package:clutch/ui/widget/atom/red_material_button.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
@@ -27,22 +28,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        backgroundColor: Color(0xFFF6F6F6),
-        appBar: AppBar(
-          title: Text(translate(Keys.Profile)),
+  Widget build(BuildContext context) => BaseScreen(
+    child: Scaffold(
+          backgroundColor: Color(0xFFF6F6F6),
+          appBar: AppBar(
+            title: Text(translate(Keys.Profile)),
+          ),
+          body: BlocBuilder<ProfileBloc, ProfileState>(
+            builder: (context, state) {
+             /* if (state is ProfileLoading) {
+                return Center(child: CircularProgressIndicator());
+              }*/
+              if (state is ProfileLoading/*ProfileLoaded*/) {
+                return bodyContent(/*state*/);
+              }
+            },
+          ),
         ),
-        body: BlocBuilder<ProfileBloc, ProfileState>(
-          builder: (context, state) {
-           /* if (state is ProfileLoading) {
-              return Center(child: CircularProgressIndicator());
-            }*/
-            if (state is ProfileLoading/*ProfileLoaded*/) {
-              return bodyContent(/*state*/);
-            }
-          },
-        ),
-      );
+  );
 
   Widget bodyContent(/*ProfileLoaded state*/) => Center(
     child: Form(

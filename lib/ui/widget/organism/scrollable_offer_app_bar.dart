@@ -1,10 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:clutch/domain/network/model/response/offer_details_mobile_dto.dart';
 import 'package:clutch/presentation/model/offer_details_model_ui.dart';
-import 'package:clutch/ui/widget/atom/cached_network_image_wrapper.dart';
-import 'file:///C:/Users/denys.misiura/StudioProjects/projects/clutch_mobile/lib/ui/widget/molecula/sliver_app_bar.dart';
+import 'package:clutch/ui/widget/molecula/sliver_app_bar.dart';
 import 'package:clutch/ui/widget/organism/barcode_dialog.dart';
 import 'package:flutter/material.dart';
 

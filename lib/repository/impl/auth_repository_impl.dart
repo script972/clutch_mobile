@@ -10,7 +10,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<bool> initPhone(String phone) {
-    apiService.initPhone(PhoneInitRequest(phone: phone, debug: true));
+    return apiService.initPhone(PhoneInitRequest(phone: phone, debug: true));
   }
 
   @override

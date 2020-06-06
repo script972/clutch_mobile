@@ -2,10 +2,10 @@ import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
 import 'package:clutch/presentation/model/company_details_model_ui.dart';
 import 'package:clutch/presentation/model/offer_details_model_ui.dart';
 import 'package:clutch/ui/widget/atom/cached_network_image_wrapper.dart';
+import 'package:clutch/ui/widget/molecula/sliver_app_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:clutch/ui/localization/keys.dart';
-import 'file:///C:/Users/denys.misiura/StudioProjects/projects/clutch_mobile/lib/ui/widget/molecula/sliver_app_bar.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 class ScrollableCompanyAppBar extends StatefulWidget {

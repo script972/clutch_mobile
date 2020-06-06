@@ -1,4 +1,3 @@
-import 'package:clutch/domain/network/service/api_auth_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +12,12 @@ class AuthLoading extends AuthState {
 }
 
 class AuthLoaded extends AuthState {
+  final String phone;
+
+  const AuthLoaded(this.phone);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [phone];
 }
 
 class PhoneAndCodeValid extends AuthState {

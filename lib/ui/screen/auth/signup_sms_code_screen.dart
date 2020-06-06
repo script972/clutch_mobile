@@ -1,12 +1,13 @@
+import 'package:clutch/core/theme_custom.dart';
 import 'package:clutch/presentation/bloc/auth_bloc.dart';
 import 'package:clutch/presentation/event/auth_event.dart';
 import 'package:clutch/presentation/state/auth_state.dart';
 import 'package:clutch/ui/localization/keys.dart';
+import 'package:clutch/ui/screen/base_screen.dart';
 import 'package:clutch/ui/widget/atom/bloc_error_indicator.dart';
 import 'package:clutch/ui/widget/atom/loader_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:clutch/core/theme_custom.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/global.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -20,18 +21,23 @@ class _SignUpSmsCodeScreenState extends State<SignUpSmsCodeScreen> {
   TextEditingController smsCodeController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-          body: BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
-        if (state is AuthLoading) {
-          return LoaderIndicator();
-        }
-        if (state is AuthLoading) {
-          return mainContent(context, state);
-        }
-        return BlocErrorIndicator("");
-      }));
+  Widget build(BuildContext context) => BaseScreen(
+    child: Scaffold(
+            body: BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
+          if (state is AuthLoading) {
+            return LoaderIndicator();
+          }
+          if (state is AuthLoaded) {
+            return mainContent(context, state);
+          }
+          if (state is AuthError) {
+            return BlocErrorIndicator(state.error);
+          }
+          return BlocErrorIndicator("");
+        })),
+  );
 
-  Widget mainContent(BuildContext context, AuthLoading state) => Container(
+  Widget mainContent(BuildContext context, AuthLoaded state) => Container(
         decoration: BoxDecoration(gradient: ThemeCustom.mainGradient),
         child: Column(
           children: <Widget>[
@@ -65,7 +71,7 @@ class _SignUpSmsCodeScreenState extends State<SignUpSmsCodeScreen> {
                   children: <Widget>[
                     Expanded(
                         child: Text(
-                      "+380936629627",
+                      state.phone,
                       style: TextStyle(color: Colors.white, fontSize: 16.0),
                     )),
                     Padding(
@@ -126,7 +132,7 @@ class _SignUpSmsCodeScreenState extends State<SignUpSmsCodeScreen> {
                                           context, CustomRoute.SIGNUP_SCREEN);*/
                                     BlocProvider.of<AuthBloc>(context).add(
                                         PhoneCodeAuth(
-                                            "0", smsCodeController.text));
+                                            state.phone, smsCodeController.text));
                                   },
                                   child: Text(
                                     translate(Keys.Send_Code),
