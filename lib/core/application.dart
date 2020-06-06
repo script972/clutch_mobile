@@ -1,5 +1,4 @@
 import 'package:clutch/core/custom_route.dart';
-import 'package:clutch/helpers/utils/shared_preferences_helper.dart';
 import 'package:clutch/presentation/bloc/auth_bloc.dart';
 import 'package:clutch/presentation/bloc/company_details_bloc.dart';
 import 'package:clutch/presentation/bloc/main_bloc.dart';
@@ -17,10 +16,13 @@ import 'package:flutter_translate/localized_app.dart';
 class Application extends StatelessWidget {
   FirebaseAnalytics analytics = FirebaseAnalytics();
 
+  bool _isAuthorize;
+
+  Application(this._isAuthorize);
+
   @override
   Widget build(BuildContext context) {
     var localizationDelegate = LocalizedApp.of(context).delegate;
-    bool isAuthorize = false;
     final theme = ThemeData(
       fontFamily: "GoogleSans",
       primaryColor: Color(0xFF02AD58),
@@ -46,8 +48,7 @@ class Application extends StatelessWidget {
                 OfferDetailsBloc() /*..add(LoadOfferDetails(1))*/,
           ),
           BlocProvider<AuthBloc>(
-            create: (context) =>
-                AuthBloc() /*..add(LoadOfferDetails(1))*/,
+            create: (context) => AuthBloc() /*..add(LoadOfferDetails(1))*/,
           ),
         ],
         child: MaterialApp(
@@ -65,12 +66,11 @@ class Application extends StatelessWidget {
           navigatorObservers: [
             FirebaseAnalyticsObserver(analytics: analytics),
           ],
-          initialRoute: isAuthorize
+          initialRoute: _isAuthorize
               ? CustomRoute.MAIN_SCREEN
               : CustomRoute.SIGNIN_PHONE_SCREEN,
         ),
       ),
     );
   }
-
 }

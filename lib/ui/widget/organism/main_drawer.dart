@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:clutch/core/custom_route.dart';
 import 'package:clutch/core/theme_custom.dart';
 import 'package:clutch/ui/localization/keys.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_translate/global.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return Drawer(
+  Widget build(BuildContext context) => Drawer(
       child: Container(
         decoration: BoxDecoration(gradient: ThemeCustom.mainGradient),
         child: ListView(
@@ -52,7 +51,7 @@ class MainDrawer extends StatelessWidget {
                               BorderSide(color: Colors.white.withOpacity(.2))),
                     ),
                   ),
-                  Padding(
+                  /*Padding(
                     padding: const EdgeInsets.only(
                         bottom: 28.0, left: 16.0, right: 16.0),
                     child: FloatingActionButton(
@@ -67,7 +66,7 @@ class MainDrawer extends StatelessWidget {
                           side:
                               BorderSide(color: Colors.white.withOpacity(.2))),
                     ),
-                  )
+                  )*/
                 ],
               ),
             )
@@ -75,7 +74,6 @@ class MainDrawer extends StatelessWidget {
         ),
       ),
     );
-  }
 
   Widget menuItem(Image image, String title, Function onTap) {
     return Material(

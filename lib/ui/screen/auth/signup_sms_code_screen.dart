@@ -1,9 +1,7 @@
 import 'package:clutch/core/custom_route.dart';
 import 'package:clutch/core/theme_custom.dart';
 import 'package:clutch/presentation/bloc/auth_bloc.dart';
-import 'package:clutch/presentation/bloc/main_bloc.dart';
 import 'package:clutch/presentation/event/auth_event.dart';
-import 'package:clutch/presentation/event/main_event.dart';
 import 'package:clutch/presentation/state/auth_state.dart';
 import 'package:clutch/ui/localization/keys.dart';
 import 'package:clutch/ui/screen/base_screen.dart';
@@ -36,8 +34,8 @@ class _SignUpSmsCodeScreenState extends State<SignUpSmsCodeScreen> {
           }
           if (state is PhoneAndCodeValid) {
             SchedulerBinding.instance.addPostFrameCallback((_) {
-              BlocProvider.of<MainBloc>(context).add(LoadMain());
-              Navigator.pushNamed(context, CustomRoute.MAIN_SCREEN);
+              Navigator.pushNamedAndRemoveUntil(context,
+                  CustomRoute.MAIN_SCREEN, (Route<dynamic> route) => false);
             });
             return LoaderIndicator();
           }
@@ -47,6 +45,12 @@ class _SignUpSmsCodeScreenState extends State<SignUpSmsCodeScreen> {
           return BlocErrorIndicator("");
         })),
       );
+
+  @override
+  void dispose() {
+    //smsCodeController.dispose();
+    super.dispose();
+  }
 
   Widget mainContent(BuildContext context, AuthLoaded state) => Container(
         decoration: BoxDecoration(gradient: ThemeCustom.mainGradient),

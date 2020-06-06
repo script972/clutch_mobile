@@ -10,4 +10,17 @@ class SecurityManager {
     //SharedPreferencesHelper.saveExipiredTime();
     return true;
   }
+
+  static Future<String> fetchToken() async {
+    return SharedPreferencesHelper.loadToken();
+  }
+
+  static Future<bool> isAuthorize() async {
+    String token = await SharedPreferencesHelper.loadToken();
+    //TODO: check on token expired date and current date
+    if (token == null || token.isEmpty)
+      return false;
+    else
+      return true;
+  }
 }

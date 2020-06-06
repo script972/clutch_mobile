@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:clutch/helpers/color_helper.dart';
@@ -28,16 +27,16 @@ class CompanyShortMobile {
       CompanyShortMobile(
         id: json["id"],
         title: json["title"],
-        logo: json["logo"],
+        logo: json["logo"] == null ? "" : json["logo"],
         color: ColorHelper.colorFromHex(json["color"]),
         distance: json["distance"],
       );
 
   Map<String, dynamic> toMap() => {
-    "id": id,
-    "title": title,
-    "logo": logo,
-    "color": color,
-    "distance": distance,
-  };
+        "id": id,
+        "title": title,
+        "logo": logo,
+        "color": color,
+        "distance": distance,
+      };
 }

@@ -12,6 +12,11 @@ class BaseScreen extends StatefulWidget {
 class _BaseScreenState extends State<BaseScreen> {
   @override
   Widget build(BuildContext context) => Container(
-      child: widget.child,
+      child: Stack(
+        children: <Widget>[
+          widget.child,
+          // TODO: check internet connactivity
+        ],
+      ),
     );
 }

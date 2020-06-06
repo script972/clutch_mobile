@@ -1,3 +1,4 @@
+import 'package:clutch/helpers/security_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/core/application.dart';
 import 'package:flutter_translate/localization_delegate.dart';
@@ -11,5 +12,7 @@ Future<void> main() async {
     /*'en',*/
     'ru',
   ]);
- runApp(LocalizedApp(delegate, Application()));
+  bool isAuthorize = await SecurityManager.isAuthorize();
+
+  runApp(LocalizedApp(delegate, Application(isAuthorize)));
 }

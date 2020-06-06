@@ -13,8 +13,9 @@ class AuthLoading extends AuthState {
 
 class AuthLoaded extends AuthState {
   final String phone;
+  final String error;
 
-  const AuthLoaded(this.phone);
+  const AuthLoaded(this.phone, this.error);
 
   @override
   List<Object> get props => [phone];

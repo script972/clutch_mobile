@@ -34,7 +34,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       bool isOk = await authRepository.initPhone(phone);
       if (isOk) {
-        yield AuthLoaded(phone);
+        yield AuthLoaded(phone, "");
       } else {}
     } catch (error) {
       yield AuthError(error.toString());
@@ -48,9 +48,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           await authRepository.confirmPhone(event.phone, event.code);
       yield SecurityManager.proccessNewSecuriryToken(authDto)
           ? PhoneAndCodeValid()
-          : PhoneAndCodeInvalid(translate(Keys.Phone_Code_Invalid));
+          : AuthLoaded(event.phone, translate(Keys.Phone_Code_Invalid));
     } catch (error) {
-      yield PhoneAndCodeInvalid(error.toString());
+      yield AuthLoaded(event.phone, translate(Keys.Phone_Code_Invalid));
+      //yield PhoneAndCodeInvalid(error.toString());
     }
   }
 }
