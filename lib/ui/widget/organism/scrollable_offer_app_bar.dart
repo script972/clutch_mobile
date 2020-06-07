@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:clutch/presentation/model/offer_details_model_ui.dart';
 import 'package:clutch/ui/widget/molecula/sliver_app_bar.dart';
+import 'package:clutch/ui/widget/organism/barcode_custom.dart';
 import 'package:clutch/ui/widget/organism/barcode_dialog.dart';
 import 'package:flutter/material.dart';
 
@@ -116,21 +117,12 @@ class _ScrollableOfferAppBarState extends State<ScrollableOfferAppBar> {
             )),
         actions: <Widget>[
           SliverAppBarComponent(
-            hiddenChild: barcode(),
-            expandedChild: barcode(),
+            hiddenChild: BarcodeCustom("1335"),
+            expandedChild: BarcodeCustom("3223"),
           )
         ],
       );
 
-//BarcodeDialog
-  Widget barcode() => GestureDetector(
-      onTap: () {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) => BarcodeDialog("312312"),
-        );
-      },
-      child: Image.asset("assets/images/ic_barcode.png"));
 
   String _cutingIfNeed(String title) {
     int cutON = 15;

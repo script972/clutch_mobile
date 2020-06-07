@@ -7,18 +7,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoriesDrawer extends StatelessWidget {
   @override
-  Widget build(BuildContext context) =>
-      Drawer(
+  Widget build(BuildContext context) => Drawer(
         child: BlocBuilder<MainBloc, MainState>(builder: (context, state) {
           if (state is MainLoaded) {
             return Container(
               decoration: BoxDecoration(gradient: ThemeCustom.mainGradient),
               child: ListView(
                 padding: EdgeInsets.zero,
-                children: <Widget>[
-                  ...categories(state.categories)
-                ],
-              ),);
+                children: <Widget>[...categories(state.categories)],
+              ),
+            );
           }
         }),
       );
@@ -26,9 +24,17 @@ class CategoriesDrawer extends StatelessWidget {
   List<Widget> categories(List<CategoriesResponse> categories) {
     List out = <Widget>[];
     categories.forEach((element) {
-      out.add(Text(element.title));
+      out.add(CheckboxListTile(
+        title: Text(element.title),
+        value: true,
+        onChanged: (newValue) {
+          /*setState(() {
+          checkedValue = newValue;
+        });*/
+        },
+        controlAffinity: ListTileControlAffinity.leading,
+      ));
     });
     return out;
   }
-
 }

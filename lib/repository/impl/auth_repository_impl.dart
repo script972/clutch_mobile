@@ -1,3 +1,4 @@
+import 'package:clutch/domain/network/model/profile_dto.dart';
 import 'package:clutch/domain/network/model/request/phone_init_request.dart';
 import 'package:clutch/domain/network/model/request/phone_sms_confirm_request.dart';
 import 'package:clutch/domain/network/model/response/auth_response.dart';
@@ -20,5 +21,10 @@ class AuthRepositoryImpl extends AuthRepository {
     AuthResponse response = await apiService
         .confirmPhone(PhoneSmsConfirmRequest(phone: phone, smscode: code));
     return AuthDto(response.accessToken, response.expiresIn);
+  }
+
+  @override
+  Future<ProfileDto> fetchProfile() {
+    return apiService.fetchProfile();
   }
 }

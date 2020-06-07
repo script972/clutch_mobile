@@ -1,12 +1,15 @@
+import 'package:clutch/domain/network/model/profile_dto.dart';
 import 'package:clutch/presentation/event/profile_event.dart';
 import 'package:clutch/presentation/state/profile_state.dart';
+import 'package:clutch/repository/auth_repository.dart';
+import 'package:clutch/repository/impl/auth_repository_impl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  //CompanyRepository companyRepository = CompanyRepositoryImpl();
+  AuthRepository authRepository = AuthRepositoryImpl();
 
-  MainBloc() {
-    //assert(companyRepository != null);
+  ProfileBloc() {
+    assert(authRepository != null);
   }
 
   @override
@@ -22,12 +25,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   Stream<ProfileState> _mapLoadMainToState(LoadProfile event) async* {
     yield ProfileLoading();
     try {
-      /* CompanyAndOffersSearch body = CompanyAndOffersSearch();
-      MainInfo companyList = await companyRepository.fetchAllCompany(body);
-      yield MainLoaded(companyList.companyShortMobileDtoList,
-          companyList.offersShortMobileDtoList);*/
+      ProfileDto profileDto = await authRepository.fetchProfile();
+      yield ProfileLoaded(
+          profileDto.facePhoto, profileDto.firstName, profileDto.lastName);
     } catch (error) {
-      //yield MainError(error);
+      yield ProfileError(error.toString());
     }
   }
 }

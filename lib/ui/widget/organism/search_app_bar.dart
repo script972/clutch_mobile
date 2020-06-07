@@ -1,3 +1,4 @@
+import 'package:clutch/ui/widget/organism/barcode_custom.dart';
 import 'package:clutch/ui/widget/organism/barcode_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/ui/localization/keys.dart';
@@ -75,16 +76,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
               });
             },
           ),*/
-          IconButton(
-            icon: Image.asset('assets/images/ic_barcode.png'),
-            onPressed: () {
-              //TODO: get personal code
-              showDialog(
-                context: context,
-                builder: (BuildContext context) => BarcodeDialog("312312"),
-              );
-            },
-          ),
+          BarcodeCustom("333")
         ],
       );
 }

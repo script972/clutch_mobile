@@ -4,8 +4,9 @@ class IconDescriptionItem extends StatelessWidget {
   String image;
   String title;
   Color color = Colors.black;
+  Function callback;
 
-  IconDescriptionItem(this.image, this.title, {this.color});
+  IconDescriptionItem(this.image, this.title, {this.color, this.callback});
 
   @override
   Widget build(BuildContext context) => Container(
@@ -14,25 +15,29 @@ class IconDescriptionItem extends StatelessWidget {
             Divider(),
             Padding(
               padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: Center(
-                      child: Image.asset(
-                        this.image,
+              child: GestureDetector(
+                onTap: callback,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Center(
+                        child: Image.asset(
+                          this.image,
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    flex: 6,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 16.0),
-                      child: Text(title, style: TextStyle(fontSize: 16.0, color: this.color),),
-                    ),
-                  )
-                ],
+                    Expanded(
+                      flex: 6,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(title, style: TextStyle(fontSize: 16.0, color: this.color),),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ],

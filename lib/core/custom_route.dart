@@ -27,7 +27,7 @@ class CustomRoute {
         screen = SettingsScreen();
         break;
       case DETAILS_COMPANY:
-        screen = CompanyScreen(args);
+        screen = CompanyScreen();
         break;
       case SIGNIN_PHONE_SCREEN:
         screen = SignInPhoneScreen();

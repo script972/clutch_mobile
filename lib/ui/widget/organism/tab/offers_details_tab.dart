@@ -1,5 +1,4 @@
 import 'package:clutch/domain/network/model/response/categories_response.dart';
-import 'package:clutch/domain/network/model/response/offer_details_mobile_dto.dart';
 import 'package:clutch/presentation/model/offer_details_model_ui.dart';
 import 'package:clutch/ui/widget/atom/icon_description_item.dart';
 import 'package:clutch/ui/widget/organism/about_widget.dart';

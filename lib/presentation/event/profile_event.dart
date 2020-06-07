@@ -7,7 +7,6 @@ abstract class ProfileEvent extends Equatable {
 }
 
 class LoadProfile extends ProfileEvent {
-
   LoadProfile();
 
   @override
@@ -18,3 +17,4 @@ class SaveProfile extends ProfileEvent {
   @override
   List<Object> get props => [];
 }
+

@@ -8,13 +8,13 @@ class CompanyDetailsResponse {
   final String barcode;
   final String logo;
   final String color;
-  final dynamic justOnline;
+  final bool justOnline;
   final String title;
   final String categories;
   final double rang;
   final String description;
   final String site;
-  final dynamic phone;
+  final String phone;
   final List<OffersShortMobileDto> offersShortMobileDtoList;
   final List<PointShortDto> pointShortMobileDtoList;
 

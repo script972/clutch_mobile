@@ -37,8 +37,10 @@ class CompanyDetailsBloc
       var ui = CompanyDetailsModelUi(
           companyResponse.id,
           companyResponse.logo ?? "",
-          companyResponse.barcode,
+          companyResponse.barcode ?? "",
           companyResponse.title ?? "",
+          companyResponse.site ?? "",
+          companyResponse.phone ?? "",
           ColorHelper.colorFromHex(companyResponse.color),
           CategoriesResponse(title: ">>"),
           companyResponse.description ?? "",

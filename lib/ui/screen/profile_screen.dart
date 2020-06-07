@@ -15,17 +15,10 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  ProfileBloc _profileBloc;
 
   final FocusNode _firstNameNode = FocusNode();
   final FocusNode _secondNameNode = FocusNode();
   final FocusNode _dateOfBirthNode = FocusNode();
-
-  @override
-  void initState() {
-    super.initState();
-    _profileBloc = BlocProvider.of<ProfileBloc>(context);
-  }
 
   @override
   Widget build(BuildContext context) => BaseScreen(
@@ -36,18 +29,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           body: BlocBuilder<ProfileBloc, ProfileState>(
             builder: (context, state) {
-             /* if (state is ProfileLoading) {
+              if (state is ProfileLoading) {
                 return Center(child: CircularProgressIndicator());
-              }*/
-              if (state is ProfileLoading/*ProfileLoaded*/) {
-                return bodyContent(/*state*/);
+              }
+              if (state is ProfileLoaded) {
+                return bodyContent(state);
               }
             },
           ),
         ),
   );
 
-  Widget bodyContent(/*ProfileLoaded state*/) => Center(
+  Widget bodyContent(ProfileLoaded state) => Center(
     child: Form(
       child: Column(
         children: <Widget>[
@@ -65,7 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         radius: 45.0,
                         backgroundImage:
                             /*userAvatar == null
-                                ? userData.userAvatarURL == null
+                                ?  userData.userAvatarURL == null
                                 ?*/
                             AssetImage('assets/images/avatar.png')
                         /* : NetworkImage(

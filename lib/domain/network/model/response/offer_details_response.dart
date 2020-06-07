@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:clutch/domain/network/model/response/categories_response.dart';
 import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
 import 'package:clutch/domain/network/model/response/point_short_dto.dart';
 
@@ -7,7 +8,7 @@ class OfferDetailsResponse {
   int id;
   String title;
   String barcode;
-  dynamic startDate;
+  int startDate;
   int endDate;
   String logo;
   List<String> images;
@@ -15,6 +16,7 @@ class OfferDetailsResponse {
   bool perpetual;
   String phoneNumber;
   CompanyShortMobile companyShortMobile;
+  CategoriesResponse categoryDto;
   List<PointShortDto> location;
 
   OfferDetailsResponse({
@@ -29,6 +31,7 @@ class OfferDetailsResponse {
     this.perpetual,
     this.phoneNumber,
     this.companyShortMobile,
+    this.categoryDto,
     this.location,
   });
 
@@ -54,6 +57,9 @@ class OfferDetailsResponse {
         companyShortMobile: json["companyShortMobile"] == null
             ? null
             : CompanyShortMobile.fromMap(json["companyShortMobile"]),
+        categoryDto: json["categoryDto"] == null
+            ? null
+            : CategoriesResponse.fromMap(json["categoryDto"]),
         location: json["location"] == null
             ? null
             : List<PointShortDto>.from(
@@ -73,6 +79,7 @@ class OfferDetailsResponse {
         "phoneNumber": phoneNumber,
         "companyShortMobile":
             companyShortMobile == null ? null : companyShortMobile.toMap(),
+        "categoryDto": categoryDto == null ? null : categoryDto.toMap(),
         "location": location == null
             ? null
             : List<dynamic>.from(location.map((x) => x.toMap())),

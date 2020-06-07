@@ -3,6 +3,8 @@ import 'package:clutch/presentation/model/company_details_model_ui.dart';
 import 'package:clutch/presentation/model/offer_details_model_ui.dart';
 import 'package:clutch/ui/widget/atom/cached_network_image_wrapper.dart';
 import 'package:clutch/ui/widget/molecula/sliver_app_bar.dart';
+import 'package:clutch/ui/widget/organism/barcode_custom.dart';
+import 'package:clutch/ui/widget/organism/barcode_dialog.dart';
 import 'package:flutter/material.dart';
 
 import 'package:clutch/ui/localization/keys.dart';
@@ -70,8 +72,8 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
             )),
         actions: <Widget>[
           SliverAppBarComponent(
-            hiddenChild: barcode(),
-            expandedChild: barcode(),
+            hiddenChild: BarcodeCustom(widget.company.barcode),
+            expandedChild: BarcodeCustom(widget.company.barcode),
           )
         ],
         bottom: TabBar(
@@ -97,10 +99,6 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
           controller: widget._companyTabController,
         ),
       );
-
-  Widget barcode() {
-    return Image.asset("assets/images/ic_barcode.png");
-  }
 
   Color blackOrWhite() =>
       widget.company.color == Colors.white ? Colors.black : Colors.white;

@@ -13,9 +13,7 @@ class OfferRepositoryImpl extends OfferRepository {
   @override
   Future<OfferDetailsModelUi> fetchCompanyById(int id) async {
     OfferDetailsResponse responseOffer = await apiService.fetchOffer(id);
-    //TODO: server change for getting barcode|color|categories|duration
-    CategoriesResponse categoriesResponse =
-        CategoriesResponse(title: "tood", id: 2);
+    //TODO: server change for getting |duration
     Color color = Colors.red;
     String barcode = "";
     String duration = "";
@@ -23,10 +21,10 @@ class OfferRepositoryImpl extends OfferRepository {
       responseOffer.id,
       barcode,
       responseOffer.images,
-      responseOffer.title,
+      responseOffer.title ?? "",
       color,
-      categoriesResponse,
-      responseOffer.description,
+      responseOffer.categoryDto,
+      responseOffer.description ?? "",
       responseOffer.phoneNumber ?? "",
       duration,
       responseOffer.location
