@@ -37,7 +37,7 @@ class _ScrollableOfferAppBarState extends State<ScrollableOfferAppBar> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(left: 30.0),
-                child: Text(widget._offer.title,
+                child: Text(_cutingIfNeed(widget._offer.title),
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 20,
@@ -131,4 +131,13 @@ class _ScrollableOfferAppBarState extends State<ScrollableOfferAppBar> {
         );
       },
       child: Image.asset("assets/images/ic_barcode.png"));
+
+  String _cutingIfNeed(String title) {
+    int cutON = 15;
+    if (title.length > cutON) {
+      return widget._offer.title.substring(0, 15) + "...";
+    } else {
+      return title;
+    }
+  }
 }

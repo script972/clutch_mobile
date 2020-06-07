@@ -51,7 +51,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         shortOfferModelUi.add(offer);
       }
       yield MainLoaded(
-          companyList.companyShortMobileDtoList, shortOfferModelUi);
+          companyList.companyShortMobileDtoList, shortOfferModelUi, companyList.categoriesDtoList);
     } catch (error) {
       yield MainError(error.toString());
     }

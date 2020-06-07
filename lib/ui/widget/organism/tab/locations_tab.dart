@@ -20,7 +20,6 @@ class _LocationsTabState extends State<LocationsTab> {
   LatLng _initialPosition;
   final Completer<GoogleMapController> _controller = Completer();
 
-
   @override
   void initState() {
     super.initState();
@@ -30,8 +29,7 @@ class _LocationsTabState extends State<LocationsTab> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      Stack(
+  Widget build(BuildContext context) => Stack(
         children: <Widget>[
           GoogleMap(
               mapType: MapType.normal,
@@ -44,7 +42,7 @@ class _LocationsTabState extends State<LocationsTab> {
               gestureRecognizers: Set()
                 ..add(
                   Factory<OneSequenceGestureRecognizer>(
-                        () => EagerGestureRecognizer(),
+                    () => EagerGestureRecognizer(),
                   ),
                 )),
           DraggableScrollableActuator(
@@ -57,8 +55,7 @@ class _LocationsTabState extends State<LocationsTab> {
         ],
       );
 
-  Widget _bottomPanel(context, ScrollController scrollController) =>
-      Container(
+  Widget _bottomPanel(context, ScrollController scrollController) => Container(
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -83,7 +80,7 @@ class _LocationsTabState extends State<LocationsTab> {
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.12),
                       borderRadius:
-                      BorderRadius.all(Radius.elliptical(40.0, 30.0)),
+                          BorderRadius.all(Radius.elliptical(40.0, 30.0)),
                     ),
                   ),
                 ),
@@ -99,8 +96,7 @@ class _LocationsTabState extends State<LocationsTab> {
               ),
               ListView.separated(
                   physics: NeverScrollableScrollPhysics(),
-                  separatorBuilder: (context, index) =>
-                      Divider(
+                  separatorBuilder: (context, index) => Divider(
                         indent: 85.0,
                         color: Colors.black.withOpacity(0.35),
                       ),
@@ -114,12 +110,16 @@ class _LocationsTabState extends State<LocationsTab> {
                       child: InkWell(
                         child: ListTile(
                           leading: Container(
-                            child: place.imageUrl?.isNotEmpty ?? false
+                            child: place.imageUrl.isNotEmpty
                                 ? CircleAvatar(
-                              backgroundImage:
-                              NetworkImage(place.imageUrl),
-                            )
-                                : Container(),
+                                    backgroundImage:
+                                        NetworkImage(place.imageUrl),
+                                  )
+                                : Container(
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Theme.of(context).primaryColor),
+                                  ),
                             width: 60,
                             height: 60,
                           ),

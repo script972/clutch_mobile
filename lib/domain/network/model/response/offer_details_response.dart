@@ -6,19 +6,21 @@ import 'package:clutch/domain/network/model/response/point_short_dto.dart';
 class OfferDetailsResponse {
   int id;
   String title;
+  String barcode;
   dynamic startDate;
   int endDate;
   String logo;
   List<String> images;
   String description;
   bool perpetual;
-  dynamic phoneNumber;
+  String phoneNumber;
   CompanyShortMobile companyShortMobile;
   List<PointShortDto> location;
 
   OfferDetailsResponse({
     this.id,
     this.title,
+    this.barcode,
     this.startDate,
     this.endDate,
     this.logo,
@@ -39,6 +41,7 @@ class OfferDetailsResponse {
       OfferDetailsResponse(
         id: json["id"] == null ? null : json["id"],
         title: json["title"] == null ? null : json["title"],
+        barcode: json["barcode"] == null ? null : json["barcode"],
         startDate: json["startDate"],
         endDate: json["endDate"] == null ? null : json["endDate"],
         logo: json["logo"] == null ? null : json["logo"],
@@ -47,7 +50,7 @@ class OfferDetailsResponse {
             : List<String>.from(json["images"].map((x) => x)),
         description: json["description"] == null ? null : json["description"],
         perpetual: json["perpetual"] == null ? null : json["perpetual"],
-        phoneNumber: json["phoneNumber"],
+        phoneNumber: json["phone"],
         companyShortMobile: json["companyShortMobile"] == null
             ? null
             : CompanyShortMobile.fromMap(json["companyShortMobile"]),

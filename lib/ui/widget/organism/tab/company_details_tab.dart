@@ -19,11 +19,6 @@ class CompanyDetailsTab extends StatefulWidget {
 
 class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) => SingleChildScrollView(
         child: Container(
           color: Colors.white,

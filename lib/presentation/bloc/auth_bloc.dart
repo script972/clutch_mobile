@@ -51,7 +51,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           : AuthLoaded(event.phone, translate(Keys.Phone_Code_Invalid));
     } catch (error) {
       yield AuthLoaded(event.phone, translate(Keys.Phone_Code_Invalid));
-      //yield PhoneAndCodeInvalid(error.toString());
     }
   }
 }

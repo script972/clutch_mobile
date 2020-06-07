@@ -7,7 +7,7 @@ class HttpOfferServiceImpl extends ApiOfferService {
   @override
   Future<OfferDetailsResponse> fetchOffer(int id) async {
     Response response =
-        await HttpManager().dio.get("proposition/mobile/details/${id}");
+        await HttpManager().dio.get("/proposition/mobile/details/${id}");
     OfferDetailsResponse mainInfo = OfferDetailsResponse.fromMap(response.data);
     return mainInfo;
   }

@@ -24,12 +24,12 @@ class MainDrawer extends StatelessWidget {
                 CustomRoute.PROFILE,
               );
             }),
-            menuItem(Image.asset("assets/images/ic_marker_position.png"),
+            /*menuItem(Image.asset("assets/images/ic_marker_position.png"),
                 "Позиции", () {}),
             menuItem(Image.asset("assets/images/ic_scaner.png"), "Корпоратка",
                 () {}),
             menuItem(Image.asset("assets/images/ic_transaction.png"),
-                "Транзакции", () {}),
+                "Транзакции", () {}),*/
             menuItem(
                 Image.asset("assets/images/ic_gear.png"), "Настройка", () {}),
             Padding(
@@ -75,8 +75,7 @@ class MainDrawer extends StatelessWidget {
       ),
     );
 
-  Widget menuItem(Image image, String title, Function onTap) {
-    return Material(
+  Widget menuItem(Image image, String title, Function onTap) => Material(
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
@@ -89,5 +88,4 @@ class MainDrawer extends StatelessWidget {
         ),
       ),
     );
-  }
 }

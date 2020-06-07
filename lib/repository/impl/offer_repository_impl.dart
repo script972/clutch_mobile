@@ -27,7 +27,7 @@ class OfferRepositoryImpl extends OfferRepository {
       color,
       categoriesResponse,
       responseOffer.description,
-      responseOffer.phoneNumber,
+      responseOffer.phoneNumber ?? "",
       duration,
       responseOffer.location
           .map((e) => PointMapper.mapperResponseToUi(e))

@@ -14,7 +14,8 @@
   "input_code_from_sms" : "Введите код из SMS",
   "accept_phone_number" : "Подтверждение номера телефона",
   "phone_code_invalid" : "Неверный код подтверждения",
-  "service_the_best_offers" : "Сервис лучших условий"
+  "service_the_best_offers" : "Сервис лучших условий",
+  "accept" : "Подтвердить"
 
 
 }

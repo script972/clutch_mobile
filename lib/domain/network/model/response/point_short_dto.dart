@@ -19,6 +19,7 @@ class PointShortDto {
   factory PointShortDto.fromMap(Map<String, dynamic> json) => PointShortDto(
         id: json["id"],
         title: json["title"],
+        image: json["image"],
         address: json["address"],
         lat: json["lat"]?.toDouble(),
         lng: json["lng"]?.toDouble(),
@@ -29,6 +30,7 @@ class PointShortDto {
         "id": id,
         "title": title,
         "address": address,
+        "image": image,
         "lat": lat,
         "lng": lng,
         "distance": distance,

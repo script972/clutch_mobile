@@ -32,8 +32,7 @@ class _OfferScreenState extends State<OfferScreen>
   }
 
   @override
-  Widget build(BuildContext context) =>
-      BaseScreen(
+  Widget build(BuildContext context) => BaseScreen(
         child: Scaffold(body: BlocBuilder<OfferDetailsBloc, OfferDetailsState>(
             builder: (context, state) {
           if (state is OfferDetailsLoading) {
@@ -88,8 +87,8 @@ class _OfferScreenState extends State<OfferScreen>
                                   indicator: UnderlineTabIndicator(
                                       borderSide: BorderSide(
                                           width: 3.0, color: Colors.black),
-                                      insets:
-                                          EdgeInsets.symmetric(horizontal: 12.0)),
+                                      insets: EdgeInsets.symmetric(
+                                          horizontal: 12.0)),
                                   tabs: [
                                     Tab(text: translate(Keys.Details)),
                                     Tab(text: translate(Keys.Locations)),

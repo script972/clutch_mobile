@@ -32,11 +32,13 @@ class _OffersDetailsTabState extends State<OffersDetailsTab> {
             AboutWidget("О предложении", widget.offer.description),
             IconDescriptionItem(
               "assets/images/ic_calendar.png",
-              "380936629627",
+              "todo",
               color: Color(0xFFFF473D),
             ),
-            IconDescriptionItem(
-                "assets/images/ic_phone.png", "+38 099 000 00 00")
+            widget.offer.phone.isNotEmpty
+                ? IconDescriptionItem(
+                    "assets/images/ic_phone.png", widget.offer.phone)
+                : SizedBox()
 
             /*WorkSchedule(),
             Divider(),*/

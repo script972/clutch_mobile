@@ -36,12 +36,12 @@ class CompanyDetailsBloc
           await companyRepository.fetchCompanyDetails(event.id);
       var ui = CompanyDetailsModelUi(
           companyResponse.id,
-          companyResponse.logo,
+          companyResponse.logo ?? "",
           companyResponse.barcode,
-          companyResponse.title,
+          companyResponse.title ?? "",
           ColorHelper.colorFromHex(companyResponse.color),
           CategoriesResponse(title: ">>"),
-          companyResponse.description,
+          companyResponse.description ?? "",
           companyResponse.pointShortMobileDtoList
               .map((e) => PointMapper.mapperResponseToUi(e))
               .toList(),

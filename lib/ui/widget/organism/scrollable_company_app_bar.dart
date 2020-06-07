@@ -15,7 +15,8 @@ class ScrollableCompanyAppBar extends StatefulWidget {
   ScrollableCompanyAppBar(this.company, this._companyTabController);
 
   @override
-  _ScrollableCompanyAppBarState createState() => _ScrollableCompanyAppBarState();
+  _ScrollableCompanyAppBarState createState() =>
+      _ScrollableCompanyAppBarState();
 }
 
 class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
@@ -23,79 +24,84 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
 
   @override
   Widget build(BuildContext context) => SliverAppBar(
-    backgroundColor: widget.company.color,
-    expandedHeight: hideFlexibleSpace ? 0.0 : 200.0,
-    elevation: 0.0,
-    pinned: true,
-    leading: IconButton(
-      color: blackOrWhite(),
-      padding: EdgeInsets.only(left: 6.0),
-      icon: Icon(Icons.arrow_back),
-      onPressed: () {
-        Navigator.pop(context);
-      },
-    ),
-    title: SliverAppBarComponent(
-      hiddenChild: Row(
-        children: <Widget>[
-          Container(
-              width: 50,
-              height: 50,
-              child: CachedNetworkImageWrapper(widget.company.logoUrl)),
-          Padding(
-            padding: const EdgeInsets.only(left: 30.0),
-            child: Text(widget.company.title,
-                style: TextStyle(
-                  color: blackOrWhite(),
-                  fontSize: 20,
-                )),
+        backgroundColor: widget.company.color,
+        expandedHeight: hideFlexibleSpace ? 0.0 : 200.0,
+        elevation: 0.0,
+        pinned: true,
+        leading: IconButton(
+          color: blackOrWhite(),
+          padding: EdgeInsets.only(left: 6.0),
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: SliverAppBarComponent(
+          hiddenChild: Row(
+            children: <Widget>[
+              Container(
+                  width: 50,
+                  height: 50,
+                  child: widget.company.logoUrl.isNotEmpty
+                      ? CachedNetworkImageWrapper(widget.company.logoUrl)
+                      : Image.asset("assets/images/company_placeholder.png")),
+              Padding(
+                padding: const EdgeInsets.only(left: 30.0),
+                child: Text(widget.company.title,
+                    style: TextStyle(
+                      color: blackOrWhite(),
+                      fontSize: 20,
+                    )),
+              ),
+            ],
           ),
+          expandedChild: SizedBox(),
+        ),
+        flexibleSpace: FlexibleSpaceBar(
+            collapseMode: CollapseMode.pin,
+            background: Hero(
+              tag: widget.company.id,
+              child: Padding(
+                padding: const EdgeInsets.all(36.0),
+                child: widget.company.logoUrl.isNotEmpty
+                    ? CachedNetworkImageWrapper(widget.company.logoUrl)
+                    : Image.asset("assets/images/company_placeholder.png"),
+              ),
+            )),
+        actions: <Widget>[
+          SliverAppBarComponent(
+            hiddenChild: barcode(),
+            expandedChild: barcode(),
+          )
         ],
-      ),
-      expandedChild: SizedBox(),
-    ),
-    flexibleSpace: FlexibleSpaceBar(
-        collapseMode: CollapseMode.pin,
-        background: Hero(
-          tag: widget.company.id,
-          child: Padding(
-            padding: const EdgeInsets.all(36.0),
-            child: CachedNetworkImageWrapper(widget.company.logoUrl),
-          ),
-        )),
-    actions: <Widget>[
-      SliverAppBarComponent(
-        hiddenChild: barcode(),
-        expandedChild: barcode(),
-      )
-    ],
-    bottom: TabBar(
-      onTap: (tab) {
-        setState(() {
-          if (widget._companyTabController.index == 2)
-            hideFlexibleSpace = true;
-          else
-            hideFlexibleSpace = false;
-        });
-      },
-      unselectedLabelColor: blackOrWhite().withOpacity(0.56),
-      labelColor: blackOrWhite(),
-      isScrollable: true,
-      indicator: UnderlineTabIndicator(
-          borderSide: BorderSide(width: 3.0, color: blackOrWhite()),
-          insets: EdgeInsets.symmetric(horizontal: 12.0)),
-      tabs: [
-        Tab(text: translate(Keys.Offers)),
-        Tab(text: translate(Keys.Details)),
-        Tab(text: translate(Keys.Locations)),
-      ],
-      controller: widget._companyTabController,
-    ),
-  );
+        bottom: TabBar(
+          onTap: (tab) {
+            setState(() {
+              if (widget._companyTabController.index == 2)
+                hideFlexibleSpace = true;
+              else
+                hideFlexibleSpace = false;
+            });
+          },
+          unselectedLabelColor: blackOrWhite().withOpacity(0.56),
+          labelColor: blackOrWhite(),
+          isScrollable: true,
+          indicator: UnderlineTabIndicator(
+              borderSide: BorderSide(width: 3.0, color: blackOrWhite()),
+              insets: EdgeInsets.symmetric(horizontal: 12.0)),
+          tabs: [
+            Tab(text: translate(Keys.Offers)),
+            Tab(text: translate(Keys.Details)),
+            Tab(text: translate(Keys.Locations)),
+          ],
+          controller: widget._companyTabController,
+        ),
+      );
 
   Widget barcode() {
     return Image.asset("assets/images/ic_barcode.png");
   }
 
-  Color blackOrWhite() => widget.company.color == Colors.white ? Colors.black : Colors.white;
+  Color blackOrWhite() =>
+      widget.company.color == Colors.white ? Colors.black : Colors.white;
 }

@@ -4,6 +4,7 @@ import 'package:clutch/presentation/event/main_event.dart';
 import 'package:clutch/presentation/model/short_offer_model_ui.dart';
 import 'package:clutch/presentation/state/main_state.dart';
 import 'package:clutch/ui/screen/base_screen.dart';
+import 'package:clutch/ui/widget/organism/categories_drawer.dart';
 import 'package:clutch/ui/widget/organism/main_drawer.dart';
 import 'package:clutch/ui/widget/organism/search_app_bar.dart';
 import 'package:clutch/ui/widget/organism/tab/companies_tab.dart';
@@ -34,6 +35,7 @@ class _MainScreenState extends State<MainScreen>
             key: this._scaffoldKey,
             appBar: SearchAppBar(_tabController, _scaffoldKey),
             drawer: MainDrawer(),
+            endDrawer: CategoriesDrawer(),
             backgroundColor: Colors.white,
             body: BlocBuilder<MainBloc, MainState>(builder: (context, state) {
               List<ShortOfferModelUi> offer = [];
@@ -42,9 +44,39 @@ class _MainScreenState extends State<MainScreen>
                 offer = state.offer;
                 company = state.company;
               }
-              return TabBarView(
-                children: [OffersTab(offer), CompaniesTab(company)],
-                controller: _tabController,
+              return Stack(
+                children: <Widget>[
+                  TabBarView(
+                    children: [OffersTab(offer), CompaniesTab(company)],
+                    controller: _tabController,
+                  ),
+                  Align(
+                      alignment: Alignment.centerRight,
+                      child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).primaryColor,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10.0),
+                                    bottomLeft: Radius.circular(10.0)),
+                                border: Border.all(
+                                  width: 0,
+                                ),
+                              ),
+                              child: GestureDetector(
+                                onTap: () {
+                                  _scaffoldKey.currentState.openEndDrawer();
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset(
+                                    "assets/images/ic_filter.png",
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ))))
+                ],
               );
             })),
       );
