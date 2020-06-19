@@ -11,6 +11,7 @@ import 'package:clutch/ui/widget/organism/tab/companies_tab.dart';
 import 'package:clutch/ui/widget/organism/tab/offers_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -23,7 +24,7 @@ class _MainScreenState extends State<MainScreen>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   @override
-  void initState() {
+  Future<void> initState() {
     _tabController = TabController(length: 2, vsync: this);
     BlocProvider.of<MainBloc>(context).add(LoadMain());
     super.initState();
