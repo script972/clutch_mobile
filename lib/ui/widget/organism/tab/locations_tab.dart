@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:clutch/helpers/geo_helper.dart';
 import 'package:clutch/presentation/model/place_model_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -8,8 +9,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LocationsTab extends StatefulWidget {
   List<PlaceModelUi> places;
+  LatLng camera;
 
-  LocationsTab(this.places);
+  LocationsTab(this.places, this.camera);
 
   @override
   _LocationsTabState createState() => _LocationsTabState();
@@ -17,8 +19,8 @@ class LocationsTab extends StatefulWidget {
 
 class _LocationsTabState extends State<LocationsTab> {
   final Set<Marker> markers = {};
-  LatLng _initialPosition;
   final Completer<GoogleMapController> _controller = Completer();
+  final double MAP_ZOOM = 12.0;
 
   @override
   void initState() {
@@ -38,7 +40,7 @@ class _LocationsTabState extends State<LocationsTab> {
               onMapCreated: _controller.complete,
               markers: markers,
               initialCameraPosition: CameraPosition(
-                  target: _initialPosition ?? LatLng(46.9, 32.0), zoom: 14.0),
+                  target: widget.camera ?? LatLng(46.9, 32.0), zoom: MAP_ZOOM),
               gestureRecognizers: Set()
                 ..add(
                   Factory<OneSequenceGestureRecognizer>(

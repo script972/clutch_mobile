@@ -48,10 +48,13 @@ class _OfferScreenState extends State<OfferScreen>
                 color: Colors.white,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           Text(
                             offer.title,
@@ -60,6 +63,7 @@ class _OfferScreenState extends State<OfferScreen>
                           Text(
                             offer.categoriesResponse?.title ?? "",
                             style: TextStyle(fontSize: 14, color: Colors.grey),
+                            textAlign: TextAlign.start,
                           ),
                         ],
                       ),
@@ -102,7 +106,7 @@ class _OfferScreenState extends State<OfferScreen>
                                     controller: _offerTabController,
                                     children: <Widget>[
                                       OffersDetailsTab(offer),
-                                      LocationsTab(offer.places),
+                                      LocationsTab(offer.places, state.camera),
                                     ],
                                   ),
                                 ),

@@ -46,7 +46,7 @@ class _CompanyScreenState extends State<CompanyScreen>
                 children: <Widget>[
                   OffersTab(state.companyDetailsModelUi.offers),
                   CompanyDetailsTab(state.companyDetailsModelUi),
-                  LocationsTab(state.companyDetailsModelUi.places),
+                  LocationsTab(state.companyDetailsModelUi.places, state.camera),
                 ],
               ),
             ),

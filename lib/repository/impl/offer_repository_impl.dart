@@ -23,6 +23,7 @@ class OfferRepositoryImpl extends OfferRepository {
       responseOffer.images,
       responseOffer.title ?? "",
       color,
+      responseOffer.companyShortMobile,
       responseOffer.categoryDto,
       responseOffer.description ?? "",
       responseOffer.phoneNumber ?? "",

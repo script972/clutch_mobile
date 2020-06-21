@@ -5,7 +5,12 @@ import 'package:clutch/presentation/state/main_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CategoriesDrawer extends StatelessWidget {
+class CategoriesDrawer extends StatefulWidget {
+  @override
+  _CategoriesDrawerState createState() => _CategoriesDrawerState();
+}
+
+class _CategoriesDrawerState extends State<CategoriesDrawer> {
   @override
   Widget build(BuildContext context) => Drawer(
         child: BlocBuilder<MainBloc, MainState>(builder: (context, state) {
@@ -28,9 +33,9 @@ class CategoriesDrawer extends StatelessWidget {
         title: Text(element.title),
         value: true,
         onChanged: (newValue) {
-          /*setState(() {
-          checkedValue = newValue;
-        });*/
+          setState(() {
+          //checkedValue = newValue;
+        });
         },
         controlAffinity: ListTileControlAffinity.leading,
       ));

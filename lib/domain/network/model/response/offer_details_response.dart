@@ -53,7 +53,7 @@ class OfferDetailsResponse {
             : List<String>.from(json["images"].map((x) => x)),
         description: json["description"] == null ? null : json["description"],
         perpetual: json["perpetual"] == null ? null : json["perpetual"],
-        phoneNumber: json["phone"],
+        phoneNumber: json["phoneNumber"] == null ? null : json["phoneNumber"],
         companyShortMobile: json["companyShortMobile"] == null
             ? null
             : CompanyShortMobile.fromMap(json["companyShortMobile"]),

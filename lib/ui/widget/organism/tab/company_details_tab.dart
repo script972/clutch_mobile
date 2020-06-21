@@ -33,7 +33,13 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                 AboutWidget("О компании", widget.company.description),
                 widget.company.phone.isNotEmpty
                     ? IconDescriptionItem(
-                        "assets/images/ic_phone.png", widget.company.phone)
+                        "assets/images/ic_phone.png",
+                        widget.company.phone,
+                        color: Colors.red,
+                        callback: () {
+                          launch("tel://${widget.company.phone}");
+                        },
+                      )
                     : SizedBox(),
                 widget.company.site.isNotEmpty
                     ? IconDescriptionItem(
