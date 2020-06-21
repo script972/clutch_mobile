@@ -56,14 +56,17 @@ class _OfferScreenState extends State<OfferScreen>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            offer.title,
-                            style: TextStyle(fontSize: 24),
-                          ),
-                          Text(
-                            offer.categoriesResponse?.title ?? "",
-                            style: TextStyle(fontSize: 14, color: Colors.grey),
-                            textAlign: TextAlign.start,
+                          ListTile(
+                            title: Text(
+                              offer.title,
+                              style: TextStyle(fontSize: 24),
+                            ),
+                            subtitle: Text(
+                              offer.categoriesResponse?.title ?? "",
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.grey),
+                              textAlign: TextAlign.start,
+                            ),
                           ),
                         ],
                       ),

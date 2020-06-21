@@ -44,7 +44,7 @@ class CompanyDetailsBloc
           companyResponse.site ?? "",
           companyResponse.phone ?? "",
           ColorHelper.colorFromHex(companyResponse.color),
-          CategoriesResponse(title: ">>"),
+          companyResponse.categoryDto,
           companyResponse.description ?? "",
           companyResponse.pointShortMobileDtoList
               .map((e) => PointMapper.mapperResponseToUi(e))
