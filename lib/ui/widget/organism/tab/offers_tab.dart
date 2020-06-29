@@ -28,7 +28,7 @@ class OffersTab extends StatelessWidget {
             itemCount: this.offers?.length ?? 0,
             itemBuilder: (BuildContext context, int index) =>
                 OfferItem(offers[index]),
-            staggeredTileBuilder: (int index) => offers[index].staggeredTile,
+            staggeredTileBuilder: (int index) =>/* offers[index].staggeredTile*/ const StaggeredTile.count(2, 2.65),
             mainAxisSpacing: 8.0,
             crossAxisSpacing: 8.0,
           );

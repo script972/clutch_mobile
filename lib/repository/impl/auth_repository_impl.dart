@@ -17,9 +17,10 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<AuthDto> confirmPhone(String phone, String code) async {
-    AuthResponse response = await apiService
-        .confirmPhone(PhoneSmsConfirmRequest(phone: phone, smscode: code));
+  Future<AuthDto> confirmPhone(String phone, String code, String token) async {
+    AuthResponse response = await apiService.confirmPhone(
+        PhoneSmsConfirmRequest(
+            phone: phone, smscode: code, firebaseToken: token));
     return AuthDto(response.accessToken, response.expiresIn);
   }
 

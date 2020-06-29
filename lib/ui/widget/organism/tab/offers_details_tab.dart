@@ -35,7 +35,7 @@ class _OffersDetailsTabState extends State<OffersDetailsTab> {
         AboutWidget("О предложении", widget.offer.description),
         IconDescriptionItem(
           "assets/images/ic_calendar.png",
-          "todo",
+          widget.offer.duration,
         ),
         widget.offer.phone.isNotEmpty
             ? IconDescriptionItem(

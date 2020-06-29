@@ -5,7 +5,7 @@ abstract class AuthRepository {
 
   Future<bool> initPhone(String phone);
 
-  Future<AuthDto> confirmPhone(String phone, String code);
+  Future<AuthDto> confirmPhone(String phone, String code, String token);
 
   Future<ProfileDto> fetchProfile();
 }

@@ -35,7 +35,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       Position position  = await GeoHelper.detectPosition();
       var body = CompanyAndOffersSearch();
       body.lat = position.latitude;
-      body.lat = position.longitude;
+      body.lng = position.longitude;
       MainInfo companyList = await companyRepository.fetchAllCompany(body);
       List<ShortOfferModelUi> shortOfferModelUi = [];
       for (int i = 0; i < companyList.offersShortMobileDtoList.length; i++) {

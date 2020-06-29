@@ -5,6 +5,7 @@ import 'package:clutch/presentation/state/auth_state.dart';
 import 'package:clutch/repository/auth_repository.dart';
 import 'package:clutch/repository/impl/auth_repository_impl.dart';
 import 'package:clutch/ui/localization/keys.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/global.dart';
 
@@ -44,8 +45,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> _mapPhoneCodeEventToState(PhoneCodeAuth event) async* {
     yield AuthLoading();
     try {
+      final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+      String token = await _firebaseMessaging.getToken();
       AuthDto authDto =
-          await authRepository.confirmPhone(event.phone, event.code);
+          await authRepository.confirmPhone(event.phone, event.code, token);
       yield SecurityManager.proccessNewSecuriryToken(authDto)
           ? PhoneAndCodeValid()
           : AuthLoaded(event.phone, translate(Keys.Phone_Code_Invalid));
