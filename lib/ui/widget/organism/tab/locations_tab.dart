@@ -38,6 +38,7 @@ class _LocationsTabState extends State<LocationsTab> {
               zoomControlsEnabled: false,
               rotateGesturesEnabled: false,
               onMapCreated: _controller.complete,
+              myLocationButtonEnabled: true,
               markers: markers,
               initialCameraPosition: CameraPosition(
                   target: widget.camera ?? LatLng(46.9, 32.0), zoom: MAP_ZOOM),

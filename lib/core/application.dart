@@ -1,4 +1,5 @@
 import 'package:clutch/core/custom_route.dart';
+import 'package:clutch/helpers/navigation_service.dart';
 import 'package:clutch/presentation/bloc/auth_bloc.dart';
 import 'package:clutch/presentation/bloc/company_details_bloc.dart';
 import 'package:clutch/presentation/bloc/main_bloc.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_translate/localization_provider.dart';
 import 'package:flutter_translate/localized_app.dart';
+import 'package:get_it/get_it.dart';
 
 class Application extends StatelessWidget {
   FirebaseAnalytics analytics = FirebaseAnalytics();
@@ -60,6 +62,7 @@ class Application extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             localizationDelegate
           ],
+          navigatorKey: GetIt.instance<NavigationService>().navigatorKey,
           supportedLocales: localizationDelegate.supportedLocales,
           locale: localizationDelegate.currentLocale,
           onGenerateRoute: CustomRoute.generateRoute,

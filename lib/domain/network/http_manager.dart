@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:alice/alice.dart';
 import 'package:clutch/core/custom_route.dart';
 import 'package:clutch/domain/network/api_client.dart';
+import 'package:clutch/helpers/navigation_service.dart';
 import 'package:clutch/helpers/security_manager.dart';
-import 'package:clutch/helpers/utils/shared_preferences_helper.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:get_it/get_it.dart';
 
 class HttpManager {
   static final HttpManager _singleton = new HttpManager._internal();
@@ -59,7 +59,6 @@ class HttpManager {
     return dio;
   }
 
-
   Dio get dio {
     Dio dio = Dio();
     Alice alice = Alice(showNotification: true);
@@ -75,13 +74,14 @@ class HttpManager {
       if (token != null) {
         options.headers["Authorization"] = "Bearer " + token;
       }
-      debugPrint("<<<<<<REQUEST=${options}");
       return options;
-    }, onResponse: (Response response) async {
-      debugPrint("<<<<<<RESPONSE=${response}");
-      if(response.statusCode==401){
-        //TODO: navigate on Auth screen
+    }, onError: (dioError) {
+      if (dioError.response.statusCode == 401) {
+        // <NavigationService>().navigateTo('login');
+        GetIt.instance<NavigationService>()
+            .navigateTo(CustomRoute.SIGNIN_PHONE_SCREEN);
       }
+    }, onResponse: (Response response) async {
       return response;
     }));
     return dio;

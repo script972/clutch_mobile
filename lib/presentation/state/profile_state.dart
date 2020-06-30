@@ -15,8 +15,10 @@ class ProfileLoaded extends ProfileState {
   final String photo;
   final String name;
   final String lastName;
+  final int birthday;
 
-  const ProfileLoaded(this.photo, this.name, this.lastName);
+
+  const ProfileLoaded(this.photo, this.name, this.lastName, this.birthday);
 
   @override
   List<Object> get props => [photo, name, lastName];

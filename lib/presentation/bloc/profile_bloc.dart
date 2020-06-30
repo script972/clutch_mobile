@@ -27,7 +27,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     try {
       ProfileDto profileDto = await authRepository.fetchProfile();
       yield ProfileLoaded(
-          profileDto.facePhoto, profileDto.firstName, profileDto.lastName);
+          profileDto.facePhoto, profileDto.firstName, profileDto.lastName, profileDto.birthday);
     } catch (error) {
       yield ProfileError(error.toString());
     }
