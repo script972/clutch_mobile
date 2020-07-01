@@ -8,4 +8,6 @@ abstract class AuthRepository {
   Future<AuthDto> confirmPhone(String phone, String code, String token);
 
   Future<ProfileDto> fetchProfile();
+
+  Future<ProfileDto> changeProfile(ProfileDto profileDto);
 }

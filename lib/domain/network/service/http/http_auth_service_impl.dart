@@ -25,6 +25,12 @@ class HttpAuthServiceImpl extends ApiAuthService {
   Future<ProfileDto> fetchProfile() async {
     Response response = await HttpManager().dio.get("/user/profile");
     return ProfileDto.fromMap(response.data);
+  }
 
+  @override
+  Future<ProfileDto> changeProfile(ProfileDto body) async {
+    Response response =
+        await HttpManager().dio.patch("/user/profile", data: body.toJson());
+    return ProfileDto.fromMap(response.data);
   }
 }

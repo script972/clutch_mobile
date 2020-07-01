@@ -22,4 +22,10 @@ class MockAuthServiceImpl extends ApiAuthService {
     // TODO: implement fetchProfile
     throw UnimplementedError();
   }
+
+  @override
+  Future<ProfileDto> changeProfile(ProfileDto profileDto) {
+    // TODO: implement changeProfile
+    throw UnimplementedError();
+  }
 }

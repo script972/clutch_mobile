@@ -14,4 +14,6 @@ abstract class ApiAuthService extends BaseApiService {
 
   Future<ProfileDto> fetchProfile();
 
+  Future<ProfileDto> changeProfile(ProfileDto profileDto);
+
 }

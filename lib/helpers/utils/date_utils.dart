@@ -1,7 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/material.dart';
-import 'package:intl/date_symbol_data_file.dart';
 import 'package:intl/intl.dart';
 
 class DateUtils {
@@ -16,6 +12,7 @@ class DateUtils {
   };
 
   static String timestampToString(int timestamp) {
+    if (timestamp == null) return null;
     var date = DateTime.fromMillisecondsSinceEpoch(timestamp);
     return DateFormat.yMMMd().format(date); // Apr 8, 2020
   }

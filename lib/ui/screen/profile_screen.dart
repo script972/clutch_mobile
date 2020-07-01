@@ -1,5 +1,7 @@
-import 'package:clutch/helpers/utils/date_utils.dart';
+import 'dart:io';
+
 import 'package:clutch/presentation/bloc/profile_bloc.dart';
+import 'package:clutch/presentation/event/profile_event.dart';
 import 'package:clutch/presentation/state/profile_state.dart';
 import 'package:clutch/ui/localization/keys.dart';
 import 'package:clutch/ui/screen/base_screen.dart';
@@ -9,7 +11,6 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/global.dart';
-import 'package:image_picker/image_picker.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -50,11 +51,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         selection: TextSelection.collapsed(
                             offset: state.lastName.length)));
 
-                _birthdayController = TextEditingController.fromValue(
-                    TextEditingValue(
-                        text: DateUtils.timestampToString(state.birthday),
-                        selection: TextSelection.collapsed(
-                            offset: state.lastName.length)));
+                _birthdayController =
+                    TextEditingController.fromValue(TextEditingValue(
+                  text: /* DateUtils.timestampToString(state.birthday)*/ "",
+                ));
 
                 return bodyContent(state);
               }
@@ -86,18 +86,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 padding: const EdgeInsets.only(left: 80.0),
                                 child: CircleAvatar(
                                   radius: 45.0,
-                                  backgroundImage: state.photo.isNotEmpty
-                                      ? NetworkImage(state.photo)
-                                      : AssetImage('assets/images/avatar.png'),
+                                  backgroundImage: detectImage(
+                                      state.photo, state.photoExternal),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 35.0),
                                 child: IconButton(
                                   onPressed: () async {
-                                    final picker = ImagePicker();
-                                    var image = await picker.getImage(
-                                        source: ImageSource.gallery);
+                                    BlocProvider.of<ProfileBloc>(context)
+                                        .add(ChangePhoto());
                                   },
                                   icon: Icon(Icons.camera_enhance),
                                   color: Colors.black.withOpacity(0.30),
@@ -118,7 +116,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       ? translate(Keys.Type_Name)
                                       : null,
                                   onChanged: (value) {
-                                    /* setState(() => firstName = value);*/
+                                    BlocProvider.of<ProfileBloc>(context)
+                                        .add(ChangeName(value));
                                   },
                                   onFieldSubmitted: (v) =>
                                       changeFocus(context, _secondNameNode),
@@ -136,6 +135,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       changeFocus(context, _dateOfBirthNode),
                                   focusNode: _secondNameNode,
                                   controller: _lastNameController,
+                                  onChanged: (value) {
+                                    BlocProvider.of<ProfileBloc>(context)
+                                        .add(ChangeLastName(value));
+                                  },
                                   decoration: _inputDecoration.copyWith(
                                       labelText: translate(Keys.Last_Name)),
                                 ),
@@ -233,6 +236,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: RedMaterialButton(
                         title: translate(Keys.Save),
                         onPressed: () async {
+                          BlocProvider.of<ProfileBloc>(context)
+                              .add(SaveProfile());
                           Navigator.pop(context);
                         },
                       ),
@@ -244,6 +249,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       );
+
+  ImageProvider detectImage(String photo, bool photoExternal) {
+    if (photo == null || photo.isEmpty) {
+      return AssetImage('assets/images/avatar.png');
+    } else if (photoExternal) {
+      return NetworkImage(photo);
+    } else if (!photoExternal)
+      return FileImage(File(photo));
+    else {
+      return AssetImage('assets/images/avatar.png');
+    }
+  }
 
   changeFocus(BuildContext context, FocusNode node) =>
       FocusScope.of(context).requestFocus(node);
