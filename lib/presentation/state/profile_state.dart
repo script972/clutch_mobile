@@ -13,19 +13,42 @@ class ProfileLoading extends ProfileState {
 
 class ProfileLoaded extends ProfileState {
   final String photo;
+  final bool photoExternal;
+
   final String name;
   final String lastName;
+  final int birthday;
+  final bool sexMale;
+  final bool sexFemale;
 
-  const ProfileLoaded(this.photo, this.name, this.lastName);
+  const ProfileLoaded(
+      {this.photo,
+      this.photoExternal,
+      this.name,
+      this.lastName,
+      this.birthday,
+      this.sexMale,
+      this.sexFemale});
+
+  ProfileLoaded copyWith({String photo, bool photoExternal, String name, String lastName}) {
+    return ProfileLoaded(
+      photo: photo ?? this.photo,
+      photoExternal: photoExternal ?? this.photoExternal,
+      name: name ?? this.name,
+      lastName: lastName ?? this.lastName,
+      sexMale: sexMale ?? this.sexMale,
+      sexFemale: sexFemale ?? this.sexFemale,
+    );
+  }
 
   @override
   List<Object> get props => [photo, name, lastName];
 }
 
-class MainError extends ProfileState {
+class ProfileError extends ProfileState {
   final String error;
 
-  const MainError(this.error);
+  const ProfileError(this.error);
 
   @override
   List<Object> get props => [error];

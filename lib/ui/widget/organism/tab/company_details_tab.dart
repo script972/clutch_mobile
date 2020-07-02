@@ -1,10 +1,13 @@
 import 'package:clutch/presentation/model/comment_model_ui.dart';
 import 'package:clutch/presentation/model/company_details_model_ui.dart';
+import 'package:clutch/ui/widget/atom/icon_description_item.dart';
 import 'package:clutch/ui/widget/organism/item/review_slider.dart';
 import 'package:clutch/ui/widget/organism/item/review_widget.dart';
+import 'package:clutch/ui/widget/organism/work_shedule.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/ui/widget/organism/about_widget.dart';
 import 'package:clutch/ui/widget/atom/company_header.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CompanyDetailsTab extends StatefulWidget {
   final CompanyDetailsModelUi company;
@@ -19,11 +22,6 @@ class CompanyDetailsTab extends StatefulWidget {
 
 class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) => SingleChildScrollView(
         child: Container(
           color: Colors.white,
@@ -33,9 +31,31 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                 CompanyHeader(widget.company),
                 Divider(),
                 AboutWidget("О компании", widget.company.description),
-                /* Divider(),
+                widget.company.phone.isNotEmpty
+                    ? IconDescriptionItem(
+                        "assets/images/ic_phone.png",
+                        widget.company.phone,
+                        color: Colors.red,
+                        callback: () {
+                          launch("tel://${widget.company.phone}");
+                        },
+                      )
+                    : SizedBox(),
+                widget.company.site.isNotEmpty
+                    ? IconDescriptionItem(
+                        "assets/images/ic_site.png", widget.company.site,
+                        color: Colors.red, callback: () async {
+                        String url = widget.company.site;
+                        if (await canLaunch(url)) {
+                          await launch(url);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      })
+                    : SizedBox(),
+                Divider(),
                 WorkSchedule(),
-                Divider(),*/
+                /* Divider(),*/
                 /* Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Align(

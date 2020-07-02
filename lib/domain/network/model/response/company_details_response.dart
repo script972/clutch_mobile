@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:clutch/domain/network/model/response/categories_response.dart';
 import 'package:clutch/domain/network/model/response/offers_short_mobile_dto.dart';
 import 'package:clutch/domain/network/model/response/point_short_dto.dart';
 
@@ -8,31 +9,30 @@ class CompanyDetailsResponse {
   final String barcode;
   final String logo;
   final String color;
-  final dynamic justOnline;
+  final bool justOnline;
   final String title;
-  final String categories;
   final double rang;
   final String description;
   final String site;
-  final dynamic phone;
+  final String phone;
   final List<OffersShortMobileDto> offersShortMobileDtoList;
   final List<PointShortDto> pointShortMobileDtoList;
+  final CategoriesResponse categoryDto;
 
-  CompanyDetailsResponse({
-    this.id,
-    this.barcode,
-    this.logo,
-    this.color,
-    this.justOnline,
-    this.title,
-    this.categories,
-    this.rang,
-    this.description,
-    this.site,
-    this.phone,
-    this.offersShortMobileDtoList,
-    this.pointShortMobileDtoList,
-  });
+  CompanyDetailsResponse(
+      {this.id,
+      this.barcode,
+      this.logo,
+      this.color,
+      this.justOnline,
+      this.title,
+      this.rang,
+      this.description,
+      this.site,
+      this.phone,
+      this.offersShortMobileDtoList,
+      this.pointShortMobileDtoList,
+      this.categoryDto});
 
   factory CompanyDetailsResponse.fromJson(String str) =>
       CompanyDetailsResponse.fromMap(json.decode(str));
@@ -47,11 +47,13 @@ class CompanyDetailsResponse {
         color: json["color"],
         justOnline: json["justOnline"],
         title: json["title"],
-        categories: json["categories"],
         rang: json["rang"],
         description: json["description"],
         site: json["site"],
         phone: json["phone"],
+        categoryDto: json["categories"] == null
+            ? null
+            : CategoriesResponse.fromMap(json["categories"]),
         offersShortMobileDtoList: List<OffersShortMobileDto>.from(
             json["offersShortMobileDtoList"]
                 .map((x) => OffersShortMobileDto.fromMap(x))),
@@ -67,11 +69,11 @@ class CompanyDetailsResponse {
         "color": color,
         "justOnline": justOnline,
         "title": title,
-        "categories": categories,
         "rang": rang,
         "description": description,
         "site": site,
         "phone": phone,
+        "categories": categoryDto.toMap(),
         "offersShortMobileDtoList":
             List<dynamic>.from(offersShortMobileDtoList.map((x) => x.toMap())),
         "pointShortMobileDtoList":

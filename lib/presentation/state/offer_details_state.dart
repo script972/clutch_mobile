@@ -1,6 +1,7 @@
 import 'package:clutch/presentation/model/offer_details_model_ui.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 @immutable
 abstract class OfferDetailsState extends Equatable {
@@ -15,11 +16,12 @@ class OfferDetailsLoading extends OfferDetailsState {
 class OfferDetailsLoaded extends OfferDetailsState {
 
   final OfferDetailsModelUi offerDetailsModelUi;
+  final LatLng camera;
 
-  const OfferDetailsLoaded(this.offerDetailsModelUi);
+  const OfferDetailsLoaded(this.offerDetailsModelUi, this.camera);
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [offerDetailsModelUi, camera];
 }
 
 class OfferDetailsError extends OfferDetailsState {

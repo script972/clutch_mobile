@@ -10,9 +10,7 @@ import 'package:clutch/ui/widget/organism/scrollable_company_app_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CompanyScreen extends StatefulWidget {
-  int companyId;
-
-  CompanyScreen(this.companyId);
+  CompanyScreen();
 
   @override
   _CompanyScreenState createState() => _CompanyScreenState();
@@ -48,7 +46,7 @@ class _CompanyScreenState extends State<CompanyScreen>
                 children: <Widget>[
                   OffersTab(state.companyDetailsModelUi.offers),
                   CompanyDetailsTab(state.companyDetailsModelUi),
-                  LocationsTab(state.companyDetailsModelUi.places),
+                  LocationsTab(state.companyDetailsModelUi.places, state.camera),
                 ],
               ),
             ),

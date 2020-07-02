@@ -1,5 +1,5 @@
 import 'package:clutch/core/custom_route.dart';
-import 'package:clutch/helpers/utils/shared_preferences_helper.dart';
+import 'package:clutch/helpers/navigation_service.dart';
 import 'package:clutch/presentation/bloc/auth_bloc.dart';
 import 'package:clutch/presentation/bloc/company_details_bloc.dart';
 import 'package:clutch/presentation/bloc/main_bloc.dart';
@@ -13,15 +13,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_translate/localization_provider.dart';
 import 'package:flutter_translate/localized_app.dart';
+import 'package:get_it/get_it.dart';
 
 class Application extends StatelessWidget {
   FirebaseAnalytics analytics = FirebaseAnalytics();
 
+  bool _isAuthorize;
+
+  Application(this._isAuthorize);
+
   @override
   Widget build(BuildContext context) {
     var localizationDelegate = LocalizedApp.of(context).delegate;
-    initBody();
-    bool isAuthorize = false;
     final theme = ThemeData(
       fontFamily: "GoogleSans",
       primaryColor: Color(0xFF02AD58),
@@ -47,8 +50,7 @@ class Application extends StatelessWidget {
                 OfferDetailsBloc() /*..add(LoadOfferDetails(1))*/,
           ),
           BlocProvider<AuthBloc>(
-            create: (context) =>
-                AuthBloc() /*..add(LoadOfferDetails(1))*/,
+            create: (context) => AuthBloc() /*..add(LoadOfferDetails(1))*/,
           ),
         ],
         child: MaterialApp(
@@ -60,22 +62,18 @@ class Application extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             localizationDelegate
           ],
+          navigatorKey: GetIt.instance<NavigationService>().navigatorKey,
           supportedLocales: localizationDelegate.supportedLocales,
           locale: localizationDelegate.currentLocale,
           onGenerateRoute: CustomRoute.generateRoute,
           navigatorObservers: [
             FirebaseAnalyticsObserver(analytics: analytics),
           ],
-          initialRoute: isAuthorize
+          initialRoute: _isAuthorize
               ? CustomRoute.MAIN_SCREEN
               : CustomRoute.SIGNIN_PHONE_SCREEN,
         ),
       ),
     );
-  }
-
-  void initBody() {
-    SharedPreferencesHelper.saveToken(
-        "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJDb3Jwb3JhdGthIiwic3ViIjoiMzgwOTM2NjI5NjI3IiwiYXVkIjoid2ViIiwiaWF0IjoxNTkwNjYwODc3LCJleHAiOjE1OTE2NjA4NzZ9.3my7NXNU-XH4ub5v6rM_lhwdnF35WHQuoO1QTbBwHOj_2pRDtEiNbf0qsmCTxLrN0fXIbzmcJkZXMzGjvzt7Hw");
   }
 }

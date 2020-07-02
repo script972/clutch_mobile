@@ -1,3 +1,5 @@
+import 'package:clutch/ui/widget/organism/barcode_custom.dart';
+import 'package:clutch/ui/widget/organism/barcode_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:clutch/ui/localization/keys.dart';
 import 'package:flutter_translate/flutter_translate.dart';
@@ -51,7 +53,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
           controller: widget.tabController,
         ),
         actions: <Widget>[
-          IconButton(
+          /*IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
               setState(() {
@@ -73,11 +75,8 @@ class _SearchAppBarState extends State<SearchAppBar> {
                 }
               });
             },
-          ),
-          IconButton(
-            icon: Image.asset('assets/images/ic_gear.png'),
-            onPressed: () {},
-          ),
+          ),*/
+          BarcodeCustom("333")
         ],
       );
 }

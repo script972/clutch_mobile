@@ -11,7 +11,7 @@ class PointMapper {
         pointShortDto.title,
         pointShortDto.address,
         pointShortDto.distance.toString(),
-        pointShortDto.image,
+        pointShortDto.image ?? "",
         LatLng(pointShortDto.lat, pointShortDto.lng),
         marker: marker);
   }

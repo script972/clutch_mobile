@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:clutch/domain/network/model/response/categories_response.dart';
+import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
 import 'package:clutch/presentation/model/place_model_ui.dart';
 
 class OfferDetailsModelUi {
@@ -10,6 +11,7 @@ class OfferDetailsModelUi {
   String title;
   Color color;
   CategoriesResponse categoriesResponse;
+  CompanyShortMobile companyShortMobile;
   String description;
   String phone;
   String duration;
@@ -21,6 +23,7 @@ class OfferDetailsModelUi {
       this.images,
       this.title,
       this.color,
+      this.companyShortMobile,
       this.categoriesResponse,
       this.description,
       this.phone,

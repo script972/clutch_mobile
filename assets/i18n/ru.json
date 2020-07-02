@@ -11,8 +11,21 @@
   "send_code" : "Отправить код",
   "sign_up" : "Регистрация",
   "we_sent_varify_code" : "Мы отправили вам на телефон код варификации",
-  "we_send_sms" : "Введите код из SMS",
-  "verify_phone_number" : "Подтверждение номера телефона",
+  "input_code_from_sms" : "Введите код из SMS",
+  "accept_phone_number" : "Подтверждение номера телефона",
+  "phone_code_invalid" : "Неверный код подтверждения",
+  "service_the_best_offers" : "Сервис лучших условий",
+  "accept" : "Подтвердить",
+  "type_name" : "Введите имя",
+  "name" : "Имя",
+  "last_name" : "Фамилия",
+  "birhday" : "Дата рождения",
+  "sex": "Пол",
+  "man" : "Мужской",
+  "women" : "Женский",
+  "save" : "Сохранить"
+
+
 
 
 }

@@ -1,5 +1,7 @@
+import 'package:clutch/domain/network/model/profile_dto.dart';
 import 'package:clutch/domain/network/model/request/phone_init_request.dart';
 import 'package:clutch/domain/network/model/request/phone_sms_confirm_request.dart';
+import 'package:clutch/domain/network/model/response/auth_response.dart';
 import 'package:clutch/domain/network/service/api_auth_service.dart';
 
 class MockAuthServiceImpl extends ApiAuthService {
@@ -10,8 +12,20 @@ class MockAuthServiceImpl extends ApiAuthService {
   }
 
   @override
-  Future<bool> confirmPhone(PhoneSmsConfirmRequest phoneSmsConfirmRequest) {
+  Future<AuthResponse> confirmPhone(PhoneSmsConfirmRequest phoneSmsConfirmRequest) {
     // TODO: implement confirmPhone
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ProfileDto> fetchProfile() {
+    // TODO: implement fetchProfile
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ProfileDto> changeProfile(ProfileDto profileDto) {
+    // TODO: implement changeProfile
     throw UnimplementedError();
   }
 }

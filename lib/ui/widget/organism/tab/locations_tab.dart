@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:clutch/helpers/geo_helper.dart';
 import 'package:clutch/presentation/model/place_model_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -8,8 +9,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LocationsTab extends StatefulWidget {
   List<PlaceModelUi> places;
+  LatLng camera;
 
-  LocationsTab(this.places);
+  LocationsTab(this.places, this.camera);
 
   @override
   _LocationsTabState createState() => _LocationsTabState();
@@ -17,9 +19,8 @@ class LocationsTab extends StatefulWidget {
 
 class _LocationsTabState extends State<LocationsTab> {
   final Set<Marker> markers = {};
-  LatLng _initialPosition;
   final Completer<GoogleMapController> _controller = Completer();
-
+  final double MAP_ZOOM = 12.0;
 
   @override
   void initState() {
@@ -30,21 +31,21 @@ class _LocationsTabState extends State<LocationsTab> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      Stack(
+  Widget build(BuildContext context) => Stack(
         children: <Widget>[
           GoogleMap(
               mapType: MapType.normal,
               zoomControlsEnabled: false,
               rotateGesturesEnabled: false,
               onMapCreated: _controller.complete,
+              myLocationButtonEnabled: true,
               markers: markers,
               initialCameraPosition: CameraPosition(
-                  target: _initialPosition ?? LatLng(46.9, 32.0), zoom: 14.0),
+                  target: widget.camera ?? LatLng(46.9, 32.0), zoom: MAP_ZOOM),
               gestureRecognizers: Set()
                 ..add(
                   Factory<OneSequenceGestureRecognizer>(
-                        () => EagerGestureRecognizer(),
+                    () => EagerGestureRecognizer(),
                   ),
                 )),
           DraggableScrollableActuator(
@@ -57,8 +58,7 @@ class _LocationsTabState extends State<LocationsTab> {
         ],
       );
 
-  Widget _bottomPanel(context, ScrollController scrollController) =>
-      Container(
+  Widget _bottomPanel(context, ScrollController scrollController) => Container(
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -83,7 +83,7 @@ class _LocationsTabState extends State<LocationsTab> {
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.12),
                       borderRadius:
-                      BorderRadius.all(Radius.elliptical(40.0, 30.0)),
+                          BorderRadius.all(Radius.elliptical(40.0, 30.0)),
                     ),
                   ),
                 ),
@@ -99,8 +99,7 @@ class _LocationsTabState extends State<LocationsTab> {
               ),
               ListView.separated(
                   physics: NeverScrollableScrollPhysics(),
-                  separatorBuilder: (context, index) =>
-                      Divider(
+                  separatorBuilder: (context, index) => Divider(
                         indent: 85.0,
                         color: Colors.black.withOpacity(0.35),
                       ),
@@ -114,12 +113,16 @@ class _LocationsTabState extends State<LocationsTab> {
                       child: InkWell(
                         child: ListTile(
                           leading: Container(
-                            child: place.imageUrl?.isNotEmpty ?? false
+                            child: place.imageUrl.isNotEmpty
                                 ? CircleAvatar(
-                              backgroundImage:
-                              NetworkImage(place.imageUrl),
-                            )
-                                : Container(),
+                                    backgroundImage:
+                                        NetworkImage(place.imageUrl),
+                                  )
+                                : Container(
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Theme.of(context).primaryColor),
+                                  ),
                             width: 60,
                             height: 60,
                           ),
