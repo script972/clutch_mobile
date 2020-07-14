@@ -53,8 +53,8 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                         }
                       })
                     : SizedBox(),
-                Divider(),
-                WorkSchedule(),
+               /* Divider(),
+                WorkSchedule(),*/
                 /* Divider(),*/
                 /* Padding(
                   padding: const EdgeInsets.all(15.0),

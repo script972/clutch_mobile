@@ -18,8 +18,7 @@ class ProfileLoaded extends ProfileState {
   final String name;
   final String lastName;
   final int birthday;
-  final bool sexMale;
-  final bool sexFemale;
+  final String sex;
 
   const ProfileLoaded(
       {this.photo,
@@ -27,18 +26,22 @@ class ProfileLoaded extends ProfileState {
       this.name,
       this.lastName,
       this.birthday,
-      this.sexMale,
-      this.sexFemale});
+      this.sex});
 
-  ProfileLoaded copyWith({String photo, bool photoExternal, String name, String lastName}) {
+  ProfileLoaded copyWith(
+      {String photo,
+      bool photoExternal,
+      String name,
+      String lastName,
+      String sex,
+      int birthday}) {
     return ProfileLoaded(
-      photo: photo ?? this.photo,
-      photoExternal: photoExternal ?? this.photoExternal,
-      name: name ?? this.name,
-      lastName: lastName ?? this.lastName,
-      sexMale: sexMale ?? this.sexMale,
-      sexFemale: sexFemale ?? this.sexFemale,
-    );
+        photo: photo ?? this.photo,
+        photoExternal: photoExternal ?? this.photoExternal,
+        name: name ?? this.name,
+        lastName: lastName ?? this.lastName,
+        sex: sex ?? this.sex,
+        birthday: birthday ?? this.birthday);
   }
 
   @override

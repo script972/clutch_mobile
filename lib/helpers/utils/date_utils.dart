@@ -13,7 +13,7 @@ class DateUtils {
 
   static String timestampToString(int timestamp) {
     if (timestamp == null) return null;
-    var date = DateTime.fromMillisecondsSinceEpoch(timestamp);
+    var date = DateTime.fromMillisecondsSinceEpoch(timestamp*1000);
     return DateFormat.yMMMd().format(date); // Apr 8, 2020
   }
 

@@ -42,7 +42,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
               },
             )),
         title: appBarTitle,
-        bottom: TabBar(
+      /*  bottom: TabBar(
           unselectedLabelColor: Colors.white.withOpacity(0.56),
           tabs: [Tab(text: translate(Keys.Offers)), Tab(text: translate(Keys.Companies))],
           indicatorColor: Colors.red,
@@ -51,7 +51,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
               borderSide: BorderSide(width: 3.0, color: Colors.white),
               insets: EdgeInsets.symmetric(horizontal: 12.0)),
           controller: widget.tabController,
-        ),
+        ),*/
         actions: <Widget>[
           /*IconButton(
             icon: Icon(Icons.search),
@@ -76,7 +76,8 @@ class _SearchAppBarState extends State<SearchAppBar> {
               });
             },
           ),*/
-          BarcodeCustom("333")
+         /* BarcodeCustom("333")*/
+          SizedBox()
         ],
       );
 }

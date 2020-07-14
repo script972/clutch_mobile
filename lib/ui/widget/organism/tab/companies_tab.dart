@@ -26,7 +26,7 @@ class CompaniesTab extends StatelessWidget {
             padding: EdgeInsets.only(top: 0, left: 8.0, right: 8.0),
             child: GridView.count(
               crossAxisCount: 2,
-              childAspectRatio: 3 / 2,
+              childAspectRatio: 2.3 / 2,
               children: state.company
                   .map((CompanyShortMobile item) => CompanyItem(item))
                   .toList(),

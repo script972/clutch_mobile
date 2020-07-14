@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:clutch/helpers/utils/date_utils.dart';
 import 'package:clutch/presentation/bloc/profile_bloc.dart';
 import 'package:clutch/presentation/event/profile_event.dart';
 import 'package:clutch/presentation/state/profile_state.dart';
@@ -25,6 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController _firstNameController;
   TextEditingController _lastNameController;
   TextEditingController _birthdayController;
+
 
   @override
   Widget build(BuildContext context) => BaseScreen(
@@ -53,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 _birthdayController =
                     TextEditingController.fromValue(TextEditingValue(
-                  text: /* DateUtils.timestampToString(state.birthday)*/ "",
+                  text:  DateUtils.timestampToString(state.birthday),
                 ));
 
                 return bodyContent(state);
@@ -147,7 +149,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 12.0),
                                 child: DateTimeField(
-                                  initialValue: DateTime(1997),
                                   controller: _birthdayController,
                                   onChanged: (value) {
                                     /* setState(() => dateOfBirth =
@@ -190,11 +191,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     Row(
                                       children: <Widget>[
                                         Radio(
-                                          value: translate(Keys.Man),
+                                          value: "MALE",
                                           activeColor: Color(0xFFFF473D),
-                                          groupValue: true,
-                                          /* onChanged: (val) => setState(
-                                            () => gender = val),*/
+                                          groupValue: state.sex,
+                                          onChanged: (val) =>
+                                              setState(() => BlocProvider.of<ProfileBloc>(context)
+                                                  .add(ChangeSex(val))),
                                         ),
                                         Text(
                                           translate(Keys.Man),
@@ -208,11 +210,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       child: Row(
                                         children: <Widget>[
                                           Radio(
-                                            value: translate(Keys.Women),
+                                            value: "FEMALE",
                                             activeColor: Color(0xFFFF473D),
-                                            groupValue: false,
-                                            /*onChanged: (val) => setState(
-                                              () => gender = val),*/
+                                            groupValue: state.sex,
+                                            onChanged: (val) => setState(
+                                              () => BlocProvider.of<ProfileBloc>(context)
+                                                  .add(ChangeSex(val))),
                                           ),
                                           Text(translate(Keys.Women),
                                               style: TextStyle(fontSize: 16)),

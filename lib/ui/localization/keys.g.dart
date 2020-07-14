@@ -56,4 +56,6 @@ class Keys {
   static const String Women = 'women';
 
   static const String Save = 'save';
+
+  static const String Corporation = 'corporation';
 }
