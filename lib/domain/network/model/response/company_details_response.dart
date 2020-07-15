@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:clutch/domain/network/model/response/anchor_proposition_response.dart';
 import 'package:clutch/domain/network/model/response/categories_response.dart';
 import 'package:clutch/domain/network/model/response/offers_short_mobile_dto.dart';
 import 'package:clutch/domain/network/model/response/point_short_dto.dart';
@@ -18,6 +19,7 @@ class CompanyDetailsResponse {
   final List<OffersShortMobileDto> offersShortMobileDtoList;
   final List<PointShortDto> pointShortMobileDtoList;
   final CategoriesResponse categoryDto;
+  final AnchorPropositionResponse anchorPropositionResponse;
 
   CompanyDetailsResponse(
       {this.id,
@@ -32,7 +34,8 @@ class CompanyDetailsResponse {
       this.phone,
       this.offersShortMobileDtoList,
       this.pointShortMobileDtoList,
-      this.categoryDto});
+      this.categoryDto,
+      this.anchorPropositionResponse});
 
   factory CompanyDetailsResponse.fromJson(String str) =>
       CompanyDetailsResponse.fromMap(json.decode(str));
@@ -60,6 +63,10 @@ class CompanyDetailsResponse {
         pointShortMobileDtoList: List<PointShortDto>.from(
             json["pointShortMobileDtoList"]
                 .map((x) => PointShortDto.fromMap(x))),
+        anchorPropositionResponse: json["anchorPropositionResponse"] == null
+            ? null
+            : AnchorPropositionResponse.fromMap(
+                json["anchorPropositionResponse"]),
       );
 
   Map<String, dynamic> toMap() => {
@@ -78,5 +85,8 @@ class CompanyDetailsResponse {
             List<dynamic>.from(offersShortMobileDtoList.map((x) => x.toMap())),
         "pointShortMobileDtoList":
             List<dynamic>.from(pointShortMobileDtoList.map((x) => x.toMap())),
+        "anchorPropositionResponse": anchorPropositionResponse == null
+            ? null
+            : anchorPropositionResponse.toMap(),
       };
 }

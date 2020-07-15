@@ -12,6 +12,7 @@ class CompanyHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListTile(
+    leading:       Image.network(_company.categoriesResponse.icon),
       title: Text(
         _company.title,
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),

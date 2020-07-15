@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:clutch/domain/network/http_manager.dart';
 import 'package:clutch/domain/network/model/request/company_and_offers_search.dart';
 import 'package:clutch/domain/network/model/response/company_details_response.dart';
@@ -18,7 +16,6 @@ class HttpCompanyServiceImpl extends ApiCompanyService {
 
   @override
   Future<CompanyDetailsResponse> fetchDetailsCompany(int id) async {
-
     Response response = await HttpManager()
         .dio
         .get("/company/details-company-mobile/${id.toString()}");

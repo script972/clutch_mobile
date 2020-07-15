@@ -1,6 +1,5 @@
 import 'package:clutch/domain/mapper/offer_mapper.dart';
 import 'package:clutch/domain/mapper/point_mapper.dart';
-import 'package:clutch/domain/network/model/response/categories_response.dart';
 import 'package:clutch/helpers/color_helper.dart';
 import 'package:clutch/helpers/geo_helper.dart';
 import 'package:clutch/presentation/event/company_details_event.dart';
@@ -51,9 +50,11 @@ class CompanyDetailsBloc
               .toList(),
           companyResponse.offersShortMobileDtoList.map((e) {
             return OfferMapper.mapperShortResponseToUi(e);
-          }).toList());
+          }).toList(),
+          companyResponse.anchorPropositionResponse);
 
       LatLng camera = await GeoHelper.detectPositionLatLng();
+
       yield CompanyDetailsLoaded(ui, camera);
     } catch (error) {
       yield CompanyDetailsError(error);

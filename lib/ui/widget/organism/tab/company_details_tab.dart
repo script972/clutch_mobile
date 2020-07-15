@@ -1,12 +1,12 @@
+import 'package:clutch/domain/network/model/response/anchor_proposition_response.dart';
 import 'package:clutch/presentation/model/comment_model_ui.dart';
 import 'package:clutch/presentation/model/company_details_model_ui.dart';
+import 'package:clutch/ui/widget/atom/company_header.dart';
 import 'package:clutch/ui/widget/atom/icon_description_item.dart';
+import 'package:clutch/ui/widget/organism/about_widget.dart';
 import 'package:clutch/ui/widget/organism/item/review_slider.dart';
 import 'package:clutch/ui/widget/organism/item/review_widget.dart';
-import 'package:clutch/ui/widget/organism/work_shedule.dart';
 import 'package:flutter/material.dart';
-import 'package:clutch/ui/widget/organism/about_widget.dart';
-import 'package:clutch/ui/widget/atom/company_header.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CompanyDetailsTab extends StatefulWidget {
@@ -29,6 +29,7 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 CompanyHeader(widget.company),
+                showAnchorProposition(widget.company.anchorPropositionResponse),
                 Divider(),
                 AboutWidget("О компании", widget.company.description),
                 widget.company.phone.isNotEmpty
@@ -53,7 +54,7 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                         }
                       })
                     : SizedBox(),
-               /* Divider(),
+                /* Divider(),
                 WorkSchedule(),*/
                 /* Divider(),*/
                 /* Padding(
@@ -109,4 +110,39 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                 ),
               )
             ];
+
+  Widget showAnchorProposition(
+      AnchorPropositionResponse anchorPropositionResponse) {
+    if (anchorPropositionResponse == null) return SizedBox();
+    return Container(
+      margin: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+        color: Theme.of(context).accentColor,
+      ),
+      child: Column(
+        children: <Widget>[
+          RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+                style: TextStyle(color: Colors.red, fontSize: 36.0),
+                children: [
+                  TextSpan(
+                    text: "${anchorPropositionResponse.discount}",
+                  ),
+                  TextSpan(text: "${anchorPropositionResponse.units}"),
+                  TextSpan(text: " Скидки", style: TextStyle(fontSize: 22.0,)),
+                ]),
+          ),
+          (widget.company.anchorPropositionResponse.conditionDescription ==
+                      null ||
+                  widget.company.anchorPropositionResponse.conditionDescription
+                      .isEmpty)
+              ? SizedBox() :Text(
+                  "**${widget.company.anchorPropositionResponse.conditionDescription}"),
+        ],
+      ),
+    );
+  }
 }
