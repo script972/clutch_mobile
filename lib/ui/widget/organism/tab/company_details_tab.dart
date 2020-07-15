@@ -119,19 +119,19 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
       padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).primaryColor,
       ),
       child: Column(
         children: <Widget>[
           RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-                style: TextStyle(color: Colors.red, fontSize: 36.0),
+                style: TextStyle(color: Colors.white, fontSize: 36.0),
                 children: [
                   TextSpan(
                     text: "${anchorPropositionResponse.discount}",
                   ),
-                  TextSpan(text: "${anchorPropositionResponse.units}"),
+                  TextSpan(text: "${anchorPropositionResponse.units}",),
                   TextSpan(text: " Скидки", style: TextStyle(fontSize: 22.0,)),
                 ]),
           ),
