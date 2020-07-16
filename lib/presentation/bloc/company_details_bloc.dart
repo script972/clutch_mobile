@@ -51,7 +51,9 @@ class CompanyDetailsBloc
           companyResponse.offersShortMobileDtoList.map((e) {
             return OfferMapper.mapperShortResponseToUi(e);
           }).toList(),
-          companyResponse.anchorPropositionResponse);
+          companyResponse.anchorPropositionResponse,
+          companyResponse.facebookUrl,
+          companyResponse.instagramUrl);
 
       LatLng camera = await GeoHelper.detectPositionLatLng();
 

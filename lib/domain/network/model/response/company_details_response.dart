@@ -20,6 +20,8 @@ class CompanyDetailsResponse {
   final List<PointShortDto> pointShortMobileDtoList;
   final CategoriesResponse categoryDto;
   final AnchorPropositionResponse anchorPropositionResponse;
+  final String facebookUrl;
+  final String instagramUrl;
 
   CompanyDetailsResponse(
       {this.id,
@@ -35,7 +37,9 @@ class CompanyDetailsResponse {
       this.offersShortMobileDtoList,
       this.pointShortMobileDtoList,
       this.categoryDto,
-      this.anchorPropositionResponse});
+      this.anchorPropositionResponse,
+      this.facebookUrl,
+      this.instagramUrl});
 
   factory CompanyDetailsResponse.fromJson(String str) =>
       CompanyDetailsResponse.fromMap(json.decode(str));
@@ -44,30 +48,31 @@ class CompanyDetailsResponse {
 
   factory CompanyDetailsResponse.fromMap(Map<String, dynamic> json) =>
       CompanyDetailsResponse(
-        id: json["id"],
-        barcode: json["barcode"],
-        logo: json["logo"],
-        color: json["color"],
-        justOnline: json["justOnline"],
-        title: json["title"],
-        rang: json["rang"],
-        description: json["description"],
-        site: json["site"],
-        phone: json["phone"],
-        categoryDto: json["categories"] == null
-            ? null
-            : CategoriesResponse.fromMap(json["categories"]),
-        offersShortMobileDtoList: List<OffersShortMobileDto>.from(
-            json["offersShortMobileDtoList"]
-                .map((x) => OffersShortMobileDto.fromMap(x))),
-        pointShortMobileDtoList: List<PointShortDto>.from(
-            json["pointShortMobileDtoList"]
-                .map((x) => PointShortDto.fromMap(x))),
-        anchorPropositionResponse: json["anchorPropositionResponse"] == null
-            ? null
-            : AnchorPropositionResponse.fromMap(
-                json["anchorPropositionResponse"]),
-      );
+          id: json["id"],
+          barcode: json["barcode"],
+          logo: json["logo"],
+          color: json["color"],
+          justOnline: json["justOnline"],
+          title: json["title"],
+          rang: json["rang"],
+          description: json["description"],
+          site: json["site"],
+          phone: json["phone"],
+          categoryDto: json["categories"] == null
+              ? null
+              : CategoriesResponse.fromMap(json["categories"]),
+          offersShortMobileDtoList: List<OffersShortMobileDto>.from(
+              json["offersShortMobileDtoList"]
+                  .map((x) => OffersShortMobileDto.fromMap(x))),
+          pointShortMobileDtoList: List<PointShortDto>.from(
+              json["pointShortMobileDtoList"]
+                  .map((x) => PointShortDto.fromMap(x))),
+          anchorPropositionResponse: json["anchorPropositionResponse"] == null
+              ? null
+              : AnchorPropositionResponse.fromMap(
+                  json["anchorPropositionResponse"]),
+          facebookUrl: json["facebookUrl"],
+          instagramUrl: json["instagramUrl"]);
 
   Map<String, dynamic> toMap() => {
         "id": id,

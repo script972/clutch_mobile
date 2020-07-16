@@ -14,14 +14,17 @@ class CompanyDetailsModelUi {
   CategoriesResponse categoriesResponse;
   String description;
   String site;
+  String facebookUrl;
+  String instargamUrl;
   String phone;
+
 
   AnchorPropositionResponse anchorPropositionResponse;
   List<PlaceModelUi> places;
   List<ShortOfferModelUi> offers;
 
   CompanyDetailsModelUi(this.id, this.logoUrl, this.barcode, this.title, this.site, this.phone,
-      this.color, this.categoriesResponse, this.description, this.places, this.offers, this.anchorPropositionResponse);
+      this.color, this.categoriesResponse, this.description, this.places, this.offers, this.anchorPropositionResponse, this.facebookUrl, this.instargamUrl);
 
 
 }

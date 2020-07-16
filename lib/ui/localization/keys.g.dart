@@ -15,6 +15,8 @@ class Keys {
 
   static const String About = 'about';
 
+  static const String About_Company = 'about_company';
+
   static const String Details = 'details';
 
   static const String Collapse = 'collapse';
@@ -58,4 +60,8 @@ class Keys {
   static const String Save = 'save';
 
   static const String Corporation = 'corporation';
+
+  static const String Discount = 'discount';
+
+  static const String Web_Site = 'web_site';
 }

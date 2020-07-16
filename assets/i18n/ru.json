@@ -3,6 +3,7 @@
   "offers" : "Предложения",
   "companies": "Компании",
   "about" : "О",
+  "about_company" : "О компании",
   "details" : "Подробнее",
   "collapse" : "Свернуть",
   "locations" : "Локации",
@@ -24,9 +25,7 @@
   "man" : "Мужской",
   "women" : "Женский",
   "save" : "Сохранить",
-  "corporation" : "Корпоратив"
-
-
-
-
+  "corporation" : "Корпоратив",
+  "discount" : "Скидки",
+  "web_site" : "Вебсайт"
 }
