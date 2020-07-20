@@ -25,6 +25,7 @@ class MainLoaded extends MainState {
   List<Object> get props => [company];
 }
 
+
 class MainError extends MainState {
   final String error;
 

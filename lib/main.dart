@@ -18,9 +18,8 @@ Future<void> main() async {
   ]);
 
   await GeoHelper.requestGeoPermissionIfNeed();
-  bool isAuthorize = await SecurityManager.isAuthorize();
   if (!GetIt.I.isRegistered(instance:NavigationService())) {
     GetIt.I.registerLazySingleton(() => NavigationService());
   }
-  runApp(LocalizedApp(delegate, Application(isAuthorize)));
+  runApp(LocalizedApp(delegate, Application()));
 }

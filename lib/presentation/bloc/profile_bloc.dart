@@ -1,8 +1,8 @@
 import 'package:clutch/domain/network/model/profile_dto.dart';
 import 'package:clutch/presentation/event/profile_event.dart';
 import 'package:clutch/presentation/state/profile_state.dart';
-import 'package:clutch/repository/auth_repository.dart';
-import 'package:clutch/repository/impl/auth_repository_impl.dart';
+import 'package:clutch/domain/repository/auth_repository.dart';
+import 'package:clutch/domain/repository/impl/auth_repository_impl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -29,6 +29,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     }
     if (event is ChangeName) {
       profileChange = profileChange.copyWith(name: event.name);
+
     }
     if (event is ChangeLastName) {
       profileChange = profileChange.copyWith(lastName: event.lastName);
@@ -38,6 +39,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     }
     if (event is ChangeSex) {
       profileChange = profileChange.copyWith(sex: event.sex);
+      //profileLoaded = profileLoaded.copyWith(sex: event.sex);
+      yield profileLoaded.copyWith(sex: event.sex);
     }
     if (event is SaveProfile) {
       yield* _mapSaveToState(event);
@@ -46,7 +49,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   Stream<ProfileState> _mapLoadMainToState(LoadProfile event) async* {
     try {
-      ProfileDto profileDto = await authRepository.fetchProfile();
+      var profileDto = await authRepository.fetchProfile();
 
       profileLoaded = ProfileLoaded(
         photo: profileDto.facePhoto,
@@ -81,6 +84,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     yield profileChange.copyWith(
       photo: profileResult.facePhoto,
       photoExternal: true,
+      sex: profileResult.sex,
     );
   }
 }

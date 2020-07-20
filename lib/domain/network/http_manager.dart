@@ -39,7 +39,6 @@ class HttpManager {
   Dio get dioAuth {
     Dio dio = Dio();
     Alice alice = Alice(showNotification: true);
-    dio.interceptors.add(alice.getDioInterceptor());
     dio.options.baseUrl = ApiClient.BASE_URL + "/auth";
     dio.options.connectTimeout = 20000;
     dio.options.receiveTimeout = 20000;
@@ -61,8 +60,6 @@ class HttpManager {
 
   Dio get dio {
     Dio dio = Dio();
-    Alice alice = Alice(showNotification: true);
-    dio.interceptors.add(alice.getDioInterceptor());
     dio.options.baseUrl = ApiClient.BASE_URL + "/api";
     dio.options.connectTimeout = 20000;
     dio.options.receiveTimeout = 20000;
@@ -77,7 +74,6 @@ class HttpManager {
       return options;
     }, onError: (dioError) {
       if (dioError.response.statusCode == 401) {
-        // <NavigationService>().navigateTo('login');
         GetIt.instance<NavigationService>()
             .navigateTo(CustomRoute.SIGNIN_PHONE_SCREEN);
       }

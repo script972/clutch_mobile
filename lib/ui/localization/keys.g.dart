@@ -64,4 +64,6 @@ class Keys {
   static const String Discount = 'discount';
 
   static const String Web_Site = 'web_site';
+
+  static const String Code_For_Activate_Account = 'code_for_activate_account';
 }

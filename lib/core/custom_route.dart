@@ -1,15 +1,20 @@
-import 'package:clutch/ui/screen/offer_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:clutch/ui/screen/auth/signin_phone_screen.dart';
 import 'package:clutch/ui/screen/auth/signup_sms_code_screen.dart';
 import 'package:clutch/ui/screen/company_screen.dart';
+import 'package:clutch/ui/screen/invite_code_screen.dart';
 import 'package:clutch/ui/screen/main_screen.dart';
+import 'package:clutch/ui/screen/offer_screen.dart';
 import 'package:clutch/ui/screen/profile_screen.dart';
 import 'package:clutch/ui/screen/settings_screen.dart';
+import 'package:clutch/ui/screen/splash_screen.dart';
+import 'package:flutter/material.dart';
 
 class CustomRoute {
-  static const String MAIN_SCREEN = '/';
+  static const String SPLASH_SCREEN = '/';
+  static const String MAIN_SCREEN = '/main';
   static const String SIGNIN_PHONE_SCREEN = '/signin';
+  static const String INVITE_CODE_SCREEN = '/invite_code';
+
   static const String SIGNUP_SCREEN = '/signup';
   static const String PROFILE = '/profile';
   static const String SETTINGS = '/settings';
@@ -40,6 +45,12 @@ class CustomRoute {
         break;
       case DETAILS_OFFER:
         screen = OfferScreen();
+        break;
+      case SPLASH_SCREEN:
+        screen = SplashScreen();
+        break;
+      case INVITE_CODE_SCREEN:
+        screen = InviteCodeScreen();
         break;
     }
 

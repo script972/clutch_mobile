@@ -6,8 +6,8 @@ import 'package:clutch/helpers/utils/date_utils.dart';
 import 'package:clutch/presentation/event/main_event.dart';
 import 'package:clutch/presentation/model/short_offer_model_ui.dart';
 import 'package:clutch/presentation/state/main_state.dart';
-import 'package:clutch/repository/company_repository.dart';
-import 'package:clutch/repository/impl/company_repository_impl.dart';
+import 'package:clutch/domain/repository/company_repository.dart';
+import 'package:clutch/domain/repository/impl/company_repository_impl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:geolocator/geolocator.dart';
@@ -36,7 +36,9 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       var body = CompanyAndOffersSearch();
       body.lat = position.latitude;
       body.lng = position.longitude;
-      MainInfo companyList = await companyRepository.fetchAllCompany(body);
+      MainInfo companyList;
+      companyList = await companyRepository.fetchAllCompany(body);
+
       List<ShortOfferModelUi> shortOfferModelUi = [];
       for (int i = 0; i < companyList.offersShortMobileDtoList.length; i++) {
         String subTitle = "";
@@ -55,8 +57,8 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         offer.staggeredTile = widthType;
         shortOfferModelUi.add(offer);
       }
-      yield MainLoaded(
-          companyList.companyShortMobileDtoList, shortOfferModelUi, companyList.categoriesDtoList);
+        yield MainLoaded(
+            companyList.companyShortMobileDtoList, shortOfferModelUi, companyList.categoriesDtoList);
     } catch (error) {
       yield MainError(error.toString());
     }

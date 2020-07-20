@@ -4,7 +4,7 @@ import 'package:clutch/domain/network/service/api_offer_service.dart';
 import 'package:clutch/domain/network/service/http/http_offer_service_impl.dart';
 import 'package:clutch/helpers/utils/date_utils.dart';
 import 'package:clutch/presentation/model/offer_details_model_ui.dart';
-import 'package:clutch/repository/offer_repository.dart';
+import 'package:clutch/domain/repository/offer_repository.dart';
 import 'package:flutter/material.dart';
 
 class OfferRepositoryImpl extends OfferRepository {

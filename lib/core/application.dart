@@ -18,9 +18,7 @@ import 'package:get_it/get_it.dart';
 class Application extends StatelessWidget {
   FirebaseAnalytics analytics = FirebaseAnalytics();
 
-  bool _isAuthorize;
-
-  Application(this._isAuthorize);
+  Application();
 
   @override
   Widget build(BuildContext context) {
@@ -36,21 +34,19 @@ class Application extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider<MainBloc>(
-            create: (context) => MainBloc() /*..add(LoadMain())*/,
+            create: (context) => MainBloc(),
           ),
           BlocProvider<ProfileBloc>(
-            create: (context) => ProfileBloc() /*..add(LoadProfile())*/,
+            create: (context) => ProfileBloc(),
           ),
           BlocProvider<CompanyDetailsBloc>(
-            create: (context) =>
-                CompanyDetailsBloc() /*..add(LoadCompanyDetails(1))*/,
+            create: (context) => CompanyDetailsBloc(),
           ),
           BlocProvider<OfferDetailsBloc>(
-            create: (context) =>
-                OfferDetailsBloc() /*..add(LoadOfferDetails(1))*/,
+            create: (context) => OfferDetailsBloc(),
           ),
           BlocProvider<AuthBloc>(
-            create: (context) => AuthBloc() /*..add(LoadOfferDetails(1))*/,
+            create: (context) => AuthBloc(),
           ),
         ],
         child: MaterialApp(
@@ -69,9 +65,8 @@ class Application extends StatelessWidget {
           navigatorObservers: [
             FirebaseAnalyticsObserver(analytics: analytics),
           ],
-          initialRoute: _isAuthorize
-              ? CustomRoute.MAIN_SCREEN
-              : CustomRoute.SIGNIN_PHONE_SCREEN,
+          initialRoute: CustomRoute.SPLASH_SCREEN
+          ,
         ),
       ),
     );

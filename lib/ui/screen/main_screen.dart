@@ -5,6 +5,7 @@ import 'package:clutch/presentation/model/short_offer_model_ui.dart';
 import 'package:clutch/presentation/state/main_state.dart';
 import 'package:clutch/ui/localization/keys.dart';
 import 'package:clutch/ui/screen/base_screen.dart';
+import 'package:clutch/ui/widget/atom/bloc_error_indicator.dart';
 import 'package:clutch/ui/widget/atom/loader_indicator.dart';
 import 'package:clutch/ui/widget/organism/categories_drawer.dart';
 import 'package:clutch/ui/widget/organism/main_drawer.dart';
@@ -43,7 +44,10 @@ class _MainScreenState extends State<MainScreen>
           drawer: MainDrawer(),
           endDrawer: CategoriesDrawer(),
           backgroundColor: Colors.white,
-          bottomNavigationBar: bottomMenu(),
+          bottomNavigationBar:
+              BlocBuilder<MainBloc, MainState>(builder: (context, state) {
+            return state is MainLoaded ? bottomMenu() : SizedBox();
+          }),
           body: SafeArea(
             child: BlocBuilder<MainBloc, MainState>(builder: (context, state) {
               List<ShortOfferModelUi> offer = [];
@@ -64,36 +68,40 @@ class _MainScreenState extends State<MainScreen>
                 return Stack(
                   children: <Widget>[
                     listBody[itemIndex],
-                    itemIndex !=2 ?
-                    Align(
-                        alignment: Alignment.centerRight,
-                        child: GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).primaryColor,
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10.0),
-                                      bottomLeft: Radius.circular(10.0)),
-                                  border: Border.all(
-                                    width: 0,
-                                  ),
-                                ),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    _scaffoldKey.currentState.openEndDrawer();
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset(
-                                      "assets/images/ic_filter.png",
-                                      color: Colors.white,
+                    itemIndex != 2
+                        ? Align(
+                            alignment: Alignment.centerRight,
+                            child: GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).primaryColor,
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(10.0),
+                                          bottomLeft: Radius.circular(10.0)),
+                                      border: Border.all(
+                                        width: 0,
+                                      ),
                                     ),
-                                  ),
-                                )))) : SizedBox()
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        _scaffoldKey.currentState
+                                            .openEndDrawer();
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Image.asset(
+                                          "assets/images/ic_filter.png",
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ))))
+                        : SizedBox()
                   ],
                 );
               }
+
+              return BlocErrorIndicator("Something wrong");
             }),
           )),
     );
@@ -110,18 +118,26 @@ class _MainScreenState extends State<MainScreen>
           },
           items: [
             BottomNavigationBarItem(
-              icon: Image.asset("assets/images/ic_company.png"),
+              icon: Image.asset(
+                "assets/images/ic_company.png",
+                color: Colors.green,
+              ),
               title: Text(translate(Keys.Corporation)),
             ),
             BottomNavigationBarItem(
               icon: Image.asset(
                 "assets/images/ic_offer.png",
                 width: 24.0,
+                color: Colors.green,
               ),
               title: Text(translate(Keys.Offers)),
             ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.person), title: Text(translate(Keys.Profile)))
+                icon: Icon(
+                  Icons.person,
+                  color: Colors.green,
+                ),
+                title: Text(translate(Keys.Profile)))
           ],
         );
       });

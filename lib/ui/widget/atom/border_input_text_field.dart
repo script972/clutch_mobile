@@ -21,6 +21,7 @@ class BorderedInputTextField extends StatefulWidget {
   final TextCapitalization textCapitalization;
   final bool autofocus;
   final TextAlign textAlign;
+  final String prefixText;
 
   final Key key;
 
@@ -44,7 +45,8 @@ class BorderedInputTextField extends StatefulWidget {
         this.textAlign = TextAlign.left,
       this.textCapitalization = TextCapitalization.none,
       this.isDeletableField = false,
-      this.deleteButtonPressed});
+      this.deleteButtonPressed,
+      this.prefixText});
 }
 
 class _BorderedInputTextFieldState extends State<BorderedInputTextField> {
@@ -70,7 +72,7 @@ class _BorderedInputTextFieldState extends State<BorderedInputTextField> {
           focusNode: widget.node,
           onChanged: (val) => widget.changeCallback(val),
           decoration: InputDecoration(
-              prefixText: "+380",
+              prefixText: widget.prefixText,
               labelStyle: TextStyle(
                   color: getTextFieldColor(widget.node.hasFocus, widget.error)),
               labelText: widget.labelText,

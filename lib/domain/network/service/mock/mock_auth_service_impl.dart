@@ -2,6 +2,7 @@ import 'package:clutch/domain/network/model/profile_dto.dart';
 import 'package:clutch/domain/network/model/request/phone_init_request.dart';
 import 'package:clutch/domain/network/model/request/phone_sms_confirm_request.dart';
 import 'package:clutch/domain/network/model/response/auth_response.dart';
+import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
 import 'package:clutch/domain/network/service/api_auth_service.dart';
 
 class MockAuthServiceImpl extends ApiAuthService {
@@ -26,6 +27,12 @@ class MockAuthServiceImpl extends ApiAuthService {
   @override
   Future<ProfileDto> changeProfile(ProfileDto profileDto) {
     // TODO: implement changeProfile
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<CompanyShortMobile>> checkPaidAccess() {
+    // TODO: implement checkPaidAccess
     throw UnimplementedError();
   }
 }
