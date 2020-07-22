@@ -18,6 +18,8 @@ import 'package:get_it/get_it.dart';
 class Application extends StatelessWidget {
   FirebaseAnalytics analytics = FirebaseAnalytics();
 
+  String screen;
+
   Application();
 
   @override
@@ -65,8 +67,7 @@ class Application extends StatelessWidget {
           navigatorObservers: [
             FirebaseAnalyticsObserver(analytics: analytics),
           ],
-          initialRoute: CustomRoute.SPLASH_SCREEN
-          ,
+          initialRoute: CustomRoute.SPLASH_SCREEN,
         ),
       ),
     );

@@ -5,6 +5,7 @@ import 'package:clutch/domain/network/model/request/phone_init_request.dart';
 import 'package:clutch/domain/network/model/request/phone_sms_confirm_request.dart';
 import 'package:clutch/domain/network/model/response/auth_response.dart';
 import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/domain/network/model/response/company_with_paid_access.dart';
 import 'package:clutch/domain/network/service/api_auth_service.dart';
 import 'package:clutch/domain/network/service/api_media_service.dart';
 import 'package:clutch/domain/network/service_connector_factory.dart';
@@ -49,7 +50,12 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<List<CompanyShortMobile>> isPaidAccess() {
-    return apiService.checkPaidAccess();
+  Future<List<CompanyWithPaidAccess>> fetchPaidAccessDetails() {
+    return apiService.fetchPaidAccessDetails();
+  }
+
+  @override
+  Future<bool> requestPaidAccessByCode(String inviteCode) {
+    return apiService.requestPaidAcessByCode(inviteCode);
   }
 }

@@ -1,9 +1,10 @@
+import 'package:clutch/core/custom_route.dart';
+import 'package:clutch/domain/repository/auth_repository.dart';
+import 'package:clutch/domain/repository/impl/auth_repository_impl.dart';
 import 'package:clutch/helpers/security_manager.dart';
 import 'package:clutch/presentation/event/auth_event.dart';
 import 'package:clutch/presentation/model/auth_dto.dart';
 import 'package:clutch/presentation/state/auth_state.dart';
-import 'package:clutch/domain/repository/auth_repository.dart';
-import 'package:clutch/domain/repository/impl/auth_repository_impl.dart';
 import 'package:clutch/ui/localization/keys.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,9 +50,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       String token = await _firebaseMessaging.getToken();
       AuthDto authDto =
           await authRepository.confirmPhone(event.phone, event.code, token);
-      yield SecurityManager.proccessNewSecuriryToken(authDto)
-          ? PhoneAndCodeValid()
-          : AuthLoaded(event.phone, translate(Keys.Phone_Code_Invalid));
+      if (SecurityManager.proccessNewSecuriryToken(authDto)) {
+        bool paidAcces = await SecurityManager.checkPaidAccess();
+        yield paidAcces
+            ? PhoneAndCodeValidNextScreen(CustomRoute.MAIN_SCREEN)
+            : PhoneAndCodeValidNextScreen(CustomRoute.INVITE_CODE_SCREEN);
+      } else {
+        yield AuthLoaded(event.phone, translate(Keys.Phone_Code_Invalid));
+      }
     } catch (error) {
       yield AuthLoaded(event.phone, translate(Keys.Phone_Code_Invalid));
     }

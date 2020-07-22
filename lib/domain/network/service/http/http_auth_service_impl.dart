@@ -5,10 +5,9 @@ import 'package:clutch/domain/network/model/profile_dto.dart';
 import 'package:clutch/domain/network/model/request/phone_init_request.dart';
 import 'package:clutch/domain/network/model/request/phone_sms_confirm_request.dart';
 import 'package:clutch/domain/network/model/response/auth_response.dart';
-import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/domain/network/model/response/company_with_paid_access.dart';
 import 'package:clutch/domain/network/service/api_auth_service.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 
 class HttpAuthServiceImpl extends ApiAuthService {
   @override
@@ -39,21 +38,27 @@ class HttpAuthServiceImpl extends ApiAuthService {
   }
 
   @override
-  Future<List<CompanyShortMobile>> checkPaidAccess() async {
-    debugPrint("<DATA<<<<");
+  Future<List<CompanyWithPaidAccess>> fetchPaidAccessDetails() async {
     try {
       Response response =
-          await HttpManager().dio.get("/company/check-paid-access");
+          await HttpManager().dio.get("/company/details-paid-access");
       if (response.statusCode == 400) {
         return [];
       }
-      debugPrint("<DATA<<<<${response.data}");
       final parsed = json.decode(response.data).cast<Map<String, dynamic>>();
       return parsed
-          .map<CompanyShortMobile>((json) => CompanyShortMobile.fromJson(json))
+          .map<CompanyWithPaidAccess>(
+              (json) => CompanyWithPaidAccess.fromJson(json))
           .toList();
     } catch (e) {
       return [];
     }
+  }
+
+  @override
+  Future<bool> requestPaidAcessByCode(String inviteCode) async {
+    Response response =
+        await HttpManager().dio.get("/become-paid-access/{${inviteCode}");
+    return response.statusCode == 200;
   }
 }

@@ -3,6 +3,7 @@ import 'package:clutch/domain/network/model/request/phone_init_request.dart';
 import 'package:clutch/domain/network/model/request/phone_sms_confirm_request.dart';
 import 'package:clutch/domain/network/model/response/auth_response.dart';
 import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/domain/network/model/response/company_with_paid_access.dart';
 import 'package:clutch/domain/network/service/api_auth_service.dart';
 
 class MockAuthServiceImpl extends ApiAuthService {
@@ -31,8 +32,14 @@ class MockAuthServiceImpl extends ApiAuthService {
   }
 
   @override
-  Future<List<CompanyShortMobile>> checkPaidAccess() {
+  Future<List<CompanyWithPaidAccess>> fetchPaidAccessDetails() {
     // TODO: implement checkPaidAccess
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> requestPaidAcessByCode(String inviteCode) {
+    // TODO: implement requestPaidAcessByCode
     throw UnimplementedError();
   }
 }

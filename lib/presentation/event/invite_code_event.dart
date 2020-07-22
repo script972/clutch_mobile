@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 
 abstract class InviteCodeEvent extends Equatable {
@@ -6,7 +5,6 @@ abstract class InviteCodeEvent extends Equatable {
 }
 
 class SendInviteCode extends InviteCodeEvent {
-
   String inviteCode;
 
   SendInviteCode(this.inviteCode);
@@ -14,5 +12,3 @@ class SendInviteCode extends InviteCodeEvent {
   @override
   List<Object> get props => [inviteCode];
 }
-
-
