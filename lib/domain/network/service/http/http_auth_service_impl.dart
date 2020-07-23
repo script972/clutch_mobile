@@ -62,7 +62,7 @@ class HttpAuthServiceImpl extends ApiAuthService {
 
   @override
   Future<bool> requestEmail(String email) async {
-    var response = await HttpManager().dio.get("/request-access-via-email");
+    var response = await HttpManager().dio.get("/user/request-access-via-email");
     if (response.statusCode == 200) return true;
     if (response.statusCode == 404) {
       throw HttpExceptions(Keys.Email_Doest_Not_Support);
@@ -75,7 +75,7 @@ class HttpAuthServiceImpl extends ApiAuthService {
   @override
   Future<bool> requestEmailCodeVerified(String emailCode) async {
     var response =
-        await HttpManager().dio.get("/request-access-verify-code-email");
+        await HttpManager().dio.get("/user/request-access-verify-code-email");
     if (response.statusCode == 200) return true;
     /*if (response.statusCode == 404) {
       throw HttpExceptions(Keys.Email_Doest_Not_Support);
