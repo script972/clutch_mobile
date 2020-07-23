@@ -3,10 +3,8 @@ import 'package:clutch/domain/network/model/profile_dto.dart';
 import 'package:clutch/domain/network/model/request/phone_init_request.dart';
 import 'package:clutch/domain/network/model/request/phone_sms_confirm_request.dart';
 import 'package:clutch/domain/network/model/response/auth_response.dart';
-import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
 import 'package:clutch/domain/network/model/response/company_with_paid_access.dart';
 import 'package:clutch/domain/network/service/base_api_serivce.dart';
-import 'package:dio/dio.dart';
 
 abstract class ApiAuthService extends BaseApiService {
 
@@ -21,5 +19,9 @@ abstract class ApiAuthService extends BaseApiService {
   Future<List<CompanyWithPaidAccess>> fetchPaidAccessDetails();
 
   Future<bool> requestPaidAcessByCode(String inviteCode);
+
+  Future<bool> requestEmail(String email);
+
+  Future<bool> requestEmailCodeVerified(String emailCode);
 
 }

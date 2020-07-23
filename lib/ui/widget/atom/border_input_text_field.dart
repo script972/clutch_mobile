@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class BorderedInputTextField extends StatefulWidget {
-
   @override
   _BorderedInputTextFieldState createState() => _BorderedInputTextFieldState();
 
@@ -22,6 +21,7 @@ class BorderedInputTextField extends StatefulWidget {
   final bool autofocus;
   final TextAlign textAlign;
   final String prefixText;
+  final String hint;
 
   final Key key;
 
@@ -42,50 +42,53 @@ class BorderedInputTextField extends StatefulWidget {
       this.action = TextInputAction.done,
       this.inputFormatter = const [],
       this.error = "",
-        this.textAlign = TextAlign.left,
+      this.textAlign = TextAlign.left,
       this.textCapitalization = TextCapitalization.none,
       this.isDeletableField = false,
       this.deleteButtonPressed,
-      this.prefixText});
+      this.prefixText,
+      this.hint});
 }
 
 class _BorderedInputTextFieldState extends State<BorderedInputTextField> {
   @override
   Widget build(BuildContext context) => Padding(
-      key: widget.key,
-      padding: widget.padding,
-      child: Container(
-        decoration: BoxDecoration(
+        key: widget.key,
+        padding: widget.padding,
+        child: Container(
+          decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: new BorderRadius.all(Radius.circular(8.0)),
+          ),
+          child: TextFormField(
+            autofocus: widget.autofocus,
+            textCapitalization: widget.textCapitalization,
+            inputFormatters: widget.inputFormatter,
+            textInputAction: widget.action,
+            onFieldSubmitted: widget.onFieldSubmitted,
+            controller: widget.controller,
+            textAlign: widget.textAlign,
+            obscureText: widget.obscure,
+            keyboardType: widget.textInputType,
+            focusNode: widget.node,
+            onChanged: (val) => widget.changeCallback(val),
+            decoration: InputDecoration(
+                prefixText: widget.prefixText,
+                hintText: widget.hint,
+                labelStyle: TextStyle(
+                    color:
+                        getTextFieldColor(widget.node.hasFocus, widget.error)),
+                labelText: widget.labelText,
+                filled: false,
+                enabledBorder: _border(
+                    getTextFieldColor(widget.node.hasFocus, widget.error),
+                    widget.error),
+                focusedBorder: _border(
+                    getTextFieldColor(widget.node.hasFocus, widget.error),
+                    widget.error)),
+          ),
         ),
-        child: TextFormField(
-          autofocus: widget.autofocus,
-          textCapitalization: widget.textCapitalization,
-          inputFormatters: widget.inputFormatter,
-          textInputAction: widget.action,
-          onFieldSubmitted: widget.onFieldSubmitted,
-          controller: widget.controller,
-          textAlign: widget.textAlign,
-          obscureText: widget.obscure,
-          keyboardType: widget.textInputType,
-          focusNode: widget.node,
-          onChanged: (val) => widget.changeCallback(val),
-          decoration: InputDecoration(
-              prefixText: widget.prefixText,
-              labelStyle: TextStyle(
-                  color: getTextFieldColor(widget.node.hasFocus, widget.error)),
-              labelText: widget.labelText,
-              filled: false,
-              enabledBorder: _border(
-                  getTextFieldColor(widget.node.hasFocus, widget.error),
-                  widget.error),
-              focusedBorder: _border(
-                  getTextFieldColor(widget.node.hasFocus, widget.error),
-                  widget.error)),
-        ),
-      ),
-    );
+      );
 
   @override
   void initState() {

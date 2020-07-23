@@ -1,4 +1,5 @@
 import 'package:clutch/core/custom_route.dart';
+import 'package:clutch/domain/model/lunch_security_checker_dto.dart';
 import 'package:clutch/domain/repository/auth_repository.dart';
 import 'package:clutch/domain/repository/impl/auth_repository_impl.dart';
 import 'package:clutch/helpers/security_manager.dart';
@@ -20,9 +21,10 @@ class _SplashScreenState extends State<SplashScreen> {
       if (!isAuthorize) {
         screen = CustomRoute.SIGNIN_PHONE_SCREEN;
       } else {
-        bool paidAcces = await SecurityManager.checkPaidAccess();
-        if (!paidAcces) {
-          screen = CustomRoute.INVITE_CODE_SCREEN;
+        LunchSecurityCheckerDto paidAcces =
+            await SecurityManager.checkPaidAccess();
+        if (!paidAcces.hasAccess) {
+          screen = paidAcces.screen;
         }
       }
       Navigator.pushNamedAndRemoveUntil(context, screen, (route) => false);

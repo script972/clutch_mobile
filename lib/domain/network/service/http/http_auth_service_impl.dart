@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'package:clutch/domain/model/exception/http_exceptions.dart';
 import 'package:clutch/domain/network/http_manager.dart';
 import 'package:clutch/domain/network/model/profile_dto.dart';
 import 'package:clutch/domain/network/model/request/phone_init_request.dart';
@@ -7,6 +6,7 @@ import 'package:clutch/domain/network/model/request/phone_sms_confirm_request.da
 import 'package:clutch/domain/network/model/response/auth_response.dart';
 import 'package:clutch/domain/network/model/response/company_with_paid_access.dart';
 import 'package:clutch/domain/network/service/api_auth_service.dart';
+import 'package:clutch/ui/localization/keys.dart';
 import 'package:dio/dio.dart';
 
 class HttpAuthServiceImpl extends ApiAuthService {
@@ -45,10 +45,8 @@ class HttpAuthServiceImpl extends ApiAuthService {
       if (response.statusCode == 400) {
         return [];
       }
-      final parsed = json.decode(response.data).cast<Map<String, dynamic>>();
-      return parsed
-          .map<CompanyWithPaidAccess>(
-              (json) => CompanyWithPaidAccess.fromJson(json))
+      return response.data
+          .map<CompanyWithPaidAccess>((i) => CompanyWithPaidAccess.fromMap(i))
           .toList();
     } catch (e) {
       return [];
@@ -60,5 +58,30 @@ class HttpAuthServiceImpl extends ApiAuthService {
     Response response =
         await HttpManager().dio.get("/become-paid-access/{${inviteCode}");
     return response.statusCode == 200;
+  }
+
+  @override
+  Future<bool> requestEmail(String email) async {
+    var response = await HttpManager().dio.get("/request-access-via-email");
+    if (response.statusCode == 200) return true;
+    if (response.statusCode == 404) {
+      throw HttpExceptions(Keys.Email_Doest_Not_Support);
+    }
+    if (response.statusCode == 400) {
+      throw HttpExceptions(Keys.Invalid_Email);
+    }
+  }
+
+  @override
+  Future<bool> requestEmailCodeVerified(String emailCode) async {
+    var response =
+        await HttpManager().dio.get("/request-access-verify-code-email");
+    if (response.statusCode == 200) return true;
+    /*if (response.statusCode == 404) {
+      throw HttpExceptions(Keys.Email_Doest_Not_Support);
+    }
+    if (response.statusCode == 400) {
+      throw HttpExceptions(Keys.Invalid_Email);
+    }*/
   }
 }

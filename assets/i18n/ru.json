@@ -28,5 +28,15 @@
   "corporation" : "Корпоратив",
   "discount" : "Скидки",
   "web_site" : "Вебсайт",
-  "code_for_activate_account" : "Код для активации аккаунта. Получите его у работодателя"
+  "code_for_activate_account" : "Код для активации аккаунта. Получите его у работодателя",
+  "send_email" : "Получить email",
+  "send_email_code" : "Отправить код с почты",
+  "type_corporation_email" : "Для получения доступа введите корпоративную почту на нее будет отправлен email с кодом",
+  "email_doest_not_support" : "Компании с таким имейлом не существует",
+  "invalid_email" : "Имейл не валидный",
+  "type_company_code": "Ввести код компании",
+  "recieve_code_by_administration" : "Получите код у компании работодателя",
+  "connect_to_company" : "Подключится",
+  "email" : "Email",
+  "company_code" : "Код компании"
 }

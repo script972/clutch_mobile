@@ -51,10 +51,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       AuthDto authDto =
           await authRepository.confirmPhone(event.phone, event.code, token);
       if (SecurityManager.proccessNewSecuriryToken(authDto)) {
-        bool paidAcces = await SecurityManager.checkPaidAccess();
-        yield paidAcces
+        var paidAcces = await SecurityManager.checkPaidAccess();
+
+        yield paidAcces.hasAccess
             ? PhoneAndCodeValidNextScreen(CustomRoute.MAIN_SCREEN)
-            : PhoneAndCodeValidNextScreen(CustomRoute.INVITE_CODE_SCREEN);
+            : PhoneAndCodeValidNextScreen(CustomRoute.EMAIL_VERIFIED_SCREEN);
       } else {
         yield AuthLoaded(event.phone, translate(Keys.Phone_Code_Invalid));
       }

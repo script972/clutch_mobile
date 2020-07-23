@@ -58,4 +58,14 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<bool> requestPaidAccessByCode(String inviteCode) {
     return apiService.requestPaidAcessByCode(inviteCode);
   }
+
+  @override
+  Future<bool> requestEmail(String email) {
+    return apiService.requestEmail(email);
+  }
+
+  @override
+  Future<bool> requestEmailCodeVerified(String emailCode) {
+    return apiService.requestEmailCodeVerified(emailCode);
+  }
 }

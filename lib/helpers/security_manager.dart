@@ -1,4 +1,7 @@
+import 'package:clutch/core/custom_route.dart';
+import 'package:clutch/domain/model/lunch_security_checker_dto.dart';
 import 'package:clutch/domain/network/model/response/company_with_paid_access.dart';
+import 'package:clutch/domain/network/model/response/verified_type.dart';
 import 'package:clutch/domain/repository/auth_repository.dart';
 import 'package:clutch/domain/repository/impl/auth_repository_impl.dart';
 import 'package:clutch/helpers/utils/shared_preferences_helper.dart';
@@ -27,19 +30,27 @@ class SecurityManager {
       return true;
   }
 
-  static Future<bool> checkPaidAccess() async {
+  static Future<LunchSecurityCheckerDto> checkPaidAccess() async {
+    LunchSecurityCheckerDto out = LunchSecurityCheckerDto();
+    out.hasAccess=false;
+    out.screen = CustomRoute.EMAIL_VERIFIED_SCREEN;
     AuthRepository authRepository = AuthRepositoryImpl();
     List<CompanyWithPaidAccess> companyList =
         await authRepository.fetchPaidAccessDetails();
-    bool fullAccess = false;
     companyList.forEach((element) {
       if (!element.verifyViaEmailOrAdmin) {
-        fullAccess = true;
-        return fullAccess;
+        out.hasAccess=true;
+        out.screen = CustomRoute.MAIN_SCREEN;
+        return out;
       } else {
-        //:TODO check on code email or admin
+        if (element.verifiedType == VerifiedType.ADMIN ||
+            element.verifiedType == VerifiedType.EMAIL) {
+          out.hasAccess=true;
+          out.screen = CustomRoute.MAIN_SCREEN;
+          return out;
+        }
       }
     });
-    return fullAccess;
+    return out;
   }
 }

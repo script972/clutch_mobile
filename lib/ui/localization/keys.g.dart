@@ -66,4 +66,25 @@ class Keys {
   static const String Web_Site = 'web_site';
 
   static const String Code_For_Activate_Account = 'code_for_activate_account';
+
+  static const String Send_Email = 'send_email';
+
+  static const String Send_Email_Code = 'send_email_code';
+
+  static const String Type_Corporation_Email = 'type_corporation_email';
+
+  static const String Email_Doest_Not_Support = 'email_doest_not_support';
+
+  static const String Invalid_Email = 'invalid_email';
+
+  static const String Type_Company_Code = 'type_company_code';
+
+  static const String Recieve_Code_By_Administration =
+      'recieve_code_by_administration';
+
+  static const String Connect_To_Company = 'connect_to_company';
+
+  static const String Email = 'email';
+
+  static const String Company_Code = 'company_code';
 }
