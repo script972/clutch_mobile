@@ -3,6 +3,7 @@ import 'package:clutch/domain/network/http_manager.dart';
 import 'package:clutch/domain/network/model/profile_dto.dart';
 import 'package:clutch/domain/network/model/request/phone_init_request.dart';
 import 'package:clutch/domain/network/model/request/phone_sms_confirm_request.dart';
+import 'package:clutch/domain/network/model/request/value_request.dart';
 import 'package:clutch/domain/network/model/response/auth_response.dart';
 import 'package:clutch/domain/network/model/response/company_with_paid_access.dart';
 import 'package:clutch/domain/network/service/api_auth_service.dart';
@@ -62,14 +63,29 @@ class HttpAuthServiceImpl extends ApiAuthService {
 
   @override
   Future<bool> requestEmail(String email) async {
-    var response = await HttpManager().dio.get("/user/request-access-via-email");
-    if (response.statusCode == 200) return true;
-    if (response.statusCode == 404) {
+    var request = ValueRequest()
+      ..value = email;
+    try {
+      var response = await HttpManager()
+          .dio
+          .post("/user/request-access-via-email", data: request.toJson());
+
+      if (response.statusCode == 200) return true;
+      if (response.statusCode == 404) {
+        throw HttpExceptions(Keys.Email_Doest_Not_Support);
+      }
+      if (response.statusCode == 400) {
+        throw HttpExceptions(Keys.Invalid_Email);
+      }
+      if (response.statusCode == 409) {
+        throw HttpExceptions(Keys.Can_Not_Send_Email);
+      }
+    }  on HttpExceptions catch (e) {
+      throw HttpExceptions(Keys.Email_Doest_Not_Support);
+    } catch(e){
       throw HttpExceptions(Keys.Email_Doest_Not_Support);
     }
-    if (response.statusCode == 400) {
-      throw HttpExceptions(Keys.Invalid_Email);
-    }
+
   }
 
   @override
@@ -77,6 +93,9 @@ class HttpAuthServiceImpl extends ApiAuthService {
     var response =
         await HttpManager().dio.get("/user/request-access-verify-code-email");
     if (response.statusCode == 200) return true;
+    if (response.statusCode == 409) {
+      throw HttpExceptions(Keys.You_Are_Alredy_Have_Company);
+    }
     /*if (response.statusCode == 404) {
       throw HttpExceptions(Keys.Email_Doest_Not_Support);
     }

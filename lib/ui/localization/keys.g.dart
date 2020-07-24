@@ -87,4 +87,9 @@ class Keys {
   static const String Email = 'email';
 
   static const String Company_Code = 'company_code';
+
+  static const String Can_Not_Send_Email = 'can_not_send_email';
+
+  static const String You_Are_Alredy_Have_Company =
+      'you_are_alredy_have_company';
 }

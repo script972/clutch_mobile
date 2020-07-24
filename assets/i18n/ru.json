@@ -38,5 +38,7 @@
   "recieve_code_by_administration" : "Получите код у компании работодателя",
   "connect_to_company" : "Подключится",
   "email" : "Email",
-  "company_code" : "Код компании"
+  "company_code" : "Код компании",
+  "can_not_send_email" : "Не получилось отправить email. Попробуйте еще раз",
+  "you_are_alredy_have_company" : "У вас уже есть компания"
 }
