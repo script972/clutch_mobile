@@ -49,133 +49,133 @@ class _SignUpSmsCodeScreenState extends State<SignUpSmsCodeScreen> {
 
   @override
   void dispose() {
-    smsCodeController.dispose();
+    smsCodeController?.dispose();
     super.dispose();
   }
 
   Widget mainContent(BuildContext context, AuthLoaded state) => Container(
-      decoration: BoxDecoration(gradient: ThemeCustom.mainGradient),
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 36.0, left: 16.0),
-            child: Align(
-                alignment: Alignment.centerLeft,
-                child: GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Image.asset("assets/images/ic_arrow_back.png"))),
-          ),
-          Expanded(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 78.0, vertical: 16.0),
-                child: Text(
-                  translate(Keys.Accept_Phone_Number),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white, fontSize: 24.0),
-                ),
-              )),
-          Padding(
-            padding: const EdgeInsets.all(32.0),
-            child: Container(
-              padding: EdgeInsets.only(left: 32.0, top: 16.0, bottom: 16.0),
-              decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.white.withOpacity(0.5),
+        decoration: BoxDecoration(gradient: ThemeCustom.mainGradient),
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(top: 36.0, left: 16.0),
+              child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Image.asset("assets/images/ic_arrow_back.png"))),
+            ),
+            Expanded(
+                flex: 2,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 78.0, vertical: 16.0),
+                  child: Text(
+                    translate(Keys.Accept_Phone_Number),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white, fontSize: 24.0),
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(8.0))),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                      child: Text(
-                    state.phone,
-                    style: TextStyle(color: Colors.white, fontSize: 16.0),
-                  )),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 16.0),
-                    child: GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Image.asset("assets/images/ic_pencil.png")),
-                  )
-                ],
-              ),
-            ),
-          ),
-          Text(
-            translate(Keys.We_Sent_Varify_Code),
-            style: TextStyle(color: Colors.white, fontSize: 14.0),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(32.0),
-            child: Text(
-              translate(Keys.Input_Code_From_Sms),
-              style: TextStyle(color: Colors.white, fontSize: 16.0),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 42.0),
-            child: PinCodeTextField(
-              length: 6,
-              obsecureText: false,
-              animationType: AnimationType.fade,
-              pinTheme: PinTheme(
-                  shape: PinCodeFieldShape.box,
-                  borderRadius: BorderRadius.circular(5),
-                  borderWidth: 0,
-                  fieldHeight: 50,
-                  fieldWidth: 40,
-                  activeFillColor: Colors.white,
-                  selectedFillColor: Colors.white,
-                  inactiveFillColor: Colors.grey),
-              animationDuration: Duration(milliseconds: 300),
-              backgroundColor: Colors.transparent,
-              enableActiveFill: true,
-              controller: smsCodeController,
-              onCompleted: (v) {},
-              onChanged: (value) {},
-            ),
-          ),
-          Expanded(
-            flex: 4,
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Column(
+                )),
+            Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: Container(
+                padding: EdgeInsets.only(left: 32.0, top: 16.0, bottom: 16.0),
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.5),
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                child: Row(
                   children: <Widget>[
+                    Expanded(
+                        child: Text(
+                      state.phone,
+                      style: TextStyle(color: Colors.white, fontSize: 16.0),
+                    )),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: RaisedButton(
-                                padding: EdgeInsets.symmetric(vertical: 16.0),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8.0)),
-                                color: Color(0xFFFF473D),
-                                onPressed: () {
-                                  BlocProvider.of<AuthBloc>(context).add(
-                                      PhoneCodeAuth(
-                                          state.phone, smsCodeController.text));
-                                },
-                                child: Text(
-                                  translate("Подтвердить"),
-                                  style: TextStyle(color: Colors.white),
-                                )),
-                          )
-                        ],
-                      ),
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Image.asset("assets/images/ic_pencil.png")),
                     )
                   ],
                 ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
+            Text(
+              translate(Keys.We_Sent_Varify_Code),
+              style: TextStyle(color: Colors.white, fontSize: 14.0),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(32.0),
+              child: Text(
+                translate(Keys.Input_Code_From_Sms),
+                style: TextStyle(color: Colors.white, fontSize: 16.0),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 42.0),
+              child: PinCodeTextField(
+                length: 6,
+                obsecureText: false,
+                animationType: AnimationType.fade,
+                pinTheme: PinTheme(
+                    shape: PinCodeFieldShape.box,
+                    borderRadius: BorderRadius.circular(5),
+                    borderWidth: 0,
+                    fieldHeight: 50,
+                    fieldWidth: 40,
+                    activeFillColor: Colors.white,
+                    selectedFillColor: Colors.white,
+                    inactiveFillColor: Colors.grey),
+                animationDuration: Duration(milliseconds: 300),
+                backgroundColor: Colors.transparent,
+                enableActiveFill: true,
+                controller: smsCodeController,
+                onCompleted: (v) {},
+                onChanged: (value) {},
+              ),
+            ),
+            Expanded(
+              flex: 4,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 16.0),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: RaisedButton(
+                                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8.0)),
+                                  color: Color(0xFFFF473D),
+                                  onPressed: () {
+                                    BlocProvider.of<AuthBloc>(context).add(
+                                        PhoneCodeAuth(state.phone,
+                                            smsCodeController.text));
+                                  },
+                                  child: Text(
+                                    translate("Подтвердить"),
+                                    style: TextStyle(color: Colors.white),
+                                  )),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
 }

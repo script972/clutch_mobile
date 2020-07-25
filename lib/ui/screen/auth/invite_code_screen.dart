@@ -28,7 +28,7 @@ class _InviteCodeScreenState extends State<InviteCodeScreen> {
               child: Scaffold(
                   body: BlocListener<InviteCodeBloc, InviteCodeState>(
         listener: (context, state) {
-          if (state is NavigationPath) {
+          if (state is InviteCodeBaseActionBox) {
             Navigator.pushNamedAndRemoveUntil(
                 context, state.route, (Route<dynamic> route) => false);
           }
@@ -41,7 +41,7 @@ class _InviteCodeScreenState extends State<InviteCodeScreen> {
                 return paidAccessForm();
               }
               if (state is LoadingState) {
-                return LoaderIndicator();
+                return LoaderIndicator(showOnColor: true,);
               }
               return BlocErrorIndicator("");
             })),

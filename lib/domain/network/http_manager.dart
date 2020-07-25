@@ -77,6 +77,7 @@ class HttpManager {
         GetIt.instance<NavigationService>()
             .navigateTo(CustomRoute.SIGNIN_PHONE_SCREEN);
       }
+      return dioError;
     }, onResponse: (Response response) async {
       return response;
     }));

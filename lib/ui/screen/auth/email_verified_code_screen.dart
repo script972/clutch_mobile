@@ -1,3 +1,4 @@
+import 'package:clutch/core/custom_route.dart';
 import 'package:clutch/core/theme_custom.dart';
 import 'package:clutch/presentation/bloc/email_verified_code_bloc.dart';
 import 'package:clutch/ui/localization/keys.dart';
@@ -30,16 +31,18 @@ class _EmailVerifiedCodeScreenState extends State<EmailVerifiedCodeScreen> {
               child:
                   BlocListener<EmailVerifiedCodeBloc, EmailVerifiedCodeState>(
                 listener: (context, state) {
-                  /*if (state is EmailVerificationBaseActionBox) {
-                if (state.message.isNotEmpty) {
-                  final snackBar =
-                  SnackBar(content: Text(translate(state.message)));
-                  Scaffold.of(context).showSnackBar(snackBar);
-                } else if (state.successScreen) {
-                  Navigator.pushNamed(
-                      context, CustomRoute.EMAIL_VERIFIED_CODE_SCREEN);
-                }
-              }*/
+                  if (state is EmailVerifiedCodeBaseActionBox) {
+                    if (state.message.isNotEmpty) {
+                      final snackBar =
+                          SnackBar(content: Text(translate(state.message)));
+                      Scaffold.of(context).showSnackBar(snackBar);
+                    } else if (state.successScreen) {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          CustomRoute.MAIN_SCREEN,
+                          (Route<dynamic> route) => false);
+                    }
+                  }
                 },
                 child:
                     BlocBuilder<EmailVerifiedCodeBloc, EmailVerifiedCodeState>(
@@ -48,7 +51,7 @@ class _EmailVerifiedCodeScreenState extends State<EmailVerifiedCodeScreen> {
                       return buildInitialState(state);
                     }
                     if (state is EmailVerifiedCodeLoading) {
-                      return LoaderIndicator();
+                      return LoaderIndicator(showOnColor: true,);
                     }
                     return BlocErrorIndicator("");
                   },
@@ -60,75 +63,77 @@ class _EmailVerifiedCodeScreenState extends State<EmailVerifiedCodeScreen> {
       );
 
   Widget buildInitialState(EmailVerifiedCodeInitial state) => Column(
-      children: <Widget>[
-        Expanded(
-            flex: 6,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Center(child: Image.asset("assets/images/logo.png")),
-                Padding(
-                  padding: const EdgeInsets.only(top: 36.0),
-                  child: Text(
-                    translate(Keys.Service_The_Best_Offers),
-                    style: TextStyle(color: Colors.white, fontSize: 24.0),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    translate(Keys.Type_Corporation_Email),
-                    style: TextStyle(color: Colors.white, fontSize: 14.0),
-                    textAlign: TextAlign.center,
-                  ),
-                )
-              ],
-            )),
-        Expanded(
-          flex: 4,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+        children: <Widget>[
+          Expanded(
+              flex: 6,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  BorderedInputTextField(
-                    action: TextInputAction.next,
-                    textInputType: TextInputType.phone,
-                    node: _emailCodeNode,
-                    autofocus: true,
-                    textAlign: TextAlign.left,
-                    padding: EdgeInsets.all(0.0),
-                    controller: _emailCodeInputController,
+                  Center(child: Image.asset("assets/images/logo.png")),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 36.0),
+                    child: Text(
+                      translate(Keys.Service_The_Best_Offers),
+                      style: TextStyle(color: Colors.white, fontSize: 24.0),
+                    ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16.0),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: RaisedButton(
-                              padding: EdgeInsets.symmetric(vertical: 16.0),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0)),
-                              color: Color(0xFFFF473D),
-                              onPressed: () {
-                                BlocProvider.of<EmailVerifiedCodeBloc>(context)
-                                    .add(SendCodeFromEmailEvent(
-                                        _emailCodeInputController.text
-                                            .toString()));
-                              },
-                              child: Text(
-                                translate(Keys.Send_Email),
-                                style: TextStyle(color: Colors.white),
-                              )),
-                        )
-                      ],
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      translate(Keys.Input_Code_From_Email),
+                      style: TextStyle(color: Colors.white, fontSize: 14.0),
+                      textAlign: TextAlign.center,
                     ),
                   )
                 ],
+              )),
+          Expanded(
+            flex: 4,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  children: <Widget>[
+                    BorderedInputTextField(
+                      action: TextInputAction.next,
+                      textInputType: TextInputType.phone,
+                      node: _emailCodeNode,
+                      autofocus: true,
+                      textAlign: TextAlign.left,
+                      padding: EdgeInsets.all(0.0),
+                      controller: _emailCodeInputController,
+                      hint: translate(Keys.Code_From_Email),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16.0),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: RaisedButton(
+                                padding: EdgeInsets.symmetric(vertical: 16.0),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.0)),
+                                color: Color(0xFFFF473D),
+                                onPressed: () {
+                                  BlocProvider.of<EmailVerifiedCodeBloc>(
+                                          context)
+                                      .add(SendCodeFromEmailEvent(
+                                          _emailCodeInputController.text
+                                              .toString()));
+                                },
+                                child: Text(
+                                  translate(Keys.Connect_To_Company),
+                                  style: TextStyle(color: Colors.white),
+                                )),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ],
-    );
+        ],
+      );
 }

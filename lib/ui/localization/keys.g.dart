@@ -73,6 +73,8 @@ class Keys {
 
   static const String Type_Corporation_Email = 'type_corporation_email';
 
+  static const String Input_Code_From_Email = 'input_code_from_email';
+
   static const String Email_Doest_Not_Support = 'email_doest_not_support';
 
   static const String Invalid_Email = 'invalid_email';
@@ -92,4 +94,10 @@ class Keys {
 
   static const String You_Are_Alredy_Have_Company =
       'you_are_alredy_have_company';
+
+  static const String Code_From_Email = 'code_from_email';
+
+  static const String Unknown_Error = 'unknown_error';
+
+  static const String Code_Not_Found = 'code_not_found';
 }

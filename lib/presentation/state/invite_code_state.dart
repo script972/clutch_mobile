@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 
 abstract class InviteCodeState extends Equatable {
@@ -13,17 +12,14 @@ class InviteCodeInitial extends InviteCodeState {
 class LoadingState extends InviteCodeState {
   @override
   List<Object> get props => [];
-
 }
 
-class NavigationPath extends InviteCodeState {
+class InviteCodeBaseActionBox extends InviteCodeState {
   String route;
+  String message = "";
 
-
-  NavigationPath(this.route);
+  InviteCodeBaseActionBox({this.route, this.message = ""});
 
   @override
-  List<Object> get props => [route];
-
-
+  List<Object> get props => [route, message];
 }

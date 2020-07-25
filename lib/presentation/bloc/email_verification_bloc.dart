@@ -37,7 +37,7 @@ class EmailVerificationBloc
     } on HttpExceptions catch (e) {
       yield EmailVerificationBaseActionBox(message: e.value);
     } catch(e){
-      yield EmailVerificationInitial();
+
     }
     yield EmailVerificationInitial();
   }

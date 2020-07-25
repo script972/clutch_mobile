@@ -20,7 +20,7 @@ class EmailVerificationBaseActionBox extends EmailVerificationState {
   bool successScreen;
   String message = "";
 
-  EmailVerificationBaseActionBox({this.successScreen, this.message});
+  EmailVerificationBaseActionBox({this.successScreen, this.message = ""});
 
   @override
   List<Object> get props => [successScreen, message];

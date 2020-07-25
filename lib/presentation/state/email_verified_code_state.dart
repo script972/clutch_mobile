@@ -13,3 +13,13 @@ class EmailVerifiedCodeLoading extends EmailVerifiedCodeState {
   @override
   List<Object> get props => [];
 }
+
+class EmailVerifiedCodeBaseActionBox extends EmailVerifiedCodeState {
+  bool successScreen;
+  String message = "";
+
+  EmailVerifiedCodeBaseActionBox({this.successScreen, this.message = ""});
+
+  @override
+  List<Object> get props => [successScreen, message];
+}

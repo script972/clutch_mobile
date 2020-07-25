@@ -42,7 +42,7 @@ class HttpAuthServiceImpl extends ApiAuthService {
   Future<List<CompanyWithPaidAccess>> fetchPaidAccessDetails() async {
     try {
       Response response =
-          await HttpManager().dio.get("/company/details-paid-access");
+          await HttpManager().dio.get("/user/details-paid-access");
       if (response.statusCode == 400) {
         return [];
       }
@@ -56,51 +56,54 @@ class HttpAuthServiceImpl extends ApiAuthService {
 
   @override
   Future<bool> requestPaidAcessByCode(String inviteCode) async {
-    Response response =
-        await HttpManager().dio.get("/become-paid-access/{${inviteCode}");
-    return response.statusCode == 200;
+    var request = ValueRequest()..value = inviteCode;
+    try {
+      Response response = await HttpManager()
+          .dio
+          .post("/user/become-paid-access-by-code", data: request.toJson());
+      return response.statusCode == 200;
+    } catch (e) {
+      throw HttpExceptions("todo");
+    }
   }
 
   @override
   Future<bool> requestEmail(String email) async {
-    var request = ValueRequest()
-      ..value = email;
+    var request = ValueRequest()..value = email;
     try {
       var response = await HttpManager()
           .dio
           .post("/user/request-access-via-email", data: request.toJson());
-
       if (response.statusCode == 200) return true;
-      if (response.statusCode == 404) {
+    } catch (e) {
+      if (e.resscrse.statusCode == 404) {
         throw HttpExceptions(Keys.Email_Doest_Not_Support);
       }
-      if (response.statusCode == 400) {
+      if (e.response.statusCode == 400) {
         throw HttpExceptions(Keys.Invalid_Email);
       }
-      if (response.statusCode == 409) {
+      if (e.response.statusCode == 409) {
         throw HttpExceptions(Keys.Can_Not_Send_Email);
       }
-    }  on HttpExceptions catch (e) {
-      throw HttpExceptions(Keys.Email_Doest_Not_Support);
-    } catch(e){
-      throw HttpExceptions(Keys.Email_Doest_Not_Support);
+      throw HttpExceptions(Keys.Unknown_Error);
     }
-
   }
 
   @override
   Future<bool> requestEmailCodeVerified(String emailCode) async {
-    var response =
-        await HttpManager().dio.get("/user/request-access-verify-code-email");
-    if (response.statusCode == 200) return true;
-    if (response.statusCode == 409) {
-      throw HttpExceptions(Keys.You_Are_Alredy_Have_Company);
+    var request = ValueRequest()..value = emailCode;
+    try {
+      var response = await HttpManager().dio.post(
+          "/user/request-access-verify-code-email",
+          data: request.toJson());
+      if (response.statusCode == 200) return true;
+    } catch (e) {
+      if (e.response.statusCode == 409) {
+        throw HttpExceptions(Keys.You_Are_Alredy_Have_Company);
+      }
+      if (e.response.statusCode == 404) {
+        throw HttpExceptions(Keys.Code_Not_Found);
+      }
     }
-    /*if (response.statusCode == 404) {
-      throw HttpExceptions(Keys.Email_Doest_Not_Support);
-    }
-    if (response.statusCode == 400) {
-      throw HttpExceptions(Keys.Invalid_Email);
-    }*/
   }
 }

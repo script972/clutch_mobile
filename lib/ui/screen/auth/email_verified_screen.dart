@@ -49,7 +49,9 @@ class _EmailVerifiedScreenState extends State<EmailVerifiedScreen> {
                       return buildInitialState(state);
                     }
                     if (state is EmailVerificationLoading) {
-                      return LoaderIndicator();
+                      return LoaderIndicator(
+                        showOnColor: true,
+                      );
                     }
                     return BlocErrorIndicator("");
                   },

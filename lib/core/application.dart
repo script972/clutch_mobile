@@ -3,6 +3,7 @@ import 'package:clutch/helpers/navigation_service.dart';
 import 'package:clutch/presentation/bloc/auth_bloc.dart';
 import 'package:clutch/presentation/bloc/company_details_bloc.dart';
 import 'package:clutch/presentation/bloc/email_verification_bloc.dart';
+import 'package:clutch/presentation/bloc/email_verified_code_bloc.dart';
 import 'package:clutch/presentation/bloc/invite_code_bloc.dart';
 import 'package:clutch/presentation/bloc/main_bloc.dart';
 import 'package:clutch/presentation/bloc/offer_details_bloc.dart';
@@ -55,9 +56,11 @@ class Application extends StatelessWidget {
           BlocProvider<AuthBloc>(
             create: (context) => AuthBloc(),
           ),
-
           BlocProvider<InviteCodeBloc>(
             create: (context) => InviteCodeBloc(),
+          ),
+          BlocProvider<EmailVerifiedCodeBloc>(
+            create: (context) => EmailVerifiedCodeBloc(),
           ),
         ],
         child: MaterialApp(
