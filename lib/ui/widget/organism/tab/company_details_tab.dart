@@ -1,12 +1,14 @@
+import 'package:clutch/domain/network/model/response/anchor_proposition_response.dart';
 import 'package:clutch/presentation/model/comment_model_ui.dart';
 import 'package:clutch/presentation/model/company_details_model_ui.dart';
-import 'package:clutch/ui/widget/atom/icon_description_item.dart';
+import 'package:clutch/ui/localization/keys.dart';
+import 'package:clutch/ui/widget/atom/company_header.dart';
+import 'package:clutch/ui/widget/organism/about_widget.dart';
 import 'package:clutch/ui/widget/organism/item/review_slider.dart';
 import 'package:clutch/ui/widget/organism/item/review_widget.dart';
-import 'package:clutch/ui/widget/organism/work_shedule.dart';
 import 'package:flutter/material.dart';
-import 'package:clutch/ui/widget/organism/about_widget.dart';
-import 'package:clutch/ui/widget/atom/company_header.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CompanyDetailsTab extends StatefulWidget {
@@ -29,9 +31,11 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 CompanyHeader(widget.company),
+                showAnchorProposition(widget.company.anchorPropositionResponse),
                 Divider(),
-                AboutWidget("О компании", widget.company.description),
-                widget.company.phone.isNotEmpty
+                AboutWidget(
+                    translate(Keys.About_Company), widget.company.description),
+                /*widget.company.phone.isNotEmpty
                     ? IconDescriptionItem(
                         "assets/images/ic_phone.png",
                         widget.company.phone,
@@ -52,9 +56,12 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                           throw 'Could not launch $url';
                         }
                       })
-                    : SizedBox(),
+                    : SizedBox(),*/
                 Divider(),
-                WorkSchedule(),
+                phoneAndNetwork(widget.company),
+                socialLink(widget.company),
+                /* Divider(),
+                WorkSchedule(),*/
                 /* Divider(),*/
                 /* Padding(
                   padding: const EdgeInsets.all(15.0),
@@ -109,4 +116,196 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                 ),
               )
             ];
+
+  Widget showAnchorProposition(
+      AnchorPropositionResponse anchorPropositionResponse) {
+    if (anchorPropositionResponse == null) return SizedBox();
+    return Container(
+      margin: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        color: Theme.of(context).primaryColor,
+      ),
+      child: Column(
+        children: <Widget>[
+          RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+                style: TextStyle(color: Colors.white, fontSize: 36.0),
+                children: [
+                  TextSpan(
+                    text: "${anchorPropositionResponse.discount}",
+                  ),
+                  TextSpan(
+                    text: "${anchorPropositionResponse.units}",
+                  ),
+                  TextSpan(
+                      text: translate(Keys.Discount),
+                      style: TextStyle(
+                        fontSize: 22.0,
+                      )),
+                ]),
+          ),
+          (widget.company.anchorPropositionResponse.conditionDescription ==
+                      null ||
+                  widget.company.anchorPropositionResponse.conditionDescription
+                      .isEmpty)
+              ? SizedBox()
+              : Text(
+                  "**${widget.company.anchorPropositionResponse.conditionDescription}"),
+        ],
+      ),
+    );
+  }
+
+  Widget socialLink(CompanyDetailsModelUi company) {
+    return Row(
+      children: <Widget>[
+        (company.instargamUrl == null || company.instargamUrl.isEmpty)
+            ? SizedBox()
+            : Expanded(
+                child: Container(
+                  margin: EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey.withOpacity(0.5),
+                        width: 0.8,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0)),
+                  child: Material(
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(8.0),
+                      onTap: () async {
+                        var url = "https://instagram.com/foxtrot_com_ua/${company.instargamUrl}";
+                        if (await canLaunch(url)) {
+                        await launch(url);
+                        } else {
+                        throw 'Could not launch $company.instargamUrl';
+                        }
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child:
+                                  Image.asset("assets/images/ic_instargam.png"),
+                            ),
+                            Text("Instagram"),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+        (company.facebookUrl == null || company.facebookUrl.isEmpty)
+            ? SizedBox()
+            : Expanded(
+                child: Container(
+                  margin: EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey.withOpacity(0.5),
+                        width: 0.8,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0)),
+                  child: Material(
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(8.0),
+                      onTap: () async {
+                        var url = "https://www.facebook.com/${company.facebookUrl}/";
+                        if (await canLaunch(url)) {
+                        await launch(url);
+                        } else {
+                        throw 'Could not launch $company.facebookUrl';
+                        };
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child:
+                                  Image.asset("assets/images/ic_facebook.png"),
+                            ),
+                            Text("Facebook"),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+      ],
+    );
+  }
+
+  Widget phoneAndNetwork(CompanyDetailsModelUi company) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      child: Row(
+        children: <Widget>[
+          widget.company.phone.isNotEmpty
+              ? Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Text(translate(Keys.Phone_Number)),
+                      ),
+                      GestureDetector(
+                          onTap: () {
+                            launch("tel://${widget.company.phone}");
+                          },
+                          child: Text(widget.company.phone.toString(), style: TextStyle(color: Colors.lightBlue),)),
+                    ],
+                  ),
+                )
+              : SizedBox(),
+          (widget.company.phone.isNotEmpty && widget.company.site.isNotEmpty)
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Container(
+                    height: 42.0,
+                    width: 1.0,
+                    color: Colors.grey,
+                  ),
+                )
+              : SizedBox(),
+          widget.company.site.isNotEmpty
+              ? Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Text(translate(Keys.Web_Site)),
+                      ),
+                      GestureDetector(
+                          onTap: () async {
+                            var url = "https://${company.site}/";
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                            } else {
+                              throw 'Could not launch $url';
+                            };
+                          },
+                          child: Text(widget.company.site.toString(), style: TextStyle(color: Colors.lightBlue),)),
+                    ],
+                  ),
+                )
+              : SizedBox(),
+        ],
+      ),
+    );
+  }
 }

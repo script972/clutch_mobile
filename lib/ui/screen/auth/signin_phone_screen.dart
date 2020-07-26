@@ -59,6 +59,7 @@ class _SignInPhoneScreenState extends State<SignInPhoneScreen> {
                               textAlign: TextAlign.left,
                               padding: EdgeInsets.all(0.0),
                               controller: _phoneInputController,
+                              prefixText:  "+380",
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(vertical: 16.0),

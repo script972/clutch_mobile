@@ -48,13 +48,12 @@ class ChangeBirthday extends ProfileEvent {
 }
 
 class ChangeSex extends ProfileEvent {
-  final bool maleSex;
-  final bool femaleSex;
+  final String sex;
 
-  const ChangeSex(this.maleSex, this.femaleSex);
+  const ChangeSex(this.sex);
 
   @override
-  List<Object> get props => [maleSex, femaleSex];
+  List<Object> get props => [sex];
 }
 
 class SaveProfile extends ProfileEvent {

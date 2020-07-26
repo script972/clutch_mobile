@@ -3,6 +3,7 @@
   "offers" : "Предложения",
   "companies": "Компании",
   "about" : "О",
+  "about_company" : "О компании",
   "details" : "Подробнее",
   "collapse" : "Свернуть",
   "locations" : "Локации",
@@ -23,9 +24,25 @@
   "sex": "Пол",
   "man" : "Мужской",
   "women" : "Женский",
-  "save" : "Сохранить"
-
-
-
-
+  "save" : "Сохранить",
+  "corporation" : "Корпоратив",
+  "discount" : "Скидки",
+  "web_site" : "Вебсайт",
+  "code_for_activate_account" : "Код для активации аккаунта. Получите его у работодателя",
+  "send_email" : "Получить email",
+  "send_email_code" : "Отправить код с почты",
+  "type_corporation_email" : "Для получения доступа введите КОРПОРАТИВНУЮ почту на нее будет отправлен email с кодом",
+  "input_code_from_email" : "Введите код с email и получите доступ к скидкам",
+  "email_doest_not_support" : "Компании с таким имейлом не существует",
+  "invalid_email" : "Имейл не валидный",
+  "type_company_code": "Ввести код компании",
+  "recieve_code_by_administration" : "Получите код у компании работодателя",
+  "connect_to_company" : "Подключится",
+  "email" : "Email",
+  "company_code" : "Код компании",
+  "can_not_send_email" : "Не получилось отправить email. Попробуйте еще раз",
+  "you_are_alredy_have_company" : "У вас уже есть компания",
+  "code_from_email" : "Код с email",
+  "unknown_error" : "Неизвестная ошибка",
+  "code_not_found" : "Код не найден"
 }

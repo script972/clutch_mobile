@@ -33,7 +33,7 @@ class ProfileDto {
         email: json["email"],
         birthday: json["birthday"],
         facePhoto: json["facePhoto"],
-        sex: json["sex"]==null ? null : sexValues.reverse[json["sex"]]
+        sex: json["sex"]==null ? null : json["sex"]
       );
 
   Map<String, dynamic> toMap() => {

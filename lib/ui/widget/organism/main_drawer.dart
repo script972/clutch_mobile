@@ -26,7 +26,7 @@ class MainDrawer extends StatelessWidget {
                   context,
                   CustomRoute.PROFILE,
                 );
-                BlocProvider.of<ProfileBloc>(context).add(LoadProfile());
+
               }),
               /*menuItem(Image.asset("assets/images/ic_marker_position.png"),
                 "Позиции", () {}),

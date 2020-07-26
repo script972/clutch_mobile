@@ -21,9 +21,13 @@ class AuthLoaded extends AuthState {
   List<Object> get props => [phone];
 }
 
-class PhoneAndCodeValid extends AuthState {
+class PhoneAndCodeValidNextScreen extends AuthState {
+  final String next;
+
+  const PhoneAndCodeValidNextScreen(this.next);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [next];
 }
 
 class PhoneAndCodeInvalid extends AuthState {

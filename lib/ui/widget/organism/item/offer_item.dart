@@ -23,25 +23,27 @@ class OfferItem extends StatelessWidget {
           elevation: 8.0,
           child: Stack(
             children: <Widget>[
-              CachedNetworkImage(
-                imageUrl: model.imageUrl,
-                imageBuilder: (context, imageProvider) => Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    Center(
-                        child: CircularProgressIndicator(
-                            value: downloadProgress.progress)),
-                errorWidget: (context, url, error) {
-                  return Icon(Icons.error);
-                },
-                useOldImageOnUrlChange: true,
-              ),
+              model.imageUrl != null
+                  ? CachedNetworkImage(
+                      imageUrl: model.imageUrl,
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) => Center(
+                              child: CircularProgressIndicator(
+                                  value: downloadProgress.progress)),
+                      errorWidget: (context, url, error) {
+                        return Icon(Icons.error);
+                      },
+                      useOldImageOnUrlChange: true,
+                    )
+                  : SizedBox(),
               Align(
                   alignment: Alignment.bottomLeft,
                   child: Container(

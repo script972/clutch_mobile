@@ -18,7 +18,7 @@
             android:resource="@drawable/ic_notification_transparent" />
 
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDDUev4B0aCiJPXyotgJqGwNz007DC4mZk"/>
+            android:value="AIzaSyAXPNYxBlMu7mtHzA7xtsDX94yqbpV2zhA"/>
 
 
         <activity

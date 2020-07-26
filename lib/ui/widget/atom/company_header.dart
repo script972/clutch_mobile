@@ -12,6 +12,7 @@ class CompanyHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListTile(
+    leading: (_company.categoriesResponse!=null && _company.categoriesResponse.icon!=null && _company.categoriesResponse.icon.isNotEmpty) ? Image.network(_company.categoriesResponse.icon) : SizedBox(),
       title: Text(
         _company.title,
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:clutch/domain/network/model/response/anchor_proposition_response.dart';
 import 'package:clutch/domain/network/model/response/categories_response.dart';
 import 'package:clutch/domain/network/model/response/offers_short_mobile_dto.dart';
 import 'package:clutch/domain/network/model/response/point_short_dto.dart';
@@ -18,6 +19,9 @@ class CompanyDetailsResponse {
   final List<OffersShortMobileDto> offersShortMobileDtoList;
   final List<PointShortDto> pointShortMobileDtoList;
   final CategoriesResponse categoryDto;
+  final AnchorPropositionResponse anchorPropositionResponse;
+  final String facebookUrl;
+  final String instagramUrl;
 
   CompanyDetailsResponse(
       {this.id,
@@ -32,7 +36,10 @@ class CompanyDetailsResponse {
       this.phone,
       this.offersShortMobileDtoList,
       this.pointShortMobileDtoList,
-      this.categoryDto});
+      this.categoryDto,
+      this.anchorPropositionResponse,
+      this.facebookUrl,
+      this.instagramUrl});
 
   factory CompanyDetailsResponse.fromJson(String str) =>
       CompanyDetailsResponse.fromMap(json.decode(str));
@@ -41,26 +48,31 @@ class CompanyDetailsResponse {
 
   factory CompanyDetailsResponse.fromMap(Map<String, dynamic> json) =>
       CompanyDetailsResponse(
-        id: json["id"],
-        barcode: json["barcode"],
-        logo: json["logo"],
-        color: json["color"],
-        justOnline: json["justOnline"],
-        title: json["title"],
-        rang: json["rang"],
-        description: json["description"],
-        site: json["site"],
-        phone: json["phone"],
-        categoryDto: json["categories"] == null
-            ? null
-            : CategoriesResponse.fromMap(json["categories"]),
-        offersShortMobileDtoList: List<OffersShortMobileDto>.from(
-            json["offersShortMobileDtoList"]
-                .map((x) => OffersShortMobileDto.fromMap(x))),
-        pointShortMobileDtoList: List<PointShortDto>.from(
-            json["pointShortMobileDtoList"]
-                .map((x) => PointShortDto.fromMap(x))),
-      );
+          id: json["id"],
+          barcode: json["barcode"],
+          logo: json["logo"],
+          color: json["color"],
+          justOnline: json["justOnline"],
+          title: json["title"],
+          rang: json["rang"],
+          description: json["description"],
+          site: json["site"],
+          phone: json["phone"],
+          categoryDto: json["categories"] == null
+              ? null
+              : CategoriesResponse.fromMap(json["categories"]),
+          offersShortMobileDtoList: List<OffersShortMobileDto>.from(
+              json["offersShortMobileDtoList"]
+                  .map((x) => OffersShortMobileDto.fromMap(x))),
+          pointShortMobileDtoList: List<PointShortDto>.from(
+              json["pointShortMobileDtoList"]
+                  .map((x) => PointShortDto.fromMap(x))),
+          anchorPropositionResponse: json["anchorPropositionResponse"] == null
+              ? null
+              : AnchorPropositionResponse.fromMap(
+                  json["anchorPropositionResponse"]),
+          facebookUrl: json["facebookUrl"],
+          instagramUrl: json["instagramUrl"]);
 
   Map<String, dynamic> toMap() => {
         "id": id,
@@ -78,5 +90,8 @@ class CompanyDetailsResponse {
             List<dynamic>.from(offersShortMobileDtoList.map((x) => x.toMap())),
         "pointShortMobileDtoList":
             List<dynamic>.from(pointShortMobileDtoList.map((x) => x.toMap())),
+        "anchorPropositionResponse": anchorPropositionResponse == null
+            ? null
+            : anchorPropositionResponse.toMap(),
       };
 }
