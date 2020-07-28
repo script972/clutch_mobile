@@ -22,9 +22,10 @@ class MainLoaded extends MainState {
   final List<CategoriesResponse> categories;
   final List<PlaceModelUi> places;
   final LatLng userPosition;
+  final Set<Marker> marker;
 
   const MainLoaded(this.company, this.offer, this.categories, this.places,
-      this.userPosition);
+      this.userPosition, this.marker);
 
   @override
   List<Object> get props => [company];

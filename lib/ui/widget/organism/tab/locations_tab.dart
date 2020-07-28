@@ -40,7 +40,8 @@ class _LocationsTabState extends State<LocationsTab> {
               zoomControlsEnabled: false,
               rotateGesturesEnabled: false,
               onMapCreated: _controller.complete,
-              myLocationButtonEnabled: true,
+              myLocationButtonEnabled: false,
+              myLocationEnabled: true,
               markers: markers,
               initialCameraPosition: CameraPosition(
                   target: widget.camera ?? LatLng(46.9, 32.0), zoom: MAP_ZOOM),
@@ -52,8 +53,8 @@ class _LocationsTabState extends State<LocationsTab> {
                 )),
           DraggableScrollableActuator(
             child: DraggableScrollableSheet(
-                initialChildSize: 0.4,
-                minChildSize: 0.4,
+                initialChildSize: 0.25,
+                minChildSize: 0.25,
                 maxChildSize: 0.95,
                 builder: _bottomPanel),
           )

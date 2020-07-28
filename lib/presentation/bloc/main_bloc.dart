@@ -5,6 +5,7 @@ import 'package:clutch/domain/network/model/response/main_info_response.dart';
 import 'package:clutch/domain/repository/company_repository.dart';
 import 'package:clutch/domain/repository/impl/company_repository_impl.dart';
 import 'package:clutch/helpers/geo_helper.dart';
+import 'package:clutch/helpers/map_helper.dart';
 import 'package:clutch/helpers/utils/date_utils.dart';
 import 'package:clutch/presentation/event/main_event.dart';
 import 'package:clutch/presentation/model/place_model_ui.dart';
@@ -46,7 +47,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       MainInfo companyList;
       companyList = await companyRepository.fetchAllCompany(body);
 
-      List<PlaceModelUi> places = companyList.pointShortMobileDtoList
+      List<PlaceModelUi> place = companyList.pointShortMobileDtoList
           .map((e) => PointMapper.mapperResponseToUi(e))
           .toList();
 
@@ -68,8 +69,18 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         offer.staggeredTile = widthType;
         shortOfferModelUi.add(offer);
       }
+
+      Set<Marker> markers = {};
+      place.forEach((element) async {
+        Marker marker = Marker(
+            position:element.position,
+            icon: await MapHelper.getNetworkImageMarker(/*element.imageUrl*/"https://i.otzovik.com/objects/b/760000/757899.png"),
+            markerId: MarkerId(element.position.toString()));
+        markers.add(marker);
+      });
+
       yield MainLoaded(companyList.companyShortMobileDtoList, shortOfferModelUi,
-          companyList.categoriesDtoList, places, userPosition);
+          companyList.categoriesDtoList, place, userPosition, markers);
     } catch (error) {
       yield MainError(error.toString());
     }

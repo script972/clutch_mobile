@@ -53,6 +53,7 @@ dependencies:
   get_it: 4.0.2
   image_picker: 0.6.7+2
   circle_bottom_navigation: 1.0.6
+  flutter_cache_manager: 1.4.1
 
 dev_dependencies:
   flutter_test:
