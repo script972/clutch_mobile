@@ -14,7 +14,6 @@ import 'package:url_launcher/url_launcher.dart';
 class CompanyDetailsTab extends StatefulWidget {
   final CompanyDetailsModelUi company;
 
-  List<CommentModelUi> commentList = [];
 
   CompanyDetailsTab(this.company, {Key key}) : super(key: key);
 

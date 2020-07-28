@@ -100,4 +100,10 @@ class Keys {
   static const String Unknown_Error = 'unknown_error';
 
   static const String Code_Not_Found = 'code_not_found';
+
+  static const String Big_Map = 'big_map';
+
+  static const String Settings = 'settings';
+
+  static const String List_Of_Location = 'list_of_location';
 }

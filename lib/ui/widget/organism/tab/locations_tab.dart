@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:clutch/helpers/geo_helper.dart';
 import 'package:clutch/presentation/model/place_model_ui.dart';
+import 'package:clutch/ui/localization/keys.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_translate/global.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LocationsTab extends StatefulWidget {
@@ -92,7 +94,7 @@ class _LocationsTabState extends State<LocationsTab> {
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: Center(
                   child: Text(
-                    'Список магазинов',
+                    translate(Keys.List_Of_Location),
                     style: TextStyle(fontSize: 18),
                   ),
                 ),

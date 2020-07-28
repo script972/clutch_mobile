@@ -1,4 +1,7 @@
+import 'package:circle_bottom_navigation/circle_bottom_navigation.dart';
+import 'package:circle_bottom_navigation/widgets/tab_data.dart';
 import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/helpers/bottom_navigation_icons.dart';
 import 'package:clutch/presentation/bloc/main_bloc.dart';
 import 'package:clutch/presentation/event/main_event.dart';
 import 'package:clutch/presentation/model/short_offer_model_ui.dart';
@@ -10,11 +13,13 @@ import 'package:clutch/ui/widget/atom/loader_indicator.dart';
 import 'package:clutch/ui/widget/organism/categories_drawer.dart';
 import 'package:clutch/ui/widget/organism/main_drawer.dart';
 import 'package:clutch/ui/widget/organism/tab/companies_tab.dart';
+import 'package:clutch/ui/widget/organism/tab/maps_big_tab.dart';
 import 'package:clutch/ui/widget/organism/tab/offers_tab.dart';
 import 'package:clutch/ui/widget/organism/tab/profile_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_translate/flutter_translate.dart';
+import 'package:flutter_translate/global.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -60,15 +65,20 @@ class _MainScreenState extends State<MainScreen>
               if (state is MainLoaded) {
                 company = state.company;
                 listBody.add(CompaniesTab(company));
+                listBody.add(MapsBigTab([
+                  /*PlaceModelUi("name", "address", "vicinity", "imageURL",
+                      LatLng(36.0, 42.9))*/
+                ], LatLng(36.0, 42.9)));
                 offer = state.offer;
                 listBody.add(OffersTab(offer));
+
                 listBody.add(ProfileTab());
 
                 listBody.add(SizedBox());
                 return Stack(
                   children: <Widget>[
                     listBody[itemIndex],
-                    itemIndex != 2
+                   /* itemIndex != 2
                         ? Align(
                             alignment: Alignment.centerRight,
                             child: GestureDetector(
@@ -96,7 +106,7 @@ class _MainScreenState extends State<MainScreen>
                                         ),
                                       ),
                                     ))))
-                        : SizedBox()
+                        : SizedBox()*/
                   ],
                 );
               }
@@ -107,7 +117,37 @@ class _MainScreenState extends State<MainScreen>
     );
   }
 
-  Widget bottomMenu() =>
+  Widget bottomMenu() => CircleBottomNavigation(
+        initialSelection: itemIndex,
+        hasElevationShadows: true,
+        barHeight: 50.0,
+        circleSize: 55,
+        onTabChangedListener: (index) {
+          setState(() {
+            itemIndex = index;
+          });
+        },
+        tabs: [
+          TabData(
+              icon: Bottom_navigation_icon.account_balance,
+            //title: translate(Keys.Discount),
+          ),
+          TabData(icon: Icons.map,
+            //title: translate(Keys.Big_Map)
+          ),
+          TabData(
+              icon: Bottom_navigation_icon.local_offer,
+              //title: translate(Keys.Offers)
+          ),
+
+          TabData(
+              icon: Bottom_navigation_icon.settings,
+              //title: translate(Keys.Settings)
+  ),
+        ],
+      );
+
+/*Widget bottomMenu() =>
       BlocBuilder<MainBloc, MainState>(builder: (context, state) {
         return BottomNavigationBar(
           currentIndex: itemIndex,
@@ -134,11 +174,17 @@ class _MainScreenState extends State<MainScreen>
             ),
             BottomNavigationBarItem(
                 icon: Icon(
+                  Icons.map,
+                  color: Colors.green,
+                ),
+                title: Text(translate(Keys.Big_Map))),
+            BottomNavigationBarItem(
+                icon: Icon(
                   Icons.person,
                   color: Colors.green,
                 ),
                 title: Text(translate(Keys.Profile)))
           ],
         );
-      });
+      });*/
 }
