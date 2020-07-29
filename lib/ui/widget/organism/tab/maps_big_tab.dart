@@ -1,6 +1,9 @@
 import 'dart:async';
 
+import 'package:clutch/core/custom_route.dart';
+import 'package:clutch/presentation/bloc/company_details_bloc.dart';
 import 'package:clutch/presentation/bloc/main_bloc.dart';
+import 'package:clutch/presentation/event/company_details_event.dart';
 import 'package:clutch/presentation/model/place_model_ui.dart';
 import 'package:clutch/presentation/state/main_state.dart';
 import 'package:clutch/ui/localization/keys.dart';
@@ -22,12 +25,21 @@ class MapsBigTab extends StatefulWidget {
 class _MapsBigTabState extends State<MapsBigTab> {
   final Completer<GoogleMapController> _controller = Completer();
   final double MAP_ZOOM = 12.0;
+  final Set<Marker> markers = {};
 
   @override
   Widget build(BuildContext context) =>
       BlocBuilder<MainBloc, MainState>(builder: (context, state) {
         if (state is MainLoaded) {
-          return mapBloc(state.places, state.userPosition, state.marker);
+          state.places.forEach((element) {
+            element.marker = element.marker.copyWith(onTapParam: () {
+              BlocProvider.of<CompanyDetailsBloc>(context)
+                  .add(LoadCompanyDetails(element.companyId));
+              Navigator.pushNamed(context, CustomRoute.DETAILS_COMPANY);
+            });
+            markers.add(element.marker);
+          });
+          return mapBloc(state.places, state.userPosition, markers);
         } else if (state is MainLoading) {
           return LoaderIndicator();
         }
@@ -64,7 +76,9 @@ class _MapsBigTabState extends State<MapsBigTab> {
         ],
       );
 
-  Widget _bottomPanel(context, ScrollController scrollController, List<PlaceModelUi> places) => Container(
+  Widget _bottomPanel(context, ScrollController scrollController,
+          List<PlaceModelUi> places) =>
+      Container(
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(

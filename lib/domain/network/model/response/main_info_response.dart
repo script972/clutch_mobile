@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:clutch/domain/network/model/response/categories_response.dart';
 import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/domain/network/model/response/main_point_short_mobile_response.dart';
 import 'package:clutch/domain/network/model/response/offers_short_mobile_dto.dart';
 import 'package:clutch/domain/network/model/response/point_short_dto.dart';
 
@@ -9,7 +10,7 @@ class MainInfo {
   final List<OffersShortMobileDto> offersShortMobileDtoList;
   final List<CompanyShortMobile> companyShortMobileDtoList;
   final List<CategoriesResponse> categoriesDtoList;
-  final List<PointShortDto> pointShortMobileDtoList;
+  final List<MainPointShortMobileResponse> pointShortMobileDtoList;
 
   MainInfo(
       {this.offersShortMobileDtoList,
@@ -31,9 +32,9 @@ class MainInfo {
         categoriesDtoList: List<CategoriesResponse>.from(
             json["categoriesDtoList"]
                 .map((x) => CategoriesResponse.fromMap(x))),
-        pointShortMobileDtoList: List<PointShortDto>.from(
+        pointShortMobileDtoList: List<MainPointShortMobileResponse>.from(
             json["pointShortMobileDtoList"]
-                .map((x) => PointShortDto.fromMap(x))),
+                .map((x) => MainPointShortMobileResponse.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {

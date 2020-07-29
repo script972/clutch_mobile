@@ -8,6 +8,7 @@ import 'package:clutch/helpers/geo_helper.dart';
 import 'package:clutch/helpers/map_helper.dart';
 import 'package:clutch/helpers/utils/date_utils.dart';
 import 'package:clutch/presentation/event/main_event.dart';
+import 'package:clutch/presentation/model/place_main_model_ui.dart';
 import 'package:clutch/presentation/model/place_model_ui.dart';
 import 'package:clutch/presentation/model/short_offer_model_ui.dart';
 import 'package:clutch/presentation/state/main_state.dart';
@@ -47,9 +48,20 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       MainInfo companyList;
       companyList = await companyRepository.fetchAllCompany(body);
 
-      List<PlaceModelUi> place = companyList.pointShortMobileDtoList
-          .map((e) => PointMapper.mapperResponseToUi(e))
+      List<PlaceMainModelUi> place = companyList.pointShortMobileDtoList
+          .map((e) => PointMapper.mapperMainResponseToUi(e))
           .toList();
+      for (int i = 0; i < place.length; i++) {
+        PlaceModelUi placeModelUi = place[i];
+        Marker marker = Marker(
+            position: placeModelUi.position,
+            icon: (placeModelUi.imageUrl == null ||
+                    placeModelUi.imageUrl.isEmpty)
+                ? null
+                : await MapHelper.getNetworkImageMarker(placeModelUi.imageUrl),
+            markerId: MarkerId(placeModelUi.position.toString()));
+        placeModelUi.marker = marker;
+      }
 
       List<ShortOfferModelUi> shortOfferModelUi = [];
       for (int i = 0; i < companyList.offersShortMobileDtoList.length; i++) {
@@ -70,17 +82,8 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         shortOfferModelUi.add(offer);
       }
 
-      Set<Marker> markers = {};
-      place.forEach((element) async {
-        Marker marker = Marker(
-            position:element.position,
-            icon: await MapHelper.getNetworkImageMarker(/*element.imageUrl*/"https://i.otzovik.com/objects/b/760000/757899.png"),
-            markerId: MarkerId(element.position.toString()));
-        markers.add(marker);
-      });
-
       yield MainLoaded(companyList.companyShortMobileDtoList, shortOfferModelUi,
-          companyList.categoriesDtoList, place, userPosition, markers);
+          companyList.categoriesDtoList, place, userPosition);
     } catch (error) {
       yield MainError(error.toString());
     }

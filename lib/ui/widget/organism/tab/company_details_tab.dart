@@ -173,6 +173,7 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                       ),
                       borderRadius: BorderRadius.circular(8.0)),
                   child: Material(
+                    borderRadius: BorderRadius.circular(8.0),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(8.0),
                       onTap: () async {
@@ -213,6 +214,7 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                       ),
                       borderRadius: BorderRadius.circular(8.0)),
                   child: Material(
+                    borderRadius: BorderRadius.circular(8.0),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(8.0),
                       onTap: () async {

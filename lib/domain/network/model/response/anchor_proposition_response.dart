@@ -3,17 +3,18 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 class AnchorPropositionResponse {
+
+  final int id;
+  final String discount;
+  final String units;
+  final String conditionDescription;
+
   AnchorPropositionResponse({
     @required this.id,
     @required this.discount,
     @required this.units,
     @required this.conditionDescription,
   });
-
-  final int id;
-  final String discount;
-  final String units;
-  final String conditionDescription;
 
   factory AnchorPropositionResponse.fromJson(String str) =>
       AnchorPropositionResponse.fromMap(json.decode(str));

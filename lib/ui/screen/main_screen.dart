@@ -25,14 +25,12 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   int itemIndex = 0;
 
   @override
   Future<void> initState() {
-    _tabController = TabController(length: 2, vsync: this);
     BlocProvider.of<MainBloc>(context).add(LoadMain());
     super.initState();
   }
@@ -42,7 +40,6 @@ class _MainScreenState extends State<MainScreen>
     return BaseScreen(
       child: Scaffold(
           key: this._scaffoldKey,
-          //appBar: SearchAppBar(_tabController, _scaffoldKey),
           drawer: MainDrawer(),
           endDrawer: CategoriesDrawer(),
           backgroundColor: Colors.white,
