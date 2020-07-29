@@ -69,7 +69,6 @@ class _MainScreenState extends State<MainScreen>
 
                 listBody.add(SettingTab());
 
-                listBody.add(SizedBox());
                 return Stack(
                   children: <Widget>[
                     listBody[itemIndex],
