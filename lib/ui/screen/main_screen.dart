@@ -6,17 +6,17 @@ import 'package:clutch/presentation/bloc/main_bloc.dart';
 import 'package:clutch/presentation/event/main_event.dart';
 import 'package:clutch/presentation/model/short_offer_model_ui.dart';
 import 'package:clutch/presentation/state/main_state.dart';
+import 'package:clutch/ui/localization/keys.dart';
 import 'package:clutch/ui/screen/base_screen.dart';
 import 'package:clutch/ui/widget/atom/bloc_error_indicator.dart';
 import 'package:clutch/ui/widget/atom/loader_indicator.dart';
-import 'package:clutch/ui/widget/organism/categories_drawer.dart';
-import 'package:clutch/ui/widget/organism/main_drawer.dart';
 import 'package:clutch/ui/widget/organism/tab/companies_tab.dart';
 import 'package:clutch/ui/widget/organism/tab/maps_big_tab.dart';
 import 'package:clutch/ui/widget/organism/tab/offers_tab.dart';
-import 'package:clutch/ui/widget/organism/tab/profile_tab.dart';
+import 'package:clutch/ui/widget/organism/tab/setting_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_translate/global.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -28,6 +28,7 @@ class _MainScreenState extends State<MainScreen>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   int itemIndex = 0;
+  String appbarTitle = "";
 
   @override
   Future<void> initState() {
@@ -40,8 +41,11 @@ class _MainScreenState extends State<MainScreen>
     return BaseScreen(
       child: Scaffold(
           key: this._scaffoldKey,
-          drawer: MainDrawer(),
-          endDrawer: CategoriesDrawer(),
+          appBar: appbarTitle.isNotEmpty
+              ? AppBar(
+                  title: Text(appbarTitle),
+                )
+              : null,
           backgroundColor: Colors.white,
           bottomNavigationBar:
               BlocBuilder<MainBloc, MainState>(builder: (context, state) {
@@ -63,7 +67,7 @@ class _MainScreenState extends State<MainScreen>
                 offer = state.offer;
                 listBody.add(OffersTab(offer));
 
-                listBody.add(ProfileTab());
+                listBody.add(SettingTab());
 
                 listBody.add(SizedBox());
                 return Stack(
@@ -116,6 +120,11 @@ class _MainScreenState extends State<MainScreen>
         onTabChangedListener: (index) {
           setState(() {
             itemIndex = index;
+            if (itemIndex == 3) {
+              appbarTitle = translate(Keys.Settings);
+            } else {
+              appbarTitle = "";
+            }
           });
         },
         tabs: [
@@ -137,45 +146,4 @@ class _MainScreenState extends State<MainScreen>
           ),
         ],
       );
-
-/*Widget bottomMenu() =>
-      BlocBuilder<MainBloc, MainState>(builder: (context, state) {
-        return BottomNavigationBar(
-          currentIndex: itemIndex,
-          onTap: (index) {
-            setState(() {
-              itemIndex = index;
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                "assets/images/ic_company.png",
-                color: Colors.green,
-              ),
-              title: Text(translate(Keys.Corporation)),
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                "assets/images/ic_offer.png",
-                width: 24.0,
-                color: Colors.green,
-              ),
-              title: Text(translate(Keys.Offers)),
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.map,
-                  color: Colors.green,
-                ),
-                title: Text(translate(Keys.Big_Map))),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.person,
-                  color: Colors.green,
-                ),
-                title: Text(translate(Keys.Profile)))
-          ],
-        );
-      });*/
 }
