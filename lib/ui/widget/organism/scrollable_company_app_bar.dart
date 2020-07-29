@@ -82,7 +82,7 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
                 hideFlexibleSpace = false;
             });
           },
-          unselectedLabelColor: _blackOrWhite().withOpacity(0.56),
+          unselectedLabelColor: _blackOrWhite() /*.withOpacity(0.56)*/,
           labelColor: _blackOrWhite(),
           isScrollable: true,
           indicator: UnderlineTabIndicator(

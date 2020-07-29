@@ -28,8 +28,12 @@ class _CompanyItemState extends State<CompanyItem> {
         child: Card(
           elevation: 1,
           margin: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+          shape: RoundedRectangleBorder(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(15.0),
+              topRight: Radius.circular(15.0),
+            ),
+          ),
           color:
               widget._companyResponse.color ?? Theme.of(context).primaryColor,
           child: Stack(
