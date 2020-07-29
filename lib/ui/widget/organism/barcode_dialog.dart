@@ -9,15 +9,12 @@ class BarcodeDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.0),
-        ),
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.95),
-            borderRadius: BorderRadius.all(Radius.circular(40)),
+            borderRadius: BorderRadius.all(Radius.circular(32.0)),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -29,7 +26,7 @@ class BarcodeDialog extends StatelessWidget {
                       quarterTurns: 1,
                       child: Text(
                         barcode?.toString(),
-                        style: TextStyle(color: Colors.red, fontSize: 36.0),
+                        style: TextStyle(color: Colors.black, fontSize: 36.0),
                       ))),
               Padding(
                 padding: EdgeInsets.all(16.0),
@@ -49,6 +46,7 @@ class BarcodeDialog extends StatelessWidget {
                   ],
                 ),
               ),
+          /*    Align(alignment: Alignment.topRight,child: Icon(Icons.close)),*/
             ],
           ),
         ),
