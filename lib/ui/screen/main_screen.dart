@@ -1,4 +1,7 @@
+import 'package:circle_bottom_navigation/circle_bottom_navigation.dart';
+import 'package:circle_bottom_navigation/widgets/tab_data.dart';
 import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/helpers/bottom_navigation_icons.dart';
 import 'package:clutch/presentation/bloc/main_bloc.dart';
 import 'package:clutch/presentation/event/main_event.dart';
 import 'package:clutch/presentation/model/short_offer_model_ui.dart';
@@ -7,14 +10,13 @@ import 'package:clutch/ui/localization/keys.dart';
 import 'package:clutch/ui/screen/base_screen.dart';
 import 'package:clutch/ui/widget/atom/bloc_error_indicator.dart';
 import 'package:clutch/ui/widget/atom/loader_indicator.dart';
-import 'package:clutch/ui/widget/organism/categories_drawer.dart';
-import 'package:clutch/ui/widget/organism/main_drawer.dart';
 import 'package:clutch/ui/widget/organism/tab/companies_tab.dart';
+import 'package:clutch/ui/widget/organism/tab/maps_big_tab.dart';
 import 'package:clutch/ui/widget/organism/tab/offers_tab.dart';
-import 'package:clutch/ui/widget/organism/tab/profile_tab.dart';
+import 'package:clutch/ui/widget/organism/tab/setting_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_translate/flutter_translate.dart';
+import 'package:flutter_translate/global.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -23,14 +25,13 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   int itemIndex = 0;
+  String appbarTitle = "";
 
   @override
   Future<void> initState() {
-    _tabController = TabController(length: 2, vsync: this);
     BlocProvider.of<MainBloc>(context).add(LoadMain());
     super.initState();
   }
@@ -40,9 +41,11 @@ class _MainScreenState extends State<MainScreen>
     return BaseScreen(
       child: Scaffold(
           key: this._scaffoldKey,
-          //appBar: SearchAppBar(_tabController, _scaffoldKey),
-          drawer: MainDrawer(),
-          endDrawer: CategoriesDrawer(),
+          appBar: appbarTitle.isNotEmpty
+              ? AppBar(
+                  title: Text(appbarTitle),
+                )
+              : null,
           backgroundColor: Colors.white,
           bottomNavigationBar:
               BlocBuilder<MainBloc, MainState>(builder: (context, state) {
@@ -60,15 +63,16 @@ class _MainScreenState extends State<MainScreen>
               if (state is MainLoaded) {
                 company = state.company;
                 listBody.add(CompaniesTab(company));
+                listBody.add(MapsBigTab());
                 offer = state.offer;
                 listBody.add(OffersTab(offer));
-                listBody.add(ProfileTab());
 
-                listBody.add(SizedBox());
+                listBody.add(SettingTab());
+
                 return Stack(
                   children: <Widget>[
                     listBody[itemIndex],
-                    itemIndex != 2
+                    /* itemIndex != 2
                         ? Align(
                             alignment: Alignment.centerRight,
                             child: GestureDetector(
@@ -96,7 +100,7 @@ class _MainScreenState extends State<MainScreen>
                                         ),
                                       ),
                                     ))))
-                        : SizedBox()
+                        : SizedBox()*/
                   ],
                 );
               }
@@ -107,38 +111,38 @@ class _MainScreenState extends State<MainScreen>
     );
   }
 
-  Widget bottomMenu() =>
-      BlocBuilder<MainBloc, MainState>(builder: (context, state) {
-        return BottomNavigationBar(
-          currentIndex: itemIndex,
-          onTap: (index) {
-            setState(() {
-              itemIndex = index;
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                "assets/images/ic_company.png",
-                color: Colors.green,
-              ),
-              title: Text(translate(Keys.Corporation)),
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                "assets/images/ic_offer.png",
-                width: 24.0,
-                color: Colors.green,
-              ),
-              title: Text(translate(Keys.Offers)),
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.person,
-                  color: Colors.green,
-                ),
-                title: Text(translate(Keys.Profile)))
-          ],
-        );
-      });
+  Widget bottomMenu() => CircleBottomNavigation(
+        initialSelection: itemIndex,
+        hasElevationShadows: true,
+        barHeight: 50.0,
+        circleSize: 55,
+        onTabChangedListener: (index) {
+          setState(() {
+            itemIndex = index;
+            if (itemIndex == 3) {
+              appbarTitle = translate(Keys.Settings);
+            } else {
+              appbarTitle = "";
+            }
+          });
+        },
+        tabs: [
+          TabData(
+            icon: Bottom_navigation_icon.account_balance,
+            //title: translate(Keys.Discount),
+          ),
+          TabData(
+            icon: Icons.map,
+            //title: translate(Keys.Big_Map)
+          ),
+          TabData(
+            icon: Bottom_navigation_icon.local_offer,
+            //title: translate(Keys.Offers)
+          ),
+          TabData(
+            icon: Bottom_navigation_icon.settings,
+            //title: translate(Keys.Settings)
+          ),
+        ],
+      );
 }

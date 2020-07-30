@@ -10,7 +10,8 @@ import 'package:clutch/ui/widget/organism/scrollable_company_app_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CompanyScreen extends StatefulWidget {
-  CompanyScreen();
+
+  const CompanyScreen();
 
   @override
   _CompanyScreenState createState() => _CompanyScreenState();

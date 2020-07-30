@@ -1,20 +1,17 @@
-import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
 import 'package:clutch/presentation/model/company_details_model_ui.dart';
-import 'package:clutch/presentation/model/offer_details_model_ui.dart';
+import 'package:clutch/ui/localization/keys.dart';
 import 'package:clutch/ui/widget/atom/cached_network_image_wrapper.dart';
 import 'package:clutch/ui/widget/molecula/sliver_app_bar.dart';
 import 'package:clutch/ui/widget/organism/barcode_custom.dart';
-import 'package:clutch/ui/widget/organism/barcode_dialog.dart';
 import 'package:flutter/material.dart';
-
-import 'package:clutch/ui/localization/keys.dart';
+import 'package:flutter_color_models/flutter_color_models.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 
 class ScrollableCompanyAppBar extends StatefulWidget {
   final CompanyDetailsModelUi company;
   final TabController _companyTabController;
 
-  ScrollableCompanyAppBar(this.company, this._companyTabController);
+  const ScrollableCompanyAppBar(this.company, this._companyTabController);
 
   @override
   _ScrollableCompanyAppBarState createState() =>
@@ -31,7 +28,7 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
         elevation: 0.0,
         pinned: true,
         leading: IconButton(
-          color: blackOrWhite(),
+          color: _blackOrWhite(),
           padding: EdgeInsets.only(left: 6.0),
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -51,7 +48,7 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
                 padding: const EdgeInsets.only(left: 30.0),
                 child: Text(widget.company.title,
                     style: TextStyle(
-                      color: blackOrWhite(),
+                      color: _blackOrWhite(),
                       fontSize: 20,
                     )),
               ),
@@ -85,14 +82,16 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
                 hideFlexibleSpace = false;
             });
           },
-          unselectedLabelColor: blackOrWhite().withOpacity(0.56),
-          labelColor: blackOrWhite(),
+          unselectedLabelColor: _blackOrWhite() /*.withOpacity(0.56)*/,
+          labelColor: _blackOrWhite(),
           isScrollable: true,
           indicator: UnderlineTabIndicator(
-              borderSide: BorderSide(width: 3.0, color: blackOrWhite()),
+              borderSide: BorderSide(width: 3.0, color: _blackOrWhite()),
               insets: EdgeInsets.symmetric(horizontal: 12.0)),
           tabs: [
-            Tab(text: translate(Keys.Offers)),
+            Tab(
+              text: translate(Keys.Offers),
+            ),
             Tab(text: translate(Keys.Details)),
             Tab(text: translate(Keys.Locations)),
           ],
@@ -100,6 +99,9 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
         ),
       );
 
-  Color blackOrWhite() =>
-      widget.company.color == Colors.white ? Colors.black : Colors.white;
+  Color _blackOrWhite() {
+    if (widget.company == null || widget.company.color == null)
+      return Colors.black;
+    return RgbColor.fromColor(widget.company.color).inverted.toColor();
+  }
 }

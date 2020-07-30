@@ -7,7 +7,6 @@ import 'package:clutch/ui/screen/auth/invite_code_screen.dart';
 import 'package:clutch/ui/screen/main_screen.dart';
 import 'package:clutch/ui/screen/offer_screen.dart';
 import 'package:clutch/ui/screen/profile_screen.dart';
-import 'package:clutch/ui/screen/settings_screen.dart';
 import 'package:clutch/ui/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +24,6 @@ class CustomRoute {
   //main
   static const String MAIN_SCREEN = '/main';
   static const String PROFILE = '/profile';
-  static const String SETTINGS = '/settings';
   static const String DETAILS_COMPANY = '/details_company';
   static const String DETAILS_OFFER = '/details_offer';
 
@@ -44,9 +42,6 @@ class CustomRoute {
         break;
       case PROFILE:
         screen = ProfileScreen();
-        break;
-      case SETTINGS:
-        screen = SettingsScreen();
         break;
       case DETAILS_COMPANY:
         screen = CompanyScreen();

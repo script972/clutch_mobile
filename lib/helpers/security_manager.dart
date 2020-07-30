@@ -38,7 +38,7 @@ class SecurityManager {
     List<CompanyWithPaidAccess> companyList =
         await authRepository.fetchPaidAccessDetails();
     companyList.forEach((element) {
-      if (!element.verifyViaEmailOrAdmin) {
+      if (!(element?.verifyViaEmailOrAdmin ?? true)) {
         out.hasAccess=true;
         out.screen = CustomRoute.MAIN_SCREEN;
         return out;

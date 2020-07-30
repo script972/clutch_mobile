@@ -1,39 +1,53 @@
 import 'dart:async';
 
-import 'package:clutch/helpers/geo_helper.dart';
+import 'package:clutch/core/custom_route.dart';
+import 'package:clutch/presentation/bloc/company_details_bloc.dart';
+import 'package:clutch/presentation/bloc/main_bloc.dart';
+import 'package:clutch/presentation/event/company_details_event.dart';
 import 'package:clutch/presentation/model/place_model_ui.dart';
+import 'package:clutch/presentation/state/main_state.dart';
 import 'package:clutch/ui/localization/keys.dart';
+import 'package:clutch/ui/widget/atom/loader_indicator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/global.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class LocationsTab extends StatefulWidget {
-  List<PlaceModelUi> places;
-  LatLng camera;
-
-  LocationsTab(this.places, this.camera);
+class MapsBigTab extends StatefulWidget {
+  const MapsBigTab();
 
   @override
-  _LocationsTabState createState() => _LocationsTabState();
+  _MapsBigTabState createState() => _MapsBigTabState();
 }
 
-class _LocationsTabState extends State<LocationsTab> {
-  final Set<Marker> markers = {};
+class _MapsBigTabState extends State<MapsBigTab> {
   final Completer<GoogleMapController> _controller = Completer();
   final double MAP_ZOOM = 12.0;
+  final Set<Marker> markers = {};
 
   @override
-  void initState() {
-    super.initState();
-    widget.places.forEach((element) {
-      this.markers.add(element.marker);
-    });
-  }
+  Widget build(BuildContext context) =>
+      BlocBuilder<MainBloc, MainState>(builder: (context, state) {
+        if (state is MainLoaded) {
+          state.places.forEach((element) {
+            element.marker = element.marker.copyWith(onTapParam: () {
+              BlocProvider.of<CompanyDetailsBloc>(context)
+                  .add(LoadCompanyDetails(element.companyId));
+              Navigator.pushNamed(context, CustomRoute.DETAILS_COMPANY);
+            });
+            markers.add(element.marker);
+          });
+          return mapBloc(state.places, state.userPosition, markers);
+        } else if (state is MainLoading) {
+          return LoaderIndicator();
+        }
+      });
 
-  @override
-  Widget build(BuildContext context) => Stack(
+  Widget mapBloc(
+          List<PlaceModelUi> places, LatLng userPosition, Set<Marker> marker) =>
+      Stack(
         children: <Widget>[
           GoogleMap(
               mapType: MapType.normal,
@@ -42,9 +56,9 @@ class _LocationsTabState extends State<LocationsTab> {
               onMapCreated: _controller.complete,
               myLocationButtonEnabled: false,
               myLocationEnabled: true,
-              markers: markers,
+              markers: marker,
               initialCameraPosition: CameraPosition(
-                  target: widget.camera ?? LatLng(46.9, 32.0), zoom: MAP_ZOOM),
+                  target: userPosition ?? LatLng(46.9, 32.0), zoom: MAP_ZOOM),
               gestureRecognizers: Set()
                 ..add(
                   Factory<OneSequenceGestureRecognizer>(
@@ -56,12 +70,15 @@ class _LocationsTabState extends State<LocationsTab> {
                 initialChildSize: 0.25,
                 minChildSize: 0.25,
                 maxChildSize: 0.95,
-                builder: _bottomPanel),
+                builder: (context, controller) =>
+                    _bottomPanel(context, controller, places)),
           )
         ],
       );
 
-  Widget _bottomPanel(context, ScrollController scrollController) => Container(
+  Widget _bottomPanel(context, ScrollController scrollController,
+          List<PlaceModelUi> places) =>
+      Container(
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -108,9 +125,9 @@ class _LocationsTabState extends State<LocationsTab> {
                       ),
                   padding: EdgeInsets.all(0.0),
                   shrinkWrap: true,
-                  itemCount: widget.places.length,
+                  itemCount: places.length,
                   itemBuilder: (_, index) {
-                    var place = widget.places[index];
+                    var place = places[index];
                     return Material(
                       color: Colors.transparent,
                       child: InkWell(

@@ -1,6 +1,6 @@
 {
   "app_name" : "Клатч",
-  "offers" : "Предложения",
+  "offers" : "Акции",
   "companies": "Компании",
   "about" : "О",
   "about_company" : "О компании",
@@ -44,5 +44,8 @@
   "you_are_alredy_have_company" : "У вас уже есть компания",
   "code_from_email" : "Код с email",
   "unknown_error" : "Неизвестная ошибка",
-  "code_not_found" : "Код не найден"
+  "code_not_found" : "Код не найден",
+  "big_map" : "Карта",
+  "settings" : "Настройки",
+  "list_of_location" : "Список мест"
 }

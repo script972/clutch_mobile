@@ -21,7 +21,7 @@ class CompanyAndOffersSearch {
 
   Map<String, dynamic> toMap() => {
         "title": title,
-        "icon": lat,
-        "id": lng,
+        "lat": lat,
+        "lng": lng,
       };
 }
