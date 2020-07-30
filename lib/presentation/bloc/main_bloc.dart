@@ -37,14 +37,19 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   Stream<MainState> _mapLoadMainToState(LoadMain event) async* {
     yield MainLoading();
     try {
-      Position position = await GeoHelper.detectPosition();
+      Position position;
+      try {
+        position = await GeoHelper.detectPosition();
+      } catch (e) {}
       LatLng userPosition;
       if (position != null && position.latitude != null) {
         userPosition = LatLng(position.latitude, position.longitude);
       }
       var body = CompanyAndOffersSearch();
-      body.lat = position.latitude;
-      body.lng = position.longitude;
+      if(position!=null) {
+        body.lat = position.latitude;
+        body.lng = position.longitude;
+      }
       MainInfo companyList;
       companyList = await companyRepository.fetchAllCompany(body);
 
