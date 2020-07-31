@@ -1,5 +1,7 @@
 import 'package:clutch/core/custom_route.dart';
+import 'package:clutch/core/theme_custom.dart';
 import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
+import 'package:clutch/helpers/distance_ui_helper.dart';
 import 'package:clutch/presentation/bloc/company_details_bloc.dart';
 import 'package:clutch/presentation/event/company_details_event.dart';
 import 'package:clutch/ui/widget/atom/cached_network_image_wrapper.dart';
@@ -8,9 +10,9 @@ import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CompanyItem extends StatefulWidget {
-  CompanyShortMobile _companyResponse;
+  final CompanyShortMobile _companyResponse;
 
-  CompanyItem(this._companyResponse);
+  const CompanyItem(this._companyResponse);
 
   @override
   _CompanyItemState createState() => _CompanyItemState();
@@ -61,35 +63,57 @@ class _CompanyItemState extends State<CompanyItem> {
                           ),
                           color:
                               Theme.of(context).primaryColor.withOpacity(0.8),
+                          gradient: ThemeCustom.mainGradient,
                         ),
                         child: Text(
                           "${widget._companyResponse.anchorPropositionResponse.discount}${widget._companyResponse.anchorPropositionResponse.units}",
-                          style: TextStyle(fontSize: 20.0),
+                          style: TextStyle(fontSize: 20.0, color: Colors.black),
                         ),
                       ),
                     )
                   : SizedBox(),
               Align(
                   alignment: Alignment.bottomCenter,
-                  child: Container(
-                      color: Colors.red.withOpacity(0.8),
-                      padding: EdgeInsets.only(bottom: 4.0, top: 4.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Text(
-                              widget._companyResponse.title,
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                fontSize: 18.0,
-                                color: Colors.white,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      DistanceUiHelper.displayOutput(
+                                  widget._companyResponse.distance) !=
+                              null
+                          ? Container(
+                              decoration: BoxDecoration(
+                                  gradient: ThemeCustom.mainGradient),
+                              padding: EdgeInsets.only(left: 8.0),
+                              child: Text(
+                                DistanceUiHelper.displayOutput(
+                                    widget._companyResponse.distance),
+                                style: TextStyle(fontSize: 18.0, color: Colors.white),
                               ),
-                            ),
-                          ),
-                        ],
-                      )))
+                            )
+                          : SizedBox(),
+                      Container(
+                          color: Colors.red.withOpacity(0.8),
+                          padding: EdgeInsets.only(bottom: 4.0, top: 4.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(
+                                  widget._companyResponse.title,
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
+                    ],
+                  ))
             ],
           ),
         ),

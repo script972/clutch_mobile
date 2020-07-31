@@ -45,7 +45,7 @@ class ProfileLoaded extends ProfileState {
   }
 
   @override
-  List<Object> get props => [photo, name, lastName];
+  List<Object> get props => [photo, name, lastName, sex];
 }
 
 class ProfileError extends ProfileState {

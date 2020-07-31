@@ -15,7 +15,7 @@
   "input_code_from_sms" : "Введите код из SMS",
   "accept_phone_number" : "Подтверждение номера телефона",
   "phone_code_invalid" : "Неверный код подтверждения",
-  "service_the_best_offers" : "Сервис лучших условий",
+  "service_the_best_offers" : "Сервис лучших предложений",
   "accept" : "Подтвердить",
   "type_name" : "Введите имя",
   "name" : "Имя",
@@ -47,5 +47,11 @@
   "code_not_found" : "Код не найден",
   "big_map" : "Карта",
   "settings" : "Настройки",
-  "list_of_location" : "Список мест"
+  "list_of_location" : "Список мест",
+  "till" : "до",
+  "km" : "км",
+  "more": ">",
+  "offer_work_since" : "Акция действует с",
+  "to" : "по",
+  "perpetual" : "Бессрочно"
 }

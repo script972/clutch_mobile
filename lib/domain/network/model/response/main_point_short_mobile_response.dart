@@ -10,11 +10,12 @@ class MainPointShortMobileResponse {
   final String address;
   final String companyTitle;
   final String pointTitle;
-  final dynamic companyLogo;
+  final String companyLogo;
   final AnchorPropositionResponse anchorDiscount;
   final String pointImage;
   final double lat;
   final double lng;
+  final double distance;
 
   MainPointShortMobileResponse({
     @required this.companyId,
@@ -27,6 +28,7 @@ class MainPointShortMobileResponse {
     @required this.pointImage,
     @required this.lat,
     @required this.lng,
+    @required this.distance,
   });
 
   factory MainPointShortMobileResponse.fromJson(String str) =>
@@ -49,6 +51,7 @@ class MainPointShortMobileResponse {
         pointImage: json["pointImage"] == null ? null : json["pointImage"],
         lat: json["lat"] == null ? null : json["lat"].toDouble(),
         lng: json["lng"] == null ? null : json["lng"].toDouble(),
+        distance: json["distanceToUser"] == null ? null : json["distanceToUser"].toDouble(),
       );
 
   Map<String, dynamic> toMap() => {
@@ -63,5 +66,6 @@ class MainPointShortMobileResponse {
         "pointImage": pointImage == null ? null : pointImage,
         "lat": lat == null ? null : lat,
         "lng": lng == null ? null : lng,
+        "distanceToUser": distance == null ? null : distance,
       };
 }

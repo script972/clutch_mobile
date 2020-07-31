@@ -12,7 +12,7 @@ class PointMapper {
     return PlaceModelUi(
         pointShortDto.title,
         pointShortDto.address,
-        pointShortDto.distance.toString(),
+        pointShortDto.distance,
         pointShortDto.image ?? "",
         LatLng(pointShortDto.lat, pointShortDto.lng),
         marker: marker);
@@ -24,7 +24,7 @@ class PointMapper {
         pointShortDto.companyId,
         pointShortDto.companyTitle,
         pointShortDto.address,
-        /*pointShortDto.distance.toString()*/ "0",
+        pointShortDto.distance,
         pointShortDto.companyLogo ?? "",
         LatLng(pointShortDto.lat, pointShortDto.lng));
   }

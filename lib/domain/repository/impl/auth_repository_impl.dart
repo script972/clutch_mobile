@@ -39,12 +39,15 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<ProfileDto> changeProfile(ProfileDto profileDto) async {
-    File file = File(profileDto.facePhoto);
     bool uploaded = true;
-    if (profileDto.facePhoto != null)
-      uploaded = await mediaApiService.uploadImage(file);
+    if(profileDto.facePhoto!=null){
+      uploaded = false;
+      File file = File(profileDto.facePhoto);
+      if (profileDto.facePhoto != null)
+        uploaded = await mediaApiService.uploadImage(file);
+    }
     if (uploaded) {
-      apiService.changeProfile(profileDto);
+      return await apiService.changeProfile(profileDto);
     }
     return null;
   }

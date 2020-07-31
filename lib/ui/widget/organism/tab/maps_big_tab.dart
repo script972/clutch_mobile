@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:clutch/core/custom_route.dart';
+import 'package:clutch/core/theme_custom.dart';
+import 'package:clutch/helpers/distance_ui_helper.dart';
 import 'package:clutch/presentation/bloc/company_details_bloc.dart';
 import 'package:clutch/presentation/bloc/main_bloc.dart';
 import 'package:clutch/presentation/event/company_details_event.dart';
@@ -131,7 +133,81 @@ class _MapsBigTabState extends State<MapsBigTab> {
                     return Material(
                       color: Colors.transparent,
                       child: InkWell(
-                        child: ListTile(
+                        onTap: () async {
+                          final controller = await _controller.future;
+                          await controller.animateCamera(
+                            CameraUpdate.newCameraPosition(
+                              CameraPosition(
+                                target: place.position,
+                                zoom: 13.5,
+                              ),
+                            ),
+                          );
+                          DraggableScrollableActuator.reset(context);
+                        },
+                        onLongPress: (){
+
+                        },
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Expanded(
+                                flex: 2,
+                                child: Container(
+                                  child: place.imageUrl.isNotEmpty
+                                      ? CircleAvatar(
+                                          backgroundImage:
+                                              NetworkImage(place.imageUrl),
+                                        )
+                                      : Container(
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color:
+                                                  Theme.of(context).primaryColor),
+                                        ),
+                                  width: 60,
+                                  height: 60,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 10,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(children: <Widget>[
+                                      Expanded(child: Text(place.name)),
+                                      Container(
+                                        padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
+                                        decoration: BoxDecoration(gradient: ThemeCustom.mainGradient),
+                                        child: Row(children: <Widget>[
+                                          Text(DistanceUiHelper.displayOutput(place.vicinity), style: TextStyle(color: Colors.white),),
+                                          Icon(Icons.place, color: Colors.white,),
+                                        ],),
+                                      )
+
+                                    ],),
+                                    Text(place.address),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  })
+            ],
+          ),
+        ),
+      );
+}
+
+/*
+* ListTile(
                           leading: Container(
                             child: place.imageUrl.isNotEmpty
                                 ? CircleAvatar(
@@ -160,12 +236,5 @@ class _MapsBigTabState extends State<MapsBigTab> {
                             );
                             DraggableScrollableActuator.reset(context);
                           },
-                        ),
-                      ),
-                    );
-                  })
-            ],
-          ),
-        ),
-      );
-}
+                        )
+* */
