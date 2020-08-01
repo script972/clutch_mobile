@@ -22,8 +22,7 @@ class _AboutWidgetState extends State<AboutWidget> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
+  Widget build(BuildContext context) => Column(
       children: <Widget>[
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,5 +92,4 @@ class _AboutWidgetState extends State<AboutWidget> {
         )
       ],
     );
-  }
 }
