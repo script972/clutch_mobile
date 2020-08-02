@@ -4,7 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class PlaceMainModelUi extends PlaceModelUi {
   int companyId;
 
-  PlaceMainModelUi(this.companyId, String name, String address, String vicinity,
+  PlaceMainModelUi(this.companyId, String name, String address, double vicinity,
       String imageUrl, LatLng position)
       : super(name, address, vicinity, imageUrl, position);
 }

@@ -26,6 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController _firstNameController;
   TextEditingController _lastNameController;
   TextEditingController _birthdayController;
+  String sex;
 
 
   @override
@@ -57,7 +58,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     TextEditingController.fromValue(TextEditingValue(
                   text:  DateUtils.timestampToString(state.birthday),
                 ));
-
                 return bodyContent(state);
               }
               return Center(

@@ -4,7 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class PlaceModelUi {
   final String name;
   final String address;
-  final String vicinity;
+  final double vicinity;
   final Color vicinityColor;
   final String imageUrl;
   final LatLng position;

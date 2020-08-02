@@ -106,4 +106,16 @@ class Keys {
   static const String Settings = 'settings';
 
   static const String List_Of_Location = 'list_of_location';
+
+  static const String Till = 'till';
+
+  static const String Km = 'km';
+
+  static const String More = 'more';
+
+  static const String Offer_Work_Since = 'offer_work_since';
+
+  static const String To = 'to';
+
+  static const String Perpetual = 'perpetual';
 }
