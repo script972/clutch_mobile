@@ -45,6 +45,7 @@ dependencies:
   circle_bottom_navigation: 1.0.6
   flutter_cache_manager: 1.4.1
   flutter_color_models: 0.1.6
+  app_review: 1.1.2
 
 dev_dependencies:
   flutter_test:

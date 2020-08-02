@@ -150,10 +150,10 @@ class _MapsBigTabState extends State<MapsBigTab> {
                         },
                         child: Row(
                           children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Expanded(
-                                flex: 2,
+                            Expanded(
+                              flex: 2,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
                                 child: Container(
                                   child: place.imageUrl.isNotEmpty
                                       ? CircleAvatar(
