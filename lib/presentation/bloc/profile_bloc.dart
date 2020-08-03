@@ -28,18 +28,22 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       yield* _mapChangePhoto(event);
     }
     if (event is ChangeName) {
-      profileChange = profileChange.copyWith(name: event.name);
+      String firstName =  event.name.isEmpty ? null : event.name;
+      profileChange = profileChange.copyWith(name: firstName);
+      yield profileLoaded = profileLoaded.copyWith(name: firstName);
     }
     if (event is ChangeLastName) {
-      profileChange = profileChange.copyWith(lastName: event.lastName);
+      String lastName =  event.lastName.isEmpty ? null : event.lastName;
+      profileChange = profileChange.copyWith(lastName: lastName);
+      yield profileLoaded = profileLoaded.copyWith(lastName: lastName);
     }
     if (event is ChangeBirthday) {
       profileChange = profileChange.copyWith(birthday: event.birhday);
+      yield profileLoaded = profileLoaded.copyWith(birthday: event.birhday);
     }
     if (event is ChangeSex) {
       profileChange = profileChange.copyWith(sex: event.sex);
-      //profileLoaded = profileLoaded.copyWith(sex: event.sex);
-      yield profileLoaded.copyWith(sex: event.sex);
+      yield profileLoaded = profileLoaded.copyWith(sex: event.sex);
     }
     if (event is SaveProfile) {
       yield* _mapSaveToState(event);
@@ -67,11 +71,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   Stream<ProfileState> _mapChangePhoto(ChangePhoto event) async* {
     final picker = ImagePicker();
     var image = await picker.getImage(source: ImageSource.gallery);
-    /* profileLoaded.photo = image.path;
-    profileLoaded.photoExternal = false;*/
-    profileChange =
-        profileChange.copyWith(photo: image.path, photoExternal: false);
-    yield profileChange;
+    profileLoaded =
+        profileLoaded.copyWith(photo: image.path, photoExternal: false);
+    profileChange = profileChange.copyWith(photo: image.path, photoExternal: false);
+    yield profileLoaded;
   }
 
   Stream<ProfileState> _mapSaveToState(SaveProfile event) async* {

@@ -73,7 +73,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         String subTitle = "";
         if (companyList.offersShortMobileDtoList[i].finish != null)
           subTitle = DateUtils.timestampToString(
-              companyList.offersShortMobileDtoList[i].finish);
+              companyList.offersShortMobileDtoList[i].finish) ?? "";
         StaggeredTile widthType;
         if (i % 3 == 0)
           widthType = const StaggeredTile.count(4, 2.25);

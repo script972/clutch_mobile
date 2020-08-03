@@ -4,13 +4,13 @@ import 'package:clutch/domain/network/model/profile_dto.dart';
 import 'package:clutch/domain/network/model/request/phone_init_request.dart';
 import 'package:clutch/domain/network/model/request/phone_sms_confirm_request.dart';
 import 'package:clutch/domain/network/model/response/auth_response.dart';
-import 'package:clutch/domain/network/model/response/company_short_mobile.dart';
 import 'package:clutch/domain/network/model/response/company_with_paid_access.dart';
 import 'package:clutch/domain/network/service/api_auth_service.dart';
 import 'package:clutch/domain/network/service/api_media_service.dart';
 import 'package:clutch/domain/network/service_connector_factory.dart';
-import 'package:clutch/presentation/model/auth_dto.dart';
 import 'package:clutch/domain/repository/auth_repository.dart';
+import 'package:clutch/presentation/model/auth_dto.dart';
+import 'package:flutter/cupertino.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
   final ApiAuthService apiService = ServiceConnectorFactory.getAPIService(
@@ -40,16 +40,21 @@ class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<ProfileDto> changeProfile(ProfileDto profileDto) async {
     bool uploaded = true;
-    if(profileDto.facePhoto!=null){
+    if (profileDto.facePhoto != null) {
       uploaded = false;
-      File file = File(profileDto.facePhoto);
-      if (profileDto.facePhoto != null)
-        uploaded = await mediaApiService.uploadImage(file);
+      if (profileDto.facePhoto != null) {
+        File file = File(profileDto.facePhoto);
+        try {
+          uploaded = await mediaApiService.uploadImage(file);
+        } catch (e) {
+          debugPrint("<<<");
+        }
+      }
     }
     if (uploaded) {
       return await apiService.changeProfile(profileDto);
     }
-    return null;
+    return profileDto;
   }
 
   @override

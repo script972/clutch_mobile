@@ -11,8 +11,8 @@ class HttpMediaServiceImpl extends ApiMediaService {
     FormData formData = FormData.fromMap({
       "file": await MultipartFile.fromFile(file.path, filename: fileName),
     });
-    Response response =
-        await HttpManager().dio.post("/storage", data: formData);
+    Response response = await HttpManager().dio.post("/storage",
+        data: formData, options: Options(contentType: 'multipart/form-data'));
     return response.statusCode == 200;
   }
 }

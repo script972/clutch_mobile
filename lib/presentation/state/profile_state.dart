@@ -23,8 +23,8 @@ class ProfileLoaded extends ProfileState {
   const ProfileLoaded(
       {this.photo,
       this.photoExternal,
-      this.name ="",
-      this.lastName="",
+      this.name = "",
+      this.lastName = "",
       this.birthday,
       this.sex});
 
@@ -45,7 +45,7 @@ class ProfileLoaded extends ProfileState {
   }
 
   @override
-  List<Object> get props => [photo, name, lastName, sex];
+  List<Object> get props => [photo, name, lastName, sex, birthday];
 }
 
 class ProfileError extends ProfileState {

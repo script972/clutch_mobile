@@ -26,8 +26,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController _firstNameController;
   TextEditingController _lastNameController;
   TextEditingController _birthdayController;
-  String sex;
-
 
   @override
   Widget build(BuildContext context) => BaseScreen(
@@ -44,19 +42,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
               if (state is ProfileLoaded) {
                 _firstNameController = TextEditingController.fromValue(
                     TextEditingValue(
-                        text: state.name,
+                        text: state?.name ?? "",
                         selection: TextSelection.collapsed(
-                            offset: state.name.length)));
+                            offset: state.name?.length ?? 0)));
 
                 _lastNameController = TextEditingController.fromValue(
                     TextEditingValue(
-                        text: state.lastName,
+                        text: state?.lastName ?? "",
                         selection: TextSelection.collapsed(
-                            offset: state.lastName.length)));
+                            offset: state.lastName?.length ?? 0)));
 
                 _birthdayController =
                     TextEditingController.fromValue(TextEditingValue(
-                  text:  DateUtils.timestampToString(state.birthday),
+                  text: DateUtils.timestampToString(state.birthday) ?? "",
                 ));
                 return bodyContent(state);
               }
@@ -150,24 +148,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     horizontal: 12.0),
                                 child: DateTimeField(
                                   controller: _birthdayController,
-                                  onChanged: (value) {
-                                    /* setState(() => dateOfBirth =
-                                  DateFormat.yMMMMd('ru')
-                                      .format(value) ??
-                                      '');*/
-                                  },
                                   decoration: _inputDecoration.copyWith(
                                       labelText: translate(Keys.Birhday)),
-                                  onShowPicker: (context, currentValue) {
-                                    return showDatePicker(
+                                  onShowPicker: (context, currentValue) async {
+                                    var data = await showDatePicker(
                                       context: context,
-                                      firstDate: DateTime(1900),
+                                      firstDate: DateTime(1950),
                                       initialDate:
                                           currentValue ?? DateTime.now(),
                                       lastDate: DateTime.now()
                                           .add(Duration(days: 31)),
                                       locale: const Locale("ru", "RU"),
                                     );
+                                    int value = (data?.microsecondsSinceEpoch /
+                                            1000000 ??
+                                        0).toInt();
+                                    BlocProvider.of<ProfileBloc>(context)
+                                        .add(ChangeBirthday(value));
+                                    return data;
                                   },
                                   format: null,
                                 ),
@@ -194,8 +192,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           value: "MALE",
                                           activeColor: Color(0xFFFF473D),
                                           groupValue: state.sex,
-                                          onChanged: (val) =>
-                                              setState(() => BlocProvider.of<ProfileBloc>(context)
+                                          onChanged: (val) => setState(() =>
+                                              BlocProvider.of<ProfileBloc>(
+                                                      context)
                                                   .add(ChangeSex(val))),
                                         ),
                                         Text(
@@ -213,9 +212,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             value: "FEMALE",
                                             activeColor: Color(0xFFFF473D),
                                             groupValue: state.sex,
-                                            onChanged: (val) => setState(
-                                              () => BlocProvider.of<ProfileBloc>(context)
-                                                  .add(ChangeSex(val))),
+                                            onChanged: (val) => setState(() =>
+                                                BlocProvider.of<ProfileBloc>(
+                                                        context)
+                                                    .add(ChangeSex(val))),
                                           ),
                                           Text(translate(Keys.Women),
                                               style: TextStyle(fontSize: 16)),
