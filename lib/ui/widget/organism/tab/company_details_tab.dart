@@ -6,6 +6,7 @@ import 'package:clutch/ui/widget/atom/company_header.dart';
 import 'package:clutch/ui/widget/organism/about_widget.dart';
 import 'package:clutch/ui/widget/organism/item/review_slider.dart';
 import 'package:clutch/ui/widget/organism/item/review_widget.dart';
+import 'package:clutch/ui/widget/organism/work_shedule.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_translate/flutter_translate.dart';
@@ -34,33 +35,14 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                 Divider(),
                 AboutWidget(
                     translate(Keys.About_Company), widget.company.description),
-                /*widget.company.phone.isNotEmpty
-                    ? IconDescriptionItem(
-                        "assets/images/ic_phone.png",
-                        widget.company.phone,
-                        color: Colors.red,
-                        callback: () {
-                          launch("tel://${widget.company.phone}");
-                        },
-                      )
-                    : SizedBox(),
-                widget.company.site.isNotEmpty
-                    ? IconDescriptionItem(
-                        "assets/images/ic_site.png", widget.company.site,
-                        color: Colors.red, callback: () async {
-                        String url = widget.company.site;
-                        if (await canLaunch(url)) {
-                          await launch(url);
-                        } else {
-                          throw 'Could not launch $url';
-                        }
-                      })
-                    : SizedBox(),*/
                 Divider(),
                 phoneAndNetwork(widget.company),
                 socialLink(widget.company),
-                /* Divider(),
-                WorkSchedule(),*/
+               /* WorkSchedule(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 32.0, bottom: 8.0),
+                  child: Text("График работы ближайшей к вам локации компании"),
+                ),*/
                 /* Divider(),*/
                 /* Padding(
                   padding: const EdgeInsets.all(15.0),
