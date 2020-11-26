@@ -33,38 +33,36 @@ class _ProfileTabState extends State<ProfileTab> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<ProfileBloc, ProfileState>(
-      builder: (context, state) {
-        if (state is ProfileLoading) {
-          return Center(child: CircularProgressIndicator());
-        }
-        if (state is ProfileLoaded) {
-          _firstNameController = TextEditingController.fromValue(
-              TextEditingValue(
-                  text: state.name,
-                  selection:
-                      TextSelection.collapsed(offset: state.name.length)));
+  Widget build(BuildContext context) => BlocBuilder<ProfileBloc, ProfileState>(
+        builder: (context, state) {
+          if (state is ProfileLoading) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (state is ProfileLoaded) {
+            _firstNameController = TextEditingController.fromValue(
+                TextEditingValue(
+                    text: state.name,
+                    selection: TextSelection.fromPosition(
+                        TextPosition(offset: state.name.length))));
 
-          _lastNameController = TextEditingController.fromValue(
-              TextEditingValue(
-                  text: state.lastName,
-                  selection:
-                      TextSelection.collapsed(offset: state.lastName.length)));
+            _lastNameController = TextEditingController.fromValue(
+                TextEditingValue(
+                    text: state.lastName,
+                    selection: TextSelection.fromPosition(
+                        TextPosition(offset: state.lastName.length))));
 
-          _birthdayController =
-              TextEditingController.fromValue(TextEditingValue(
-            text: DateUtils.timestampToString(state.birthday),
-          ));
+            _birthdayController =
+                TextEditingController.fromValue(TextEditingValue(
+              text: DateUtils.timestampToString(state.birthday),
+            ));
 
-          return bodyContent(state);
-        }
-        return Center(
-          child: BlocErrorIndicator("Error"),
-        );
-      },
-    );
-  }
+            return bodyContent(state);
+          }
+          return Center(
+            child: BlocErrorIndicator("Error"),
+          );
+        },
+      );
 
   Widget bodyContent(ProfileLoaded state) => Center(
         child: Form(
