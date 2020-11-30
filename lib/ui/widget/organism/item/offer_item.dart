@@ -50,15 +50,15 @@ class OfferItem extends StatelessWidget {
                     padding: EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        List: [
+                        colors: [
                           Color.fromARGB(80, 0, 0, 0),
                           Color.fromARGB(80, 0, 0, 0),
                           Colors.transparent,
                         ],
                         begin: FractionalOffset.bottomCenter,
                         end: FractionalOffset.topCenter,
-                        /*stops: [0.0, 0.1, 0.3],
-                          tileMode: TileMode.clamp,*/
+                        stops: [0.0, 0.1, 0.3],
+                        tileMode: TileMode.clamp,
                       ),
                     ),
                     child: Column(

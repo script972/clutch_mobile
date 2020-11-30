@@ -26,26 +26,26 @@ dependencies:
   flutter_bloc: 4.0.0
   equatable: ^1.1.1
   google_maps_flutter: 0.5.26+4
-  barcode: 1.8.0
+  barcode: 1.17.1
   flutter_translate: ^1.5.7
   package_info: ^0.4.0+6
   dio: 3.0.9
   shared_preferences: 0.5.7
-  alice: 0.0.30
-  cached_network_image: 2.2.0+1
+  alice: 0.1.5
+  cached_network_image: 2.3.3
   datetime_picker_formfield: ^1.0.0
-  carousel_slider: 2.1.0
+  carousel_slider: 2.3.1
   barcode_flutter: 1.1.2
   pin_code_fields: 3.0.1
-  url_launcher: 5.4.10
+  url_launcher: 5.7.10
   geolocator: 5.3.2+2
-  permission_handler: 5.0.1
+ ## permission_handler: 5.0.1
   get_it: 4.0.2
   image_picker: 0.6.7+2
   circle_bottom_navigation: 1.0.6
   flutter_cache_manager: 1.4.1
   flutter_color_models: 0.1.6
-  app_review: 1.1.2
+  app_review: 2.0.1
 
 dev_dependencies:
   flutter_test:
