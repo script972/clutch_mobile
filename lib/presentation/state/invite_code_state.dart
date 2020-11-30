@@ -5,8 +5,11 @@ abstract class InviteCodeState extends Equatable {
 }
 
 class InviteCodeInitial extends InviteCodeState {
+  String blocMessage;
+
+  InviteCodeInitial({this.blocMessage = ""});
   @override
-  List<Object> get props => [];
+  List<Object> get props => [blocMessage];
 }
 
 class LoadingState extends InviteCodeState {
