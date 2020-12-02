@@ -1,7 +1,7 @@
 name: clutch
 description: Application for discount ERP
 
-version: 1.0.2
+version: 1.0.3
 versionCode: 3
 
 environment:
