@@ -38,7 +38,7 @@ dependencies:
   barcode_flutter: 1.1.2
   pin_code_fields: 3.0.1
   url_launcher: 5.7.10
-  geolocator: 5.3.2+2
+  geolocator: 6.1.9
  ## permission_handler: 5.0.1
   get_it: 4.0.2
   image_picker: 0.6.7+2
