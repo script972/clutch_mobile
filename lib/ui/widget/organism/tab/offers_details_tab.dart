@@ -48,15 +48,15 @@ class _OffersDetailsTabState extends State<OffersDetailsTab> {
             : SizedBox(),
         widget.offer.companyShortMobile != null
             ? IconDescriptionItem(
-          'assets/images/ic_company.png',
-          widget.offer.companyShortMobile.title,
-          color: Colors.red,
-          callback: () {
-            Navigator.pushNamed(context, CustomRoute.DETAILS_COMPANY,
-                arguments: widget.offer.companyShortMobile.id);
-            BlocProvider.of<CompanyDetailsBloc>(context).add(
-                LoadCompanyDetails(widget.offer.companyShortMobile.id));
-          },
+                'assets/images/ic_company.png',
+                widget.offer.companyShortMobile.title,
+                color: Colors.red,
+                callback: () {
+                  Navigator.pushNamed(context, CustomRoute.DETAILS_COMPANY,
+                      arguments: widget.offer.companyShortMobile.id);
+                  BlocProvider.of<CompanyDetailsBloc>(context).add(
+                      LoadCompanyDetails(widget.offer.companyShortMobile.id));
+                },
               )
             : SizedBox(),
         /*WorkSchedule(),
