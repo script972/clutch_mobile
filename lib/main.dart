@@ -19,6 +19,9 @@ Future<void> main() async {
     GetIt.I.registerLazySingleton(() => NavigationService());
   }
   await GeoHelper.requestGeoPermissionIfNeed();
+  init();
 
   runApp(LocalizedApp(delegate, Application()));
 }
+
+Future<void> init() async {}

@@ -1,8 +1,8 @@
 name: clutch
 description: Application for discount ERP
 
-version: 1.0.5
-versionCode: 5
+version: 1.0.6
+versionCode: 6
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
@@ -20,7 +20,7 @@ dependencies:
   expandable: ^4.1.2
   flutter_rating_bar: ^1.1.0
   flutter_slidable: ^0.5.4
-  firebase_core: ^0.4.0+9
+  firebase_core: 0.5.3
   firebase_analytics: 5.0.11
   firebase_messaging: 6.0.13
   flutter_bloc: 4.0.0
@@ -47,6 +47,7 @@ dependencies:
   flutter_color_models: 0.1.6
   app_review: 2.0.1
   pedantic: 1.9.2
+  firebase_crashlytics: ^0.2.4
 
 dev_dependencies:
   flutter_test:
