@@ -24,4 +24,6 @@ Future<void> main() async {
   runApp(LocalizedApp(delegate, Application()));
 }
 
-Future<void> init() async {}
+Future<void> init() async {
+  //await FirebaseCrashlytics.instance.crash();
+}

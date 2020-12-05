@@ -14,11 +14,17 @@
         android:label="Clutch"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notification_transparent" />
 
-        <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAXPNYxBlMu7mtHzA7xtsDX94yqbpV2zhA"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAXPNYxBlMu7mtHzA7xtsDX94yqbpV2zhA" />
+
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="true" />
 
 
         <activity
