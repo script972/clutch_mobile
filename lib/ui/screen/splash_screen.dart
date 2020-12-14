@@ -1,5 +1,4 @@
 import 'package:clutch/core/custom_route.dart';
-import 'package:clutch/domain/model/lunch_security_checker_dto.dart';
 import 'package:clutch/domain/repository/auth_repository.dart';
 import 'package:clutch/domain/repository/impl/auth_repository_impl.dart';
 import 'package:clutch/helpers/security_manager.dart';
@@ -16,13 +15,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    String screen = CustomRoute.MAIN_SCREEN;
+    var screen = CustomRoute.MAIN_SCREEN;
     SecurityManager.isAuthorize().then((isAuthorize) async {
       if (!isAuthorize) {
         screen = CustomRoute.SIGNIN_PHONE_SCREEN;
       } else {
-        LunchSecurityCheckerDto paidAcces =
-            await SecurityManager.checkPaidAccess();
+        var paidAcces = await SecurityManager.checkPaidAccess();
         if (!paidAcces.hasAccess) {
           screen = paidAcces.screen;
         }
@@ -32,9 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[],
-    );
-  }
+  Widget build(BuildContext context) => Column(
+        children: <Widget>[],
+      );
 }

@@ -46,7 +46,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         userPosition = LatLng(position.latitude, position.longitude);
       }
       var body = CompanyAndOffersSearch();
-      if(position!=null) {
+      if (position != null) {
         body.lat = position.latitude;
         body.lng = position.longitude;
       }
@@ -56,6 +56,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       List<PlaceMainModelUi> place = companyList.pointShortMobileDtoList
           .map((e) => PointMapper.mapperMainResponseToUi(e))
           .toList();
+
       for (int i = 0; i < place.length; i++) {
         PlaceModelUi placeModelUi = place[i];
         Marker marker = Marker(
@@ -73,7 +74,8 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         String subTitle = "";
         if (companyList.offersShortMobileDtoList[i].finish != null)
           subTitle = DateUtils.timestampToString(
-              companyList.offersShortMobileDtoList[i].finish) ?? "";
+                  companyList.offersShortMobileDtoList[i].finish) ??
+              "";
         StaggeredTile widthType;
         if (i % 3 == 0)
           widthType = const StaggeredTile.count(4, 2.25);

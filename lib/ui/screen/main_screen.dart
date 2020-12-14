@@ -37,42 +37,42 @@ class _MainScreenState extends State<MainScreen>
   }
 
   @override
-  Widget build(BuildContext context) {
-    return BaseScreen(
-      child: Scaffold(
-          key: this._scaffoldKey,
-          appBar: appbarTitle.isNotEmpty
-              ? AppBar(
-                  title: Text(appbarTitle),
-                )
-              : null,
-          backgroundColor: Colors.white,
-          bottomNavigationBar:
-              BlocBuilder<MainBloc, MainState>(builder: (context, state) {
-            return state is MainLoaded ? bottomMenu() : SizedBox();
-          }),
-          body: SafeArea(
-            child: BlocBuilder<MainBloc, MainState>(builder: (context, state) {
-              List<ShortOfferModelUi> offer = [];
-              List<CompanyShortMobile> company = [];
+  Widget build(BuildContext context) => BaseScreen(
+        child: Scaffold(
+            key: this._scaffoldKey,
+            appBar: appbarTitle.isNotEmpty
+                ? AppBar(
+                    title: Text(appbarTitle),
+                  )
+                : null,
+            backgroundColor: Colors.white,
+            bottomNavigationBar:
+                BlocBuilder<MainBloc, MainState>(builder: (context, state) {
+              return state is MainLoaded ? bottomMenu() : SizedBox();
+            }),
+            body: SafeArea(
+              child:
+                  BlocBuilder<MainBloc, MainState>(builder: (context, state) {
+                List<ShortOfferModelUi> offer = [];
+                List<CompanyShortMobile> company = [];
 
-              var listBody = List<Widget>();
-              if (state is MainLoading) {
-                return LoaderIndicator();
-              }
-              if (state is MainLoaded) {
-                company = state.company;
-                listBody.add(CompaniesTab(company));
-                listBody.add(MapsBigTab());
-                offer = state.offer;
-                listBody.add(OffersTab(offer));
+                var listBody = List<Widget>();
+                if (state is MainLoading) {
+                  return LoaderIndicator();
+                }
+                if (state is MainLoaded) {
+                  company = state.company;
+                  listBody.add(CompaniesTab(company));
+                  listBody.add(MapsBigTab());
+                  offer = state.offer;
+                  listBody.add(OffersTab(offer));
 
-                listBody.add(SettingTab());
+                  listBody.add(SettingTab());
 
-                return Stack(
-                  children: <Widget>[
-                    listBody[itemIndex],
-                    /* itemIndex != 2
+                  return Stack(
+                    children: <Widget>[
+                      listBody[itemIndex],
+                      /* itemIndex != 2
                         ? Align(
                             alignment: Alignment.centerRight,
                             child: GestureDetector(
@@ -101,15 +101,14 @@ class _MainScreenState extends State<MainScreen>
                                       ),
                                     ))))
                         : SizedBox()*/
-                  ],
-                );
-              }
+                    ],
+                  );
+                }
 
-              return BlocErrorIndicator("Something wrong");
-            }),
-          )),
-    );
-  }
+                return BlocErrorIndicator("Something wrong");
+              }),
+            )),
+      );
 
   Widget bottomMenu() => CircleBottomNavigation(
         initialSelection: itemIndex,

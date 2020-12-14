@@ -8,9 +8,9 @@ import 'package:dio/dio.dart';
 class HttpCompanyServiceImpl extends ApiCompanyService {
   @override
   Future<MainInfo> fetchCompany(CompanyAndOffersSearch body) async {
-    Response response =
+    var response =
         await HttpManager().dio.post("/company/for-me", data: body.toJson());
-    MainInfo mainInfo = MainInfo.fromMap(response.data);
+    var mainInfo = MainInfo.fromMap(response.data);
     return mainInfo;
   }
 

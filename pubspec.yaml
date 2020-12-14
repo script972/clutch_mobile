@@ -1,8 +1,8 @@
 name: clutch
 description: Application for discount ERP
 
-version: 1.0.2
-versionCode: 3
+version: 1.0.8
+versionCode: 8
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
