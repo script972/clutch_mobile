@@ -31,6 +31,10 @@ class _InviteCodeScreenState extends State<InviteCodeScreen> {
           if (state is InviteCodeBaseActionBox) {
             Navigator.pushNamedAndRemoveUntil(
                 context, state.route, (Route<dynamic> route) => false);
+          } else if (state is InviteCodeInitial &&
+              state.blocMessage.isNotEmpty) {
+            final snackBar = SnackBar(content: Text(state.blocMessage));
+            Scaffold.of(context).showSnackBar(snackBar);
           }
         },
         child: Container(
@@ -41,7 +45,9 @@ class _InviteCodeScreenState extends State<InviteCodeScreen> {
                 return paidAccessForm();
               }
               if (state is LoadingState) {
-                return LoaderIndicator(showOnColor: true,);
+                return LoaderIndicator(
+                  showOnColor: true,
+                );
               }
               return BlocErrorIndicator("");
             })),

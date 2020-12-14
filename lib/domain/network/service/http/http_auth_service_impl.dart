@@ -58,12 +58,12 @@ class HttpAuthServiceImpl extends ApiAuthService {
   Future<bool> requestPaidAcessByCode(String inviteCode) async {
     var request = ValueRequest()..value = inviteCode;
     try {
-      Response response = await HttpManager()
+      var response = await HttpManager()
           .dio
           .post("/user/become-paid-access-by-code", data: request.toJson());
       return response.statusCode == 200;
     } catch (e) {
-      throw HttpExceptions("todo");
+      throw HttpExceptions(e.toString());
     }
   }
 

@@ -43,14 +43,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 _firstNameController = TextEditingController.fromValue(
                     TextEditingValue(
                         text: state?.name ?? "",
-                        selection: TextSelection.collapsed(
-                            offset: state.name?.length ?? 0)));
+                        selection: TextSelection.fromPosition(
+                            TextPosition(offset: state.name?.length ?? 0))));
 
                 _lastNameController = TextEditingController.fromValue(
                     TextEditingValue(
                         text: state?.lastName ?? "",
-                        selection: TextSelection.collapsed(
-                            offset: state.lastName?.length ?? 0)));
+                        selection: TextSelection.fromPosition(TextPosition(
+                            offset: state.lastName?.length ?? 0))));
 
                 _birthdayController =
                     TextEditingController.fromValue(TextEditingValue(
@@ -161,8 +161,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       locale: const Locale("ru", "RU"),
                                     );
                                     int value = (data?.microsecondsSinceEpoch /
-                                            1000000 ??
-                                        0).toInt();
+                                                1000000 ??
+                                            0)
+                                        .toInt();
                                     BlocProvider.of<ProfileBloc>(context)
                                         .add(ChangeBirthday(value));
                                     return data;
