@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 class BlocErrorIndicator extends StatelessWidget {
+  final String error;
 
-  String error;
-
-  BlocErrorIndicator(this.error);
+  const BlocErrorIndicator(this.error);
 
   @override
-  Widget build(BuildContext context) => Text("Something wrong ${error}");
+  Widget build(BuildContext context) => Text('Something wrong ${error}');
 }

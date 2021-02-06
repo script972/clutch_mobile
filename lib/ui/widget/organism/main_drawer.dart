@@ -24,14 +24,14 @@ class MainDrawer extends StatelessWidget {
                   CustomRoute.PROFILE,
                 );
               }),
-              /*menuItem(Image.asset("assets/images/ic_marker_position.png"),
-                "Позиции", () {}),
-            menuItem(Image.asset("assets/images/ic_scaner.png"), "Корпоратка",
+              /*menuItem(Image.asset('assets/images/ic_marker_position.png'),
+                'Позиции', () {}),
+            menuItem(Image.asset('assets/images/ic_scaner.png'), 'Корпоратка',
                 () {}),
-            menuItem(Image.asset("assets/images/ic_transaction.png"),
-                "Транзакции", () {}),*/
+            menuItem(Image.asset('assets/images/ic_transaction.png'),
+                'Транзакции', () {}),*/
               menuItem(
-                  Image.asset("assets/images/ic_gear.png"), 'Настройка', () {}),
+                  Image.asset('assets/images/ic_gear.png'), 'Настройка', () {}),
               Padding(
                 padding: EdgeInsets.only(top: 50.0),
                 child: Row(
@@ -41,7 +41,7 @@ class MainDrawer extends StatelessWidget {
                       padding: const EdgeInsets.only(
                           bottom: 28.0, left: 16.0, right: 16.0),
                       child: FloatingActionButton(
-                        heroTag: "share",
+                        heroTag: 'share',
                         onPressed: () {},
                         child: Icon(Icons.share),
                         elevation: 0,
@@ -55,7 +55,7 @@ class MainDrawer extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         bottom: 28.0, left: 16.0, right: 16.0),
                     child: FloatingActionButton(
-                      heroTag: "exit",
+                      heroTag: 'exit',
                       onPressed: () {
                         Navigator.pushNamed(context, '/SliverAppBarScreen');
                       },

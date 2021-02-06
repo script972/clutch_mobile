@@ -1,4 +1,5 @@
 import 'package:clutch/core/application.dart';
+import 'package:clutch/domain/network/api_client.dart';
 import 'package:clutch/helpers/geo_helper.dart';
 import 'package:clutch/helpers/navigation_service.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +19,8 @@ Future<void> main() async {
   if (!GetIt.I.isRegistered(instance: NavigationService())) {
     GetIt.I.registerLazySingleton(() => NavigationService());
   }
+  GetIt.I.registerSingleton<Environment>(Environment.PROD);
   await GeoHelper.requestGeoPermissionIfNeed();
-  init();
 
   runApp(LocalizedApp(delegate, Application()));
-}
-
-Future<void> init() async {
-  //await FirebaseCrashlytics.instance.crash();
 }

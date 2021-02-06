@@ -38,34 +38,35 @@ class MainPointShortMobileResponse {
 
   factory MainPointShortMobileResponse.fromMap(Map<String, dynamic> json) =>
       MainPointShortMobileResponse(
-        companyId: json["companyId"] == null ? null : json["companyId"],
-        pointId: json["pointId"] == null ? null : json["pointId"],
-        address: json["address"] == null ? null : json["address"],
-        companyTitle:
-            json["companyTitle"] == null ? null : json["companyTitle"],
-        pointTitle: json["pointTitle"] == null ? null : json["pointTitle"],
-        companyLogo: json["companyLogo"],
-        anchorDiscount: json["anchorDiscount"] == null
+        companyId: json['companyId'],
+        pointId: json['pointId'],
+        address: json['address'],
+        companyTitle: json['companyTitle'],
+        pointTitle: json['pointTitle'],
+        companyLogo: json['companyLogo'],
+        anchorDiscount: json['anchorDiscount'] == null
             ? null
-            : AnchorPropositionResponse.fromMap(json["anchorDiscount"]),
-        pointImage: json["pointImage"] == null ? null : json["pointImage"],
-        lat: json["lat"] == null ? null : json["lat"].toDouble(),
-        lng: json["lng"] == null ? null : json["lng"].toDouble(),
-        distance: json["distanceToUser"] == null ? null : json["distanceToUser"].toDouble(),
+            : AnchorPropositionResponse.fromMap(json['anchorDiscount']),
+        pointImage: json['pointImage'],
+        lat: json['lat'] == null ? null : json['lat'].toDouble(),
+        lng: json['lng'] == null ? null : json['lng'].toDouble(),
+        distance: json['distanceToUser'] == null
+            ? null
+            : json['distanceToUser'].toDouble(),
       );
 
   Map<String, dynamic> toMap() => {
-        "companyId": companyId == null ? null : companyId,
-        "pointId": pointId == null ? null : pointId,
-        "address": address == null ? null : address,
-        "companyTitle": companyTitle == null ? null : companyTitle,
-        "pointTitle": pointTitle == null ? null : pointTitle,
-        "companyLogo": companyLogo,
-        "anchorDiscount":
+        'companyId': companyId,
+        'pointId': pointId,
+        'address': address,
+        'companyTitle': companyTitle,
+        'pointTitle': pointTitle,
+        'companyLogo': companyLogo,
+        'anchorDiscount':
             anchorDiscount == null ? null : anchorDiscount.toMap(),
-        "pointImage": pointImage == null ? null : pointImage,
-        "lat": lat == null ? null : lat,
-        "lng": lng == null ? null : lng,
-        "distanceToUser": distance == null ? null : distance,
+        'pointImage': pointImage,
+        'lat': lat,
+        'lng': lng,
+        'distanceToUser': distance,
       };
 }

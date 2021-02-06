@@ -24,7 +24,7 @@ class IconDescriptionItem extends StatelessWidget {
                       flex: 1,
                       child: Center(
                         child: Image.asset(
-                          this.image,
+                          image,
                           color: Colors.grey,
                         ),
                       ),
@@ -33,7 +33,10 @@ class IconDescriptionItem extends StatelessWidget {
                       flex: 6,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 16.0),
-                        child: Text(title, style: TextStyle(fontSize: 16.0, color: this.color),),
+                        child: Text(
+                          title,
+                          style: TextStyle(fontSize: 16.0, color: color),
+                        ),
                       ),
                     )
                   ],

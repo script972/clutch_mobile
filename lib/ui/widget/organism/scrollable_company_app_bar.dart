@@ -43,7 +43,7 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
                   height: 50,
                   child: widget.company.logoUrl.isNotEmpty
                       ? CachedNetworkImageWrapper(widget.company.logoUrl)
-                      : Image.asset("assets/images/company_placeholder.png")),
+                      : Image.asset('assets/images/company_placeholder.png')),
               Padding(
                 padding: const EdgeInsets.only(left: 30.0),
                 child: Text(widget.company.title,
@@ -64,7 +64,7 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
                 padding: const EdgeInsets.all(36.0),
                 child: widget.company.logoUrl.isNotEmpty
                     ? CachedNetworkImageWrapper(widget.company.logoUrl)
-                    : Image.asset("assets/images/company_placeholder.png"),
+                    : Image.asset('assets/images/company_placeholder.png'),
               ),
             )),
         actions: <Widget>[
@@ -76,10 +76,11 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
         bottom: TabBar(
           onTap: (tab) {
             setState(() {
-              if (widget._companyTabController.index == 2)
+              if (widget._companyTabController.index == 2) {
                 hideFlexibleSpace = true;
-              else
+              } else {
                 hideFlexibleSpace = false;
+              }
             });
           },
           unselectedLabelColor: _blackOrWhite() /*.withOpacity(0.56)*/,
@@ -100,8 +101,9 @@ class _ScrollableCompanyAppBarState extends State<ScrollableCompanyAppBar> {
       );
 
   Color _blackOrWhite() {
-    if (widget.company == null || widget.company.color == null)
+    if (widget.company == null || widget.company.color == null) {
       return Colors.black;
+    }
     return RgbColor.fromColor(widget.company.color).inverted.toColor();
   }
 }

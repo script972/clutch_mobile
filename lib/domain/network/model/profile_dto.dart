@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:clutch/domain/network/model/sex_dto.dart';
-
 class ProfileDto {
   final int id;
   final String firstName;
@@ -27,22 +25,21 @@ class ProfileDto {
   String toJson() => json.encode(toMap());
 
   factory ProfileDto.fromMap(Map<String, dynamic> json) => ProfileDto(
-        id: json["id"],
-        firstName: json["firstName"],
-        lastName: json["lastName"],
-        email: json["email"],
-        birthday: json["birthday"],
-        facePhoto: json["facePhoto"],
-        sex: json["sex"]==null ? null : json["sex"]
-      );
+      id: json['id'],
+      firstName: json['firstName'],
+      lastName: json['lastName'],
+      email: json['email'],
+      birthday: json['birthday'],
+      facePhoto: json['facePhoto'],
+      sex: json['sex']);
 
   Map<String, dynamic> toMap() => {
-        "id": id,
-        "firstName": firstName,
-        "lastName": lastName,
-        "email": email,
-        "birthday": birthday,
-        "facePhoto": facePhoto,
-        "sex": sex,
+        'id': id,
+        'firstName': firstName,
+        'lastName': lastName,
+        'email': email,
+        'birthday': birthday,
+        'facePhoto': facePhoto,
+        'sex': sex,
       };
 }

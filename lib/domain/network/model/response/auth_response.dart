@@ -13,21 +13,27 @@ class AuthResponse {
   final int expiresIn;
   final List<AuthorityList> authorityList;
 
-  factory AuthResponse.fromJson(String str) => AuthResponse.fromMap(json.decode(str));
+  factory AuthResponse.fromJson(String str) =>
+      AuthResponse.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
   factory AuthResponse.fromMap(Map<String, dynamic> json) => AuthResponse(
-    accessToken: json["accessToken"] == null ? null : json["accessToken"],
-    expiresIn: json["expiresIn"] == null ? null : json["expiresIn"],
-    authorityList: json["authorityList"] == null ? null : List<AuthorityList>.from(json["authorityList"].map((x) => AuthorityList.fromMap(x))),
-  );
+        accessToken: json['accessToken'],
+        expiresIn: json['expiresIn'],
+        authorityList: json['authorityList'] == null
+            ? null
+            : List<AuthorityList>.from(
+                json['authorityList'].map((x) => AuthorityList.fromMap(x))),
+      );
 
   Map<String, dynamic> toMap() => {
-    "accessToken": accessToken == null ? null : accessToken,
-    "expiresIn": expiresIn == null ? null : expiresIn,
-    "authorityList": authorityList == null ? null : List<dynamic>.from(authorityList.map((x) => x.toMap())),
-  };
+        'accessToken': accessToken,
+        'expiresIn': expiresIn,
+        'authorityList': authorityList == null
+            ? null
+            : List<dynamic>.from(authorityList.map((x) => x.toMap())),
+      };
 }
 
 class AuthorityList {
@@ -39,17 +45,18 @@ class AuthorityList {
   final int id;
   final String authority;
 
-  factory AuthorityList.fromJson(String str) => AuthorityList.fromMap(json.decode(str));
+  factory AuthorityList.fromJson(String str) =>
+      AuthorityList.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
   factory AuthorityList.fromMap(Map<String, dynamic> json) => AuthorityList(
-    id: json["id"] == null ? null : json["id"],
-    authority: json["authority"] == null ? null : json["authority"],
-  );
+        id: json['id'],
+        authority: json['authority'],
+      );
 
   Map<String, dynamic> toMap() => {
-    "id": id == null ? null : id,
-    "authority": authority == null ? null : authority,
-  };
+        'id': id,
+        'authority': authority,
+      };
 }

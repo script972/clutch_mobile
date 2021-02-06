@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
 
@@ -12,27 +11,25 @@ class MapHelper {
       String pathToImage) async {
     var icon = await BitmapDescriptor.fromAssetImage(
         ImageConfiguration(devicePixelRatio: 3.2),
-        "assets/images/markeruser.png");
+        'assets/images/markeruser.png');
     return icon;
   }
 
   static Future<BitmapDescriptor> getNetworkImageMarker(String imageUrl) async {
-    final File markerImageFile =
-        await DefaultCacheManager().getSingleFile(imageUrl);
-    final Uint8List markerImageBytes = await markerImageFile.readAsBytes();
-    final Uint8List markerImageBytesWithSize =
+    final markerImageFile = await DefaultCacheManager().getSingleFile(imageUrl);
+    final markerImageBytes = await markerImageFile.readAsBytes();
+    final markerImageBytesWithSize =
         await getBytesFromCanvas(150, 150, markerImageBytes);
-    BitmapDescriptor bitmapDescriptor =
-        BitmapDescriptor.fromBytes(markerImageBytesWithSize);
+    var bitmapDescriptor = BitmapDescriptor.fromBytes(markerImageBytesWithSize);
     return bitmapDescriptor;
   }
 
   static Future<Uint8List> getBytesFromCanvas(
       int width, int height, Uint8List dataBytes) async {
-    final PictureRecorder pictureRecorder = PictureRecorder();
-    final Canvas canvas = Canvas(pictureRecorder);
-    final Paint paint = Paint()..color = Colors.transparent;
-    final Radius radius = Radius.circular(20.0);
+    final pictureRecorder = PictureRecorder();
+    final canvas = Canvas(pictureRecorder);
+    final paint = Paint()..color = Colors.transparent;
+    final radius = Radius.circular(20.0);
     canvas.drawRRect(
         RRect.fromRectAndCorners(
           Rect.fromLTWH(0.0, 0.0, width.toDouble(), height.toDouble()),
@@ -49,7 +46,7 @@ class MapHelper {
       Rect.fromLTRB(
           0.0, 0.0, imaged.width.toDouble(), imaged.height.toDouble()),
       Rect.fromLTRB(0.0, 0.0, width.toDouble(), height.toDouble()),
-      new Paint(),
+      Paint(),
     );
 
     final img = await pictureRecorder.endRecording().toImage(width, height);

@@ -6,7 +6,6 @@ import 'package:clutch/ui/widget/atom/company_header.dart';
 import 'package:clutch/ui/widget/organism/about_widget.dart';
 import 'package:clutch/ui/widget/organism/item/review_slider.dart';
 import 'package:clutch/ui/widget/organism/item/review_widget.dart';
-import 'package:clutch/ui/widget/organism/work_shedule.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_translate/flutter_translate.dart';
@@ -14,7 +13,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 class CompanyDetailsTab extends StatefulWidget {
   final CompanyDetailsModelUi company;
-
 
   CompanyDetailsTab(this.company, {Key key}) : super(key: key);
 
@@ -38,10 +36,10 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                 Divider(),
                 phoneAndNetwork(widget.company),
                 socialLink(widget.company),
-               /* WorkSchedule(),
+                /* WorkSchedule(),
                 Padding(
                   padding: const EdgeInsets.only(left: 32.0, bottom: 8.0),
-                  child: Text("График работы ближайшей к вам локации компании"),
+                  child: Text('График работы ближайшей к вам локации компании'),
                 ),*/
                 /* Divider(),*/
                 /* Padding(
@@ -89,7 +87,7 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
           : [
               Center(
                 child: Text(
-                  "Пока что не оставлено не одного отзыва",
+                  'Пока что не оставлено не одного отзыва',
                   style: TextStyle(
                       fontSize: 16.0,
                       fontWeight: FontWeight.w600,
@@ -116,10 +114,10 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                 style: TextStyle(color: Colors.white, fontSize: 36.0),
                 children: [
                   TextSpan(
-                    text: "${anchorPropositionResponse.discount}",
+                    text: '${anchorPropositionResponse.discount}',
                   ),
                   TextSpan(
-                    text: "${anchorPropositionResponse.units}",
+                    text: '${anchorPropositionResponse.units}',
                   ),
                   TextSpan(
                       text: translate(Keys.Discount),
@@ -134,7 +132,7 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                       .isEmpty)
               ? SizedBox()
               : Text(
-                  "**${widget.company.anchorPropositionResponse.conditionDescription}"),
+                  '**${widget.company.anchorPropositionResponse.conditionDescription}'),
         ],
       ),
     );
@@ -159,11 +157,12 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(8.0),
                       onTap: () async {
-                        var url = "https://instagram.com/foxtrot_com_ua/${company.instargamUrl}";
+                        var url =
+                            'https://instagram.com/foxtrot_com_ua/${company.instargamUrl}';
                         if (await canLaunch(url)) {
-                        await launch(url);
+                          await launch(url);
                         } else {
-                        throw 'Could not launch $company.instargamUrl';
+                          throw 'Could not launch $company.instargamUrl';
                         }
                       },
                       child: Padding(
@@ -174,9 +173,9 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                             Padding(
                               padding: const EdgeInsets.only(right: 8.0),
                               child:
-                                  Image.asset("assets/images/ic_instargam.png"),
+                                  Image.asset('assets/images/ic_instargam.png'),
                             ),
-                            Text("Instagram"),
+                            Text('Instagram'),
                           ],
                         ),
                       ),
@@ -200,12 +199,14 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(8.0),
                       onTap: () async {
-                        var url = "https://www.facebook.com/${company.facebookUrl}/";
+                        var url =
+                            'https://www.facebook.com/${company.facebookUrl}/';
                         if (await canLaunch(url)) {
-                        await launch(url);
+                          await launch(url);
                         } else {
-                        throw 'Could not launch $company.facebookUrl';
-                        };
+                          throw 'Could not launch $company.facebookUrl';
+                        }
+                        ;
                       },
                       child: Padding(
                         padding: EdgeInsets.all(8.0),
@@ -215,9 +216,9 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                             Padding(
                               padding: const EdgeInsets.only(right: 8.0),
                               child:
-                                  Image.asset("assets/images/ic_facebook.png"),
+                                  Image.asset('assets/images/ic_facebook.png'),
                             ),
-                            Text("Facebook"),
+                            Text('Facebook'),
                           ],
                         ),
                       ),
@@ -246,9 +247,12 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                       ),
                       GestureDetector(
                           onTap: () {
-                            launch("tel://${widget.company.phone}");
+                            launch('tel://${widget.company.phone}');
                           },
-                          child: Text(widget.company.phone.toString(), style: TextStyle(color: Colors.lightBlue),)),
+                          child: Text(
+                            widget.company.phone.toString(),
+                            style: TextStyle(color: Colors.lightBlue),
+                          )),
                     ],
                   ),
                 )
@@ -275,14 +279,18 @@ class _CompanyDetailsTabState extends State<CompanyDetailsTab> {
                       ),
                       GestureDetector(
                           onTap: () async {
-                            var url = "https://${company.site}/";
+                            var url = 'https://${company.site}/';
                             if (await canLaunch(url)) {
                               await launch(url);
                             } else {
                               throw 'Could not launch $url';
-                            };
+                            }
+                            ;
                           },
-                          child: Text(widget.company.site.toString(), style: TextStyle(color: Colors.lightBlue),)),
+                          child: Text(
+                            widget.company.site.toString(),
+                            style: TextStyle(color: Colors.lightBlue),
+                          )),
                     ],
                   ),
                 )

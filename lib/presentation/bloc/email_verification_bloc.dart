@@ -16,7 +16,7 @@ class EmailVerificationBloc
   }
 
   @override
-  get initialState => EmailVerificationInitial();
+  EmailVerificationInitial get initialState => EmailVerificationInitial();
 
   @override
   Stream<EmailVerificationState> mapEventToState(
@@ -30,13 +30,13 @@ class EmailVerificationBloc
       SendEmailEvent event) async* {
     yield EmailVerificationLoading();
     try {
-      bool result = await authRepository.requestEmail(event.email);
+      var result = await authRepository.requestEmail(event.email);
       if (result) {
         yield EmailVerificationBaseActionBox(successScreen: true);
       }
     } on HttpExceptions catch (e) {
       yield EmailVerificationBaseActionBox(message: e.value);
-    } catch(e){
+    } catch (e) {
       yield EmailVerificationBaseActionBox(message: e.value);
     }
     yield EmailVerificationInitial();

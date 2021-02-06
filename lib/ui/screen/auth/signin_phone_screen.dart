@@ -21,8 +21,7 @@ class _SignInPhoneScreenState extends State<SignInPhoneScreen> {
   @override
   Widget build(BuildContext context) => BaseScreen(
         child: WillPopScope(
-          onWillPop: () =>
-             Future.value(false),
+          onWillPop: () => Future.value(false),
           child: Scaffold(
             body: Container(
               decoration: BoxDecoration(gradient: ThemeCustom.mainGradient),
@@ -33,7 +32,7 @@ class _SignInPhoneScreenState extends State<SignInPhoneScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Center(child: Image.asset("assets/images/logo.png")),
+                          Center(child: Image.asset('assets/images/logo.png')),
                           Padding(
                             padding: const EdgeInsets.only(top: 36.0),
                             child: Text(
@@ -59,7 +58,7 @@ class _SignInPhoneScreenState extends State<SignInPhoneScreen> {
                               textAlign: TextAlign.left,
                               padding: EdgeInsets.all(0.0),
                               controller: _phoneInputController,
-                              prefixText:  "+380",
+                              prefixText: '+380',
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(vertical: 16.0),

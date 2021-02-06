@@ -17,7 +17,7 @@ class CompanyHeader extends StatelessWidget {
           _company.title,
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
         ),
-        subtitle: Text(_company?.categoriesResponse?.title ?? ""),
+        subtitle: Text(_company?.categoriesResponse?.title ?? ''),
         trailing: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,

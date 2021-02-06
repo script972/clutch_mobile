@@ -17,22 +17,22 @@ class PointShortDto {
       this.image});
 
   factory PointShortDto.fromMap(Map<String, dynamic> json) => PointShortDto(
-        id: json["id"],
-        title: json["title"],
-        image: json["image"],
-        address: json["address"],
-        lat: json["lat"]?.toDouble(),
-        lng: json["lng"]?.toDouble(),
-        distance: json["distance"]?.toDouble(),
+        id: json['id'],
+        title: json['title'],
+        image: json['image'],
+        address: json['address'],
+        lat: json['lat']?.toDouble(),
+        lng: json['lng']?.toDouble(),
+        distance: json['distance']?.toDouble(),
       );
 
   Map<String, dynamic> toMap() => {
-        "id": id,
-        "title": title,
-        "address": address,
-        "image": image,
-        "lat": lat,
-        "lng": lng,
-        "distance": distance,
+        'id': id,
+        'title': title,
+        'address': address,
+        'image': image,
+        'lat': lat,
+        'lng': lng,
+        'distance': distance,
       };
 }

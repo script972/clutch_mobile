@@ -13,7 +13,7 @@ class PointMapper {
         pointShortDto.title,
         pointShortDto.address,
         pointShortDto.distance,
-        pointShortDto.image ?? "",
+        pointShortDto.image ?? '',
         LatLng(pointShortDto.lat, pointShortDto.lng),
         marker: marker);
   }
@@ -25,7 +25,7 @@ class PointMapper {
         pointShortDto.companyTitle,
         pointShortDto.address,
         pointShortDto.distance,
-        pointShortDto.companyLogo ?? "",
+        pointShortDto.companyLogo ?? '',
         LatLng(pointShortDto.lat, pointShortDto.lng));
   }
 }

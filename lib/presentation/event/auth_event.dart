@@ -6,27 +6,30 @@ abstract class AuthEvent extends Equatable {
   const AuthEvent();
 }
 
+@immutable
 class LoadingAuth extends AuthEvent {
-  LoadingAuth();
+  const LoadingAuth();
 
   @override
   List<Object> get props => [];
 }
 
+@immutable
 class PhoneAuth extends AuthEvent {
-  String phone;
+  final String phone;
 
-  PhoneAuth(this.phone);
+  const PhoneAuth(this.phone);
 
   @override
   List<Object> get props => [];
 }
 
+@immutable
 class PhoneCodeAuth extends AuthEvent {
-  String phone;
-  String code;
+  final String phone;
+  final String code;
 
-  PhoneCodeAuth(this.phone, this.code);
+  const PhoneCodeAuth(this.phone, this.code);
 
   @override
   List<Object> get props => [];

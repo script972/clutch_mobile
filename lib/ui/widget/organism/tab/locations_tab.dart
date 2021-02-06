@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:clutch/helpers/geo_helper.dart';
 import 'package:clutch/presentation/model/place_model_ui.dart';
 import 'package:clutch/ui/localization/keys.dart';
 import 'package:flutter/foundation.dart';
@@ -20,7 +19,7 @@ class LocationsTab extends StatefulWidget {
 }
 
 class _LocationsTabState extends State<LocationsTab> {
-  final Set<Marker> markers = {};
+  final markers = <Marker>{};
   final Completer<GoogleMapController> _controller = Completer();
   final double MAP_ZOOM = 12.0;
 
@@ -28,7 +27,7 @@ class _LocationsTabState extends State<LocationsTab> {
   void initState() {
     super.initState();
     widget.places.forEach((element) {
-      this.markers.add(element.marker);
+      markers.add(element.marker);
     });
   }
 

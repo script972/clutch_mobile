@@ -3,6 +3,6 @@ import 'package:clutch/presentation/model/short_offer_model_ui.dart';
 
 class OfferMapper {
   static ShortOfferModelUi mapperShortResponseToUi(OffersShortMobileDto input) {
-    return ShortOfferModelUi(input.id, input.image, input.title, "");
+    return ShortOfferModelUi(input.id, input.image, input.title, '');
   }
 }

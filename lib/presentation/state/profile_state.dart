@@ -23,8 +23,8 @@ class ProfileLoaded extends ProfileState {
   const ProfileLoaded(
       {this.photo,
       this.photoExternal,
-      this.name = "",
-      this.lastName = "",
+      this.name = '',
+      this.lastName = '',
       this.birthday,
       this.sex});
 

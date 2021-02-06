@@ -25,7 +25,8 @@ class _SplashScreenState extends State<SplashScreen> {
           screen = paidAcces.screen;
         }
       }
-      Navigator.pushNamedAndRemoveUntil(context, screen, (route) => false);
+      await Navigator.pushNamedAndRemoveUntil(
+          context, screen, (route) => false);
     });
   }
 

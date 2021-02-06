@@ -1,5 +1,4 @@
 import 'package:clutch/presentation/bloc/offer_details_bloc.dart';
-import 'package:clutch/presentation/model/offer_details_model_ui.dart';
 import 'package:clutch/presentation/state/offer_details_state.dart';
 import 'package:clutch/ui/localization/keys.dart';
 import 'package:clutch/ui/screen/base_screen.dart';
@@ -11,6 +10,8 @@ import 'package:clutch/ui/widget/organism/tab/offers_details_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/global.dart';
+
+import '../widget/organism/tab/offers_details_tab.dart';
 
 class OfferScreen extends StatefulWidget {
   const OfferScreen();
@@ -39,7 +40,7 @@ class _OfferScreenState extends State<OfferScreen>
             return LoaderIndicator();
           }
           if (state is OfferDetailsLoaded) {
-            OfferDetailsModelUi offer = state.offerDetailsModelUi;
+            var offer = state.offerDetailsModelUi;
             return NestedScrollView(
               headerSliverBuilder: (a1, a2) => <Widget>[
                 ScrollableOfferAppBar(offer, hideFlexibleSpace),
@@ -62,7 +63,7 @@ class _OfferScreenState extends State<OfferScreen>
                               style: TextStyle(fontSize: 24),
                             ),
                             subtitle: Text(
-                              offer.categoriesResponse?.title ?? "",
+                              offer.categoriesResponse?.title ?? '',
                               style:
                                   TextStyle(fontSize: 14, color: Colors.grey),
                               textAlign: TextAlign.start,
@@ -81,10 +82,11 @@ class _OfferScreenState extends State<OfferScreen>
                                 child: TabBar(
                                   onTap: (tab) {
                                     setState(() {
-                                      if (_offerTabController.index == 1)
+                                      if (_offerTabController.index == 1) {
                                         hideFlexibleSpace = true;
-                                      else
+                                      } else {
                                         hideFlexibleSpace = false;
+                                      }
                                     });
                                   },
                                   unselectedLabelColor:
@@ -124,7 +126,7 @@ class _OfferScreenState extends State<OfferScreen>
               ),
             );
           }
-          return BlocErrorIndicator("");
+          return BlocErrorIndicator('');
         })),
       );
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class SliverAppBarComponent extends StatefulWidget {
-
   final Widget hiddenChild;
   final Widget expandedChild;
 
@@ -43,8 +42,8 @@ class _SliverAppBarComponentState extends State<SliverAppBarComponent> {
 
   void _positionListener() {
     final FlexibleSpaceBarSettings settings =
-    context.dependOnInheritedWidgetOfExactType();
-    bool visible =
+        context.dependOnInheritedWidgetOfExactType();
+    var visible =
         settings == null || settings.currentExtent <= settings.minExtent;
     if (_visible != visible) {
       setState(() {

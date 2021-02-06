@@ -28,7 +28,7 @@ class _MainScreenState extends State<MainScreen>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   int itemIndex = 0;
-  String appbarTitle = "";
+  String appbarTitle = '';
 
   @override
   Future<void> initState() {
@@ -37,42 +37,42 @@ class _MainScreenState extends State<MainScreen>
   }
 
   @override
-  Widget build(BuildContext context) => BaseScreen(
-        child: Scaffold(
-            key: this._scaffoldKey,
-            appBar: appbarTitle.isNotEmpty
-                ? AppBar(
-                    title: Text(appbarTitle),
-                  )
-                : null,
-            backgroundColor: Colors.white,
-            bottomNavigationBar:
-                BlocBuilder<MainBloc, MainState>(builder: (context, state) {
-              return state is MainLoaded ? bottomMenu() : SizedBox();
-            }),
-            body: SafeArea(
-              child:
-                  BlocBuilder<MainBloc, MainState>(builder: (context, state) {
-                List<ShortOfferModelUi> offer = [];
-                List<CompanyShortMobile> company = [];
+  Widget build(BuildContext context) {
+    return BaseScreen(
+      child: Scaffold(
+          key: _scaffoldKey,
+          appBar: appbarTitle.isNotEmpty
+              ? AppBar(
+                  title: Text(appbarTitle),
+                )
+              : null,
+          backgroundColor: Colors.white,
+          bottomNavigationBar:
+              BlocBuilder<MainBloc, MainState>(builder: (context, state) {
+            return state is MainLoaded ? bottomMenu() : SizedBox();
+          }),
+          body: SafeArea(
+            child: BlocBuilder<MainBloc, MainState>(builder: (context, state) {
+              var offer = <ShortOfferModelUi>[];
+              var company = <CompanyShortMobile>[];
 
-                var listBody = List<Widget>();
-                if (state is MainLoading) {
-                  return LoaderIndicator();
-                }
-                if (state is MainLoaded) {
-                  company = state.company;
-                  listBody.add(CompaniesTab(company));
-                  listBody.add(MapsBigTab());
-                  offer = state.offer;
-                  listBody.add(OffersTab(offer));
+              var listBody = <Widget>[];
+              if (state is MainLoading) {
+                return LoaderIndicator();
+              }
+              if (state is MainLoaded) {
+                company = state.company;
+                listBody.add(CompaniesTab(company));
+                listBody.add(MapsBigTab());
+                offer = state.offer;
+                listBody.add(OffersTab(offer));
 
-                  listBody.add(SettingTab());
+                listBody.add(SettingTab());
 
-                  return Stack(
-                    children: <Widget>[
-                      listBody[itemIndex],
-                      /* itemIndex != 2
+                return Stack(
+                  children: <Widget>[
+                    listBody[itemIndex],
+                    /* itemIndex != 2
                         ? Align(
                             alignment: Alignment.centerRight,
                             child: GestureDetector(
@@ -95,20 +95,21 @@ class _MainScreenState extends State<MainScreen>
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Image.asset(
-                                          "assets/images/ic_filter.png",
+                                          'assets/images/ic_filter.png',
                                           color: Colors.white,
                                         ),
                                       ),
                                     ))))
                         : SizedBox()*/
-                    ],
-                  );
-                }
+                  ],
+                );
+              }
 
-                return BlocErrorIndicator("Something wrong");
-              }),
-            )),
-      );
+              return BlocErrorIndicator('Something wrong');
+            }),
+          )),
+    );
+  }
 
   Widget bottomMenu() => CircleBottomNavigation(
         initialSelection: itemIndex,
@@ -121,7 +122,7 @@ class _MainScreenState extends State<MainScreen>
             if (itemIndex == 3) {
               appbarTitle = translate(Keys.Settings);
             } else {
-              appbarTitle = "";
+              appbarTitle = '';
             }
           });
         },

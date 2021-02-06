@@ -13,8 +13,11 @@ class PhoneSmsConfirmRequest {
   String toJson() => json.encode(toMap());
 
   factory PhoneSmsConfirmRequest.fromMap(Map<String, dynamic> json) =>
-      PhoneSmsConfirmRequest(phone: json["phone"], smscode: json["smscode"], firebaseToken: json["firebaseToken"]);
+      PhoneSmsConfirmRequest(
+          phone: json['phone'],
+          smscode: json['smscode'],
+          firebaseToken: json['firebaseToken']);
 
   Map<String, dynamic> toMap() =>
-      {"phone": phone, "smscode": smscode, "firebaseToken": firebaseToken};
+      {'phone': phone, 'smscode': smscode, 'firebaseToken': firebaseToken};
 }

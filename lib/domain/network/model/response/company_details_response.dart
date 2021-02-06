@@ -48,49 +48,49 @@ class CompanyDetailsResponse {
 
   factory CompanyDetailsResponse.fromMap(Map<String, dynamic> json) =>
       CompanyDetailsResponse(
-          id: json["id"],
-          barcode: json["barcode"],
-          logo: json["logo"],
-          color: json["color"],
-          justOnline: json["justOnline"],
-          title: json["title"],
-          rang: json["rang"],
-          description: json["description"],
-          site: json["site"],
-          phone: json["phone"],
-          categoryDto: json["categories"] == null
+          id: json['id'],
+          barcode: json['barcode'],
+          logo: json['logo'],
+          color: json['color'],
+          justOnline: json['justOnline'],
+          title: json['title'],
+          rang: json['rang'],
+          description: json['description'],
+          site: json['site'],
+          phone: json['phone'],
+          categoryDto: json['categories'] == null
               ? null
-              : CategoriesResponse.fromMap(json["categories"]),
+              : CategoriesResponse.fromMap(json['categories']),
           offersShortMobileDtoList: List<OffersShortMobileDto>.from(
-              json["offersShortMobileDtoList"]
+              json['offersShortMobileDtoList']
                   .map((x) => OffersShortMobileDto.fromMap(x))),
           pointShortMobileDtoList: List<PointShortDto>.from(
-              json["pointShortMobileDtoList"]
+              json['pointShortMobileDtoList']
                   .map((x) => PointShortDto.fromMap(x))),
-          anchorPropositionResponse: json["anchorPropositionResponse"] == null
+          anchorPropositionResponse: json['anchorPropositionResponse'] == null
               ? null
               : AnchorPropositionResponse.fromMap(
-                  json["anchorPropositionResponse"]),
-          facebookUrl: json["facebookUrl"],
-          instagramUrl: json["instagramUrl"]);
+                  json['anchorPropositionResponse']),
+          facebookUrl: json['facebookUrl'],
+          instagramUrl: json['instagramUrl']);
 
   Map<String, dynamic> toMap() => {
-        "id": id,
-        "barcode": barcode,
-        "logo": logo,
-        "color": color,
-        "justOnline": justOnline,
-        "title": title,
-        "rang": rang,
-        "description": description,
-        "site": site,
-        "phone": phone,
-        "categories": categoryDto.toMap(),
-        "offersShortMobileDtoList":
+        'id': id,
+        'barcode': barcode,
+        'logo': logo,
+        'color': color,
+        'justOnline': justOnline,
+        'title': title,
+        'rang': rang,
+        'description': description,
+        'site': site,
+        'phone': phone,
+        'categories': categoryDto.toMap(),
+        'offersShortMobileDtoList':
             List<dynamic>.from(offersShortMobileDtoList.map((x) => x.toMap())),
-        "pointShortMobileDtoList":
+        'pointShortMobileDtoList':
             List<dynamic>.from(pointShortMobileDtoList.map((x) => x.toMap())),
-        "anchorPropositionResponse": anchorPropositionResponse == null
+        'anchorPropositionResponse': anchorPropositionResponse == null
             ? null
             : anchorPropositionResponse.toMap(),
       };

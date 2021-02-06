@@ -2,15 +2,14 @@ import 'package:clutch/presentation/bloc/company_details_bloc.dart';
 import 'package:clutch/presentation/state/company_details_state.dart';
 import 'package:clutch/ui/widget/atom/bloc_error_indicator.dart';
 import 'package:clutch/ui/widget/atom/loader_indicator.dart';
+import 'package:clutch/ui/widget/organism/scrollable_company_app_bar.dart';
 import 'package:clutch/ui/widget/organism/tab/company_details_tab.dart';
 import 'package:clutch/ui/widget/organism/tab/locations_tab.dart';
 import 'package:clutch/ui/widget/organism/tab/offers_tab.dart';
 import 'package:flutter/material.dart';
-import 'package:clutch/ui/widget/organism/scrollable_company_app_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CompanyScreen extends StatefulWidget {
-
   const CompanyScreen();
 
   @override
@@ -47,12 +46,13 @@ class _CompanyScreenState extends State<CompanyScreen>
                 children: <Widget>[
                   OffersTab(state.companyDetailsModelUi.offers),
                   CompanyDetailsTab(state.companyDetailsModelUi),
-                  LocationsTab(state.companyDetailsModelUi.places, state.camera),
+                  LocationsTab(
+                      state.companyDetailsModelUi.places, state.camera),
                 ],
               ),
             ),
           );
         }
-        return BlocErrorIndicator("");
+        return BlocErrorIndicator('');
       }));
 }

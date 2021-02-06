@@ -24,20 +24,20 @@ class OffersShortMobileDto {
 
   factory OffersShortMobileDto.fromMap(Map<String, dynamic> json) =>
       OffersShortMobileDto(
-        id: json["id"],
-        title: json["title"],
-        image: json["image"],
-        finish: json["finish"] == null ? null : json["finish"],
-        distance: json["distance"],
-        big: json["big"],
+        id: json['id'],
+        title: json['title'],
+        image: json['image'],
+        finish: json['finish'],
+        distance: json['distance'],
+        big: json['big'],
       );
 
   Map<String, dynamic> toMap() => {
-    "id": id,
-    "title": title,
-    "image": image,
-    "finish": finish == null ? null : finish,
-    "distance": distance,
-    "big": big,
-  };
+        'id': id,
+        'title': title,
+        'image': image,
+        'finish': finish,
+        'distance': distance,
+        'big': big,
+      };
 }

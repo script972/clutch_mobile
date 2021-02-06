@@ -5,9 +5,9 @@ abstract class InviteCodeEvent extends Equatable {
 }
 
 class SendInviteCode extends InviteCodeEvent {
-  String inviteCode;
+  final String inviteCode;
 
-  SendInviteCode(this.inviteCode);
+  const SendInviteCode(this.inviteCode);
 
   @override
   List<Object> get props => [inviteCode];

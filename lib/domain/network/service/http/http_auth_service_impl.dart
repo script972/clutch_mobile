@@ -8,41 +8,39 @@ import 'package:clutch/domain/network/model/response/auth_response.dart';
 import 'package:clutch/domain/network/model/response/company_with_paid_access.dart';
 import 'package:clutch/domain/network/service/api_auth_service.dart';
 import 'package:clutch/ui/localization/keys.dart';
-import 'package:dio/dio.dart';
 
 class HttpAuthServiceImpl extends ApiAuthService {
   @override
   Future<bool> initPhone(PhoneInitRequest body) async {
-    Response response =
-        await HttpManager().dioAuth.post("/initphone", data: body.toJson());
+    var response =
+        await HttpManager().dioAuth.post('/initphone', data: body.toJson());
     return response.statusCode == 200;
   }
 
   @override
   Future<AuthResponse> confirmPhone(PhoneSmsConfirmRequest body) async {
-    Response response =
-        await HttpManager().dioAuth.post("/confirm-phone", data: body.toJson());
+    var response =
+        await HttpManager().dioAuth.post('/confirm-phone', data: body.toJson());
     return AuthResponse.fromMap(response.data);
   }
 
   @override
   Future<ProfileDto> fetchProfile() async {
-    Response response = await HttpManager().dio.get("/user/profile");
+    var response = await HttpManager().dio.get('/user/profile');
     return ProfileDto.fromMap(response.data);
   }
 
   @override
   Future<ProfileDto> changeProfile(ProfileDto body) async {
-    Response response =
-        await HttpManager().dio.patch("/user/profile", data: body.toJson());
+    var response =
+        await HttpManager().dio.patch('/user/profile', data: body.toJson());
     return ProfileDto.fromMap(response.data);
   }
 
   @override
   Future<List<CompanyWithPaidAccess>> fetchPaidAccessDetails() async {
     try {
-      Response response =
-          await HttpManager().dio.get("/user/details-paid-access");
+      var response = await HttpManager().dio.get('/user/details-paid-access');
       if (response.statusCode == 400) {
         return [];
       }
@@ -60,10 +58,10 @@ class HttpAuthServiceImpl extends ApiAuthService {
     try {
       var response = await HttpManager()
           .dio
-          .post("/user/become-paid-access-by-code", data: request.toJson());
+          .post('/user/become-paid-access-by-code', data: request.toJson());
       return response.statusCode == 200;
     } catch (e) {
-      throw HttpExceptions(e.toString());
+      throw HttpExceptions('todo');
     }
   }
 
@@ -73,7 +71,7 @@ class HttpAuthServiceImpl extends ApiAuthService {
     try {
       var response = await HttpManager()
           .dio
-          .post("/user/request-access-via-email", data: request.toJson());
+          .post('/user/request-access-via-email', data: request.toJson());
       if (response.statusCode == 200) return true;
     } catch (e) {
       if (e.resscrse.statusCode == 404) {
@@ -87,6 +85,7 @@ class HttpAuthServiceImpl extends ApiAuthService {
       }
       throw HttpExceptions(Keys.Unknown_Error);
     }
+    return false;
   }
 
   @override
@@ -94,9 +93,9 @@ class HttpAuthServiceImpl extends ApiAuthService {
     var request = ValueRequest()..value = emailCode;
     try {
       var response = await HttpManager().dio.post(
-          "/user/request-access-verify-code-email",
+          '/user/request-access-verify-code-email',
           data: request.toJson());
-      if (response.statusCode == 200) return true;
+      return response.statusCode == 200;
     } catch (e) {
       if (e.response.statusCode == 409) {
         throw HttpExceptions(Keys.You_Are_Alredy_Have_Company);
@@ -105,5 +104,6 @@ class HttpAuthServiceImpl extends ApiAuthService {
         throw HttpExceptions(Keys.Code_Not_Found);
       }
     }
+    return false;
   }
 }

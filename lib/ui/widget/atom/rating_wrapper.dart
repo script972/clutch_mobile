@@ -4,9 +4,9 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 class RatingWrapper extends StatelessWidget {
   final double ITEM_SIZE = 25;
 
-  int rait;
+  final int rait;
 
-  RatingWrapper(this.rait);
+  const RatingWrapper(this.rait);
 
   @override
   Widget build(BuildContext context) => FlutterRatingBar(
@@ -19,5 +19,6 @@ class RatingWrapper extends StatelessWidget {
         ),
         initialRating: rait.toDouble(),
         itemSize: ITEM_SIZE,
+        onRatingUpdate: (double rating) {},
       );
 }

@@ -29,12 +29,12 @@ class _SettingTabState extends State<SettingTab> {
           ),
           ListTile(
             leading: Icon(Icons.star),
-            title: Text("Оцените нас"),
+            title: Text('Оцените нас'),
             onTap: () {
               AppReview.storeListing.then((onValue) {});
             },
           ),
-          phoneAndNetwork("script972@gmail.com", "+380936629627")
+          phoneAndNetwork('script972@gmail.com', '+380936629627')
         ],
       ));
 
@@ -45,7 +45,8 @@ class _SettingTabState extends State<SettingTab> {
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text("Поддержка",
+            Text(
+              'Поддержка',
               style:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
@@ -62,7 +63,7 @@ class _SettingTabState extends State<SettingTab> {
                       ),
                       GestureDetector(
                           onTap: () {
-                            launch("tel://${phone}");
+                            launch('tel://${phone}');
                           },
                           child: Text(
                             phone.toString(),
@@ -82,7 +83,7 @@ class _SettingTabState extends State<SettingTab> {
                       ),
                       GestureDetector(
                           onTap: () async {
-                            launch("mailto:${email}");
+                            await launch('mailto:${email}');
                           },
                           child: Text(
                             email.toString(),

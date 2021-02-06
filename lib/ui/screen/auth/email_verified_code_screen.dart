@@ -17,7 +17,7 @@ class EmailVerifiedCodeScreen extends StatefulWidget {
 }
 
 class _EmailVerifiedCodeScreenState extends State<EmailVerifiedCodeScreen> {
-  FocusNode _emailCodeNode = FocusNode();
+  final FocusNode _emailCodeNode = FocusNode();
   final TextEditingController _emailCodeInputController =
       TextEditingController();
 
@@ -51,9 +51,11 @@ class _EmailVerifiedCodeScreenState extends State<EmailVerifiedCodeScreen> {
                       return buildInitialState(state);
                     }
                     if (state is EmailVerifiedCodeLoading) {
-                      return LoaderIndicator(showOnColor: true,);
+                      return LoaderIndicator(
+                        showOnColor: true,
+                      );
                     }
-                    return BlocErrorIndicator("");
+                    return BlocErrorIndicator('');
                   },
                 ),
               ),
@@ -69,7 +71,7 @@ class _EmailVerifiedCodeScreenState extends State<EmailVerifiedCodeScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Center(child: Image.asset("assets/images/logo.png")),
+                  Center(child: Image.asset('assets/images/logo.png')),
                   Padding(
                     padding: const EdgeInsets.only(top: 36.0),
                     child: Text(

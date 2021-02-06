@@ -66,12 +66,12 @@ class OfferItem extends StatelessWidget {
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
-                        Text(this.model.title,
+                        Text(model.title,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14.0,
                                 fontWeight: FontWeight.bold)),
-                        Text(this.model.subTitle,
+                        Text(model.subTitle,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 10.0,

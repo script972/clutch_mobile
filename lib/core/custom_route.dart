@@ -1,9 +1,9 @@
 import 'package:clutch/ui/screen/auth/email_verified_code_screen.dart';
 import 'package:clutch/ui/screen/auth/email_verified_screen.dart';
+import 'package:clutch/ui/screen/auth/invite_code_screen.dart';
 import 'package:clutch/ui/screen/auth/signin_phone_screen.dart';
 import 'package:clutch/ui/screen/auth/signup_sms_code_screen.dart';
 import 'package:clutch/ui/screen/company_screen.dart';
-import 'package:clutch/ui/screen/auth/invite_code_screen.dart';
 import 'package:clutch/ui/screen/main_screen.dart';
 import 'package:clutch/ui/screen/offer_screen.dart';
 import 'package:clutch/ui/screen/profile_screen.dart';
@@ -11,14 +11,15 @@ import 'package:clutch/ui/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 class CustomRoute {
-///EmailVerifiedCodeScreen
+  ///EmailVerifiedCodeScreen
 
   static const String SPLASH_SCREEN = '/';
   //auth
   static const String SIGNIN_PHONE_SCREEN = '/signin';
   static const String SIGNUP_SCREEN = '/signup';
   static const String EMAIL_VERIFIED_SCREEN = '/email_verified_screen';
-  static const String EMAIL_VERIFIED_CODE_SCREEN = '/email_verified_code_screen';
+  static const String EMAIL_VERIFIED_CODE_SCREEN =
+      '/email_verified_code_screen';
   static const String INVITE_CODE_SCREEN = '/invite_code';
 
   //main
@@ -29,7 +30,6 @@ class CustomRoute {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     Widget screen;
-    final args = settings.arguments;
     switch (settings.name) {
       case SPLASH_SCREEN:
         screen = SplashScreen();

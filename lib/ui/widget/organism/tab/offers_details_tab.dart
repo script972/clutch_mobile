@@ -31,9 +31,9 @@ class _OffersDetailsTabState extends State<OffersDetailsTab> {
           Widget>[
         /*CompanyHeader(widget.company)*/
         Divider(),
-        AboutWidget("О предложении", widget.offer.description),
+        AboutWidget('О предложении', widget.offer.description),
         IconDescriptionItem(
-          "assets/images/ic_calendar.png",
+          'assets/images/ic_calendar.png',
           widget.offer.duration,
         ),
         widget.offer.phone.isNotEmpty
@@ -42,7 +42,7 @@ class _OffersDetailsTabState extends State<OffersDetailsTab> {
                 widget.offer.phone,
                 color: Colors.red,
                 callback: () {
-                  launch("tel://${widget.offer.phone}");
+                  launch('tel://${widget.offer.phone}');
                 },
               )
             : SizedBox(),
