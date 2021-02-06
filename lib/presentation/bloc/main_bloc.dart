@@ -8,7 +8,6 @@ import 'package:clutch/helpers/geo_helper.dart';
 import 'package:clutch/helpers/map_helper.dart';
 import 'package:clutch/helpers/utils/date_utils.dart';
 import 'package:clutch/presentation/event/main_event.dart';
-import 'package:clutch/presentation/model/place_main_model_ui.dart';
 import 'package:clutch/presentation/model/place_model_ui.dart';
 import 'package:clutch/presentation/model/short_offer_model_ui.dart';
 import 'package:clutch/presentation/state/main_state.dart';
@@ -40,25 +39,25 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       Position position;
       try {
         position = await GeoHelper.detectPosition();
-      } catch (e) {}
+      } catch (_) {}
       LatLng userPosition;
       if (position != null && position.latitude != null) {
         userPosition = LatLng(position.latitude, position.longitude);
       }
       var body = CompanyAndOffersSearch();
-      if(position!=null) {
+      if (position != null) {
         body.lat = position.latitude;
         body.lng = position.longitude;
       }
       MainInfo companyList;
       companyList = await companyRepository.fetchAllCompany(body);
 
-      List<PlaceMainModelUi> place = companyList.pointShortMobileDtoList
+      var place = companyList.pointShortMobileDtoList
           .map((e) => PointMapper.mapperMainResponseToUi(e))
           .toList();
-      for (int i = 0; i < place.length; i++) {
+      for (var i = 0; i < place.length; i++) {
         PlaceModelUi placeModelUi = place[i];
-        Marker marker = Marker(
+        var marker = Marker(
             position: placeModelUi.position,
             icon: (placeModelUi.imageUrl == null ||
                     placeModelUi.imageUrl.isEmpty)
@@ -68,19 +67,22 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         placeModelUi.marker = marker;
       }
 
-      List<ShortOfferModelUi> shortOfferModelUi = [];
-      for (int i = 0; i < companyList.offersShortMobileDtoList.length; i++) {
-        String subTitle = "";
-        if (companyList.offersShortMobileDtoList[i].finish != null)
+      var shortOfferModelUi = <ShortOfferModelUi>[];
+      for (var i = 0; i < companyList.offersShortMobileDtoList.length; i++) {
+        var subTitle = '';
+        if (companyList.offersShortMobileDtoList[i].finish != null) {
           subTitle = DateUtils.timestampToString(
-              companyList.offersShortMobileDtoList[i].finish) ?? "";
+                  companyList.offersShortMobileDtoList[i].finish) ??
+              '';
+        }
         StaggeredTile widthType;
-        if (i % 3 == 0)
+        if (i % 3 == 0) {
           widthType = const StaggeredTile.count(4, 2.25);
-        else
+        } else {
           widthType = const StaggeredTile.count(2, 2.65);
+        }
 
-        ShortOfferModelUi offer = OfferMapper.mapperShortResponseToUi(
+        var offer = OfferMapper.mapperShortResponseToUi(
             companyList.offersShortMobileDtoList[i]);
         offer.subTitle = subTitle;
         offer.staggeredTile = widthType;

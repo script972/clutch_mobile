@@ -14,11 +14,12 @@ class LoadingState extends InviteCodeState {
   List<Object> get props => [];
 }
 
+// ignore: must_be_immutable
 class InviteCodeBaseActionBox extends InviteCodeState {
-  String route;
-  String message = "";
+  final String route;
+  String message = '';
 
-  InviteCodeBaseActionBox({this.route, this.message = ""});
+  InviteCodeBaseActionBox({this.route, this.message = ''});
 
   @override
   List<Object> get props => [route, message];

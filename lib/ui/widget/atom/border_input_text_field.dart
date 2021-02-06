@@ -23,6 +23,7 @@ class BorderedInputTextField extends StatefulWidget {
   final String prefixText;
   final String hint;
 
+  @override
   final Key key;
 
   final bool isDeletableField;
@@ -41,7 +42,7 @@ class BorderedInputTextField extends StatefulWidget {
       this.padding = const EdgeInsets.fromLTRB(16, 26, 16, 0),
       this.action = TextInputAction.done,
       this.inputFormatter = const [],
-      this.error = "",
+      this.error = '',
       this.textAlign = TextAlign.left,
       this.textCapitalization = TextCapitalization.none,
       this.isDeletableField = false,
@@ -58,7 +59,7 @@ class _BorderedInputTextFieldState extends State<BorderedInputTextField> {
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: new BorderRadius.all(Radius.circular(8.0)),
+            borderRadius: BorderRadius.all(Radius.circular(8.0)),
           ),
           child: TextFormField(
             autofocus: widget.autofocus,
@@ -103,7 +104,7 @@ InputBorder _border(Color color, String error) {
 }
 
 Color getTextFieldColor(bool focused, String error) {
-  if (error.length != 0) {
+  if (error.isNotEmpty) {
     return Colors.red;
   } else {
     if (focused) {

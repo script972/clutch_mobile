@@ -4,21 +4,21 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:clutch/presentation/model/offer_details_model_ui.dart';
 import 'package:clutch/ui/widget/molecula/sliver_app_bar.dart';
 import 'package:clutch/ui/widget/organism/barcode_custom.dart';
-import 'package:clutch/ui/widget/organism/barcode_dialog.dart';
 import 'package:flutter/material.dart';
 
 class ScrollableOfferAppBar extends StatefulWidget {
   final OfferDetailsModelUi _offer;
-  bool hideFlexibleSpace = false;
-  int _currentPosition = 0;
+  final bool hideFlexibleSpace;
 
-  ScrollableOfferAppBar(this._offer, this.hideFlexibleSpace);
+  const ScrollableOfferAppBar(this._offer, this.hideFlexibleSpace);
 
   @override
   _ScrollableOfferAppBarState createState() => _ScrollableOfferAppBarState();
 }
 
 class _ScrollableOfferAppBarState extends State<ScrollableOfferAppBar> {
+  int _currentPosition = 0;
+
   @override
   Widget build(BuildContext context) => SliverAppBar(
         backgroundColor: Theme.of(context).primaryColorLight,
@@ -85,7 +85,7 @@ class _ScrollableOfferAppBarState extends State<ScrollableOfferAppBar> {
                     aspectRatio: 1.841,
                     onPageChanged: (index, reaso) {
                       setState(() {
-                        widget._currentPosition = index;
+                        _currentPosition = index;
                       });
                     },
                   ),
@@ -105,7 +105,7 @@ class _ScrollableOfferAppBarState extends State<ScrollableOfferAppBar> {
                                   vertical: 10.0, horizontal: 2.0),
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: widget._currentPosition == index
+                                  color: _currentPosition == index
                                       ? Color.fromRGBO(1, 1, 1, 1)
                                       : Color.fromRGBO(1, 1, 1, 0.4)),
                             )))
@@ -117,17 +117,16 @@ class _ScrollableOfferAppBarState extends State<ScrollableOfferAppBar> {
             )),
         actions: <Widget>[
           SliverAppBarComponent(
-            hiddenChild: BarcodeCustom("1335"),
-            expandedChild: BarcodeCustom("3223"),
+            hiddenChild: BarcodeCustom('1335'),
+            expandedChild: BarcodeCustom('3223'),
           )
         ],
       );
 
-
   String _cutingIfNeed(String title) {
-    int cutON = 15;
+    var cutON = 15;
     if (title.length > cutON) {
-      return widget._offer.title.substring(0, 15) + "...";
+      return widget._offer.title.substring(0, 15) + '...';
     } else {
       return title;
     }

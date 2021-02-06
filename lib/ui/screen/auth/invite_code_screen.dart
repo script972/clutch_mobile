@@ -24,9 +24,8 @@ class _InviteCodeScreenState extends State<InviteCodeScreen> {
 
   @override
   Widget build(BuildContext context) => BaseScreen(
-          child: WillPopScope(
-              child: Scaffold(
-                  body: BlocListener<InviteCodeBloc, InviteCodeState>(
+          child: Scaffold(
+              body: BlocListener<InviteCodeBloc, InviteCodeState>(
         listener: (context, state) {
           if (state is InviteCodeBaseActionBox) {
             Navigator.pushNamedAndRemoveUntil(
@@ -41,11 +40,13 @@ class _InviteCodeScreenState extends State<InviteCodeScreen> {
                 return paidAccessForm();
               }
               if (state is LoadingState) {
-                return LoaderIndicator(showOnColor: true,);
+                return LoaderIndicator(
+                  showOnColor: true,
+                );
               }
-              return BlocErrorIndicator("");
+              return BlocErrorIndicator('');
             })),
-      ))));
+      )));
 
   Widget paidAccessForm() => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -58,7 +59,7 @@ class _InviteCodeScreenState extends State<InviteCodeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Center(child: Image.asset("assets/images/logo.png")),
+                    Center(child: Image.asset('assets/images/logo.png')),
                     Padding(
                       padding: const EdgeInsets.only(top: 36.0),
                       child: Text(

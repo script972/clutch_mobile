@@ -28,7 +28,7 @@ class _MainScreenState extends State<MainScreen>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   int itemIndex = 0;
-  String appbarTitle = "";
+  String appbarTitle = '';
 
   @override
   Future<void> initState() {
@@ -40,7 +40,7 @@ class _MainScreenState extends State<MainScreen>
   Widget build(BuildContext context) {
     return BaseScreen(
       child: Scaffold(
-          key: this._scaffoldKey,
+          key: _scaffoldKey,
           appBar: appbarTitle.isNotEmpty
               ? AppBar(
                   title: Text(appbarTitle),
@@ -53,10 +53,10 @@ class _MainScreenState extends State<MainScreen>
           }),
           body: SafeArea(
             child: BlocBuilder<MainBloc, MainState>(builder: (context, state) {
-              List<ShortOfferModelUi> offer = [];
-              List<CompanyShortMobile> company = [];
+              var offer = <ShortOfferModelUi>[];
+              var company = <CompanyShortMobile>[];
 
-              var listBody = List<Widget>();
+              var listBody = <Widget>[];
               if (state is MainLoading) {
                 return LoaderIndicator();
               }
@@ -95,7 +95,7 @@ class _MainScreenState extends State<MainScreen>
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Image.asset(
-                                          "assets/images/ic_filter.png",
+                                          'assets/images/ic_filter.png',
                                           color: Colors.white,
                                         ),
                                       ),
@@ -105,7 +105,7 @@ class _MainScreenState extends State<MainScreen>
                 );
               }
 
-              return BlocErrorIndicator("Something wrong");
+              return BlocErrorIndicator('Something wrong');
             }),
           )),
     );
@@ -122,7 +122,7 @@ class _MainScreenState extends State<MainScreen>
             if (itemIndex == 3) {
               appbarTitle = translate(Keys.Settings);
             } else {
-              appbarTitle = "";
+              appbarTitle = '';
             }
           });
         },

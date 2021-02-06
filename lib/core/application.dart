@@ -18,6 +18,7 @@ import 'package:flutter_translate/localization_provider.dart';
 import 'package:flutter_translate/localized_app.dart';
 import 'package:get_it/get_it.dart';
 
+// ignore: must_be_immutable
 class Application extends StatelessWidget {
   FirebaseAnalytics analytics = FirebaseAnalytics();
 
@@ -29,7 +30,7 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     var localizationDelegate = LocalizedApp.of(context).delegate;
     final theme = ThemeData(
-      fontFamily: "GoogleSans",
+      fontFamily: 'GoogleSans',
       primaryColor: Color(0xFF02AD58),
       dividerColor: Colors.black,
     );

@@ -7,13 +7,13 @@ import 'package:clutch/domain/repository/auth_repository.dart';
 import 'package:clutch/domain/repository/impl/auth_repository_impl.dart';
 import 'package:clutch/presentation/event/invite_code_event.dart';
 import 'package:clutch/presentation/state/invite_code_state.dart';
-import 'package:flutter/cupertino.dart';
 
 class InviteCodeBloc extends Bloc<InviteCodeEvent, InviteCodeState> {
   AuthRepository authRepository = AuthRepositoryImpl();
 
   InviteCodeBloc() : super();
 
+  @override
   InviteCodeState get initialState => InviteCodeInitial();
 
   @override
@@ -29,15 +29,13 @@ class InviteCodeBloc extends Bloc<InviteCodeEvent, InviteCodeState> {
       SendInviteCode event) async* {
     yield LoadingState();
     try {
-      bool sucessCode =
+      var sucessCode =
           await authRepository.requestPaidAccessByCode(event.inviteCode);
 
-      if (sucessCode)
+      if (sucessCode) {
         yield InviteCodeBaseActionBox(route: CustomRoute.MAIN_SCREEN);
-    } on HttpExceptions catch (e) {
-      debugPrint("123");
-    }
-
+      }
+    } on HttpExceptions catch (_) {}
     yield InviteCodeInitial();
   }
 }

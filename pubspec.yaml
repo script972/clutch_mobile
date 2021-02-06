@@ -50,7 +50,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: ^1.8.0
+  pedantic: 1.9.2
   flutter_translate_gen: ^1.2.4
   build_runner: ^1.8.0
 

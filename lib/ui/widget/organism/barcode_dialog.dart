@@ -35,7 +35,7 @@ class BarcodeDialog extends StatelessWidget {
                     Expanded(
                         child: BarCodeImage(
                       params: Code39BarCodeParams(
-                        this.barcode,
+                        barcode,
                         barHeight: 90.0,
                         withText: false,
                       ),
@@ -46,7 +46,7 @@ class BarcodeDialog extends StatelessWidget {
                   ],
                 ),
               ),
-          /*    Align(alignment: Alignment.topRight,child: Icon(Icons.close)),*/
+              /*    Align(alignment: Alignment.topRight,child: Icon(Icons.close)),*/
             ],
           ),
         ),

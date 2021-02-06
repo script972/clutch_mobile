@@ -11,19 +11,21 @@ class CategoriesResponse {
     this.id,
   });
 
-  factory CategoriesResponse.fromJson(String str) => CategoriesResponse.fromMap(json.decode(str));
+  factory CategoriesResponse.fromJson(String str) =>
+      CategoriesResponse.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory CategoriesResponse.fromMap(Map<String, dynamic> json) => CategoriesResponse(
-    title: json["title"],
-    icon: json["icon"],
-    id: json["id"],
-  );
+  factory CategoriesResponse.fromMap(Map<String, dynamic> json) =>
+      CategoriesResponse(
+        title: json['title'],
+        icon: json['icon'],
+        id: json['id'],
+      );
 
   Map<String, dynamic> toMap() => {
-    "title": title,
-    "icon": icon,
-    "id": id,
-  };
+        'title': title,
+        'icon': icon,
+        'id': id,
+      };
 }

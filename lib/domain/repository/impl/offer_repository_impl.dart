@@ -1,5 +1,4 @@
 import 'package:clutch/domain/mapper/point_mapper.dart';
-import 'package:clutch/domain/network/model/response/offer_details_response.dart';
 import 'package:clutch/domain/network/service/api_offer_service.dart';
 import 'package:clutch/domain/network/service/http/http_offer_service_impl.dart';
 import 'package:clutch/domain/repository/offer_repository.dart';
@@ -14,36 +13,37 @@ class OfferRepositoryImpl extends OfferRepository {
 
   @override
   Future<OfferDetailsModelUi> fetchCompanyById(int id) async {
-    OfferDetailsResponse responseOffer = await apiService.fetchOffer(id);
+    var responseOffer = await apiService.fetchOffer(id);
     Color color = Colors.red;
-    String duration = "";
-    if(responseOffer.perpetual){
+    var duration = '';
+    if (responseOffer.perpetual) {
       duration = translate(Keys.Perpetual);
     } else {
       var dateStart;
-      if (responseOffer.startDate != null)
+      if (responseOffer.startDate != null) {
         dateStart =
             DateTime.fromMillisecondsSinceEpoch(responseOffer.startDate);
+      }
       var dateEnd;
-      if (responseOffer.endDate != null)
+      if (responseOffer.endDate != null) {
         dateEnd = DateTime.fromMillisecondsSinceEpoch(responseOffer.endDate);
-      if (dateStart != null && dateEnd != null)
+      }
+      if (dateStart != null && dateEnd != null) {
         duration =
-        "${translate(Keys.Offer_Work_Since)} ${DateUtils.dayMonthInString(
-            dateStart)} ${translate(Keys.To)} ${DateUtils.dayMonthInString(
-            dateEnd)}";
+            '${translate(Keys.Offer_Work_Since)} ${DateUtils.dayMonthInString(dateStart)} ${translate(Keys.To)} ${DateUtils.dayMonthInString(dateEnd)}';
+      }
     }
 
     return OfferDetailsModelUi(
       responseOffer.id,
       responseOffer.barcode,
       responseOffer.images,
-      responseOffer.title ?? "",
+      responseOffer.title ?? '',
       color,
       responseOffer.companyShortMobile,
       responseOffer.categoryDto,
-      responseOffer.description ?? "",
-      responseOffer.phoneNumber ?? "",
+      responseOffer.description ?? '',
+      responseOffer.phoneNumber ?? '',
       duration,
       responseOffer.location
           .map((e) => PointMapper.mapperResponseToUi(e))

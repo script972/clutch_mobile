@@ -1,11 +1,11 @@
 import 'package:clutch/presentation/model/comment_model_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:clutch/ui/widget/atom/rating_wrapper.dart';
+import 'package:flutter/material.dart';
 
 class ReviewItem extends StatefulWidget {
-  CommentModelUi model;
+  final CommentModelUi model;
 
-  ReviewItem(this.model);
+  const ReviewItem(this.model);
 
   @override
   _ReviewItemState createState() => _ReviewItemState();

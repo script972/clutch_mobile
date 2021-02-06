@@ -1,10 +1,7 @@
 import 'package:clutch/core/custom_route.dart';
 import 'package:clutch/core/theme_custom.dart';
-import 'package:clutch/presentation/bloc/profile_bloc.dart';
-import 'package:clutch/presentation/event/profile_event.dart';
 import 'package:clutch/ui/localization/keys.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/global.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -18,24 +15,23 @@ class MainDrawer extends StatelessWidget {
               DrawerHeader(
                 child: Center(
                     child: Image.asset(
-                        "assets/images/ic_logo_vertical_white.png")),
+                        'assets/images/ic_logo_vertical_white.png')),
               ),
-              menuItem(Image.asset("assets/images/ic_profile.png"),
+              menuItem(Image.asset('assets/images/ic_profile.png'),
                   translate(Keys.Profile), () {
                 Navigator.pushNamed(
                   context,
                   CustomRoute.PROFILE,
                 );
-
               }),
-              /*menuItem(Image.asset("assets/images/ic_marker_position.png"),
-                "Позиции", () {}),
-            menuItem(Image.asset("assets/images/ic_scaner.png"), "Корпоратка",
+              /*menuItem(Image.asset('assets/images/ic_marker_position.png'),
+                'Позиции', () {}),
+            menuItem(Image.asset('assets/images/ic_scaner.png'), 'Корпоратка',
                 () {}),
-            menuItem(Image.asset("assets/images/ic_transaction.png"),
-                "Транзакции", () {}),*/
+            menuItem(Image.asset('assets/images/ic_transaction.png'),
+                'Транзакции', () {}),*/
               menuItem(
-                  Image.asset("assets/images/ic_gear.png"), "Настройка", () {}),
+                  Image.asset('assets/images/ic_gear.png'), 'Настройка', () {}),
               Padding(
                 padding: EdgeInsets.only(top: 50.0),
                 child: Row(
@@ -45,7 +41,7 @@ class MainDrawer extends StatelessWidget {
                       padding: const EdgeInsets.only(
                           bottom: 28.0, left: 16.0, right: 16.0),
                       child: FloatingActionButton(
-                        heroTag: "share",
+                        heroTag: 'share',
                         onPressed: () {},
                         child: Icon(Icons.share),
                         elevation: 0,
@@ -59,7 +55,7 @@ class MainDrawer extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         bottom: 28.0, left: 16.0, right: 16.0),
                     child: FloatingActionButton(
-                      heroTag: "exit",
+                      heroTag: 'exit',
                       onPressed: () {
                         Navigator.pushNamed(context, '/SliverAppBarScreen');
                       },

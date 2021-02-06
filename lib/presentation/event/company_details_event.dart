@@ -6,10 +6,10 @@ abstract class CompanyDetailsEvent extends Equatable {
   const CompanyDetailsEvent();
 }
 
+@immutable
 class LoadCompanyDetails extends CompanyDetailsEvent {
-
-  int id;
-  LoadCompanyDetails(this.id);
+  final int id;
+  const LoadCompanyDetails(this.id);
 
   @override
   List<Object> get props => [];

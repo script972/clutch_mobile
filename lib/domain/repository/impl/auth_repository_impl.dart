@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:clutch/domain/network/model/profile_dto.dart';
 import 'package:clutch/domain/network/model/request/phone_init_request.dart';
 import 'package:clutch/domain/network/model/request/phone_sms_confirm_request.dart';
-import 'package:clutch/domain/network/model/response/auth_response.dart';
 import 'package:clutch/domain/network/model/response/company_with_paid_access.dart';
 import 'package:clutch/domain/network/service/api_auth_service.dart';
 import 'package:clutch/domain/network/service/api_media_service.dart';
@@ -26,9 +25,8 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<AuthDto> confirmPhone(String phone, String code, String token) async {
-    AuthResponse response = await apiService.confirmPhone(
-        PhoneSmsConfirmRequest(
-            phone: phone, smscode: code, firebaseToken: token));
+    var response = await apiService.confirmPhone(PhoneSmsConfirmRequest(
+        phone: phone, smscode: code, firebaseToken: token));
     return AuthDto(response.accessToken, response.expiresIn);
   }
 
@@ -39,15 +37,15 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<ProfileDto> changeProfile(ProfileDto profileDto) async {
-    bool uploaded = true;
+    var uploaded = true;
     if (profileDto.facePhoto != null) {
       uploaded = false;
       if (profileDto.facePhoto != null) {
-        File file = File(profileDto.facePhoto);
+        var file = File(profileDto.facePhoto);
         try {
           uploaded = await mediaApiService.uploadImage(file);
         } catch (e) {
-          debugPrint("<<<");
+          debugPrint('<<<');
         }
       }
     }

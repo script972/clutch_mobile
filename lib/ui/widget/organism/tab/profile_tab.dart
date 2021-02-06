@@ -60,7 +60,7 @@ class _ProfileTabState extends State<ProfileTab> {
           return bodyContent(state);
         }
         return Center(
-          child: BlocErrorIndicator("Error"),
+          child: BlocErrorIndicator('Error'),
         );
       },
     );
@@ -164,7 +164,7 @@ class _ProfileTabState extends State<ProfileTab> {
                                           currentValue ?? DateTime.now(),
                                       lastDate: DateTime.now()
                                           .add(Duration(days: 31)),
-                                      locale: const Locale("ru", "RU"),
+                                      locale: const Locale('ru', 'RU'),
                                     );
                                   },
                                   format: null,
@@ -189,7 +189,7 @@ class _ProfileTabState extends State<ProfileTab> {
                                     Row(
                                       children: <Widget>[
                                         Radio(
-                                          value: "MALE",
+                                          value: 'MALE',
                                           activeColor: Color(0xFFFF473D),
                                           groupValue: state.sex,
                                           onChanged: (val) =>
@@ -209,7 +209,7 @@ class _ProfileTabState extends State<ProfileTab> {
                                       child: Row(
                                         children: <Widget>[
                                           Radio(
-                                            value: "FEMALE",
+                                            value: 'FEMALE',
                                             activeColor: Color(0xFFFF473D),
                                             groupValue: state.sex,
                                             onChanged: (val) =>
@@ -258,14 +258,14 @@ class _ProfileTabState extends State<ProfileTab> {
       return AssetImage('assets/images/avatar.png');
     } else if (photoExternal) {
       return NetworkImage(photo);
-    } else if (!photoExternal)
+    } else if (!photoExternal) {
       return FileImage(File(photo));
-    else {
+    } else {
       return AssetImage('assets/images/avatar.png');
     }
   }
 
-  changeFocus(BuildContext context, FocusNode node) =>
+  void changeFocus(BuildContext context, FocusNode node) =>
       FocusScope.of(context).requestFocus(node);
 
   InputDecoration get _inputDecoration => InputDecoration(

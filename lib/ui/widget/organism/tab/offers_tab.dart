@@ -25,14 +25,16 @@ class OffersTab extends StatelessWidget {
             shrinkWrap: true,
             crossAxisCount: 4,
             padding: EdgeInsets.symmetric(horizontal: 8.0),
-            itemCount: this.offers?.length ?? 0,
+            itemCount: offers?.length ?? 0,
             itemBuilder: (BuildContext context, int index) =>
                 OfferItem(offers[index]),
-            staggeredTileBuilder: (int index) =>/* offers[index].staggeredTile*/ const StaggeredTile.count(2, 2.65),
+            staggeredTileBuilder:
+                (int index) => /* offers[index].staggeredTile*/ const StaggeredTile
+                    .count(2, 2.65),
             mainAxisSpacing: 8.0,
             crossAxisSpacing: 8.0,
           );
         }
-        return BlocErrorIndicator("");
+        return BlocErrorIndicator('');
       }));
 }

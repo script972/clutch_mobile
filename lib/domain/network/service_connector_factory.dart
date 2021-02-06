@@ -35,6 +35,9 @@ class ServiceConnectorFactory {
       case ServiceClientEnum.OFFERS:
         // TODO: Handle this case.
         break;
+      case ServiceClientEnum.USER:
+        // TODO: Handle this case.
+        break;
     }
   }
 }

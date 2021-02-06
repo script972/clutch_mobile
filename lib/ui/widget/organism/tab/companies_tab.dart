@@ -18,7 +18,7 @@ class CompaniesTab extends StatelessWidget {
         }
         if (state is MainError) {
           return Center(
-              child: Image.asset("assets/images/nothing_to_show.png"));
+              child: Image.asset('assets/images/nothing_to_show.png'));
         }
         if (state is MainLoaded) {
           return Container(
@@ -32,6 +32,6 @@ class CompaniesTab extends StatelessWidget {
             ),
           );
         }
-        return Text("Somthing went wrong!");
+        return Text('Somthing went wrong!');
       });
 }

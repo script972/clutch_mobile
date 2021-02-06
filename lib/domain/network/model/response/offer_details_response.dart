@@ -42,45 +42,45 @@ class OfferDetailsResponse {
 
   factory OfferDetailsResponse.fromMap(Map<String, dynamic> json) =>
       OfferDetailsResponse(
-        id: json["id"] == null ? null : json["id"],
-        title: json["title"] == null ? null : json["title"],
-        barcode: json["barcode"] == null ? null : json["barcode"],
-        startDate: json["startDate"],
-        endDate: json["endDate"] == null ? null : json["endDate"],
-        logo: json["logo"] == null ? null : json["logo"],
-        images: json["images"] == null
+        id: json['id'],
+        title: json['title'],
+        barcode: json['barcode'],
+        startDate: json['startDate'],
+        endDate: json['endDate'],
+        logo: json['logo'],
+        images: json['images'] == null
             ? null
-            : List<String>.from(json["images"].map((x) => x)),
-        description: json["description"] == null ? null : json["description"],
-        perpetual: json["perpetual"] == null ? null : json["perpetual"],
-        phoneNumber: json["phoneNumber"] == null ? null : json["phoneNumber"],
-        companyShortMobile: json["companyShortMobile"] == null
+            : List<String>.from(json['images'].map((x) => x)),
+        description: json['description'],
+        perpetual: json['perpetual'],
+        phoneNumber: json['phoneNumber'],
+        companyShortMobile: json['companyShortMobile'] == null
             ? null
-            : CompanyShortMobile.fromMap(json["companyShortMobile"]),
-        categoryDto: json["categoryDto"] == null
+            : CompanyShortMobile.fromMap(json['companyShortMobile']),
+        categoryDto: json['categoryDto'] == null
             ? null
-            : CategoriesResponse.fromMap(json["categoryDto"]),
-        location: json["location"] == null
+            : CategoriesResponse.fromMap(json['categoryDto']),
+        location: json['location'] == null
             ? null
             : List<PointShortDto>.from(
-                json["location"].map((x) => PointShortDto.fromMap(x))),
+                json['location'].map((x) => PointShortDto.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
-        "id": id == null ? null : id,
-        "title": title == null ? null : title,
-        "startDate": startDate,
-        "endDate": endDate == null ? null : endDate,
-        "logo": logo == null ? null : logo,
-        "images":
+        'id': id,
+        'title': title,
+        'startDate': startDate,
+        'endDate': endDate,
+        'logo': logo,
+        'images':
             images == null ? null : List<dynamic>.from(images.map((x) => x)),
-        "description": description == null ? null : description,
-        "perpetual": perpetual == null ? null : perpetual,
-        "phoneNumber": phoneNumber,
-        "companyShortMobile":
+        'description': description,
+        'perpetual': perpetual,
+        'phoneNumber': phoneNumber,
+        'companyShortMobile':
             companyShortMobile == null ? null : companyShortMobile.toMap(),
-        "categoryDto": categoryDto == null ? null : categoryDto.toMap(),
-        "location": location == null
+        'categoryDto': categoryDto == null ? null : categoryDto.toMap(),
+        'location': location == null
             ? null
             : List<dynamic>.from(location.map((x) => x.toMap())),
       };

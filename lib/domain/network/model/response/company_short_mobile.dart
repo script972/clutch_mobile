@@ -27,24 +27,24 @@ class CompanyShortMobile {
 
   factory CompanyShortMobile.fromMap(Map<String, dynamic> json) =>
       CompanyShortMobile(
-        id: json["id"],
-        title: json["title"],
-        logo: json["logo"] == null ? "" : json["logo"],
-        color: ColorHelper.colorFromHex(json["color"]),
-        distance: json["distance"],
-        anchorPropositionResponse: json["anchorPropositionResponse"] == null
+        id: json['id'],
+        title: json['title'],
+        logo: json['logo'] ?? '',
+        color: ColorHelper.colorFromHex(json['color']),
+        distance: json['distance'],
+        anchorPropositionResponse: json['anchorPropositionResponse'] == null
             ? null
             : AnchorPropositionResponse.fromMap(
-                json["anchorPropositionResponse"]),
+                json['anchorPropositionResponse']),
       );
 
   Map<String, dynamic> toMap() => {
-        "id": id,
-        "title": title,
-        "logo": logo,
-        "color": color,
-        "distance": distance,
-        "anchorPropositionResponse": anchorPropositionResponse == null
+        'id': id,
+        'title': title,
+        'logo': logo,
+        'color': color,
+        'distance': distance,
+        'anchorPropositionResponse': anchorPropositionResponse == null
             ? null
             : anchorPropositionResponse.toMap(),
       };

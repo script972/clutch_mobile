@@ -42,24 +42,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
               if (state is ProfileLoaded) {
                 _firstNameController = TextEditingController.fromValue(
                     TextEditingValue(
-                        text: state?.name ?? "",
+                        text: state?.name ?? '',
                         selection: TextSelection.collapsed(
                             offset: state.name?.length ?? 0)));
 
                 _lastNameController = TextEditingController.fromValue(
                     TextEditingValue(
-                        text: state?.lastName ?? "",
+                        text: state?.lastName ?? '',
                         selection: TextSelection.collapsed(
                             offset: state.lastName?.length ?? 0)));
 
                 _birthdayController =
                     TextEditingController.fromValue(TextEditingValue(
-                  text: DateUtils.timestampToString(state.birthday) ?? "",
+                  text: DateUtils.timestampToString(state.birthday) ?? '',
                 ));
                 return bodyContent(state);
               }
               return Center(
-                child: BlocErrorIndicator("Error"),
+                child: BlocErrorIndicator('Error'),
               );
             },
           ),
@@ -158,11 +158,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           currentValue ?? DateTime.now(),
                                       lastDate: DateTime.now()
                                           .add(Duration(days: 31)),
-                                      locale: const Locale("ru", "RU"),
+                                      locale: const Locale('ru', 'RU'),
                                     );
-                                    int value = (data?.microsecondsSinceEpoch /
-                                            1000000 ??
-                                        0).toInt();
+                                    var value = (data?.microsecondsSinceEpoch /
+                                                1000000 ??
+                                            0)
+                                        .toInt();
                                     BlocProvider.of<ProfileBloc>(context)
                                         .add(ChangeBirthday(value));
                                     return data;
@@ -189,7 +190,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     Row(
                                       children: <Widget>[
                                         Radio(
-                                          value: "MALE",
+                                          value: 'MALE',
                                           activeColor: Color(0xFFFF473D),
                                           groupValue: state.sex,
                                           onChanged: (val) => setState(() =>
@@ -209,7 +210,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       child: Row(
                                         children: <Widget>[
                                           Radio(
-                                            value: "FEMALE",
+                                            value: 'FEMALE',
                                             activeColor: Color(0xFFFF473D),
                                             groupValue: state.sex,
                                             onChanged: (val) => setState(() =>
@@ -258,14 +259,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       return AssetImage('assets/images/avatar.png');
     } else if (photoExternal) {
       return NetworkImage(photo);
-    } else if (!photoExternal)
+    } else if (!photoExternal) {
       return FileImage(File(photo));
-    else {
+    } else {
       return AssetImage('assets/images/avatar.png');
     }
   }
 
-  changeFocus(BuildContext context, FocusNode node) =>
+  void changeFocus(BuildContext context, FocusNode node) =>
       FocusScope.of(context).requestFocus(node);
 
   InputDecoration get _inputDecoration => InputDecoration(

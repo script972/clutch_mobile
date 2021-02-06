@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 class AnchorPropositionResponse {
-
   final int id;
   final String discount;
   final String units;
@@ -23,19 +22,16 @@ class AnchorPropositionResponse {
 
   factory AnchorPropositionResponse.fromMap(Map<String, dynamic> json) =>
       AnchorPropositionResponse(
-        id: json["id"] == null ? null : json["id"],
-        discount: json["discount"] == null ? null : json["discount"],
-        units: json["units"] == null ? null : json["units"],
-        conditionDescription: json["conditionDescription"] == null
-            ? null
-            : json["conditionDescription"],
+        id: json['id'],
+        discount: json['discount'],
+        units: json['units'],
+        conditionDescription: json['conditionDescription'],
       );
 
   Map<String, dynamic> toMap() => {
-        "id": id == null ? null : id,
-        "discount": discount == null ? null : discount,
-        "units": units == null ? null : units,
-        "conditionDescription":
-            conditionDescription == null ? null : conditionDescription,
+        'id': id,
+        'discount': discount,
+        'units': units,
+        'conditionDescription': conditionDescription,
       };
 }

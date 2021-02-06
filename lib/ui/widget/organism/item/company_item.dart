@@ -48,7 +48,7 @@ class _CompanyItemState extends State<CompanyItem> {
                     child: widget._companyResponse.logo.isNotEmpty
                         ? CachedNetworkImageWrapper(
                             widget._companyResponse.logo)
-                        : Image.asset("assets/images/company_placeholder.png"),
+                        : Image.asset('assets/images/company_placeholder.png'),
                   ),
                 ),
               ),
@@ -73,7 +73,8 @@ class _CompanyItemState extends State<CompanyItem> {
                                 null
                             ? Container(
                                 child: Padding(
-                                  padding: const EdgeInsets.only(left:8.0, top: 2.0),
+                                  padding: const EdgeInsets.only(
+                                      left: 8.0, top: 2.0),
                                   child: Text(
                                     DistanceUiHelper.displayOutput(
                                         widget._companyResponse.distance),
@@ -86,16 +87,19 @@ class _CompanyItemState extends State<CompanyItem> {
                       ),
                       widget._companyResponse.anchorPropositionResponse != null
                           ? Container(
-                            padding: const EdgeInsets.only(right:4.0),
-                            decoration: BoxDecoration(gradient: ThemeCustom.mainGradient, borderRadius: const BorderRadius.only(
-                              topRight: Radius.circular(15.0),
-                            ),),
-                            child: Text(
-                                "${widget._companyResponse.anchorPropositionResponse.discount}${widget._companyResponse.anchorPropositionResponse.units}",
+                              padding: const EdgeInsets.only(right: 4.0),
+                              decoration: BoxDecoration(
+                                gradient: ThemeCustom.mainGradient,
+                                borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(15.0),
+                                ),
+                              ),
+                              child: Text(
+                                '${widget._companyResponse.anchorPropositionResponse.discount}${widget._companyResponse.anchorPropositionResponse.units}',
                                 style: TextStyle(
                                     fontSize: 20.0, color: Colors.black),
                               ),
-                          )
+                            )
                           : SizedBox(),
                     ],
                   ),

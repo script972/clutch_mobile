@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:clutch/helpers/utils/date_utils.dart';
+import 'package:flutter/material.dart';
 
 class WorkSchedule extends StatefulWidget {
   final List<WorkingDay> workingDays = [
@@ -20,7 +20,7 @@ class WorkSchedule extends StatefulWidget {
 
 class _WorkScheduleState extends State<WorkSchedule> {
   bool get _isWorkingTime {
-    DateTime today = DateTime.now();
+    var today = DateTime.now();
     if (today.hour > 12 && today.hour < 24) {
       return true;
     }
@@ -81,14 +81,14 @@ class WorkingDay extends StatelessWidget {
   WorkingDay(this.weekday, this.openingTime, this.closingTime);
 
   bool get _isWorkingTime {
-    DateTime today = DateTime.now();
-    String todayWeekday = DateUtils.weekdays[today.weekday];
+    var today = DateTime.now();
+    var todayWeekday = DateUtils.weekdays[today.weekday];
     if (todayWeekday == weekday) {
-      int openHour = int.parse(openingTime.split(':')[0]);
-      int openMinute = int.parse(openingTime.split(':')[1]);
+      var openHour = int.parse(openingTime.split(':')[0]);
+      var openMinute = int.parse(openingTime.split(':')[1]);
 
-      int closeHour = int.parse(closingTime.split(':')[0]);
-      int closeMinute = int.parse(closingTime.split(':')[1]);
+      var closeHour = int.parse(closingTime.split(':')[0]);
+      var closeMinute = int.parse(closingTime.split(':')[1]);
       if (today.hour > openHour &&
           today.hour < (closeHour == 0 ? 24 : closeHour)) {
         return true;
@@ -118,7 +118,7 @@ class WorkingDay extends StatelessWidget {
                 fontWeight: _isWorkingTime ? FontWeight.bold : FontWeight.w600),
           ),
           Text(
-            "${openingTime} - ${closingTime}",
+            '${openingTime} - ${closingTime}',
             style: TextStyle(
                 color: _isWorkingTime
                     ? Colors.black

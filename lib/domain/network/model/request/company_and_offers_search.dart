@@ -14,14 +14,14 @@ class CompanyAndOffersSearch {
 
   factory CompanyAndOffersSearch.fromMap(Map<String, dynamic> json) =>
       CompanyAndOffersSearch(
-        title: json["title"],
-        lat: json["lat"],
-        lng: json["lng"],
+        title: json['title'],
+        lat: json['lat'],
+        lng: json['lng'],
       );
 
   Map<String, dynamic> toMap() => {
-        "title": title,
-        "lat": lat,
-        "lng": lng,
+        'title': title,
+        'lat': lat,
+        'lng': lng,
       };
 }

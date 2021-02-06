@@ -3,7 +3,6 @@ import 'package:clutch/domain/repository/auth_repository.dart';
 import 'package:clutch/domain/repository/impl/auth_repository_impl.dart';
 import 'package:clutch/helpers/security_manager.dart';
 import 'package:clutch/presentation/event/auth_event.dart';
-import 'package:clutch/presentation/model/auth_dto.dart';
 import 'package:clutch/presentation/state/auth_state.dart';
 import 'package:clutch/ui/localization/keys.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -32,11 +31,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Stream<AuthState> _mapPhoneEventToState(PhoneAuth event) async* {
     yield AuthLoading();
-    String phone = "+380${event.phone}";
+    var phone = '+380${event.phone}';
     try {
-      bool isOk = await authRepository.initPhone(phone);
+      var isOk = await authRepository.initPhone(phone);
       if (isOk) {
-        yield AuthLoaded(phone, "");
+        yield AuthLoaded(phone, '');
       } else {}
     } catch (error) {
       yield AuthError(error.toString());
@@ -46,9 +45,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> _mapPhoneCodeEventToState(PhoneCodeAuth event) async* {
     yield AuthLoading();
     try {
-      final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
-      String token = await _firebaseMessaging.getToken();
-      AuthDto authDto =
+      final _firebaseMessaging = FirebaseMessaging();
+      var token = await _firebaseMessaging.getToken();
+      var authDto =
           await authRepository.confirmPhone(event.phone, event.code, token);
       if (SecurityManager.proccessNewSecuriryToken(authDto)) {
         var paidAcces = await SecurityManager.checkPaidAccess();

@@ -44,6 +44,8 @@ class _MapsBigTabState extends State<MapsBigTab> {
           return mapBloc(state.places, state.userPosition, markers);
         } else if (state is MainLoading) {
           return LoaderIndicator();
+        } else {
+          return LoaderIndicator();
         }
       });
 
@@ -145,9 +147,7 @@ class _MapsBigTabState extends State<MapsBigTab> {
                           );
                           DraggableScrollableActuator.reset(context);
                         },
-                        onLongPress: (){
-
-                        },
+                        onLongPress: () {},
                         child: Row(
                           children: <Widget>[
                             Expanded(
@@ -163,8 +163,8 @@ class _MapsBigTabState extends State<MapsBigTab> {
                                       : Container(
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color:
-                                                  Theme.of(context).primaryColor),
+                                              color: Theme.of(context)
+                                                  .primaryColor),
                                         ),
                                   width: 60,
                                   height: 60,
@@ -178,18 +178,32 @@ class _MapsBigTabState extends State<MapsBigTab> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Row(children: <Widget>[
-                                      Expanded(child: Text(place.name)),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
-                                        decoration: BoxDecoration(gradient: ThemeCustom.mainGradient),
-                                        child: Row(children: <Widget>[
-                                          Text(DistanceUiHelper.displayOutput(place.vicinity), style: TextStyle(color: Colors.white),),
-                                          Icon(Icons.place, color: Colors.white,),
-                                        ],),
-                                      )
-
-                                    ],),
+                                    Row(
+                                      children: <Widget>[
+                                        Expanded(child: Text(place.name)),
+                                        Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 8.0, vertical: 2.0),
+                                          decoration: BoxDecoration(
+                                              gradient:
+                                                  ThemeCustom.mainGradient),
+                                          child: Row(
+                                            children: <Widget>[
+                                              Text(
+                                                DistanceUiHelper.displayOutput(
+                                                    place.vicinity),
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                              Icon(
+                                                Icons.place,
+                                                color: Colors.white,
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                     Text(place.address),
                                   ],
                                 ),

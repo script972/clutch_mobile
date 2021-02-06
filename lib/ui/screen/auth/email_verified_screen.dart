@@ -18,7 +18,7 @@ class EmailVerifiedScreen extends StatefulWidget {
 }
 
 class _EmailVerifiedScreenState extends State<EmailVerifiedScreen> {
-  FocusNode _emailNode = FocusNode();
+  final FocusNode _emailNode = FocusNode();
   final TextEditingController _emailInputController = TextEditingController();
 
   @override
@@ -53,7 +53,7 @@ class _EmailVerifiedScreenState extends State<EmailVerifiedScreen> {
                         showOnColor: true,
                       );
                     }
-                    return BlocErrorIndicator("");
+                    return BlocErrorIndicator('');
                   },
                 ),
               ),
@@ -69,7 +69,7 @@ class _EmailVerifiedScreenState extends State<EmailVerifiedScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Center(child: Image.asset("assets/images/logo.png")),
+                  Center(child: Image.asset('assets/images/logo.png')),
                   Padding(
                     padding: const EdgeInsets.only(top: 36.0),
                     child: Text(

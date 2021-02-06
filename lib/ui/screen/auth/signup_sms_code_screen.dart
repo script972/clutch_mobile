@@ -42,7 +42,7 @@ class _SignUpSmsCodeScreenState extends State<SignUpSmsCodeScreen> {
             if (state is AuthError) {
               return BlocErrorIndicator(state.error);
             }
-            return BlocErrorIndicator("");
+            return BlocErrorIndicator('');
           },
         )),
       ));
@@ -65,7 +65,7 @@ class _SignUpSmsCodeScreenState extends State<SignUpSmsCodeScreen> {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Image.asset("assets/images/ic_arrow_back.png"))),
+                      child: Image.asset('assets/images/ic_arrow_back.png'))),
             ),
             Expanded(
                 flex: 2,
@@ -100,7 +100,7 @@ class _SignUpSmsCodeScreenState extends State<SignUpSmsCodeScreen> {
                           onTap: () {
                             Navigator.pop(context);
                           },
-                          child: Image.asset("assets/images/ic_pencil.png")),
+                          child: Image.asset('assets/images/ic_pencil.png')),
                     )
                   ],
                 ),
@@ -163,7 +163,7 @@ class _SignUpSmsCodeScreenState extends State<SignUpSmsCodeScreen> {
                                             smsCodeController.text));
                                   },
                                   child: Text(
-                                    translate("Подтвердить"),
+                                    translate('Подтвердить'),
                                     style: TextStyle(color: Colors.white),
                                   )),
                             )

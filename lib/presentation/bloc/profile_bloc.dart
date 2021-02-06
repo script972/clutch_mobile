@@ -28,12 +28,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       yield* _mapChangePhoto(event);
     }
     if (event is ChangeName) {
-      String firstName =  event.name.isEmpty ? null : event.name;
+      var firstName = event.name.isEmpty ? null : event.name;
       profileChange = profileChange.copyWith(name: firstName);
       yield profileLoaded = profileLoaded.copyWith(name: firstName);
     }
     if (event is ChangeLastName) {
-      String lastName =  event.lastName.isEmpty ? null : event.lastName;
+      var lastName = event.lastName.isEmpty ? null : event.lastName;
       profileChange = profileChange.copyWith(lastName: lastName);
       yield profileLoaded = profileLoaded.copyWith(lastName: lastName);
     }
@@ -73,7 +73,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     var image = await picker.getImage(source: ImageSource.gallery);
     profileLoaded =
         profileLoaded.copyWith(photo: image.path, photoExternal: false);
-    profileChange = profileChange.copyWith(photo: image.path, photoExternal: false);
+    profileChange =
+        profileChange.copyWith(photo: image.path, photoExternal: false);
     yield profileLoaded;
   }
 
@@ -85,7 +86,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       sex: profileChange.sex,
       facePhoto: profileChange.photo,
     );
-    ProfileDto profileResult = await authRepository.changeProfile(profileDto);
+    var profileResult = await authRepository.changeProfile(profileDto);
     yield profileLoaded.copyWith(
         photo: profileResult.facePhoto,
         photoExternal: true,
