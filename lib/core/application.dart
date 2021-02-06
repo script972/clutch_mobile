@@ -10,7 +10,6 @@ import 'package:clutch/presentation/bloc/offer_details_bloc.dart';
 import 'package:clutch/presentation/bloc/profile_bloc.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -24,7 +23,9 @@ class Application extends StatelessWidget {
 
   String screen;
 
-  Application();
+  final bool debugMode;
+
+  Application(this.debugMode);
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +66,7 @@ class Application extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-          debugShowCheckedModeBanner: !kReleaseMode,
+          debugShowCheckedModeBanner: debugMode,
           theme: theme,
           darkTheme: theme,
           localizationsDelegates: [

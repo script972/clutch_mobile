@@ -22,5 +22,5 @@ Future<void> main() async {
   GetIt.I.registerSingleton<Environment>(Environment.PROD);
   await GeoHelper.requestGeoPermissionIfNeed();
 
-  runApp(LocalizedApp(delegate, Application()));
+  runApp(LocalizedApp(delegate, Application(false)));
 }

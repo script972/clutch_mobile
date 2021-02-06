@@ -7,7 +7,7 @@ abstract class InviteCodeState extends Equatable {
 class InviteCodeInitial extends InviteCodeState {
   String blocMessage;
 
-  InviteCodeInitial({this.blocMessage = ""});
+  InviteCodeInitial({this.blocMessage = ''});
   @override
   List<Object> get props => [blocMessage];
 }
