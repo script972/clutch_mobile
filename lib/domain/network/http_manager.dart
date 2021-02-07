@@ -5,6 +5,7 @@ import 'package:clutch/domain/network/api_client.dart';
 import 'package:clutch/helpers/navigation_service.dart';
 import 'package:clutch/helpers/security_manager.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 class HttpManager {
@@ -49,6 +50,8 @@ class HttpManager {
       return options;
     }, onResponse: (Response response) async {
       return response;
+    }, onError: (onError) {
+      debugPrint('OnError');
     }));
     return dio;
   }
