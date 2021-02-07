@@ -4,7 +4,7 @@ enum Environment { SANDBOX, PROD }
 
 class ApiClient {
   static final String SANDBOX = 'http://62.171.176.103:8080';
-  static final String PROD = 'https://me.clutchdiscount.org';
+  static final String PROD = 'https://api.clutchdiscount.org';
   static final String BASE_ENDPOINT = '';
 
   static final String BASE_URL = _getBaseUrl(GetIt.instance<Environment>());
